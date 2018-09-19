@@ -7,6 +7,8 @@
 * [通用组件](component.md)
 * [模板系统](jsx.md)
 * [事件系统](event.md)
+* [async/await](async.md)
+* [支持npm模块](npm.md)
 * [兼容native组件](support-native-component.md)
 * [API](api.md)
 * [路由](router.md)
