@@ -35,3 +35,23 @@ nanachi init
 ## 编译项目
 
 在项目根目录执行 `nanachi build` 即可编译项目至 `dist/` 目录下。
+
+## 开发计划
+
+nanachi未来将支持一键打包支付宝小程序，百度智能小程序，快应用。
+
+```bash
+# 默认情况下打包成微信小程序
+nanachi build
+
+# 打包支付宝小程序
+nanachi build:ali
+
+# 打包百度只能小程序
+nanachi build:baidu
+
+# 打包快应用
+nanachi build:quick
+```
+
+

@@ -35,6 +35,11 @@ window.ydoc_plugin_search_json = {
           "title": "编译项目",
           "url": "/documents/install.html#编译项目",
           "content": "编译项目在项目根目录执行 nanachi build 即可编译项目至 dist/ 目录下。"
+        },
+        {
+          "title": "开发计划",
+          "url": "/documents/install.html#开发计划",
+          "content": "开发计划nanachi未来将支持一键打包支付宝小程序，百度智能小程序，快应用。# 默认情况下打包成微信小程序nanachi build\n\n# 打包支付宝小程序\nnanachi build:ali\n\n# 打包百度只能小程序\nnanachi build:baidu\n\n# 打包快应用\nnanachi build:quick\n"
         }
       ]
     },
@@ -84,6 +89,12 @@ window.ydoc_plugin_search_json = {
           "content": "事件回调事件回调本身必须定义在类的原型里，不能通过 props 传递进来。"
         }
       ]
+    },
+    {
+      "title": "兼容",
+      "content": "对于原生自定义组件兼容，只需要将原生组件配置到属性config里usingComponents字段，与微信小程序原生开发配置方式一致。class Animal extends React.component{    config = {\n        usingComponents: {\n            Tom: '/components/NativeComponentTom/index'\n        }\n    }\n    //other code\n    render(){\n        return (\n            \n                \n            \n        )\n    }\n}\n",
+      "url": "/documents/support-native-component.html",
+      "children": []
     },
     {
       "title": "API",
