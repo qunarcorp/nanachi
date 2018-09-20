@@ -12,6 +12,7 @@ features:
   - { name: '支持事件传参', desc: '突破 wxml 的限制，实现多次 bind this 与参数' }
   - { name: '组件化编程', desc: '完美兼容 React 生命周期钩子' }
   - { name: '支持 Render Props', desc: '可以更自由地写组件' }
+  - { name: '支持 Redux', desc: '实现全App数据流动' }
 
 footer:
   copyRight:
