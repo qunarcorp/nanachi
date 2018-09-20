@@ -13,8 +13,12 @@
 | 样式文件后缀         | wxss                                                     | css                               | acss                          | 没有独立的文件 放 style 中，不需要处理 less,sass |
 | template包含template       | 支持                                               |不支持（听说正在修复）                     | 支持              | 未知
 | template的data是否支持...       | 支持                                               |不支持（听说正在修复）                     | 支持              | 未知
+| 样式单位rpx支持情况       | 支持                                               |不支持（用rem，最新的基础库版本已经支持）                     | 支持              | 不支持
 
 
+
+
+APIs的这么多方法都不一样，可能以后针对不同的平台打包不同的api.js来屏蔽差异性
 
 ## 官网
 微信小程序 https://developers.weixin.qq.com/miniprogram/dev/index.html <br />
