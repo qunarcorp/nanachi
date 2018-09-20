@@ -8,6 +8,8 @@
 
 有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例
 
+不支持switch语句
+
 ```jsx
 <Login>
   <p>xxxxx</p>
