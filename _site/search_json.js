@@ -69,7 +69,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "JSX",
-      "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例  xxxxx\n\n",
+      "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例不支持switch语句  xxxxx\n\n",
       "url": "/documents/jsx.html",
       "children": []
     },
@@ -131,6 +131,18 @@ window.ydoc_plugin_search_json = {
       "content": "暂时不支持 redux,请使用 React.getApp().globalData 来在页面间交换数据\nrender 里面不能定义变量,即不能出现 var, const, let 语句。render() 里只能使用 JSX 来描述结构，不能使用 React.createElement()。\n组件必须定义在 components 中\n页面引用了组件了，如果组件有样式，那么页面的样式表也要 import 这个组件的样式表\n为什么底部不出现 TabBar？ 这是小程序自身的 BUG，详见这里\n路由跳转时，如何拿到当前路径与参数，原来是通过 onLoad 方法拿，现在你可以通过任何一个页面组件的生命周期钩子，访问 this.props，里面就有 path 与 query 属性\n静态资源统一放到 src 目录下的 assets 目录下\nwxml 模板部分，如果使用了箭头函数，那么它里面不能出现 this 关键字\n不要在 props, state, context 里面放 JSX，因为 JSX 的结构容易出现环引用，导到微信小程序内部的 JSON.stringify 出错\nslot 机制与 render props 是有代价，它们会在 components/Fragments 目下添加许多当作桥梁用的碎片文件，不要滥用\nrender props 机制只能用于有狀态组件，并且只应用于 render() 属性，只能传一个参数，参数只能是 this.state 或 this.props\n更多问题请到 GitHub 提 Issue。",
       "url": "/documents/questions.html",
       "children": []
+    },
+    {
+      "title": "各种小程序的差异点",
+      "content": "\n\n项目\n微信小程序\n百度小程序\n支付小程序\n快应用\n\n\n\n\n命名空间\nwx\nswam\nmy\n无,需要require它提供的所有接口按wx形式封装\n\n\nif 指令\nwx:if\ns-if\na:if\nif\n\n\nfor 指令\nwx:for wx:for-index wx:for-item wx:key\n将wx:改成s-\n将wx:改成a:\nfor=\"(personIndex, personItem) in list\"\n\n\n容器标签\n存在\n存在\n存在\n存在\n\n\n事件绑定\nbind/catch[事件名全小写]=\"回调名\"\nbind/catch[事件名全小写]=\"回调名\"\non/catch[事件名驼峰]=\"回调名\"\non[事件名全小写]=\"回调名/回调(arguments)\"\n\n\n{{}}插值是否支持函数\n不支持\n不支持\n不支持\n支持\n\n\n模块中使用脚本\n\n\n\n\n\n\n模板文件后缀\nwxml\nswan\naxml\n没有独立的文件 放 template 中\n\n\n样式文件后缀\nwxss\ncss\nacss\n没有独立的文件 放 style 中，不需要处理 less,sass\n\n\ntemplate包含template\n支持\n不支持（听说正在修复）\n支持\n未知\n\n\ntemplate的data是否支持...\n支持\n不支持（听说正在修复）\n支持\n未知\n\n\n缺省的组件(视图容器)\n\n\nmoveable-view、cover-view\n未知\n\n\n缺省的组件(基础内容)\n\n\nrich-text\n未知\n\n\n缺省的组件(导航)\n\n\nfunctional-page-navigator\n未知\n\n\n缺省的组件(媒体组件)\n\n\naudio、video、camera、live-player、live-pusher\n未知\n\n\nopen-data\n\n\n不支持\n未知\n\n\n",
+      "url": "/documents/diff.html",
+      "children": [
+        {
+          "title": "官网",
+          "url": "/documents/diff.html#官网",
+          "content": "官网微信小程序  百度小程序  \n支付小程序  \n快应用  "
+        }
+      ]
     },
     {
       "title": "关于",
