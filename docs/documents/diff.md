@@ -24,6 +24,32 @@
 
 APIs的这么多方法都不一样，可能以后针对不同的平台打包不同的api.js来屏蔽差异性
 
+
+  
+
+      
+### 微信小程序与快应用差异(更新中...)
+
+| 差异                     | 微信小程序                                                   | 快应用                                                       |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 入口文件                 | app.js, app.json                                             | app.ux, manifest.json                                        |
+| 结构，表现，行为组织方式 | 分离：如page.js, page.wxss, page.wxml                        | 聚合：类似vue                                                |
+| 文件扩展名               | .js, .json, .wxml, .wxss                                     | .ux, .json                                                   |
+| 路由注册                 | app.json中配置pages字段 例如"pages": ["path1", "path2"]      | manifest.json中配置router字段 [详见文档](https://doc.quickapp.cn/tutorial/getting-started/project-configuration.html) |
+| 路由跳转                 | 1.组件跳转[navigator组件]<br /> 2.五种js跳转方式[详见文档](https://developers.weixin.qq.com/miniprogram/dev/api/ui-navigate.html#wxnavigatetoobject) | 1. 组件跳转[a组件]<br /> 2. router.push(OBJECT)              |
+| 获取应用实例             | 调用函数：getApp()                                           | 访问变量：this.$app                                          |
+| 模板逻辑渲染             | 配置命名空间： 例如：wx:if/wx:elif/wx:else                   | 不需要 例如：if/elif/else                                    |
+| 钩子函数                 | onLoad: 页面加载时触发                                       | onInit: 页面加载时触发                                       |
+|                          | onDestroy: 页面卸载                                          | onUnload: 页面卸载                                           |
+|                          | onBackPress：不支持                                          | onBackPress：支持                                            |
+|                          | onPageScroll：支持                                           | onPageScroll：不支持                                         |
+|                          | onPullDownRefresh： 支持                                     | onPullDownRefresh：不支持                                    |
+| 初始化状态(state)        | data: {list: []}                                             | private: { list: [] }                                        |
+| 更新组件状态             | setData函数更新                                              | 类vue语法                                                    |
+| UI事件绑定方式           | bindEventName                                                | （on\|@)EventName                                            |
+| UI事件自定义传参         | 不支持                                                       | 支持                                                         |
+| API                      | 挂载在wx命名空间下：如wx.showShareMenu(OBJECT)               | 需引用相关模块：import share from '@system.share'            |
+
 ## 官网
 <a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br />
 <a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br />
