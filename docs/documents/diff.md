@@ -18,7 +18,11 @@
 | 缺省的组件(导航)     |                                                  |                     | functional-page-navigator           | 未知
  缺省的组件(媒体组件)      |                                               |                     |    audio、video、camera、live-player、live-pusher           | 未知
  open-data      |                                               |                     |    不支持           | 未知
+| 样式单位rpx支持情况       | 支持                                               |不支持（用rem，最新的基础库版本已经支持）                     | 支持              | 不支持
 
+
+
+APIs的这么多方法都不一样，可能以后针对不同的平台打包不同的api.js来屏蔽差异性
 
 ## 官网
 <a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br />
