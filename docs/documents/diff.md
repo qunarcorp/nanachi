@@ -13,15 +13,19 @@
 | 样式文件后缀         | wxss                                                     | css                               | acss                          | 没有独立的文件 放 style 中，不需要处理 less,sass |
 | template包含template       | 支持                                               |不支持（听说正在修复）                     | 支持              | 未知
 | template的data是否支持...       | 支持                                               |不支持（听说正在修复）                     | 支持              | 未知
+| 缺省的组件(视图容器)      |                                               |                     |    moveable-view、cover-view           | 未知
+| 缺省的组件(基础内容)      |                                               |                     |    rich-text           | 未知
+| 缺省的组件(导航)     |                                                  |                     | functional-page-navigator           | 未知
+ 缺省的组件(媒体组件)      |                                               |                     |    audio、video、camera、live-player、live-pusher           | 未知
+ open-data      |                                               |                     |    不支持           | 未知
 | 样式单位rpx支持情况       | 支持                                               |不支持（用rem，最新的基础库版本已经支持）                     | 支持              | 不支持
-
 
 
 
 APIs的这么多方法都不一样，可能以后针对不同的平台打包不同的api.js来屏蔽差异性
 
 ## 官网
-微信小程序 https://developers.weixin.qq.com/miniprogram/dev/index.html <br />
-百度小程序 https://smartprogram.baidu.com/docs/develop/tutorial/codedir/ <br />
-支付小程序 https://docs.alipay.com/mini/developer/getting-started <br />
-快应用 https://www.quickapp.cn/ <br />
+<a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br />
+<a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br />
+<a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a>  <br />
+<a href="https://www.quickapp.cn/">快应用</a>  <br />
