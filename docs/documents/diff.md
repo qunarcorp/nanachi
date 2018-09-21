@@ -24,4 +24,4 @@
 <a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br />
 <a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br />
 <a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a>  <br />
-<a href="https://www.quickapp.cn/"></a>快应用  <br />
+<a href="https://www.quickapp.cn/">快应用</a>  <br />
