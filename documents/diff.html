@@ -92,6 +92,41 @@
 <td>未知</td>
 </tr>
 <tr>
+<td>缺省的组件(视图容器)</td>
+<td></td>
+<td></td>
+<td>moveable-view、cover-view</td>
+<td>未知</td>
+</tr>
+<tr>
+<td>缺省的组件(基础内容)</td>
+<td></td>
+<td></td>
+<td>rich-text</td>
+<td>未知</td>
+</tr>
+<tr>
+<td>缺省的组件(导航)</td>
+<td></td>
+<td></td>
+<td>functional-page-navigator</td>
+<td>未知</td>
+</tr>
+<tr>
+<td>缺省的组件(媒体组件)</td>
+<td></td>
+<td></td>
+<td>audio、video、camera、live-player、live-pusher</td>
+<td>未知</td>
+</tr>
+<tr>
+<td>open-data</td>
+<td></td>
+<td></td>
+<td>不支持</td>
+<td>未知</td>
+</tr>
+<tr>
 <td>样式单位rpx支持情况</td>
 <td>支持</td>
 <td>不支持（用rem，最新的基础库版本已经支持）</td>
@@ -101,11 +136,108 @@
 </tbody>
 </table>
 <p>APIs的这么多方法都不一样，可能以后针对不同的平台打包不同的api.js来屏蔽差异性</p>
+<h3 id="微信小程序与快应用差异更新中...">微信小程序与快应用差异(更新中...)</h3>
+<table>
+<thead>
+<tr>
+<th>差异</th>
+<th>微信小程序</th>
+<th>快应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入口文件</td>
+<td>app.js, app.json</td>
+<td>app.ux, manifest.json</td>
+</tr>
+<tr>
+<td>结构，表现，行为组织方式</td>
+<td>分离：如page.js, page.wxss, page.wxml</td>
+<td>聚合：类似vue</td>
+</tr>
+<tr>
+<td>文件扩展名</td>
+<td>.js, .json, .wxml, .wxss</td>
+<td>.ux, .json</td>
+</tr>
+<tr>
+<td>路由注册</td>
+<td>app.json中配置pages字段 例如&quot;pages&quot;: [&quot;path1&quot;, &quot;path2&quot;]</td>
+<td>manifest.json中配置router字段 <a href="https://doc.quickapp.cn/tutorial/getting-started/project-configuration.html" target="_blank">详见文档</a></td>
+</tr>
+<tr>
+<td>路由跳转</td>
+<td>1.组件跳转[navigator组件]<br> 2.五种js跳转方式<a href="https://developers.weixin.qq.com/miniprogram/dev/api/ui-navigate.html#wxnavigatetoobject" target="_blank">详见文档</a></td>
+<td>1. 组件跳转[a组件]<br> 2. router.push(OBJECT)</td>
+</tr>
+<tr>
+<td>获取应用实例</td>
+<td>调用函数：getApp()</td>
+<td>访问变量：this.$app</td>
+</tr>
+<tr>
+<td>模板逻辑渲染</td>
+<td>配置命名空间： 例如：wx:if/wx:elif/wx:else</td>
+<td>不需要 例如：if/elif/else</td>
+</tr>
+<tr>
+<td>钩子函数</td>
+<td>onLoad: 页面加载时触发</td>
+<td>onInit: 页面加载时触发</td>
+</tr>
+<tr>
+<td></td>
+<td>onDestroy: 页面卸载</td>
+<td>onUnload: 页面卸载</td>
+</tr>
+<tr>
+<td></td>
+<td>onBackPress：不支持</td>
+<td>onBackPress：支持</td>
+</tr>
+<tr>
+<td></td>
+<td>onPageScroll：支持</td>
+<td>onPageScroll：不支持</td>
+</tr>
+<tr>
+<td></td>
+<td>onPullDownRefresh： 支持</td>
+<td>onPullDownRefresh：不支持</td>
+</tr>
+<tr>
+<td>初始化状态(state)</td>
+<td>data: {list: []}</td>
+<td>private: { list: [] }</td>
+</tr>
+<tr>
+<td>更新组件状态</td>
+<td>setData函数更新</td>
+<td>类vue语法</td>
+</tr>
+<tr>
+<td>UI事件绑定方式</td>
+<td>bindEventName</td>
+<td>（on|@)EventName</td>
+</tr>
+<tr>
+<td>UI事件自定义传参</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>API</td>
+<td>挂载在wx命名空间下：如wx.showShareMenu(OBJECT)</td>
+<td>需引用相关模块：import share from '@system.share'</td>
+</tr>
+</tbody>
+</table>
 <h2 id="官网">官网</h2>
-<p>微信小程序 https://developers.weixin.qq.com/miniprogram/dev/index.html <br>
-百度小程序 https://smartprogram.baidu.com/docs/develop/tutorial/codedir/ <br>
-支付小程序 https://docs.alipay.com/mini/developer/getting-started <br>
-快应用 https://www.quickapp.cn/ <br></p>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br>
+<a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br>
+<a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a>  <br>
+<a href="https://www.quickapp.cn/">快应用</a>  <br></p>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="questions.html" class="href"><span class="ui-font-ydoc"></span>常见问题</a></div><div class="m-paging-next m-paging-item"><a href="about.html" class="href">关于<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));
