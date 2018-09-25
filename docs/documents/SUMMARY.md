@@ -11,7 +11,6 @@
 * [支持npm模块](npm.md)
 * [兼容native组件](support-native-component.md)
 * [Redux](redux.md)
-* [API](api.md)
 * [路由](router.md)
 * [常见问题](questions.md)
 * [各种小程序的比较](diff.md)
