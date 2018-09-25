@@ -233,6 +233,34 @@
 </tr>
 </tbody>
 </table>
+<h2 id="页面组件在快应用的模拟">页面组件在快应用的模拟</h2>
+<ol>
+<li>onShow onHide （大家都有）</li>
+<li>切换卡的支持，</li>
+</ol>
+<pre><code>&gt;快应用需要外包tabs组件 `&lt;tabs onchange=&quot;onChangeTabIndex&quot;&gt;` 这样唤起onTabItemTap
+navigationBarBackgroundColor
+navigationBarTextStyle
+navigationBarTitleText
+</code></pre>
+<ol start="3">
+<li>滚动下拉刷新相关的事件唤起</li>
+</ol>
+<pre><code>&gt;onPullDownRefresh onReachBottom onPageScroll
+enablePullDownRefresh disableScroll
+tab-content 里面包含list组件与refresh组件
+list.scroll--&gt; onPageScroll  
+list.scrollbottom --&gt; onReachBottom
+refresh.refresh --&gt; onPullDownRefresh
+</code></pre>
+<ol start="4">
+<li>转发按钮事件的唤起  onShareAppMessage</li>
+</ol>
+<pre><code>&gt;快应用需要封装一个按钮组件，放在右上角菜单“转发”按钮位置上，默认绑定 onShareAppMessage钩子
+或在编译期扫描　&lt;button open-type=&quot;share&quot;/&gt; 对其onTap事件加上onShareAppMessage钩子
+详见https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%&gt;A2%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0
+与 https://doc.quickapp.cn/features/system/share.html
+</code></pre>
 <h2 id="官网">官网</h2>
 <p><a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br>
 <a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br>

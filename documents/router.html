@@ -12,6 +12,178 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>或者使用组件 <code>&lt;navigator&gt;</code> 示例： <code>&lt;navigator url='../test/test'&gt;点击跳转&lt;/navigator&gt;</code></p>
+<h3 id="wx.redirecttoobject-object">wx.redirectTo(Object object)</h3>
+<p>关闭当前页面，跳转到应用内的某个页面，但是不允许跳转到 tabbar 页面。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>是</td>
+<td>tabBar 的页面的路径, 路径后可以带参数。参数与路径之间使用 <code>?</code> 分隔，参数键与参数值用 <code>=</code> 相连，不同参数用 <code>&amp;</code> 分隔；如 'path?key=value&amp;key2=value2'</td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用成功的回调函数</td>
+<td></td>
+</tr>
+<tr>
+<td>fail</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用失败的回调函数</td>
+<td></td>
+</tr>
+<tr>
+<td>complete</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用结束的回调函数（调用成功、失败都会执行）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="wx.navigatetoobject-object">wx.navigateTo(Object object)</h3>
+<p>保留当前页面，跳转到应用内的某个页面，但是不能跳到 tabbar 页面。使用 wx.navigateBack 可以返回到原页面。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>是</td>
+<td>同 redirectTo</td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用成功的回调函数</td>
+<td></td>
+</tr>
+<tr>
+<td>fail</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用失败的回调函数</td>
+<td></td>
+</tr>
+<tr>
+<td>complete</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用结束的回调函数（调用成功、失败都会执行）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="wx.switchtabobject-object">wx.switchTab(Object object)</h3>
+<p>跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>是</td>
+<td>同 redirectTo</td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用成功的回调函数</td>
+<td></td>
+</tr>
+<tr>
+<td>fail</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用失败的回调函数</td>
+<td></td>
+</tr>
+<tr>
+<td>complete</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用结束的回调函数（调用成功、失败都会执行）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="wx.navigatebackobject-object">wx.navigateBack(Object object)</h3>
+<p>关闭当前页面，返回上一页面或多级页面。可通过 getCurrentPages() 获取当前的页面栈，决定需要返回几层。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>number</td>
+<td>是</td>
+<td>返回的页面数，如果 delta 大于现有页面数，则返回到首页。</td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用成功的回调函数</td>
+<td></td>
+</tr>
+<tr>
+<td>fail</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用失败的回调函数</td>
+<td></td>
+</tr>
+<tr>
+<td>complete</td>
+<td>function</td>
+<td>否</td>
+<td>接口调用结束的回调函数（调用成功、失败都会执行）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="api.html" class="href"><span class="ui-font-ydoc"></span>API</a></div><div class="m-paging-next m-paging-item"><a href="questions.html" class="href">常见问题<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));

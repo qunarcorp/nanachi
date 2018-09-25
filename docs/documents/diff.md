@@ -50,6 +50,31 @@ APIs的这么多方法都不一样，可能以后针对不同的平台打包不�
 | UI事件自定义传参         | 不支持                                                       | 支持                                                         |
 | API                      | 挂载在wx命名空间下：如wx.showShareMenu(OBJECT)               | 需引用相关模块：import share from '@system.share'            |
 
+
+## 页面组件在快应用的模拟
+  
+  1. onShow onHide （大家都有）
+  2. 切换卡的支持，
+    >快应用需要外包tabs组件 `<tabs onchange="onChangeTabIndex">` 这样唤起onTabItemTap
+    navigationBarBackgroundColor
+    navigationBarTextStyle
+    navigationBarTitleText
+    
+  3. 滚动下拉刷新相关的事件唤起  
+    >onPullDownRefresh onReachBottom onPageScroll
+    enablePullDownRefresh disableScroll
+    tab-content 里面包含list组件与refresh组件
+    list.scroll--> onPageScroll  
+    list.scrollbottom --> onReachBottom
+    refresh.refresh --> onPullDownRefresh
+    
+  4.  转发按钮事件的唤起  onShareAppMessage
+    >快应用需要封装一个按钮组件，放在右上角菜单“转发”按钮位置上，默认绑定 onShareAppMessage钩子
+    或在编译期扫描　<button open-type="share"/> 对其onTap事件加上onShareAppMessage钩子
+    详见https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%>A2%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0
+    与 https://doc.quickapp.cn/features/system/share.html
+
+
 ## 官网
 <a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br />
 <a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br />
