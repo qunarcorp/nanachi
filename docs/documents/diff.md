@@ -69,10 +69,10 @@ APIs的这么多方法都不一样，可能以后针对不同的平台打包不�
     refresh.refresh --> onPullDownRefresh
     
   4.  转发按钮事件的唤起  onShareAppMessage
-    >快应用需要封装一个按钮组件，放在右上角菜单“转发”按钮位置上，默认绑定 onShareAppMessage钩子
-    或在编译期扫描　<button open-type="share"/> 对其onTap事件加上onShareAppMessage钩子
-    详见https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%>A2%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0
-    与 https://doc.quickapp.cn/features/system/share.html
+    >如果用户定义了onShareAppMessage，那么我们就添加onMenuPress，这样右上角就会出现分享按钮
+     或在编译期扫描　<button open-type="share"/>对其onTap事件加上onShareAppMessage钩子
+     详见 https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%A2%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0
+     与 https://doc.quickapp.cn/features/system/share.html
 
 
 ## 官网
