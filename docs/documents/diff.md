@@ -24,8 +24,60 @@
 
 APIs的这么多方法都不一样，可能以后针对不同的平台打包不同的api.js来屏蔽差异性
 
+
+  
+
+      
+### 微信小程序与快应用差异(更新中...)
+
+| 差异                     | 微信小程序                                                   | 快应用                                                       |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 入口文件                 | app.js, app.json                                             | app.ux, manifest.json                                        |
+| 结构，表现，行为组织方式 | 分离：如page.js, page.wxss, page.wxml                        | 聚合：类似vue                                                |
+| 文件扩展名               | .js, .json, .wxml, .wxss                                     | .ux, .json                                                   |
+| 路由注册                 | app.json中配置pages字段 例如"pages": ["path1", "path2"]      | manifest.json中配置router字段 [详见文档](https://doc.quickapp.cn/tutorial/getting-started/project-configuration.html) |
+| 路由跳转                 | 1.组件跳转[navigator组件]<br /> 2.五种js跳转方式[详见文档](https://developers.weixin.qq.com/miniprogram/dev/api/ui-navigate.html#wxnavigatetoobject) | 1. 组件跳转[a组件]<br /> 2. router.push(OBJECT)              |
+| 获取应用实例             | 调用函数：getApp()                                           | 访问变量：this.$app                                          |
+| 模板逻辑渲染             | 配置命名空间： 例如：wx:if/wx:elif/wx:else                   | 不需要 例如：if/elif/else                                    |
+| 钩子函数                 | onLoad: 页面加载时触发                                       | onInit: 页面加载时触发                                       |
+|                          | onDestroy: 页面卸载                                          | onUnload: 页面卸载                                           |
+|                          | onBackPress：不支持                                          | onBackPress：支持                                            |
+|                          | onPageScroll：支持                                           | onPageScroll：不支持                                         |
+|                          | onPullDownRefresh： 支持                                     | onPullDownRefresh：不支持                                    |
+| 初始化状态(state)        | data: {list: []}                                             | private: { list: [] }                                        |
+| 更新组件状态             | setData函数更新                                              | 类vue语法                                                    |
+| UI事件绑定方式           | bindEventName                                                | （on\|@)EventName                                            |
+| UI事件自定义传参         | 不支持                                                       | 支持                                                         |
+| API                      | 挂载在wx命名空间下：如wx.showShareMenu(OBJECT)               | 需引用相关模块：import share from '@system.share'            |
+
+
+## 页面组件在快应用的模拟
+  
+  1. onShow onHide （大家都有）
+  2. 切换卡的支持，
+    >快应用需要外包tabs组件 `<tabs onchange="onChangeTabIndex">` 这样唤起onTabItemTap
+    navigationBarBackgroundColor
+    navigationBarTextStyle
+    navigationBarTitleText
+
+  3. 滚动下拉刷新相关的事件唤起  
+    >onPullDownRefresh onReachBottom onPageScroll
+    enablePullDownRefresh disableScroll
+    tab-content 里面包含list组件与refresh组件
+    list.scroll--> onPageScroll  
+    list.scrollbottom --> onReachBottom
+    refresh.refresh --> onPullDownRefresh
+    
+  4.  转发按钮事件的唤起  onShareAppMessage
+    >快应用需要封装一个按钮组件，放在右上角菜单“转发”按钮位置上，默认绑定 onShareAppMessage钩子
+    或在编译期扫描　<button open-type="share"/> 对其onTap事件加上onShareAppMessage钩子
+    详见https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%>A2%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0
+    与 https://doc.quickapp.cn/features/system/share.html
+
+
 ## 官网
 <a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br />
 <a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br />
 <a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a>  <br />
 <a href="https://www.quickapp.cn/">快应用</a>  <br />
+
