@@ -59,7 +59,7 @@ APIs的这么多方法都不一样，可能以后针对不同的平台打包不�
     navigationBarBackgroundColor
     navigationBarTextStyle
     navigationBarTitleText
-    
+
   3. 滚动下拉刷新相关的事件唤起  
     >onPullDownRefresh onReachBottom onPageScroll
     enablePullDownRefresh disableScroll
@@ -80,3 +80,4 @@ APIs的这么多方法都不一样，可能以后针对不同的平台打包不�
 <a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br />
 <a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a>  <br />
 <a href="https://www.quickapp.cn/">快应用</a>  <br />
+
