@@ -19,7 +19,7 @@
 <td>wx</td>
 <td>swam</td>
 <td>my</td>
-<td>无,需要require它提供的所有接口按wx形式封装</td>
+<td>无,需要 require 它提供的所有接口按 wx 形式封装</td>
 </tr>
 <tr>
 <td>if 指令</td>
@@ -78,14 +78,14 @@
 <td>没有独立的文件 放 style 中，不需要处理 less,sass</td>
 </tr>
 <tr>
-<td>template包含template</td>
+<td>template 包含 template</td>
 <td>支持</td>
 <td>不支持（听说正在修复）</td>
 <td>支持</td>
 <td>未知</td>
 </tr>
 <tr>
-<td>template的data是否支持...</td>
+<td>template 的 data 是否支持...</td>
 <td>支持</td>
 <td>不支持（听说正在修复）</td>
 <td>支持</td>
@@ -127,15 +127,15 @@
 <td>未知</td>
 </tr>
 <tr>
-<td>样式单位rpx支持情况</td>
+<td>样式单位 rpx 支持情况</td>
 <td>支持</td>
-<td>不支持（用rem，最新的基础库版本已经支持）</td>
+<td>不支持（用 rem，最新的基础库版本已经支持）</td>
 <td>支持</td>
 <td>不支持</td>
 </tr>
 </tbody>
 </table>
-<p>APIs的这么多方法都不一样，可能以后针对不同的平台打包不同的api.js来屏蔽差异性</p>
+<p>APIs 的这么多方法都不一样，可能以后针对不同的平台打包不同的 api.js 来屏蔽差异性</p>
 <h3 id="微信小程序与快应用差异更新中...">微信小程序与快应用差异(更新中...)</h3>
 <table>
 <thead>
@@ -153,8 +153,8 @@
 </tr>
 <tr>
 <td>结构，表现，行为组织方式</td>
-<td>分离：如page.js, page.wxss, page.wxml</td>
-<td>聚合：类似vue</td>
+<td>分离：如 page.js, page.wxss, page.wxml</td>
+<td>聚合：类似 vue</td>
 </tr>
 <tr>
 <td>文件扩展名</td>
@@ -163,13 +163,13 @@
 </tr>
 <tr>
 <td>路由注册</td>
-<td>app.json中配置pages字段 例如&quot;pages&quot;: [&quot;path1&quot;, &quot;path2&quot;]</td>
-<td>manifest.json中配置router字段 <a href="https://doc.quickapp.cn/tutorial/getting-started/project-configuration.html" target="_blank">详见文档</a></td>
+<td>app.json 中配置 pages 字段 例如&quot;pages&quot;: [&quot;path1&quot;, &quot;path2&quot;]</td>
+<td>manifest.json 中配置 router 字段 <a href="https://doc.quickapp.cn/tutorial/getting-started/project-configuration.html" target="_blank">详见文档</a></td>
 </tr>
 <tr>
 <td>路由跳转</td>
-<td>1.组件跳转[navigator组件]<br> 2.五种js跳转方式<a href="https://developers.weixin.qq.com/miniprogram/dev/api/ui-navigate.html#wxnavigatetoobject" target="_blank">详见文档</a></td>
-<td>1. 组件跳转[a组件]<br> 2. router.push(OBJECT)</td>
+<td>1.组件跳转[navigator 组件]<br> 2.五种 js 跳转方式<a href="https://developers.weixin.qq.com/miniprogram/dev/api/ui-navigate.html#wxnavigatetoobject" target="_blank">详见文档</a></td>
+<td>1. 组件跳转[a 组件]<br> 2. router.push(OBJECT)</td>
 </tr>
 <tr>
 <td>获取应用实例</td>
@@ -213,59 +213,140 @@
 </tr>
 <tr>
 <td>更新组件状态</td>
-<td>setData函数更新</td>
-<td>类vue语法</td>
+<td>setData 函数更新</td>
+<td>类 vue 语法</td>
 </tr>
 <tr>
-<td>UI事件绑定方式</td>
+<td>UI 事件绑定方式</td>
 <td>bindEventName</td>
 <td>（on|@)EventName</td>
 </tr>
 <tr>
-<td>UI事件自定义传参</td>
+<td>UI 事件自定义传参</td>
 <td>不支持</td>
 <td>支持</td>
 </tr>
 <tr>
 <td>API</td>
-<td>挂载在wx命名空间下：如wx.showShareMenu(OBJECT)</td>
+<td>挂载在 wx 命名空间下：如 wx.showShareMenu(OBJECT)</td>
 <td>需引用相关模块：import share from '@system.share'</td>
 </tr>
 </tbody>
 </table>
+<p>组件机制</p>
+<p>Component 构造器可用于定义组件，调用 Component 构造器时可以指定组件的属性、数据、方法等。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>微信</th>
+<th>支付宝</th>
+<th>百度</th>
+<th>轻应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>properties</td>
+<td>接收的数据</td>
+<td>同名</td>
+<td>同名</td>
+<td>同名</td>
+<td>props</td>
+</tr>
+<tr>
+<td>data</td>
+<td>内部数据</td>
+<td>同名</td>
+<td>同名</td>
+<td>同名</td>
+<td>private</td>
+</tr>
+<tr>
+<td>methods</td>
+<td>方法集合</td>
+<td>同名</td>
+<td>同名</td>
+<td>同名</td>
+<td>不存在</td>
+</tr>
+<tr>
+<td>created</td>
+<td>组件创建时</td>
+<td>同名</td>
+<td>同名</td>
+<td>同名</td>
+<td>onInit</td>
+</tr>
+<tr>
+<td>attached</td>
+<td>组件插入时</td>
+<td>同名</td>
+<td>同名</td>
+<td>同名</td>
+<td>不存在</td>
+</tr>
+<tr>
+<td>ready</td>
+<td>组件完成布局后</td>
+<td>同名</td>
+<td>同名</td>
+<td>同名</td>
+<td>onReady</td>
+</tr>
+<tr>
+<td>detached</td>
+<td>组件移除时</td>
+<td>同名</td>
+<td>同名</td>
+<td>同名</td>
+<td>onDestroy</td>
+</tr>
+</tbody>
+</table>
+<p>思路：properties定义两个属性 <code>{props: Object, context: Object}</code>
+created或onInit时，抓取小程序实例与对应的react实例，将props, state, context给小程序实例</p>
 <h2 id="页面组件在快应用的模拟">页面组件在快应用的模拟</h2>
 <ol>
-<li>onShow onHide （大家都有）</li>
-<li>切换卡的支持，</li>
-</ol>
-<pre><code>&gt;快应用需要外包tabs组件 `&lt;tabs onchange=&quot;onChangeTabIndex&quot;&gt;` 这样唤起onTabItemTap
+<li>
+<p>onShow onHide （大家都有）</p>
+</li>
+<li>
+<p>切换卡的支持，</p>
+<blockquote>
+<p>快应用需要外包 tabs 组件 <code>&lt;tabs onchange=&quot;onChangeTabIndex&quot;&gt;</code> 这样唤起 onTabItemTap
 navigationBarBackgroundColor
 navigationBarTextStyle
-navigationBarTitleText
-</code></pre>
-<ol start="3">
-<li>滚动下拉刷新相关的事件唤起</li>
-</ol>
-<pre><code>&gt;onPullDownRefresh onReachBottom onPageScroll
+navigationBarTitleText</p>
+</blockquote>
+</li>
+<li>
+<p>滚动下拉刷新相关的事件唤起</p>
+<blockquote>
+<p>onPullDownRefresh onReachBottom onPageScroll
 enablePullDownRefresh disableScroll
-tab-content 里面包含list组件与refresh组件
-list.scroll--&gt; onPageScroll  
+tab-content 里面包含 list 组件与 refresh 组件
+list.scroll--&gt; onPageScroll<br>
 list.scrollbottom --&gt; onReachBottom
-refresh.refresh --&gt; onPullDownRefresh
-</code></pre>
-<ol start="4">
-<li>转发按钮事件的唤起  onShareAppMessage</li>
+refresh.refresh --&gt; onPullDownRefresh</p>
+</blockquote>
+</li>
+<li>
+<p>转发按钮事件的唤起 onShareAppMessage</p>
+<blockquote>
+<p>如果用户定义了 onShareAppMessage，那么我们就添加 onMenuPress，这样右上角就会出现分享按钮
+或在编译期扫描　<code>&lt;button open-type=&quot;share&quot;/&gt;</code>对其 onTap 事件加上 onShareAppMessage 钩子
+详见<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%A2%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0" target="_blank">这里</a>
+与 <a href="https://doc.quickapp.cn/features/system/share.html" target="_blank">这里</a></p>
+</blockquote>
+</li>
 </ol>
-<pre><code>&gt;如果用户定义了onShareAppMessage，那么我们就添加onMenuPress，这样右上角就会出现分享按钮
- 或在编译期扫描　&lt;button open-type=&quot;share&quot;/&gt;对其onTap事件加上onShareAppMessage钩子
- 详见 https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%A2%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0
- 与 https://doc.quickapp.cn/features/system/share.html
-</code></pre>
 <h2 id="官网">官网</h2>
 <p><a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br>
 <a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br>
-<a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a>  <br>
-<a href="https://www.quickapp.cn/">快应用</a>  <br></p>
+<a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a> <br>
+<a href="https://www.quickapp.cn/">快应用</a> <br></p>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="questions.html" class="href"><span class="ui-font-ydoc"></span>常见问题</a></div><div class="m-paging-next m-paging-item"><a href="about.html" class="href">关于<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));
