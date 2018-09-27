@@ -50,8 +50,8 @@ window.ydoc_plugin_search_json = {
       "children": []
     },
     {
-      "title": "页面",
-      "content": "页面定义在 pages 目录下。它必须是一个有状态的 React 组件。JSX 只能出现在 render() 方法里，它会编译成相应的 wxml 文件，因此不能使用 R React.createElement()代替 JSX。有关 JSX 的注意事项可以看这里。比如：import React from '@react';\nclass P extends React.Component {\n  constructor() {\n    super();\n    this.state = {\n      iconSize: [20, 30, 40, 50, 60, 70],\n      text: 'this is first line\\nthis is second line'\n    };\n  }\n  static config = {};\n\n  add() {\n    this.setState({\n      text: this.state.text + '\\nthis is new line'\n    });\n  }\n\n  remove() {\n    var textAry = this.state.text.split('\\n');\n    if (!textAry.length) return;\n    textAry.pop();\n\n    this.setState({\n      text: textAry.join('\\n')\n    });\n  }\n  componentWillMount() {\n    console.log('base componentWillMount');\n  }\n  componentDidMount() {\n    console.log('base componentDidMount');\n  }\n  render() {\n    return (\n      \n        \n          Icon\n          \n            {this.state.iconSize.map(function(item) {\n              return ;\n            })}\n          \n        \n      \n    );\n  }\n}\n\nexport default P;\n页面组件必须使用 es6 风格来引入依赖与导出自己。它的静态属性 config 会抽取出来生成对应的 JSON 配置对象，有关配置项可以看这里",
+      "title": "页面组件",
+      "content": "页面定义在 pages 目录下。它必须是一个有状态的 React 组件。JSX 只能出现在 render() 方法里，它会编译成相应的 wxml 文件，因此不能使用 R React.createElement()代替 JSX。有关 JSX 的注意事项可以看这里。页面组件与components目录下的通用组件有一些特异点，它是多出了componentDidShow, componentDidHide这两个生命周期钩子，与onPullDownRefresh onReachBottom onPageScroll onShareAppMessage这些事件。并且在config中能指定tabBar与分享按钮。比如：import React from '@react';\nclass P extends React.Component {\n  constructor() {\n    super();\n    this.state = {\n      iconSize: [20, 30, 40, 50, 60, 70],\n      text: 'this is first line\\nthis is second line'\n    };\n  }\n  static config = {};\n\n  add() {\n    this.setState({\n      text: this.state.text + '\\nthis is new line'\n    });\n  }\n\n  remove() {\n    var textAry = this.state.text.split('\\n');\n    if (!textAry.length) return;\n    textAry.pop();\n\n    this.setState({\n      text: textAry.join('\\n')\n    });\n  }\n  componentWillMount() {\n    console.log('base componentWillMount');\n  }\n  componentDidMount() {\n    console.log('base componentDidMount');\n  }\n  render() {\n    return (\n      \n        \n          Icon\n          \n            {this.state.iconSize.map(function(item) {\n              return ;\n            })}\n          \n        \n      \n    );\n  }\n}\n\nexport default P;\n页面组件必须使用 es6 风格来引入依赖与导出自己。它的静态属性 config 会抽取出来生成对应的 JSON 配置对象，有关配置项可以看这里",
       "url": "/documents/page.html",
       "children": []
     },
@@ -63,15 +63,36 @@ window.ydoc_plugin_search_json = {
         {
           "title": "组件的样板",
           "url": "/documents/component.html#组件的样板",
-          "content": "组件的样板import React from '@react';\nclass Animal extends React.Component {\n  constructor(props) {\n    super();\n    this.state = {\n      name: props.name,\n      age: props.age || 1\n    };\n  }\n\n  static defaultProps = {\n    age: 1,\n    name: 'animal'\n  };\n\n  changeAge() {\n    this.setState({\n      age: ~~(Math.random() * 10)\n    });\n  }\n\n  componentDidMount() {\n    console.log('Animal componentDidMount');\n  }\n\n  componentWillReceiveProps(props) {\n    this.setState({\n      name: props.name\n    });\n  }\n\n  render() {\n    return (\n      \n        名字：\n        {this.state.name} 年龄：\n        {this.state.age} 岁\n        换一个年龄\n      \n    );\n  }\n}\n\nexport default Animal;\n由于目录可能比较深，因此 nanachi 比较贴心地提供了两个默认的别名，@react 与 @components, @react 指向专门为小程序优化的 React, @components 指向开发目录下的 components 目录。JSX 只能出现在 render() 方法或无状态组件的函数体中。JSX 的所有填充数据必须带 this.props, this.state, this.context 前缀。render() 方法里不能出现 var/const/let 语句，只能出现 if 语句与三元表达式或 JSX。map() 方法调用的第一个参数最好使用匿名方法（因为这样会自动 bind this），否则它会自动添加上第二个参数 this  {this.state.iconSize.map(function(item) {\n    return ;\n  })}\n\n会变成  {this.state.iconSize.map(function(item) {\n    return ;\n  }, this)}\n\nJSX 禁止出现 instanceUid, classUid, eventUid, 这些是内部绑定事件时在编译阶段自动添加的。"
+          "content": "组件的样板import React from '@react';\nclass Animal extends React.Component {\n  constructor(props) {\n    super();\n    this.state = {\n      name: props.name,\n      age: props.age || 1\n    };\n  }\n\n  static defaultProps = {\n    age: 1,\n    name: 'animal'\n  };\n\n  changeAge() {\n    this.setState({\n      age: ~~(Math.random() * 10)\n    });\n  }\n\n  componentDidMount() {\n    console.log('Animal componentDidMount');\n  }\n\n  componentWillReceiveProps(props) {\n    this.setState({\n      name: props.name\n    });\n  }\n\n  render() {\n    return (\n      \n        名字：\n        {this.state.name} 年龄：\n        {this.state.age} 岁\n        换一个年龄\n      \n    );\n  }\n}\n\nexport default Animal;\n由于目录可能比较深，因此 nanachi 比较贴心地提供了两个默认的别名，@react 与 @components, @react 指向专门为小程序优化的 React, @components 指向开发目录下的 components 目录。JSX 只能出现在 render() 方法或无状态组件的函数体中。JSX 的所有填充数据必须带 this.props, this.state, this.context 前缀。render() 方法里不能出现 var/const/let 语句，只能出现 if 语句与三元表达式或 JSX。map() 方法调用的第一个参数最好使用匿名方法（因为这样会自动 bind this），否则它会自动添加上第二个参数 this  {this.state.iconSize.map(function(item) {\n    return ;\n  })}\n\n会变成  {this.state.iconSize.map(function(item) {\n    return ;\n  }, this)}\n\nJSX 禁止出现 instanceUid, classUid, eventUid, 这些是内部绑定事件时在编译阶段自动添加的。render方法的第一个语句只能元素节点，不能是三元表达式或if语句等表示逻辑性的东西错误的写法class Dog extends React.Component{  //....略\n  render(){\n    return this.props.xxx ? 分支1: 分支2\n  }\n}\n正确的写法class Dog extends React.Component{  //....略\n  render(){\n    return {this.props.xxx ? 分支1: 分支2}\n  }\n}\n原因是三元表达式会变成block标签，而快应用与自定义组件方式不支持顶层元素为template/block"
         }
       ]
     },
     {
       "title": "JSX",
-      "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例不支持switch语句  xxxxx\n\n",
+      "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例不支持switch语句如果想支持转换快应用，那么所有文本应该写text, a, optionp这三种标签内！\n快应用， 自带span标签，只能作为与的子组件错误的用法  我是文本\n\n正确的用法   我是文本\n   我是文本\n\n",
       "url": "/documents/jsx.html",
-      "children": []
+      "children": [
+        {
+          "title": "数据填充的使用",
+          "url": "/documents/jsx.html#数据填充的使用",
+          "content": "数据填充的使用错误的用法{this.data.content}正确的用法， 所有数据都只能来自this.props, this.state, this.context{this.state.content}如果这是一个无状态组件，则这样用function AA(props, context){   return {context.content}\n}\n"
+        },
+        {
+          "title": "事件绑定的使用",
+          "url": "/documents/jsx.html#事件绑定的使用",
+          "content": "事件绑定的使用错误的用法点我正确的用法， 事件必须直接以this开头，来源于实例点我"
+        },
+        {
+          "title": "map方法必须将this往里面传递, map的第一个参数不要用箭头函数",
+          "url": "/documents/jsx.html#map方法必须将this往里面传递,-map的第一个参数不要用箭头函数",
+          "content": "map方法必须将this往里面传递, map的第一个参数不要用箭头函数{this.state.list.map(function(el, index){\n   return {el.name}\n},this)\n}\n"
+        },
+        {
+          "title": "render的使用",
+          "url": "/documents/jsx.html#render的使用",
+          "content": "render的使用错误的用法class A extends React.Component{  render(){\n    var a = this.props\n    return {a.content}\n  }\n}\n正确的用法class A extends React.Component{  render(){\n    return {this.props.content}\n  }\n}\n"
+        }
+      ]
     },
     {
       "title": "事件系统",
@@ -118,7 +139,28 @@ window.ydoc_plugin_search_json = {
       "title": "路由",
       "content": "路由器的能力是由 Page 的生命周期与 React.api 共同完成的。我们可以访问页面组件的 componentWillMount/DidMount 的 this.props 得到当前的信息，然后跳转。componentWillMount(){   console.log(this.props.path)\n   console.log(this.props.query)\n   React.api.navigateTo() // 或 redirectTo() 或 switchTab()\n}\n或者使用组件  示例： 点击跳转",
       "url": "/documents/router.html",
-      "children": []
+      "children": [
+        {
+          "title": "wx.redirectTo(Object object)",
+          "url": "/documents/router.html#wx.redirecttoobject-object",
+          "content": "wx.redirectTo(Object object)关闭当前页面，跳转到应用内的某个页面，但是不允许跳转到 tabbar 页面。\n\n属性\n类型\n默认值\n是否必填\n\n\n\n\nurl\nstring\n是\ntabBar 的页面的路径, 路径后可以带参数。参数与路径之间使用 ? 分隔，参数键与参数值用 = 相连，不同参数用 & 分隔；如 'path?key=value&key2=value2'\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
+        },
+        {
+          "title": "wx.navigateTo(Object object)",
+          "url": "/documents/router.html#wx.navigatetoobject-object",
+          "content": "wx.navigateTo(Object object)保留当前页面，跳转到应用内的某个页面，但是不能跳到 tabbar 页面。使用 wx.navigateBack 可以返回到原页面。\n\n属性\n类型\n默认值\n是否必填\n\n\n\n\nurl\nstring\n是\n同 redirectTo\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
+        },
+        {
+          "title": "wx.switchTab(Object object)",
+          "url": "/documents/router.html#wx.switchtabobject-object",
+          "content": "wx.switchTab(Object object)跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面\n\n属性\n类型\n默认值\n是否必填\n\n\n\n\nurl\nstring\n是\n同 redirectTo\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
+        },
+        {
+          "title": "wx.navigateBack(Object object)",
+          "url": "/documents/router.html#wx.navigatebackobject-object",
+          "content": "wx.navigateBack(Object object)关闭当前页面，返回上一页面或多级页面。可通过 getCurrentPages() 获取当前的页面栈，决定需要返回几层。\n\n属性\n类型\n默认值\n是否必填\n\n\n\n\nurl\nnumber\n是\n返回的页面数，如果 delta 大于现有页面数，则返回到首页。\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
+        }
+      ]
     },
     {
       "title": "常见问题",
@@ -128,15 +170,31 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "各种小程序的差异点",
-      "content": "\n\n项目\n微信小程序\n百度小程序\n支付小程序\n快应用\n\n\n\n\n命名空间\nwx\nswam\nmy\n无,需要require它提供的所有接口按wx形式封装\n\n\nif 指令\nwx:if\ns-if\na:if\nif\n\n\nfor 指令\nwx:for wx:for-index wx:for-item wx:key\n将wx:改成s-\n将wx:改成a:\nfor=\"(personIndex, personItem) in list\"\n\n\n容器标签\n存在\n存在\n存在\n存在\n\n\n事件绑定\nbind/catch[事件名全小写]=\"回调名\"\nbind/catch[事件名全小写]=\"回调名\"\non/catch[事件名驼峰]=\"回调名\"\non[事件名全小写]=\"回调名/回调(arguments)\"\n\n\n{{}}插值是否支持函数\n不支持\n不支持\n不支持\n支持\n\n\n模块中使用脚本\n\n\n\n\n\n\n模板文件后缀\nwxml\nswan\naxml\n没有独立的文件 放 template 中\n\n\n样式文件后缀\nwxss\ncss\nacss\n没有独立的文件 放 style 中，不需要处理 less,sass\n\n\ntemplate包含template\n支持\n不支持（听说正在修复）\n支持\n未知\n\n\ntemplate的data是否支持...\n支持\n不支持（听说正在修复）\n支持\n未知\n\n\n缺省的组件(视图容器)\n\n\nmoveable-view、cover-view\n未知\n\n\n缺省的组件(基础内容)\n\n\nrich-text\n未知\n\n\n缺省的组件(导航)\n\n\nfunctional-page-navigator\n未知\n\n\n缺省的组件(媒体组件)\n\n\naudio、video、camera、live-player、live-pusher\n未知\n\n\nopen-data\n\n\n不支持\n未知\n\n\n样式单位rpx支持情况\n支持\n不支持（用rem，最新的基础库版本已经支持）\n支持\n不支持\n\n\nAPIs的这么多方法都不一样，可能以后针对不同的平台打包不同的api.js来屏蔽差异性",
+      "content": "\n\n项目\n微信小程序\n百度小程序\n支付小程序\n快应用\n\n\n\n\n命名空间\nwx\nswam\nmy\n无,需要 require 它提供的所有接口按 wx 形式封装\n\n\nif 指令\nwx:if\ns-if\na:if\nif\n\n\nfor 指令\nwx:for wx:for-index wx:for-item wx:key\n将wx:改成s-\n将wx:改成a:\nfor=\"(personIndex, personItem) in list\"\n\n\n容器标签\n存在\n存在\n存在\n存在\n\n\n事件绑定\nbind/catch[事件名全小写]=\"回调名\"\nbind/catch[事件名全小写]=\"回调名\"\non/catch[事件名驼峰]=\"回调名\"\non[事件名全小写]=\"回调名/回调(arguments)\"\n\n\n{{}}插值是否支持函数\n不支持\n不支持\n不支持\n支持\n\n\n模块中使用脚本\n\n\n\n\n\n\n模板文件后缀\nwxml\nswan\naxml\n没有独立的文件 放 template 中\n\n\n样式文件后缀\nwxss\ncss\nacss\n没有独立的文件 放 style 中，不需要处理 less,sass\n\n\ntemplate 包含 template\n支持\n不支持（听说正在修复）\n支持\n未知\n\n\ntemplate 的 data 是否支持...\n支持\n不支持（听说正在修复）\n支持\n未知\n\n\n缺省的组件(视图容器)\n\n\nmoveable-view、cover-view\n未知\n\n\n缺省的组件(基础内容)\n\n\nrich-text\n未知\n\n\n缺省的组件(导航)\n\n\nfunctional-page-navigator\n未知\n\n\n缺省的组件(媒体组件)\n\n\naudio、video、camera、live-player、live-pusher\n未知\n\n\nopen-data\n\n\n不支持\n未知\n\n\n样式单位 rpx 支持情况\n支持\n不支持（用 rem，最新的基础库版本已经支持）\n支持\n不支持\n\n\nAPIs 的这么多方法都不一样，可能以后针对不同的平台打包不同的 api.js 来屏蔽差异性",
       "url": "/documents/diff.html",
       "children": [
         {
+          "title": "微信小程序与快应用差异(更新中...)",
+          "url": "/documents/diff.html#微信小程序与快应用差异更新中...",
+          "content": "微信小程序与快应用差异(更新中...)\n\n差异\n微信小程序\n快应用\n\n\n\n\n入口文件\napp.js, app.json\napp.ux, manifest.json\n\n\n结构，表现，行为组织方式\n分离：如 page.js, page.wxss, page.wxml\n聚合：类似 vue\n\n\n文件扩展名\n.js, .json, .wxml, .wxss\n.ux, .json\n\n\n路由注册\napp.json 中配置 pages 字段 例如\"pages\": [\"path1\", \"path2\"]\nmanifest.json 中配置 router 字段 详见文档\n\n\n路由跳转\n1.组件跳转[navigator 组件] 2.五种 js 跳转方式详见文档\n1. 组件跳转[a 组件] 2. router.push(OBJECT)\n\n\n获取应用实例\n调用函数：getApp()\n访问变量：this.$app\n\n\n模板逻辑渲染\n配置命名空间： 例如：wx:if/wx:elif/wx:else\n不需要 例如：if/elif/else\n\n\n钩子函数\nonLoad: 页面加载时触发\nonInit: 页面加载时触发\n\n\n\nonDestroy: 页面卸载\nonUnload: 页面卸载\n\n\n\nonBackPress：不支持\nonBackPress：支持\n\n\n\nonPageScroll：支持\nonPageScroll：不支持\n\n\n\nonPullDownRefresh： 支持\nonPullDownRefresh：不支持\n\n\n初始化状态(state)\ndata: {list: []}\nprivate: { list: [] }\n\n\n更新组件状态\nsetData 函数更新\n类 vue 语法\n\n\nUI 事件绑定方式\nbindEventName\n（on|@)EventName\n\n\nUI 事件自定义传参\n不支持\n支持\n\n\nAPI\n挂载在 wx 命名空间下：如 wx.showShareMenu(OBJECT)\n需引用相关模块：import share from '@system.share'\n\n\n组件机制Component 构造器可用于定义组件，调用 Component 构造器时可以指定组件的属性、数据、方法等。\n\n字段\n说明\n微信\n支付宝\n百度\n轻应用\n\n\n\n\nproperties\n接收的数据\n同名\n同名\n同名\nprops\n\n\ndata\n内部数据\n同名\n同名\n同名\nprivate\n\n\nmethods\n方法集合\n同名\n同名\n同名\n不存在\n\n\ncreated\n组件创建时\n同名\n同名\n同名\nonInit\n\n\nattached\n组件插入时\n同名\n同名\n同名\n不存在\n\n\nready\n组件完成布局后\n同名\n同名\n同名\nonReady\n\n\ndetached\n组件移除时\n同名\n同名\n同名\nonDestroy\n\n\n思路：properties定义两个属性 {props: Object, context: Object}created或onInit时，抓取小程序实例与对应的react实例，将props, state, context给小程序实例"
+        },
+        {
+          "title": "页面组件在快应用的模拟",
+          "url": "/documents/diff.html#页面组件在快应用的模拟",
+          "content": "页面组件在快应用的模拟\nonShow onHide （大家都有）\n\n\n切换卡的支持，\n\n快应用需要外包 tabs 组件  这样唤起 onTabItemTap\nnavigationBarBackgroundColor\nnavigationBarTextStyle\nnavigationBarTitleText\n\n\n\n滚动下拉刷新相关的事件唤起\n\nonPullDownRefresh onReachBottom onPageScroll\nenablePullDownRefresh disableScroll\ntab-content 里面包含 list 组件与 refresh 组件\nlist.scroll--> onPageScroll\nlist.scrollbottom --> onReachBottom\nrefresh.refresh --> onPullDownRefresh\n\n\n\n转发按钮事件的唤起 onShareAppMessage\n\n如果用户定义了 onShareAppMessage，那么我们就添加 onMenuPress，这样右上角就会出现分享按钮\n或在编译期扫描　对其 onTap 事件加上 onShareAppMessage 钩子\n详见这里\n与 这里\n\n\n"
+        },
+        {
           "title": "官网",
           "url": "/documents/diff.html#官网",
-          "content": "官网微信小程序  百度小程序  \n支付小程序  \n快应用  "
+          "content": "官网微信小程序  百度小程序  \n支付小程序 \n快应用 "
         }
       ]
+    },
+    {
+      "title": "打包发布",
+      "content": "在开始之前，提一下两种重要的概念。带JSX的页面组件与通用组件，它们分别放在pages与components目录下，它们具有巨大的转换成本（毕竟JSX会被提取出来转换成wxml, axml, swan或ux文件），还有一种不带JSX的纯JS文件，建议放在common目录,  当然还有一些通用的东西可以通过npm安装，但不要使用那些有JSX的第三方依赖。开发目录如下src   |--components\n   |    |--HotelDialog\n   |    |--HotelXXX\n   |    |--FlightYYY\n   |\n   |--pages\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    |--...\n   |--common\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    |--...\n   |--app.js\ncomponents目录下为了扁平化管理，以事业部做前端+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from \"@react\"`components目录下不要使用Fragments来命名子目录，这留给系统用。\npages目录下每个事业部各建一个目录，以事件部的名字命名，里面为index.js 及页面的目录，index.js要引入自己目录的所有页面，页面也以index.js命名，并且里面必须是有状态的React组件（转译器会转换成页面组件。）页面的index.js各种引入通用组件与common目录的依赖   |--pages   |    |--hotel\n            |--index.js //目录, import里面所有index.js\n            |--page1\n            |    |---index.js\n            |    |---index.scss\n            |--page2\n            |    |---index.js\n            |    |---index.scss\n            |--page3\n            |    |---index.js\n            |    |---index.scss\n            |--about\n            |    |---index.js\n            |    |---index.scss\ncommon目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用所效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中",
+      "url": "/documents/publish.html",
+      "children": []
     },
     {
       "title": "关于",
