@@ -1,6 +1,6 @@
-## 动画
+# 动画
 
-### createAnimation(Object object)
+## createAnimation(Object object)
 
 创建一个动画实例 animation。调用实例的方法来描述动画。最后通过动画实例的 export 方法导出动画数据传递给组件的 animation 属性。
 
@@ -95,12 +95,12 @@
 | matrix3d | ax | <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix3d"> 同transform-function matrix3d </a> |
 
 
-### 动画队列 
+## 动画队列 
 
 调用动画操作方法后需要要调用 step() 来表示一组动画完成，在一组动画中可以调用任意多个动画方法，一组动画中的所有动画会同时开始，当一组动画完成后才会进行下一组动画。step() 可以传入一个跟 my.createAnimation() 一样的配置参数用于指定当前组动画的配置。
 
 
-#### Animation.step(Object object)
+### Animation.step(Object object)
 
 **OBJECT 参数说明：**
 

@@ -1,10 +1,10 @@
-## 交互
+# 交互
 
-### showModal(Object object)
+## showModal(Object object)
 
 显示模态对话框
 
-#### 参数
+**参数**
 
 Object object
 
@@ -45,11 +45,11 @@ React.api.showModal({
 });
 ```
 
-### showToast(Object object)
+## showToast(Object object)
 
 显示一个弱提示，可选择多少秒之后消失
 
-#### 参数
+**参数**
 
 Object object
 
@@ -75,13 +75,13 @@ React.api.showToast({
 });
 ```
 
-### hideToast()
+## hideToast()
 
-### showLoading(Object object)
+## showLoading(Object object)
 
 显示 loading 提示框, 需主动调用 wx.hideLoading 才能关闭提示框
 
-#### 参数
+**参数**
 
 Object object
 
@@ -101,11 +101,11 @@ React.api.showLoading({
 });
 ```
 
-### hideLoading()
+## hideLoading()
 
-### showActionSheet(Object object)
+## showActionSheet(Object object)
 
-#### 参数
+**参数**
 
 Object object
 
