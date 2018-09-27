@@ -10,19 +10,19 @@
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>HotelDialog
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>HotelXXX
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>FlightYYY
-   <span class="token operator">|</span>
+   <span class="token operator">|</span>    └── <span class="token operator">...</span>
    <span class="token operator">|</span><span class="token operator">--</span>pages
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>hotel
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>flight
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>holiday
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>strategy
-   <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">...</span>
+   <span class="token operator">|</span>    └── <span class="token operator">...</span>
    <span class="token operator">|</span><span class="token operator">--</span>common
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>hotel
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>flight
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>holiday
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>strategy
-   <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">...</span>
+   <span class="token operator">|</span>    └── <span class="token operator">...</span>
    <span class="token operator">|</span><span class="token operator">--</span>app<span class="token punctuation">.</span>js
 </code></pre>
 <p>components目录下为了扁平化管理，以事业部做前端+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from &quot;@react&quot;`</p>
@@ -35,16 +35,16 @@
             <span class="token operator">|</span><span class="token operator">--</span>index<span class="token punctuation">.</span>js <span class="token comment">//目录, import里面所有index.js</span>
             <span class="token operator">|</span><span class="token operator">--</span>page1
             <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>js
-            <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>scss
+            <span class="token operator">|</span>    └── index<span class="token punctuation">.</span>scss
             <span class="token operator">|</span><span class="token operator">--</span>page2
             <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>js
-            <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>scss
+            <span class="token operator">|</span>    └── index<span class="token punctuation">.</span>scss
             <span class="token operator">|</span><span class="token operator">--</span>page3
             <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>js
-            <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>scss
+            <span class="token operator">|</span>    └── index<span class="token punctuation">.</span>scss
             <span class="token operator">|</span><span class="token operator">--</span>about
             <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>js
-            <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>scss
+            <span class="token operator">|</span>    └── index<span class="token punctuation">.</span>scss
 </code></pre>
 <p>common目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。</p>
 <p>app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用全部有效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中</p>

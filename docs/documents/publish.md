@@ -10,19 +10,19 @@ src
    |    |--HotelDialog
    |    |--HotelXXX
    |    |--FlightYYY
-   |
+   |    └── ...
    |--pages
    |    |--hotel
    |    |--flight
    |    |--holiday
    |    |--strategy
-   |    |--...
+   |    └── ...
    |--common
    |    |--hotel
    |    |--flight
    |    |--holiday
    |    |--strategy
-   |    |--...
+   |    └── ...
    |--app.js
 ```
 components目录下为了扁平化管理，以事业部做前端+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from "@react"`
@@ -36,16 +36,16 @@ pages目录下每个事业部各建一个目录，以事件部的名字命名，
             |--index.js //目录, import里面所有index.js
             |--page1
             |    |---index.js
-            |    |---index.scss
+            |    └── index.scss
             |--page2
             |    |---index.js
-            |    |---index.scss
+            |    └── index.scss
             |--page3
             |    |---index.js
-            |    |---index.scss
+            |    └── index.scss
             |--about
             |    |---index.js
-            |    |---index.scss
+            |    └── index.scss
 ```
 
 common目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。
