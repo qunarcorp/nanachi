@@ -81,3 +81,24 @@ JSX 的所有填充数据必须带 `this.props`, `this.state`, `this.context` �
 ```
 
 JSX 禁止出现 `instanceUid`, `classUid`, `eventUid`, 这些是内部绑定事件时在编译阶段自动添加的。
+
+render方法的第一个语句只能元素节点，不能是三元表达式或if语句等表示逻辑性的东西
+错误的写法
+```jsx
+class Dog extends React.Component{
+  //....略
+  render(){
+    return this.props.xxx ? <div>分支1</div>: <div>分支2</div>
+  }
+}
+```
+正确的写法
+```jsx
+class Dog extends React.Component{
+  //....略
+  render(){
+    return <div>{this.props.xxx ? <div>分支1</div>: <div>分支2</div>}</div>
+  }
+}
+```
+原因是三元表达式会变成block标签，而快应用与自定义组件方式不支持顶层元素为template/block
