@@ -50,4 +50,4 @@ pages目录下每个事业部各建一个目录，以事件部的名字命名，
 
 common目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。
 
-app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用所效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中
+app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用全部有效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中
