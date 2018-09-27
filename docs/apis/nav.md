@@ -1,6 +1,6 @@
-## 导航
+# 导航
 
-### navigateTo(OBJECT)
+## navigateTo(OBJECT)
 
 保留当前页面，跳转到应用内的某个页面，使用 wx.navigateBack 可以返回到原页面。
 
@@ -34,7 +34,7 @@ Page({
 
 > Tips: 目前页面路径最多只能十层。
 
-### redirectTo(OBJECT)
+## redirectTo(OBJECT)
 
 关闭当前页面，跳转到应用内的某个页面。
 
@@ -57,7 +57,7 @@ Page({
 });
 ```
 
-### reLaunch(OBJECT)
+## reLaunch(OBJECT)
 
 关闭所有页面，打开到应用内的某个页面。
 
@@ -89,7 +89,7 @@ Page({
 });
 ```
 
-### navigateBack(OBJECT)
+## navigateBack(OBJECT)
 
 关闭当前页面，返回上一页面或多级页面。可通过 getCurrentPages() 获取当前的页面栈，决定需要返回几层。
 
@@ -122,7 +122,7 @@ React.api.navigateBack({
 
 ## 设置导航条
 
-### setNavigationBarTitle(OBJECT)
+## setNavigationBarTitle(OBJECT)
 
 动态设置当前页面的标题
 
@@ -136,7 +136,7 @@ React.api.navigateBack({
 
 
 
-### setNavigationBarColor(OBJECT)
+## setNavigationBarColor(OBJECT)
 
 **OBJECT 参数说明：**
 
@@ -154,10 +154,10 @@ React.api.navigateBack({
 | complete | function | 否       | 接口调用结束的回调函数（调用成功、失败都会执行）                                                                                                            | 都支持   |
 
 
-### showNavigationBarLoading()
+## showNavigationBarLoading()
 
 在当前页面显示导航条加载动画。
 
-### hideNavigationBarLoading()
+## hideNavigationBarLoading()
 
 隐藏导航条加载动画。
