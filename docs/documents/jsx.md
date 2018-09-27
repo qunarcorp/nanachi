@@ -15,3 +15,56 @@
   <p>xxxxx</p>
 </Login>
 ```
+## 数据填充的使用
+错误的用法
+```jsx
+<div aaa={this.title}>{this.data.content}</div>
+```
+正确的用法， 所有数据都只能来自this.props, this.state, this.context
+```jsx
+<div aaa={this.props.title}>{this.state.content}</div>
+```
+如果这是一个无状态组件，则这样用
+```jsx
+function AA(props, context){
+   return <div aaa={props.title}>{context.content}</div>
+}
+```
+
+## 事件绑定的使用
+错误的用法
+```jsx
+<div onTap={this.props.fn}>点我</div>
+```
+正确的用法， 事件必须直接以this开头，来源于实例
+```jsx
+<div onTap={this.fn}>点我</div>
+```
+## map方法必须将this往里面传递, map的第一个参数不要用箭头函数
+
+```jsx
+<ul>{
+this.state.list.map(function(el, index){
+   return <li onClick={this.click1.bind(el, index)}>{el.name}</li>
+},this)
+}</ul>
+```
+
+## render的使用
+错误的用法
+```jsx
+class A extends React.Component{
+  render(){
+    var a = this.props
+    return <div aaa={a.title}>{a.content}</div>
+  }
+}
+```
+正确的用法
+```jsx
+class A extends React.Component{
+  render(){
+    return <div aaa={this.props.title}>{this.props.content}</div>
+  }
+}
+```

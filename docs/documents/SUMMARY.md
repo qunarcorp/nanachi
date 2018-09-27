@@ -5,7 +5,7 @@
 * [应用组件](app.md)
 * [页面组件](page.md)
 * [通用组件](component.md)
-* [模板系统](jsx.md)
+* [模板系统JSX](jsx.md)
 * [事件系统](event.md)
 * [async/await](async.md)
 * [支持npm模块](npm.md)
