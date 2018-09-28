@@ -2,6 +2,17 @@
 
 
 * [概述](index.md#概述)
+* [网络](network.md#网络)
+  * [request](network.md#request)
+  * [uploadFile](network.md#uploadfileobject-object)
+  * [downloadFile](network.md#downloadfileobject-object)
+  * [connectSocket](network.md#connectsocketobject-object)
+  * [onSocketOpen](network.md#onsocketopenfunction-callback)
+  * [closeSocket](network.md#closesocketobject-object)
+  * [sendSocketMessage](network.md#sendsocketmessageobject-object)
+  * [onSocketMessage](network.md#onsocketmessagefunction-callback)
+  * [onSocketError](network.md#onsocketerrorfunction-callback)
+  * [onSocketClose](network.md#onsocketclosefunction-callback)
 * [交互](interaction.md#交互)
   * [showModal](interaction.md#showmodalobject-object)
   * [showToast](interaction.md#showtoastobject-object)
@@ -78,6 +89,35 @@
   * [NodesRef.boundingClientRect](select.md#selectquery-nodesref.boundingclientrectfunction-callback)
   * [NodesRef.scrollOffset](select.md#selectquery-nodesref.scrolloffsetfunction-callback)
   * [SelectorQuery.exec](select.md#nodesref-selectorquery.execfunction-callback)
+* [图片](image.md#图片)
+  * [chooseImage](image.md#chooseimageobject-object)
+  * [previewImage](image.md#previewimageobject-object)
+  * [saveImageToPhotosAlbum](image.md#saveimagetophotosalbumobject-object)
+  * [getImageInfo](image.md#getimageinfoobject-object)
+* [数据缓存](storage.md#缓存)
+  * [setStorage](storage.md#setstorageobject-object)
+  * [setStorageSync](storage.md#setstoragesyncstring-key,-object|string-data)
+  * [getStorage](storage.md#getstorage)
+  * [getstoragesync](storage.md#getstoragesync)
+  * [removeStorage](storage.md#removestorageobject-object)
+  * [removeStorageSync](storage.md#removestoragesyncstring-key)
+  * [clearStorage](storage.md#clearstorageobject-object)
+  * [clearStorageSync](storage.md#clearstoragesyncobject-object)
+  * [getStorageInfo](storage.md#getstorageinfoobject-object)
+  * [getStorageInfoSync](storage.md#getstorageinfosyncobject-object)
+* [文件](file.md#文件)
+  * [getFileInfo](file.md#getfileinfoobject-object)
+  * [getSavedFileInfo](file.md#getsavedfileinfoobject-object)
+  * [getSavedFileList](file.md#getsavedfilelistobject-object)
+  * [removeSavedFile](file.md#removesavedfileobject-object)
+  * [saveFile](file.md#savefileobject-object)
+* [位置](location.md#位置)
+  * [getLocation](location.md#getlocationobject-object)
+  * [openLocation](location.md#openlocationobject-object)
+  * [chooseLocation](location.md#chooselocationobject-object)
+
+
+
 
 
 
