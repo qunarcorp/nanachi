@@ -9,11 +9,24 @@
 
 1. `git clone git@github.com:RubyLouvre/anu.git` 或`git clone https://github.com/RubyLouvre/anu.git`<br />
 2. 命令行定位到`packages/cli`目录下，执行`npm link` 如果之前装过要先npm unlink<br />
-3. 使用mpreact `<project-name>` 创建工程<br />
-4. 定位到  `<project-name>` 目录下 `mpreact start` 开始监听文件变化，<br />
-5. 用微信开发工具打开当中的dist目录，自己在src目录中进行开发<br />
+3. 使用mpreact init `<project-name>` 创建工程<br />
+4. 定位到  `<project-name>` 目录下安装依赖`npm i `或`yarn`
+5.  `mpreact build` 构建，<br />
+6.  `mpreact watch` 监听文件变化实时构建，<br />
+7. 用微信开发工具打开当中的dist目录，自己在src目录中进行开发<br />
+如果想构建支付宝或百度小程序  `mpreact build:ali`或`mpreact build:bu`或`mpreact build:quick` 构建，<br />
 
-详见 https://rubylouvre.github.io/nanachi/index.html 或  https://github.com/RubyLouvre/anu/tree/master/packages/render/miniapp
+```shell
+cd anu/packages/cli & npm link
+mpreact init demo
+cd demo && <yarn|npm|cnpm> install
+mpreact build:<wx|ali|bu|quick>
+mpreact start:<wx|ali|bu|quick>
+```
+![image](./1538220971720.png)
+![image](./1538220971721.png)
+![image](./1538220971722.png)
+
 
 拼多多模板，请打开右上角 “>>” 详情，  不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书 打上勾
 
@@ -58,19 +71,4 @@ nanachi init
 ## 开发计划
 
 nanachi未来将支持一键打包支付宝小程序，百度智能小程序，快应用。
-
-```bash
-# 默认情况下打包成微信小程序
-nanachi build
-
-# 打包支付宝小程序
-nanachi build:ali
-
-# 打包百度只能小程序
-nanachi build:baidu
-
-# 打包快应用
-nanachi build:quick
-```
-
 

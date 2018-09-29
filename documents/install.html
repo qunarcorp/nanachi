@@ -12,11 +12,22 @@
 <ol>
 <li><code>git clone git@github.com:RubyLouvre/anu.git</code> 或<code>git clone https://github.com/RubyLouvre/anu.git</code><br></li>
 <li>命令行定位到<code>packages/cli</code>目录下，执行<code>npm link</code> 如果之前装过要先npm unlink<br></li>
-<li>使用mpreact <code>&lt;project-name&gt;</code> 创建工程<br></li>
-<li>定位到  <code>&lt;project-name&gt;</code> 目录下 <code>mpreact start</code> 开始监听文件变化，<br></li>
-<li>用微信开发工具打开当中的dist目录，自己在src目录中进行开发<br></li>
+<li>使用mpreact init <code>&lt;project-name&gt;</code> 创建工程<br></li>
+<li>定位到  <code>&lt;project-name&gt;</code> 目录下安装依赖<code>npm i</code>或<code>yarn</code></li>
+<li><code>mpreact build</code> 构建，<br></li>
+<li><code>mpreact watch</code> 监听文件变化实时构建，<br></li>
+<li>用微信开发工具打开当中的dist目录，自己在src目录中进行开发<br>
+如果想构建支付宝或百度小程序  <code>mpreact build:ali</code>或<code>mpreact build:bu</code>或<code>mpreact build:quick</code> 构建，<br></li>
 </ol>
-<p>详见 https://rubylouvre.github.io/nanachi/index.html 或  https://github.com/RubyLouvre/anu/tree/master/packages/render/miniapp</p>
+<pre><code class="language-shell">cd anu/packages/cli &#x26; npm link
+mpreact init demo
+cd demo &#x26;&#x26; &#x3C;yarn|npm|cnpm&#x3E; install
+mpreact build:&#x3C;wx|ali|bu|quick&#x3E;
+mpreact start:&#x3C;wx|ali|bu|quick&#x3E;
+</code></pre>
+<p><img src="./1538220971720.png" alt="image">
+<img src="./1538220971721.png" alt="image">
+<img src="./1538220971722.png" alt="image"></p>
 <p>拼多多模板，请打开右上角 “&gt;&gt;” 详情，  不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书 打上勾</p>
 <p><img src="https://user-images.githubusercontent.com/190846/45038189-53f44a80-b093-11e8-9ecb-a4080f21b262.png" alt="image"></p>
 <p>=============</p>
@@ -39,18 +50,6 @@ yarn global add nanachi-cli
 <p>在项目根目录执行 <code>nanachi build</code> 即可编译项目至 <code>dist/</code> 目录下。</p>
 <h2 id="开发计划">开发计划</h2>
 <p>nanachi未来将支持一键打包支付宝小程序，百度智能小程序，快应用。</p>
-<pre><code class="language-bash"><span class="token comment"># 默认情况下打包成微信小程序</span>
-nanachi build
-
-<span class="token comment"># 打包支付宝小程序</span>
-nanachi build:ali
-
-<span class="token comment"># 打包百度只能小程序</span>
-nanachi build:baidu
-
-<span class="token comment"># 打包快应用</span>
-nanachi build:quick
-</code></pre>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="intro.html" class="href"><span class="ui-font-ydoc"></span>文档</a></div><div class="m-paging-next m-paging-item"><a href="app.html" class="href">应用组件<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));
