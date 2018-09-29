@@ -114,6 +114,9 @@
   - [getLocation](location.md#getlocationobject-object)
   - [openLocation](location.md#openlocationobject-object)
   - [chooseLocation](location.md#chooselocationobject-object)
+* [分享](share.md#分享)
+  * [onShareAppMessage](share.md#onshareappmessageobject)
+  * [hideShareMenu](share.md#hidesharemenuobject-object)
 ### 设备
 * [振动](miniprogram.md#振动)
   * [vibrateLong](miniprogram.md#vibratelongobject-object)
@@ -130,3 +133,4 @@
   * [setKeepScreenOn](miniprogram.md#setkeepscreenonobject-object)
   * [getScreenBrightness](miniprogram.md#getscreenbrightnessobject-object)
   * [setScreenBrightness](miniprogram.md#setscreenbrightnessobject)
+* [canIUse](miniprogram.md#boolean-caniusestring-schema)
