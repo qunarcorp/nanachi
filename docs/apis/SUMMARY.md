@@ -133,4 +133,4 @@
   * [setKeepScreenOn](miniprogram.md#setkeepscreenonobject-object)
   * [getScreenBrightness](miniprogram.md#getscreenbrightnessobject-object)
   * [setScreenBrightness](miniprogram.md#setscreenbrightnessobject)
-  
+* [canIUse](miniprogram.md#boolean-caniusestring-schema)
