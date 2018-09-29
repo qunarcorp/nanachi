@@ -51,7 +51,7 @@ Page({
 
 ```javascript
   React.api.redirectTo({
-      wx.navigateTo({
+      React.api.navigateTo({
         url: 'test?id=1'
   })
 });
