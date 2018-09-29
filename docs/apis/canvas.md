@@ -548,7 +548,7 @@ ctx.draw();
 | cp2x             | Number  | 第二个贝塞尔控制点 x 坐标 |
 | cp2y             | Number  | 第二个贝塞尔控制点 y 坐标 |
 | x                | Number  | 结束点 x 坐标             |
-| counterclockwise | Boolean | 结束点 y 坐标             |
+| y                | Number  | 结束点 y 坐标             |
 
 ## CanvasContext.clip()
 
@@ -649,6 +649,10 @@ ctx.draw();
 | y             | Number | 图像左上角 y 坐标 |
 | width         | Number | 图像宽度          |
 | height        | Number | 图像高度          |
+| sx            | Number | 源图像的矩形选择框的左上角 X 坐标。          |
+| sy            | Number | 源图像的矩形选择框的左上角 Y 坐标。          |
+| sWidth        | Number | 源图像的矩形选择框的宽度          |
+| sHeight       | Number | 源图像的矩形选择框的高度          |
 
 ## CanvasContext.setGlobalAlpha(number 透明度。范围)
 
@@ -752,7 +756,7 @@ ctx.draw();
 | 参数     | 类型   | 说明                                 | 支持平台 |
 | -------- | ------ | ------------------------------------ | -------- |
 | reserve | Boolean  | 非必填。本次绘制是否接着上一次绘制，即 reserve 参数为 false 时则在本次调用 drawCanvas绘制之前 native 层应先清空画布再继续绘制；若 reserver 参数为true 时，则保留当前画布上的内容，本次调用drawCanvas绘制的内容覆盖在上面，默认 false| 都支持   |
-| callback   | Function |绘制完成后执行的回调函数                           | 微信     |
+| callback   | Function |绘制完成后执行的回调函数                           | 微信，百度     |
 
 ## Object CanvasContext.measureText(string text)
 
