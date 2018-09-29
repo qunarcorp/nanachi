@@ -82,7 +82,7 @@
 - [滚动](scroll.md#滚动)
   - [pageScrollTo](scroll.md#pagescrollto)
 - [下拉刷新](pulldown.md#下拉刷新)
-    - [pagePulldown](pulldown.md#stopPullDownRefresh)
+    - [stopPullDownRefresh](pulldown.md#stopPullDownRefresh)
 - [节点查询](select.md#节点查询)
   - [createSelectorQuery](select.md#createselectorquery)
   - [SelectorQuery.select](select.md#nodesref-selectorquery.selectstring-selector)
@@ -117,6 +117,9 @@
   - [getLocation](location.md#getlocationobject-object)
   - [openLocation](location.md#openlocationobject-object)
   - [chooseLocation](location.md#chooselocationobject-object)
+* [分享](share.md#分享)
+  * [onShareAppMessage](share.md#onshareappmessageobject)
+  * [hideShareMenu](share.md#hidesharemenuobject-object)
 ### 设备
 * [振动](miniprogram.md#振动)
   * [vibrateLong](miniprogram.md#vibratelongobject-object)
@@ -133,3 +136,4 @@
   * [setKeepScreenOn](miniprogram.md#setkeepscreenonobject-object)
   * [getScreenBrightness](miniprogram.md#getscreenbrightnessobject-object)
   * [setScreenBrightness](miniprogram.md#setscreenbrightnessobject)
+* [canIUse](miniprogram.md#boolean-caniusestring-schema)

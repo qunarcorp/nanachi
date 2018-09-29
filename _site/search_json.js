@@ -318,17 +318,17 @@ window.ydoc_plugin_search_json = {
         {
           "title": "navigateTo(OBJECT)",
           "url": "/apis/nav.html#navigatetoobject",
-          "content": "navigateTo(OBJECT)保留当前页面，跳转到应用内的某个页面，使用 wx.navigateBack 可以返回到原页面。OBJECT 参数说明：\n\n参数\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nurl\nstring\n是\n需要跳转的应用内非 tabBar 的页面的路径 , 路径后可以带参数。参数与路径之间使用?分隔，参数键与参数值用=相连，不同参数用&分隔；如 'path?key=value&key2=value2'\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n代码示例  React.api.navigateTo({      wx.navigateTo({\n        url: 'test?id=1'\n  })\n});\n//test.jsPage({\n  componentDidMount: function(option) {\n    console.log(option.query);\n  }\n});\nTips: 目前页面路径最多只能十层，百度为5层。\n"
+          "content": "navigateTo(OBJECT)保留当前页面，跳转到应用内的某个页面，使用 wx.navigateBack 可以返回到原页面。OBJECT 参数说明：\n\n参数\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nurl\nstring\n是\n需要跳转的应用内非 tabBar 的页面的路径 , 路径后可以带参数。参数与路径之间使用?分隔，参数键与参数值用=相连，不同参数用&分隔；如 'path?key=value&key2=value2'\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n代码示例React.api.navigateTo({    url: '/example/xxx?key=value'\n});\n//test.jsPage({\n  componentDidMount: function(option) {\n    console.log(option.query);\n  }\n});\nTips: 目前页面路径最多只能十层，百度为5层。\n"
         },
         {
           "title": "redirectTo(OBJECT)",
           "url": "/apis/nav.html#redirecttoobject",
-          "content": "redirectTo(OBJECT)关闭当前页面，跳转到应用内的某个页面。OBJECT 参数说明：\n\n参数\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nurl\nstring\n是\n需要跳转的应用内非 tabBar 的页面的路径 , 路径后可以带参数。参数与路径之间使用?分隔，参数键与参数值用=相连，不同参数用&分隔；如 'path?key=value&key2=value2'\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n代码示例  React.api.redirectTo({      wx.navigateTo({\n        url: 'test?id=1'\n  })\n});\n"
+          "content": "redirectTo(OBJECT)关闭当前页面，跳转到应用内的某个页面。OBJECT 参数说明：\n\n参数\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nurl\nstring\n是\n需要跳转的应用内非 tabBar 的页面的路径 , 路径后可以带参数。参数与路径之间使用?分隔，参数键与参数值用=相连，不同参数用&分隔；如 'path?key=value&key2=value2'\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n代码示例React.api.redirectTo({  url: 'test?id=1'\n});\n"
         },
         {
           "title": "reLaunch(OBJECT)",
           "url": "/apis/nav.html#relaunchobject",
-          "content": "reLaunch(OBJECT)关闭所有页面，打开到应用内的某个页面。OBJECT 参数说明：\n\n参数\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nurl\nstring\n是\n需要跳转的应用内非 tabBar 的页面的路径 , 路径后可以带参数。参数与路径之间使用?分隔，参数键与参数值用=相连，不同参数用&分隔；如 'path?key=value&key2=value2'\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n代码示例React.api.reLaunch({  url: 'test?id=1'\n});\n"
+          "content": "reLaunch(OBJECT)关闭所有页面，打开到应用内的某个页面。OBJECT 参数说明：\n\n参数\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nurl\nstring\n是\n需要跳转的应用内非 tabBar 的页面的路径 , 路径后可以带参数。参数与路径之间使用?分隔，参数键与参数值用=相连，不同参数用&分隔；如 'path?key=value&key2=value2'\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n代码示例  React.api.reLaunch({    url: 'test?key=value'\n  });\n//test.jsPage({\n  componentDidMount: function(option) {\n    console.log(option.query);\n  }\n});\n"
         },
         {
           "title": "navigateBack(OBJECT)",
@@ -350,7 +350,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "setNavigationBarColor(OBJECT)",
           "url": "/apis/nav-bar.html#setnavigationbarcolorobject",
-          "content": "setNavigationBarColor(OBJECT)OBJECT 参数说明：\n\n参数\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nbackgroundColor\nstring\n是\n背景颜色值，有效值为十六进制颜色\n都支持\n\n\nfrontColor\nstring\n\n前景颜色值，包括按钮、标题、状态栏的颜色，仅支持 #ffffff 和 #000000\n微信支持\n\n\nborderBottomColor\nstring\n否\n导航栏底部边框颜色，支持十六进制颜色值。若设置了 backgroundColor，则borderBottomColor 不会生效，默认会和 backgroundColor 颜色一样\n支付宝\n\n\nreset\nboolean\n否\n是否重置导航栏为支付宝默认配色，默认 false\n支付宝\n\n\nanimation\nObject\n否\n动画效果\n微信\n\n\nanimation.duration\nNumber\n否\n动画变化时间，默认0，单位：毫秒\n微信\n\n\nanimation.timingFunc\nString\n否\n动画变化方式，默认 linear\n支付宝\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n"
+          "content": "setNavigationBarColor(OBJECT)OBJECT 参数说明：\n\n参数\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nbackgroundColor\nstring\n是\n背景颜色值，有效值为十六进制颜色\n都支持\n\n\nfrontColor\nstring\n\n前景颜色值，包括按钮、标题、状态栏的颜色，仅支持 #ffffff 和 #000000\n微信，百度\n\n\nborderBottomColor\nstring\n否\n导航栏底部边框颜色，支持十六进制颜色值。若设置了 backgroundColor，则borderBottomColor 不会生效，默认会和 backgroundColor 颜色一样\n支付宝\n\n\nreset\nboolean\n否\n是否重置导航栏为支付宝默认配色，默认 false\n支付宝\n\n\nanimation\nObject\n否\n动画效果\n微信，百度\n\n\nanimation.duration\nNumber\n否\n动画变化时间，默认0，单位：毫秒\n微信，百度\n\n\nanimation.timingFunc\nString\n否\n动画变化方式，默认 linear\n支付宝\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n"
         },
         {
           "title": "showNavigationBarLoading()",
@@ -384,7 +384,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "createAnimation(Object object)",
           "url": "/apis/animation.html#createanimationobject-object",
-          "content": "createAnimation(Object object)创建一个动画实例 animation。调用实例的方法来描述动画。最后通过动画实例的 export 方法导出动画数据传递给组件的 animation 属性。OBJECT 参数说明：\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\nduration\nnumber\n400\n否\n动画持续时间，单位 ms\n都支持\n\n\ntimingFunction\nstring\n'linear'\n否\n动画的效果\n微信,支付宝\n\n\ndelay\nnumber\n0\n否\n动画延迟时间，单位 ms\n都支持\n\n\ntransformOrigin\nstring\n百度为‘50% 50% 0’\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n50% 50% 0\n否\n设置transform-origin\n都支持\n\n\ntimingFunction 的合法值：\n\n值\b\n说明\n\n\n\n\n'linear'\n动画从头到尾的速度是相同的\n\n\n'ease'\n动画以低速开始，然后加快，在结束前变慢\n\n\n'ease-in'\n动画以低速开始\n\n\n'ease-in-out'\n动画以低速开始和结束\n\n\n'ease-out'\n动画以低速结束\n\n\n'step-start'\n动画第一帧就跳至结束状态直到结束\n\n\n'step-end'\n动画一直保持开始状态，最后一帧跳到结束状态\n\n\n"
+          "content": "createAnimation(Object object)创建一个动画实例 animation。调用实例的方法来描述动画。最后通过动画实例的 export 方法导出动画数据传递给组件的 animation 属性。OBJECT 参数说明：\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\nduration\nnumber\n400\n否\n动画持续时间，单位 ms\n都支持\n\n\ntimingFunction\nstring\n'linear'\n否\n动画的效果\n微信,支付宝\n\n\ndelay\nnumber\n0\n否\n动画延迟时间，单位 ms\n都支持\n\n\ntransformOrigin\nstring\n百度为‘50% 50% 0’\n否\n设置transform-origin\n都支持\n\n\ntimingFunction 的合法值：\n\n值\b\n说明\n\n\n\n\n'linear'\n动画从头到尾的速度是相同的\n\n\n'ease'\n动画以低速开始，然后加快，在结束前变慢\n\n\n'ease-in'\n动画以低速开始\n\n\n'ease-in-out'\n动画以低速开始和结束\n\n\n'ease-out'\n动画以低速结束\n\n\n'step-start'\n动画第一帧就跳至结束状态直到结束\n\n\n'step-end'\n动画一直保持开始状态，最后一帧跳到结束状态\n\n\n"
         },
         {
           "title": "animation",
@@ -399,7 +399,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "Animation.step(Object object)",
           "url": "/apis/animation.html#动画队列-animation.stepobject-object",
-          "content": "Animation.step(Object object)OBJECT 参数说明：\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\nduration\nnumber\n400\n否\n动画持续时间，单位 ms\n都支持\n\n\ntimingFunction\nstring\n'linear'\n否\n动画的效果\n微信\n\n\ndelay\nnumber\n0\n否\n动画延迟时间，单位 ms\n都支持\n\n\ntransformOrigin\nstring\n\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n50% 50% 0\n否\n设置transform-origin\n都支持\n\n\ntimingFunction 的合法值：\n\n值\b\n说明\n\n\n\n\n'linear'\n动画从头到尾的速度是相同的\n\n\n'ease'\n动画以低速开始，然后加快，在结束前变慢\n\n\n'ease-in'\n动画以低速开始\n\n\n'ease-in-out'\n动画以低速开始和结束\n\n\n'ease-out'\n动画以低速结束\n\n\n'step-start'\n动画第一帧就跳至结束状态直到结束\n\n\n'step-end'\n动画一直保持开始状态，最后一帧跳到结束状态\n\n\n"
+          "content": "Animation.step(Object object)OBJECT 参数说明：\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\nduration\nnumber\n400\n否\n动画持续时间，单位 ms\n都支持\n\n\ntimingFunction\nstring\n'linear'\n否\n动画的效果\n微信\n\n\ndelay\nnumber\n0\n否\n动画延迟时间，单位 ms\n都支持\n\n\ntransformOrigin\nstring\n\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n50% 50% 0\n否\n设置transform-origin\n都支持\n\n\ntimingFunction 的合法值：\n\n值\b\n说明\n\n\n\n\n'linear'\n动画从头到尾的速度是相同的\n\n\n'ease'\n动画以低速开始，然后加快，在结束前变慢\n\n\n'ease-in'\n动画以低速开始\n\n\n'ease-in-out'\n动画以低速开始和结束\n\n\n'ease-out'\n动画以低速结束\n\n\n'step-start'\n动画第一帧就跳至结束状态直到结束\n\n\n'step-end'\n动画一直保持开始状态，最后一帧跳到结束状态\n\n\n    showModal\n\n    var animation = React.api.createAnimation();    animation.rotate(90).translateY(10).step();\n    animation.rotate(-90).translateY(-10).step();\n        this.setState({\n            animation: animation.export()\n        });\n"
         }
       ]
     },
@@ -612,6 +612,11 @@ window.ydoc_plugin_search_json = {
           "title": "Object CanvasContext.measureText(string text)",
           "url": "/apis/canvas.html#object-canvascontext.measuretextstring-text",
           "content": "Object CanvasContext.measureText(string text)测量文本尺寸信息，目前仅返回文本宽度。同步接口。入参\n\n参数\n类型\n说明\n\n\n\n\ntext\nString\n必填。要测量的文本\n\n\n返回返回 TextMetrics 对象，结构如下：\n\n参数\n类型\n说明\n\n\n\n\nwidth\nNumber\n文本的宽度\n\n\n代码示例：const ctx = React.api.createCanvasContext('myCanvas');\nctx.font = 'italic bold 50px cursive';\nconst { width } = ctx.measureText('hello world');\nconsole.log(width);\n"
+        },
+        {
+          "title": "CanvasContext.canvasToTempFilePath(OBJECT, this)",
+          "url": "/apis/canvas.html#canvascontext.canvastotempfilepathobject,-this",
+          "content": "CanvasContext.canvasToTempFilePath(OBJECT, this)把当前画布指定区域的内容导出生成指定大小的图片，并返回文件路劲。在自定义组件下，第二个参数传入组件实例this，以操作组件内组件。入参\n\n参数\n类型\n说明\n\n\n\n\nx\nNumber\n画布 x 轴起点（默认 0 ）\n\n\ny\nNumber\n画布 y 轴起点（默认 0 ）\n\n\nwidth\nNumber\n画布宽度（默认为 canvas 宽度 -x）\n\n\nheight\nNumber\n画布高度（默认为 canvas 高度 -y）\n\n\ndestWidth\nNumber\n输出图片宽度（默认为 width * 屏幕像素密度）\n\n\ndestHeight\nNumber\n输出图片高度（默认为 height * 屏幕像素密度）\n\n\ncanvasId\nString\n画布标识，传入的 canvas-id\n\n\nfileType\nString\n目标文件的类型，只支持 ‘jpg’ 或 ‘png’，默认为 ‘png’ 。\n\n\nquality\nNumber\n图片的质量，取值范围为 (0, 1]，不在范围内时当作 1.0 处理 。\n\n\nsuccess\nFunction\n接口调用成功的回调函数\n\n\nfail\nFunction\n接口调用失败的回调函数\n\n\ncomplete\nFunction\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n在 draw 回调里调用该方法才能保证图片导出成功。示例代码：  React.api.canvasToTempFilePath({    x: 100,\n    y: 200,\n    width: 50,\n    height: 50,\n    destWidth: 100,\n    destHeight: 100,\n    canvasId: 'myCanvas',\n    success: function(res) {\n        console.log(res.tempFilePath)\n    }\n});\n"
         }
       ]
     },
@@ -635,7 +640,19 @@ window.ydoc_plugin_search_json = {
         {
           "title": "pageScrollTo(Object object)",
           "url": "/apis/scroll.html#pagescrolltoobject-object",
-          "content": "pageScrollTo(Object object)将页面滚动到目标位置入参\n\n参数\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\nscrollTop\nnumber\n\n是\n滚动到页面的目标位置，单位 px\n都支持\n\n\nduration\nnumber\n300\n否\n滚动动画的时长，单位 ms\n微信\n\n\nsuccess\nFunction\n\n\n接口调用成功的回调函数\n微信\n\n\nfail\nFunction\n\n\n接口调用失败的回调函数\n微信\n\n\ncomplete\nFunction\n\n\n接口调用结束的回调函数（调用成功、失败都会执行）\n微信\n\n\n"
+          "content": "pageScrollTo(Object object)将页面滚动到目标位置入参\n\n参数\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\nscrollTop\nnumber\n\n是\n滚动到页面的目标位置，单位 px\n都支持\n\n\nduration\nnumber\n300\n否\n滚动动画的时长，单位 ms\n微信，百度\n\n\nsuccess\nFunction\n\n\n接口调用成功的回调函数\n微信\n\n\nfail\nFunction\n\n\n接口调用失败的回调函数\n微信\n\n\ncomplete\nFunction\n\n\n接口调用结束的回调函数（调用成功、失败都会执行）\n微信\n\n\n"
+        }
+      ]
+    },
+    {
+      "title": "下拉刷新",
+      "content": "",
+      "url": "/apis/pulldown.html",
+      "children": [
+        {
+          "title": "stopPullDownRefresh()",
+          "url": "/apis/pulldown.html#stoppulldownrefresh",
+          "content": "stopPullDownRefresh()停止当前页面下拉刷新。React.api.stopPullDownRefresh()"
         }
       ]
     },
@@ -689,7 +706,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "chooseImage(Object object)",
           "url": "/apis/image.html#chooseimageobject-object",
-          "content": "chooseImage(Object object)从本地相册选择图片或使用相机拍照。参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\ncount\nnumber\n微信：9， 支付宝： 1\n否\n最多可以选择的图片张数\n都支持\n\n\nsourceType\nString Array\n['album', 'camera']\n否\n选择图片的来源\n都支持\n\n\nsizeType\nString Array\n['original', 'compressed']\n否\n所选的图片的尺寸\n微信\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\nsuccess 返回值"
+          "content": "chooseImage(Object object)从本地相册选择图片或使用相机拍照。参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\ncount\nnumber\n微信：9， 支付宝： 1\n否\n最多可以选择的图片张数\n都支持\n\n\nsourceType\nString Array\n['album', 'camera']\n否\n选择图片的来源\n都支持\n\n\nsizeType\nString Array\n['original', 'compressed']\n否\n所选的图片的尺寸\n微信\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\nsuccess 返回值Object res\n\n属性\n类型\n描述\n支持平台\n\n\n\n\ntempFilePaths\nStringArray\n图片的本地文件路径列表\n都支持\n\n\ntempFiles\nObjectArray\n图片的本地文件列表，每一项是一个 File 对象\n微信\n\n\n  choose() {    React.api.chooseImage({\n      count: 2,\n      success: res => {\n        this.setState({\n          img: res.tempFilePaths\n        })\n      }\n    });\n  }\n\n  render() {\n    return (\n      \n        选择图片\n        {\n          this.state.img.map(function(item) {\n            return  \n          })\n        }\n\n      \n    );\n  }\n"
         },
         {
           "title": "previewImage(Object object)",
@@ -704,7 +721,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "getImageInfo(Object object)",
           "url": "/apis/image.html#getimageinfoobject-object",
-          "content": "getImageInfo(Object object)获取图片信息参数\bObject object\n\n属性\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nsrc\nstring\n是\n图片路径，目前支持：网络图片路径、apFilePath路径、相对路径\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\nsuccess 返回值\n\n名称\n类型\n描述\n支持平台\n\n\n\n\nwidth\nNumber\n图片宽度（单位px）\n都支持\n\n\nheight\nNumber\n图片高度（单位px）\n都支持\n\n\npath\nstring\n图片的本地路径\n都支持\n\n\norientation\nstring\n拍照时设备方向\n微信\n\n\ntype\nstring\n图片格式\n微信\n\n\n"
+          "content": "getImageInfo(Object object)获取图片信息参数\bObject object\n\n属性\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nsrc\nstring\n是\n图片路径，目前支持：网络图片路径、apFilePath 路径、相对路径\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\nsuccess 返回值\n\n名称\n类型\n描述\n支持平台\n\n\n\n\nwidth\nNumber\n图片宽度（单位 px）\n都支持\n\n\nheight\nNumber\n图片高度（单位 px）\n都支持\n\n\npath\nstring\n图片的本地路径\n都支持\n\n\norientation\nstring\n拍照时设备方向\n微信\n\n\ntype\nstring\n图片格式\n微信\n\n\n"
         }
       ]
     },
@@ -778,7 +795,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "getSavedFileInfo(Object object)",
           "url": "/apis/file.html#getsavedfileinfoobject-object",
-          "content": "getSavedFileInfo(Object object)获取本地文件的文件信息。此接口只能用于获取已保存到本地的文件，若需要获取临时文件信息，请使用 wx.getFileInfo() 接口。参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nfilePath\nstring\n\n是\n本地文件路径\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\nobject.success 回调函数\n\n属性\n类型\n说明\n\n\n\n\nsize\nnumber\n文件大小，以字节为单位\n\n\ndigest\nnumber\n文件保存时的时间戳，从1970/01/01 08:00:00 到该时刻的秒数\n\n\n"
+          "content": "getSavedFileInfo(Object object)获取本地文件的文件信息。此接口只能用于获取已保存到本地的文件，若需要获取临时文件信息，请使用 wx.getFileInfo() 接口。参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nfilePath\nstring\n\n是\n本地文件路径\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\nobject.success 回调函数\n\n属性\n类型\n说明\n\n\n\n\n\nsize\nnumber\n文件大小，以字节为单位\n都支持\n\n\ncreateTime\nnumber\n文件保存时的时间戳，从1970/01/01 08:00:00 到该时刻的秒数\n都支持\n\n\nerrMsg\nString\n接口调用结果\n微信\n\n\n"
         },
         {
           "title": "getSavedFileList(Object object)",
@@ -805,17 +822,34 @@ window.ydoc_plugin_search_json = {
         {
           "title": "getLocation(Object object)",
           "url": "/apis/location.html#getlocationobject-object",
-          "content": "getLocation(Object object)获取当前的地理位置、速度。当用户离开小程序后，此接口无法调用。参数都不一样的"
+          "content": "getLocation(Object object)获取当前的地理位置、速度。当用户离开小程序后，此接口无法调用。注：支付宝和微信小程序参数都不一致参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\ntype\nstring\nwgs84\n是\nwgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标\n\n\naltitude\nstring\nfalse\n否\n传入 true 会返回高度信息，由于获取高度需要较高精确度，会减慢接口返回速度，微信版本>=1.6.0支持\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\nobject.success 回调函数参数Object res\n\n属性\n类型\n说明\n支持平台\n\n\n\n\nlatitude\nnumber\n纬度，范围为 -90~90，负数表示南纬\n微信小程序，百度小程序\n\n\nlongitude\nnumber\n经度，范围为 -180~180，负数表示西经\n微信小程序，百度小程序\n\n\nspeed\nnumber\n速度，单位 m/s\n微信小程序，百度小程序\n\n\naccuracy\nnumber\n位置的精确度\n微信小程序，百度小程序\n\n\naltitude\nnumber\n高度，单位 m\n微信小程序>= 1.2.0，百度小程序\n\n\nverticalAccuracy\nnumber\n垂直精度，单位 m（Android 无法获取，返回 0）\n微信小程序>= 1.2.0，百度小程序\n\n\nhorizontalAccuracy\nnumber\n水平精度，单位 m\n微信小程序>= 1.2.0，百度小程序\n\n\nstreet\nstring\n街道名称\n百度小程序\n\n\ncityCode\nstring\n城市编码\n百度小程序\n\n\ncity\nstring\n城市名称\n百度小程序\n\n\ncountry\nstring\n国家\n百度小程序\n\n\nprovince\nstring\n省份\n百度小程序\n\n\nstreetNumber\nstring\n街道号码\n百度小程序\n\n\ndistrict\nstring\n区\n百度小程序\n\n\n代码示例React.api.getLocation({  type: 'gcj02',\n  success: function (res) {\n     console.log('纬度：' + res.latitude);\n     console.log('经度：' + res.longitude);\n  },\n  fail: function (err) {\n     console.log('错误码：' + err.errCode);\n     console.log('错误信息：' + err.errMsg);\n  }\n})\n"
         },
         {
           "title": "openLocation(Object object)",
           "url": "/apis/location.html#openlocationobject-object",
-          "content": "openLocation(Object object)内置地图查看位置参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nlongitude\nNumber\n\n是\n经度，范围为-90~90，负数表示南纬。使用 gcj02 国测局坐标系\n\n\nlatitude\nNumber\n\n是\n纬度，范围为-90~90，负数表示南纬。使用 gcj02 国测局坐标系\n\n\nscale\nNumber\n18\n否\n缩放比例，范围5~18\n\n\nname\nstring\n\n否\n位置名\n\n\naddress\nstring\n\n否\n地址的详细说明\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
+          "content": "openLocation(Object object)内置地图查看位置参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nlongitude\nNumber\n\n是\n经度，范围为-90~90，负数表示南纬。使用 gcj02 国测局坐标系\n\n\nlatitude\nNumber\n\n是\n纬度，范围为-90~90，负数表示南纬。使用 gcj02 国测局坐标系\n\n\nscale\nNumber\n18\n否\n缩放比例，范围5~18\n\n\nname\nstring\n\n否\n位置名\n\n\naddress\nstring\n\n否\n地址的详细说明\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n代码示例React.api.getLocation({  type: 'gcj02',\n  success: function (res) {\n    React.api.openLocation({\n      latitude: res.latitude,\n      longitude: res.longitude,\n      scale: 18\n     })\n  },\n  fail: function (err) {\n    console.log('错误码：' + err.errCode);\n    console.log('错误信息：' + err.errMsg);\n  }\n});\n"
         },
         {
           "title": "chooseLocation(Object object)",
           "url": "/apis/location.html#chooselocationobject-object",
-          "content": "chooseLocation(Object object)打开地图选择位置参数Object object| success  | function      |        | 否       | 接口调用成功的回调函数                           | fail     | function      |        | 否       | 接口调用失败的回调函数                           |\n| complete | function      |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） |object.success 回调函数Object res\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nname\nstring\n\n否\n位置名\n\n\naddress\nstring\n\n否\n地址的详细说明\n\n\nlongitude\nString\n\n是\n经度，范围为-90~90，负数表示南纬。使用 gcj02 国测局坐标系\n\n\nlatitude\nString\n\n是\n纬度，范围为-90~90，负数表示南纬。使用 gcj02 国测局坐标系\n\n\n"
+          "content": "chooseLocation(Object object)打开地图选择位置参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\nobject.success 回调函数Object res\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nname\nstring\n\n否\n位置名\n\n\naddress\nstring\n\n否\n地址的详细说明\n\n\nlongitude\nString\n\n是\n经度，范围为-90~90，负数表示南纬。使用 gcj02 国测局坐标系\n\n\nlatitude\nString\n\n是\n纬度，范围为-90~90，负数表示南纬。使用 gcj02 国测局坐标系\n\n\n"
+        }
+      ]
+    },
+    {
+      "title": "分享",
+      "content": "",
+      "url": "/apis/share.html",
+      "children": [
+        {
+          "title": "onShareAppMessage(Object)",
+          "url": "/apis/share.html#onshareappmessageobject",
+          "content": "onShareAppMessage(Object)在 Page 中定义 onShareAppMessage 函数，设置该页面的分享信息。每个 Page 页面的右上角菜单中默认会显示“分享”按钮，重写了 onShareAppMessage 函数，只是自定义分享内容\n用户点击分享按钮的时候会调用（ 组件 open-type=\"share\"）\n此事件需要 return 一个 Object，用于自定义分享内容。\n注意：只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮\nObject 参数说明\n\n参数\n类型\n说明\n支持平台\n\n\n\n\nfrom\nstring\n转发事件来源。button：页面内转发按钮；menu：右上角转发菜单\n都支持\n\n\ntarget\nObject\n如果 from 值是 button，则 target 是触发这次转发事件的 button，否则为 undefined\n都支持\n\n\nwebViewUrl\nString\n页面中包含组件时，返回当前的 url\n微信\n\n\n此事件需要 return 一个 Object，用于自定义转发内容，返回内容如下：自定义转发内容\n\n字段\n是否必须\n说明\n支持平台\n\n\n\n\ntitle\n是\n自定义分享标题\n都支持\n\n\npath\n是\n转发路径 必须是以 / 开头的完整路径\n都支持\n\n\nimageUrl\n否\n自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径。支持 PNG 及 JPG。显示图片长宽比是 5:4。\n都支持\n\n\ndesc\n否\n自定义分享描述最大长度 140 个字\n支付宝\n\n\ncontent\n否\n自定义吱口令文案，最多 28 个字符\n支付宝\n\n\nbgImgUrl\n否\n自定义分享二维码的背景图，建议大小 750*1350\n支付宝\n\n\nsuccess\n否\n分享成功后回调\n支付宝\n\n\nfail\n否\n分享失败后回调\n支付宝\n\n\n\b 示例代码：onShareAppMessage(res) {    if (res.from === 'button') {\n      // 来自页面内转发按钮\n      console.log(res.target);\n    }\n    return {\n      title: '小程序示例',\n      desc: '小程序官方示例Demo，展示已支持的接口能力及组件。',\n      path: 'pages/images/index'\n    };\n  }\n"
+        },
+        {
+          "title": "hideShareMenu(Object object)",
+          "url": "/apis/share.html#hidesharemenuobject-object",
+          "content": "hideShareMenu(Object object)隐藏转发按钮参数\bObject object\n\n属性\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n"
         }
       ]
     },
@@ -898,6 +932,11 @@ window.ydoc_plugin_search_json = {
           "title": "setScreenBrightness(OBJECT)",
           "url": "/apis/miniprogram.html#setscreenbrightnessobject",
           "content": "setScreenBrightness(OBJECT)设置屏幕亮度参数Object object\n\n参数\n类型\n默认值\n是否必须\n说明\n\n\n\n\nvalue\nNumber\n\n是\n屏幕亮度值，范围 0 ~ 1。0 最暗，1 最亮\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
+        },
+        {
+          "title": "boolean canIUse(string schema)",
+          "url": "/apis/miniprogram.html#boolean-caniusestring-schema",
+          "content": "boolean canIUse(string schema)判断小程序的API，回调，参数，组件等是否在当前版本可用。参数string schema使用 ${API}.${method}.${param}.${options} 或者 ${component}.${attribute}.${option} 方式来调用返回值boolean当前版本是否可用参数说明${API} 代表 API 名字\n${method} 代表调用方式，有效值为return, success, object, callback\n${param} 代表参数或者返回值\n${options} 代表参数的可选值\n${component} 代表组件名字\n${attribute} 代表组件属性\n${option} 代表组件属性的可选值\n代码示例：React.api.canIUse('getFileInfo')React.api.canIUse('closeSocket.object.code')\nReact.api.canIUse('getLocation.object.type')\nReact.api.canIUse('getSystemInfo.return.brand')\nReact.api.canIUse('lifestyle')\nReact.api.canIUse('button.open-type.share')\n"
         }
       ]
     }
