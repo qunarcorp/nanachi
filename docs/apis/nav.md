@@ -32,7 +32,7 @@ Page({
 });
 ```
 
-> Tips: 目前页面路径最多只能十层。
+> Tips: 目前页面路径最多只能十层，百度为5层。
 
 ## redirectTo(OBJECT)
 
