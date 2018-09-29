@@ -785,3 +785,43 @@ ctx.font = 'italic bold 50px cursive';
 const { width } = ctx.measureText('hello world');
 console.log(width);
 ```
+
+## CanvasContext.canvasToTempFilePath(OBJECT, this)
+
+把当前画布指定区域的内容导出生成指定大小的图片，并返回文件路劲。在自定义组件下，第二个参数传入组件实例this，以操作组件内`<canvas/>`组件。
+
+**入参**
+
+| 参数      | 类型   | 说明                                       |
+| --------- | ------ | ------------------------------------------ |
+| x | Number | 画布 x 轴起点（默认 0 ） |
+| y | Number | 画布 y 轴起点（默认 0 ） |
+| width | Number | 画布宽度（默认为 canvas 宽度 -x） |
+| height | Number | 画布高度（默认为 canvas 高度 -y） |
+| destWidth | Number | 输出图片宽度（默认为 width * 屏幕像素密度） |
+| destHeight | Number | 输出图片高度（默认为 height * 屏幕像素密度） |
+| canvasId | String | 画布标识，传入`<canvas/>`的 canvas-id |
+| fileType | String | 目标文件的类型，只支持 ‘jpg’ 或 ‘png’，默认为 ‘png’ 。 |
+| quality | Number | 图片的质量，取值范围为 (0, 1]，不在范围内时当作 1.0 处理 。 |
+| success | Function | 接口调用成功的回调函数 |
+| fail | Function | 接口调用失败的回调函数 |
+| complete | Function | 接口调用结束的回调函数（调用成功、失败都会执行） |
+
+在 draw 回调里调用该方法才能保证图片导出成功。
+
+示例代码：
+
+```javascript
+  React.api.canvasToTempFilePath({
+    x: 100,
+    y: 200,
+    width: 50,
+    height: 50,
+    destWidth: 100,
+    destHeight: 100,
+    canvasId: 'myCanvas',
+    success: function(res) {
+        console.log(res.tempFilePath)
+    }
+});
+```

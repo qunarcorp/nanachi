@@ -7,19 +7,16 @@
 **OBJECT 参数说明：**
 
 | 参数     | 类型     | 是否必须 | 说明                                                                                                                                                        | 支持平台 |
-| -------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| -------- | --------  | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | url      | string   | 是       | 需要跳转的应用内非 tabBar 的页面的路径 , 路径后可以带参数。参数与路径之间使用?分隔，参数键与参数值用=相连，不同参数用&分隔；如 'path?key=value&key2=value2' | 都支持   |
 | success  | function | 否       | 接口调用成功的回调函数                                                                                                                                      | 都支持   |
 | fail     | function | 否       | 接口调用失败的回调函数                                                                                                                                      | 都支持   |
 | complete | function | 否       | 接口调用结束的回调函数（调用成功、失败都会执行）                                                                                                            | 都支持   |
 
 代码示例
-
 ```javascript
-  React.api.navigateTo({
-      wx.navigateTo({
-        url: 'test?id=1'
-  })
+React.api.navigateTo({
+    url: '/example/xxx?key=value'
 });
 ```
 
@@ -50,10 +47,8 @@ Page({
 代码示例
 
 ```javascript
-  React.api.redirectTo({
-      wx.navigateTo({
-        url: 'test?id=1'
-  })
+React.api.redirectTo({
+  url: 'test?id=1'
 });
 ```
 
@@ -73,8 +68,17 @@ Page({
 代码示例
 
 ```javascript
-React.api.reLaunch({
-  url: 'test?id=1'
+  React.api.reLaunch({
+    url: 'test?key=value'
+  });
+```
+
+```javascript
+//test.js
+Page({
+  componentDidMount: function(option) {
+    console.log(option.query);
+  }
 });
 ```
 
@@ -108,3 +112,4 @@ React.api.navigateBack({
   delta: 2
 });
 ```
+
