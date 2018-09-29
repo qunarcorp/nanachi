@@ -9,10 +9,9 @@
 | 属性     | 类型         | 默认值  | 是否必须 | 说明                                             | 支持平台 |
 | -------- | ------------ | ------- | -------- | ------------------------------------------------ | -------- |
 | duration | number |    400     | 否       | 动画持续时间，单位 ms                 | 都支持   |
-| timingFunction | string       | 'linear' | 否       | 动画的效果                                   | 微信     |
+| timingFunction | string       | 'linear' | 否       | 动画的效果                                   | 微信,支付宝     |
 | delay  | number     |   0      | 否       | 动画延迟时间，单位 ms                           | 都支持   |
-| transformOrigin    | string     |         | 否       | 接口调用失败的回调函数                           | 都支持   |
-| complete | function     |   50% 50% 0      | 否       | 设置transform-origin | 都支持   |
+| transformOrigin    | string     | 百度为‘50% 50% 0’        | 否       | 设置transform-origin                           | 都支持   |
 
 
 **timingFunction 的合法值：**
@@ -54,7 +53,7 @@
 | rotateX | deg | deg 范围 -180 ~ 180，在 X 轴旋转一个 deg 角度 |
 | rotateY | deg | deg 范围 -180 ~ 180，在 Y 轴旋转一个 deg 角度 |
 | rotateZ | deg | deg 范围 -180 ~ 180，在 Z 轴旋转一个deg角度 |
-| rotate3d | (x, y , z, deg) | 同上 |
+| rotate3d | (x, y , z, deg) | 同 transform-function rotate3d。 |
 
 
 缩放：
@@ -91,7 +90,7 @@
 
 | 方法 | 参数 | 说明| 
 | ---- | --- | ----|
-| matrix | (a,b,c,d,tx,ty) | <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix"> 同transform-function </a>|
+| matrix | (a,b,c,d,tx,ty) | <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix"> 同transform-function matrix </a>|
 | matrix3d | ax | <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix3d"> 同transform-function matrix3d </a> |
 
 
@@ -125,3 +124,18 @@
 | 'ease-out' | 动画以低速结束 |
 | 'step-start' | 动画第一帧就跳至结束状态直到结束 |
 | 'step-end' | 动画一直保持开始状态，最后一帧跳到结束状态 |
+
+```html
+<div>
+    <button onTap={this.animation} animation={this.state.animation}>showModal</button>
+</div>
+```
+
+```javascript
+    var animation = React.api.createAnimation();
+    animation.rotate(90).translateY(10).step();
+    animation.rotate(-90).translateY(-10).step();
+        this.setState({
+            animation: animation.export()
+        });
+```
