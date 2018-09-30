@@ -35,3 +35,5 @@ class Demo extends React.Component {
 
 App(new Demo());
 ```
+
+![xx](1538220971725.jpg)
