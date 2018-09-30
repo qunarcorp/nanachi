@@ -2,4 +2,4 @@
 
 此项目由 [YMFE](https://ymfe.org) 提供支持。
 
-![xx](1538220971726.jpg)
+![nanachi](1538220971726.jpeg)
