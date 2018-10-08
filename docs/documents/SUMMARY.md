@@ -12,6 +12,7 @@
 * [兼容native组件](support-native-component.md)
 * [Redux](redux.md)
 * [路由](router.md)
+* [平台打包业务代码](platform.md)
 * [常见问题](questions.md)
 * [各种小程序的比较](diff.md)
 * [发布打包](publish.md)
