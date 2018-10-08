@@ -11,8 +11,8 @@
 | 模块中使用脚本               | `<wxs />`                                                | `<filter />`                               | `<import-sjs />`                               | `<script />`                                     |
 | 模板文件后缀                 | wxml                                                     | swan                                       | axml                                           | 没有独立的文件 放 template 中                    |
 | 样式文件后缀                 | wxss                                                     | css                                        | acss                                           | 没有独立的文件 放 style 中，不需要处理 less,sass |
-| template 包含 template       | 支持                                                     | 不支持（听说正在修复）                     | 支持                                           | 未知                                             |
-| template 的 data 是否支持... | 支持                                                     | 不支持（听说正在修复）                     | 支持                                           | 未知                                             |
+| template 包含 template       | 支持                                                     | 不支持循环中使用template                     | 支持                                           | 未知                                             |
+| template 的 data 是否支持... | `{{...aaa}}`                                                      |  `{{{...aaa}}}` 三个括号             |  `{{...aaa}}`                                             |只能一个个数据分开写                                             |
 | 缺省的组件(视图容器)         |                                                          |                                            | moveable-view、cover-view                      | 未知                                             |
 | 缺省的组件(基础内容)         |                                                          |                                            | rich-text                                      | 未知                                             |
 | 缺省的组件(导航)             |                                                          |                                            | functional-page-navigator                      | 未知                                             |
@@ -91,4 +91,4 @@ created或onInit时，抓取小程序实例与对应的react实例，将props, s
 <a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br />
 <a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br />
 <a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a> <br />
-<a href="https://www.quickapp.cn/">快应用</a> <br />
+<a href="https://doc.quickapp.cn/features/">快应用</a> <br />
