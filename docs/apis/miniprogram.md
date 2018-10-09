@@ -284,19 +284,32 @@ React.api.canIUse('button.open-type.share')
 
 | 属性     | 类型     | 是否必须 | 说明                                                        | 支持平台 |
 | -------- | -------- | -------- | ----------------------------------------------------------- | -------- |
-| onlyFromCamera      | boolean   | 否       | 是否只能从相机扫码，不允许从相册选择图片，默认false | 微信   |
-| scanType      | Array.<string>   | 否       | 扫码类型，默认['barCode', 'qrCode'] | 微信   |
+| onlyFromCamera      | boolean   | 否       | 是否只能从相机扫码，不允许从相册选择图片，默认false | 都支持   |
+| scanType      | Array.<string>   | 否       | 扫码类型，默认(微信)['barCode', 'qrCode'], 支付宝默认值['qrCode'],数组只识别第一个 | 都支持   |
 | success  | function | 否       | 接口调用成功的回调函数                                      | 都支持   |
 | fail     | function | 否       | 接口调用失败的回调函数                                      | 都支持   |
 | complete | function | 否       | 接口调用结束的回调函数（调用成功、失败都会执行）            | 都支持   |
+
+**object.scanType 的合法值**
+
+
+
+| 值       | 描述                | 支持平台 |
+| ----------- | ------------------- | -------- |
+| barCode       |  一维码 | 都支持   |
+| qrCode     | 二维码 | 都支持   |
+| datamatrix        |  Data Matrix 码 | 微信  |
+| pdf417 |  PDF417 条码 | 微信     |
 
 **success 返回值**
 
 | 名称        | 类型   | 描述                | 支持平台 |
 | ----------- | ------ | ------------------- | -------- |
 | result       | string | 所扫码的内容 | 都支持   |
-| scanType      | string | 所扫码的类型 | 都支持   |
-| charSet        | string | 所扫码的字符集 | 都支持   |
+| scanType      | string | 所扫码的类型 | 支付宝不支持   |
+| charSet        | string | 所扫码的字符集 | 支付宝不支持   |
+| qrCode        | string |扫描二维码时返回二维码数据 | 支付宝   |
+|  barCode       | string | 扫描条形码时返回条形码数据 | 支付宝   |
 | path | number | 当所扫的码为当前小程序的合法二维码时，会返回此字段，内容为二维码携带的 path | 微信     |
 | rawData        | string | 原始数据，base64编码 | 微信     |
 
