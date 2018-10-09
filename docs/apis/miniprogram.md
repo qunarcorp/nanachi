@@ -63,7 +63,7 @@ Object res
 
 | 属性       | 类型   | 描述                                       |支持平台|
 | ---------- | ------ | ------------------------|------------------ |
-| networkType       | string | 网络类型值 UNKNOWN / NOTREACHABLE / WIFI / 3G / 2G / 4G / WWAN |都支持|
+| networkType       | string | 网络类型值 unknown / NOTREACHABLE(支付宝) / WWAN(支付宝) / wifi / 3g / 2g / 4g / none(百度、微信) |都支持|
 | networkAvailable | Number |网络是否可用           |支付宝|
 
 
@@ -83,7 +83,7 @@ Object res
 
 | 属性       | 类型   | 描述                                       |支持平台|
 | ---------- | ------ | ------------------------|------------------ |
-| networkType       | string | 网络类型值 UNKNOWN / NOTREACHABLE / WIFI / 3G / 2G / 4G / WWAN |都支持|
+| networkType       | string | 网络类型值 unknown / NOTREACHABLE(支付宝) / WWAN(支付宝) / wifi / 3g / 2g / 4g / none(百度、微信)  |都支持|
 | isConnected | boolean |当前是否有网络链接           |都支持|
 
 ## 剪切板
@@ -134,7 +134,7 @@ Object object
 
 | 参数         | 类型     | 默认值 | 是否必须 | 说明                 |
 | ------------ | -------- | ------ | -------- | ------------------------------------------------------------------------------------------- | -------- |
-| keepScreenOn      | string |        | 是      |是否保持屏幕长亮状态                                                                                                                    |
+| keepScreenOn      | Boolean |        | 是      |是否保持屏幕长亮状态                                                                                                                    |
 | success      | function |        | 否       | 接口调用成功的回调函数                                                                                                                      |
 | fail         | function |        | 否       | 接口调用失败的回调函数                                                                                                                      |
 | complete     | function |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行）                                                                                            |
@@ -202,4 +202,113 @@ React.api.canIUse('getLocation.object.type')
 React.api.canIUse('getSystemInfo.return.brand')
 React.api.canIUse('lifestyle')
 React.api.canIUse('button.open-type.share')
+```
+
+
+## 系统信息
+
+## getSystemInfo(Object object)
+
+获取系统信息
+
+**参数**
+
+Object object
+
+| 属性     | 类型     | 是否必须 | 说明                                                        | 支持平台 |
+| -------- | -------- | -------- | ----------------------------------------------------------- | -------- |
+| src      | string   | 是       | 图片路径，目前支持：网络图片路径、apFilePath 路径、相对路径 | 都支持   |
+| success  | function | 否       | 接口调用成功的回调函数                                      | 都支持   |
+| fail     | function | 否       | 接口调用失败的回调函数                                      | 都支持   |
+| complete | function | 否       | 接口调用结束的回调函数（调用成功、失败都会执行）            | 都支持   |
+
+**success 返回值**
+
+| 名称        | 类型   | 描述                | 支持平台 |
+| ----------- | ------ | ------------------- | -------- |
+| brand       | string | 手机品牌 | 都支持   |
+| model      | string | 手机型号 | 都支持   |
+| pixelRatio        | number | 设备像素比 | 都支持   |
+| screenWidth | number | 屏幕宽度 | 都支持     |
+| screenHeight        | number | 屏幕高度 | 都支持     |
+| windowWidth        | number | 可使用窗口宽度 | 都支持     |
+| windowHeight        | number | 可使用窗口高度 | 都支持     |
+| statusBarHeight        | number | 状态栏的高度 | 百度、微信     |
+| language        | string | 微信设置的语言 | 都支持     |
+| version        | string | 版本号 | 都支持     |
+| system        | string | 操作系统版本 | 都支持     |
+| platform        | string | 客户端平台 | 都支持     |
+| fontSizeSetting        | string | 用户字体大小设置。以“我-设置-通用-字体大小”中的设置为准，单位 px | 都支持     |
+| SDKVersion        | string | 客户端基础库版本 | 百度、微信     |
+| storage        | string | 设备磁盘容量 | 支付宝 |
+| currentBattery        | string | 当前电量百分比 | 支付宝 |
+| app        | string | 当前运行的客户端，当前是支付宝则有效值是"alipay" | 支付宝 |
+| benchmarkLevel        | string | (仅Android小游戏) 性能等级，-2 或 0：该设备无法运行小游戏，-1：性能未知，>=1 设备性能值，该值越高，设备性能越好 (目前设备最高不到50) | 微信 |
+
+## getSystemInfoSync(Object object)
+
+同步获取系统信息
+
+**返回值Object**
+
+| 名称        | 类型   | 描述                | 支持平台 |
+| ----------- | ------ | ------------------- | -------- |
+| brand       | string | 手机品牌 | 都支持   |
+| model      | string | 手机型号 | 都支持   |
+| pixelRatio        | number | 设备像素比 | 都支持   |
+| screenWidth | number | 屏幕宽度 | 都支持     |
+| screenHeight        | number | 屏幕高度 | 都支持     |
+| windowWidth        | number | 可使用窗口宽度 | 都支持     |
+| windowHeight        | number | 可使用窗口高度 | 都支持     |
+| statusBarHeight        | number | 状态栏的高度 | 百度、微信     |
+| language        | string | 微信设置的语言 | 都支持     |
+| version        | string | 版本号 | 都支持     |
+| system        | string | 操作系统版本 | 都支持     |
+| platform        | string | 客户端平台 | 都支持     |
+| fontSizeSetting        | string | 用户字体大小设置。以“我-设置-通用-字体大小”中的设置为准，单位 px | 都支持     |
+| SDKVersion        | string | 客户端基础库版本 | 百度、微信     |
+| storage        | string | 设备磁盘容量 | 支付宝 |
+| currentBattery        | string | 当前电量百分比 | 支付宝 |
+| app        | string | 当前运行的客户端，当前是支付宝则有效值是"alipay" | 支付宝 |
+| benchmarkLevel        | string | (仅Android小游戏) 性能等级，-2 或 0：该设备无法运行小游戏，-1：性能未知，>=1 设备性能值，该值越高，设备性能越好 (目前设备最高不到50) | 微信 |
+
+## 扫码
+
+## scanCode(Object object)
+
+调起客户端扫码界面进行扫码
+
+**参数**
+
+Object object
+
+| 属性     | 类型     | 是否必须 | 说明                                                        | 支持平台 |
+| -------- | -------- | -------- | ----------------------------------------------------------- | -------- |
+| onlyFromCamera      | boolean   | 否       | 是否只能从相机扫码，不允许从相册选择图片，默认false | 微信   |
+| scanType      | Array.<string>   | 否       | 扫码类型，默认['barCode', 'qrCode'] | 微信   |
+| success  | function | 否       | 接口调用成功的回调函数                                      | 都支持   |
+| fail     | function | 否       | 接口调用失败的回调函数                                      | 都支持   |
+| complete | function | 否       | 接口调用结束的回调函数（调用成功、失败都会执行）            | 都支持   |
+
+**success 返回值**
+
+| 名称        | 类型   | 描述                | 支持平台 |
+| ----------- | ------ | ------------------- | -------- |
+| result       | string | 所扫码的内容 | 都支持   |
+| scanType      | string | 所扫码的类型 | 都支持   |
+| charSet        | string | 所扫码的字符集 | 都支持   |
+| path | number | 当所扫的码为当前小程序的合法二维码时，会返回此字段，内容为二维码携带的 path | 微信     |
+| rawData        | string | 原始数据，base64编码 | 微信     |
+
+## 用户截屏事件
+
+## onUserCaptureScreen(Object object)
+
+监听用户主动截屏事件，用户使用系统截屏按键截屏时触发此事件。
+
+**参数callback**
+```javascript
+React.api.onUserCaptureScreen(function() {
+    console.log('用户截屏了')
+});
 ```

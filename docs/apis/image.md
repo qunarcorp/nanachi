@@ -10,9 +10,9 @@ Object object
 
 | 属性       | 类型         | 默认值                     | 是否必须 | 说明                                             | 支持平台 |
 | ---------- | ------------ | -------------------------- | -------- | ------------------------------------------------ | -------- |
-| count      | number       | 微信：9， 支付宝： 1       | 否       | 最多可以选择的图片张数                           | 都支持   |
+| count      | number       | 微信、百度：9， 支付宝： 1       | 否       | 最多可以选择的图片张数                           | 都支持   |
 | sourceType | String Array | ['album', 'camera']        | 否       | 选择图片的来源                                   | 都支持   |
-| sizeType   | String Array | ['original', 'compressed'] | 否       | 所选的图片的尺寸                                 | 微信     |
+| sizeType   | String Array | ['original', 'compressed'] | 否       | original 原图，compressed 压缩图，默认二者都有                                 | 微信     |
 | success    | function     |                            | 否       | 接口调用成功的回调函数                           | 都支持   |
 | fail       | function     |                            | 否       | 接口调用失败的回调函数                           | 都支持   |
 | complete   | function     |                            | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） | 都支持   |
@@ -24,7 +24,7 @@ Object res
 | 属性          | 类型        | 描述                                       | 支持平台 |
 | ------------- | ----------- | ------------------------------------------ | -------- |
 | tempFilePaths | StringArray | 图片的本地文件路径列表                     | 都支持   |
-| tempFiles     | ObjectArray | 图片的本地文件列表，每一项是一个 File 对象 | 微信     |
+| tempFiles     | ObjectArray | 图片的本地文件列表，每一项是一个 File 对象 | 微信、百度     |
 
 ```javascript
   choose() {
