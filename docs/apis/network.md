@@ -87,19 +87,19 @@ Object res
 
 ## connectSocket(Object object)
 
-创建一个 WebSocket 的连接；一个支付宝小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接。（微信： 1.7.0 及以上版本，最多可以同时存在 5（小游戏）/2（小程序）个 WebSocket 连接。）
+创建一个 WebSocket 的连接；一个支付宝小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接。（微信： 1.7.0 及以上版本，最多可以同时存在 5（小游戏）/2（小程序）个 WebSocket 连接。百度：1.9.4以上支持多个WebSockcet连接）
 
 **参数**
 Object object
 
 | 属性      | 类型          | 默认值 | 是否必须 | 说明                                             | 支持平台 |
 | --------- | ------------- | ------ | -------- | ------------------------------------------------ | -------- |
-| url       | string        |        | 是       | 下载资源的 url                                   | 都支持   |
+| url       | string        |        | 是       | 开发者服务器接口地址，必须是 wss 协议，且域名必须是后台配置的合法域名。                                   | 都支持   |
 | header    | Object        |        | 否       | HTTP 请求的 Header，Header 中不能设置 Referer    | 都支持   |
 | protocols | Array. string |        | 否       | 子协议数组                                       | 微信     |
-| success   | function      |        | 否       | 接口调用成功的回调函数                           |
-| fail      | function      |        | 否       | 接口调用失败的回调函数                           |
-| complete  | function      |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） |
+| success   | function      |        | 否       | 接口调用成功的回调函数                           | 都支持   |
+| fail      | function      |        | 否       | 接口调用失败的回调函数                           | 都支持   |
+| complete  | function      |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） | 都支持   |
 
 ## onSocketOpen(function callback)
 
