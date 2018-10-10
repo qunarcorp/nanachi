@@ -78,7 +78,7 @@ Object res
 
 ```javascript
  React.api.previewImage({
-   current: 0, // 当前显示图片索引
+   current: 'http://xxxxxxx', // 当前显示图片链接
    urls: [''], // 需要预览的图片http链接列表,
    success: function(res) {
       console.log('success', res);
