@@ -19,6 +19,11 @@ Object object
 
 
 **success 返回值**
+| 字段     | 类型         | 说明  | 支持平台 |
+| -------- | ------------ | -------- | -------- |
+| tempFilePaths | String Array | 图片的本地文件路径列表 | 都支持 |
+| tempFiles | Object Array | 图片的本地文件列表，每一项是一个 File 对象。 | 微信小程序>=1.2.0, 百度小程序 |
+
 
 
 ## previewImage(Object object)
@@ -38,6 +43,19 @@ Object object
 | complete | function        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） | 都支持   |
 
 
+```javascript
+ React.api.previewImage({
+   current: 0, // 当前显示图片索引
+   urls: [''], // 需要预览的图片http链接列表,
+   success: function(res) {
+      console.log('success', res);
+   },
+   fail: function (err) {
+      console.log('错误码：' + err.errCode);
+      console.log('错误信息：' + err.errMsg);
+   }
+});
+```
 ## saveImageToPhotosAlbum(Object object)
 
 保存图片到系统相册
@@ -63,7 +81,7 @@ Object object
 
 | 属性     | 类型        | 是否必须 | 说明                                             | 支持平台 |
 | -------- | ------------| -------- | ------------------------------------------------ | -------- |
-| src | string |    是      | 图片路径，目前支持：网络图片路径、apFilePath路径、相对路径              | 都支持   |
+| src | string |    是      | 图片路径，目前支持：网络图片路径、apFilePath路径、相对路径              | 百度小程序不支持网络图片，其它平台都支持 |
 | success  | function  | 否       | 接口调用成功的回调函数                           | 都支持   |
 | fail     | function      | 否       | 接口调用失败的回调函数                           | 都支持   |
 | complete | function        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） | 都支持   |
@@ -76,5 +94,5 @@ Object object
 | width | Number | 图片宽度（单位px） |  都支持
 | height | Number | 图片高度（单位px） |  都支持
 | path | string | 图片的本地路径 |  都支持
-| orientation | string | 拍照时设备方向 |  微信
-| type | string | 图片格式 |  微信
+| orientation | string | 拍照时设备方向 |  微信，百度
+| type | string | 图片格式 |  微信，微信

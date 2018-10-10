@@ -16,6 +16,21 @@ Object object
 | fail     | function      |        | 否       | 接口调用失败的回调函数                           |
 | complete | function      |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） |
 
+代码示例
+
+```javascript
+React.api.setStorage({
+  key: 'key',
+  data: 'value',
+  success: function(res) {
+    console.log('success', res)
+  },
+  fail: function(err) {
+    console.log('fail', err)
+  }
+});
+```
+
 ## setStorageSync(string key, Object|string data)
 
 wx.setStorage 的同步版本
@@ -29,6 +44,12 @@ Object object
 | key  | string        |        | 是       | 本地缓存中指定的 key |
 | data | Object/string |        | 是       | 需要存储的内容       |
 
+
+代码示例
+
+```javascript
+React.api.setStorageSync('key','values');
+```
 ## getStorage
 
 获取缓存数据。
@@ -46,6 +67,25 @@ Object object
 | fail     | function |        | 否       | 接口调用失败的回调函数                           |
 | complete | function |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） |
 
+success返回参数说明：
+| 参数     | 类型     | 说明                                             |
+| -------- | -------- |  ------------------------------------------------ |
+| data     | string   |key 对应的内容                             |
+
+代码示例
+
+```javascript
+React.api.getStorage({
+  key: 'key',
+  success: function (res) {
+    console.log(res.data);
+  },
+  fail: function (err) {
+    console.log('错误码：' + err.errCode);
+    console.log('错误信息：' + err.errMsg);
+  }
+});
+```
 ## getStorageSync
 
 同步获取缓存数据。
