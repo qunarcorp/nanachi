@@ -35,3 +35,5 @@ class Demo extends React.Component {
 
 App(new Demo());
 ```
+
+![nanachi](1538220971725.jpeg)

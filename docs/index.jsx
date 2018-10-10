@@ -4,11 +4,11 @@ banner:
   desc: '基于 React 编写小程序的转译框架'
   btns: 
     - { name: '开 始', href: './documents/intro.html', primary: true }
-    - { name: 'Github >', href: 'https://github.com/RubyLouvre/nanachi' }
+    - { name: 'Github >', href: 'https://github.com/RubyLouvre/anu/tree/master/packages/cli' }
   caption: '当前版本: v0.0.2'
 features: 
-  - { name: '三套模板', desc: '旅游、商城、企业三套通用模板' }
-  - { name: '多端支持', desc: '支持微信、百度、支付宝小程序，快应用支持跟进中' }
+  - { name: '三套模板', desc: '旅游、商城、音乐三套通用模板' }
+  - { name: '多端支持', desc: '支持微信、百度、支付宝小程序，快应用、H5支持跟进中' }
   - { name: '支持 slot', desc: '突破小程序 template 限制，支持组件标签包含其他内容' }
   - { name: '支持事件传参', desc: '突破 wxml 的限制，实现多次 bind this 与参数' }
   - { name: '组件化编程', desc: '完美兼容 React 生命周期钩子' }

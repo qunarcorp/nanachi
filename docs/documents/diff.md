@@ -11,15 +11,15 @@
 | 模块中使用脚本               | `<wxs />`                                                | `<filter />`                               | `<import-sjs />`                               | `<script />`                                     |
 | 模板文件后缀                 | wxml                                                     | swan                                       | axml                                           | 没有独立的文件 放 template 中                    |
 | 样式文件后缀                 | wxss                                                     | css                                        | acss                                           | 没有独立的文件 放 style 中，不需要处理 less,sass |
-| template 包含 template       | 支持                                                     | 不支持（听说正在修复）                     | 支持                                           | 未知                                             |
-| template 的 data 是否支持... | 支持                                                     | 不支持（听说正在修复）                     | 支持                                           | 未知                                             |
+| template 包含 template       | 支持                                                     | 不支持循环中使用template                     | 支持                                           | 未知                                             |
+| template 的 data 是否支持... | `{{...aaa}}`                                                      |  `{{{...aaa}}}` 三个括号             |  `{{...aaa}}`                                             |只能一个个数据分开写                                             |
 | 缺省的组件(视图容器)         |                                                          |                                            | moveable-view、cover-view                      | 未知                                             |
 | 缺省的组件(基础内容)         |                                                          |                                            | rich-text                                      | 未知                                             |
 | 缺省的组件(导航)             |                                                          |                                            | functional-page-navigator                      | 未知                                             |
 | 缺省的组件(媒体组件)         |                                                          |                                            | audio、video、camera、live-player、live-pusher | 未知                                             |
 | open-data                    |                                                          |                                            | 不支持                                         | 未知                                             |
 | 样式单位 rpx 支持情况        | 支持                                                     | 不支持（用 rem，最新的基础库版本已经支持） | 支持                                           | 不支持                                           |
-
+| 大小限制        | 4M                                                     | 4M(分包8M) | 2M                                         | 1M（可以独单与厂商谈）                                           |
 APIs 的这么多方法都不一样，可能以后针对不同的平台打包不同的 api.js 来屏蔽差异性
 
 ### 微信小程序与快应用差异(更新中...)
@@ -88,7 +88,13 @@ created或onInit时，抓取小程序实例与对应的react实例，将props, s
 
 ## 官网
 
-<a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br />
-<a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br />
-<a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a> <br />
-<a href="https://www.quickapp.cn/">快应用</a> <br />
+* [微信小程序文档](https://developers.weixin.qq.com/miniprogram/dev/index.html)
+* [百度小程序文档](https://smartprogram.baidu.com/docs/develop/tutorial/codedir/)
+* [支付小程序文档](https://docs.alipay.com/mini/developer/getting-started)
+* [快应用文档](https://doc.quickapp.cn/features/)
+* [快应用demo1](https://github.com/quickappcn/sample)
+* [快应用demo2](https://github.com/RubyLouvre/quickdemo)
+
+
+
+
