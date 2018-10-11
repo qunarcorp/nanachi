@@ -96,8 +96,6 @@
   - [previewImage](image.md#previewimageobject-object)
   - [saveImageToPhotosAlbum](image.md#saveimagetophotosalbumobject-object)
   - [getImageInfo](image.md#getimageinfoobject-object)
-- [录音管理](recorder.md#录音)
-  - [getRecorderManager](recorder.md#getRecorderManager)
 - [数据缓存](storage.md#缓存)
   - [setStorage](storage.md#setstorageobject-object)
   - [setStorageSync](storage.md#setstoragesyncstring-key,-object|string-data)

@@ -109,37 +109,3 @@ Object object
 | 属性     | 类型          | 说明                                             |
 | -------- | ------------- |------------------------------------------------ |
 | savedFilePath     | string         | 文件数组，每一项是一个 FileItem                          |
-
-## openDocument(Object object)
-
-新开页面打开文档
-
-**参数**
-
-Object object
-
-| 属性     | 类型          | 默认值 | 是否必须 | 说明                                             | 支持平台       |
-| -------- | ------------- | ------ | -------- | ------------------------------------------------ |-------------|
-| filePath      | string        |        | 是       | 文件路径，可通过 downloadFile 获得                       |微信小程序，百度小程序|
-| fileType      | string        |        | 否       | 文件类型，指定文件类型打开文件，有效值 doc, xls, ppt, pdf, docx, xlsx, pptx。                       |微信小程序，百度小程序|
-| success  | function      |        | 否       | 接口调用成功的回调函数                           |微信小程序，百度小程序|
-| fail     | function      |        | 否       | 接口调用失败的回调函数                           |微信小程序，百度小程序|
-| complete | function      |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行）|微信小程序，百度小程序|
-
-代码示例：
-
-```javascript
-React.api.downloadFile({
-  // 示例url,并非真实存在
-  url: 'https://example.com/xxx.pdf',
-  success: function (res) {
-  var filePath = res.tempFilePath;
-  React.api.openDocument({
-    filePath: filePath,
-    success: function (res) {
-      console.log('打开文档成功');
-    }
-    });
-  }
-});
-```

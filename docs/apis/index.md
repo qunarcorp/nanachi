@@ -2,6 +2,8 @@
 
 ## 概述
 
+![](./api.png)
+
 | API                       | 类型                   | 说明                                                                                                                                                                             |
 | ------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | React.createElement       | 内部 API               | 创建元素, 框架在内部会帮你调用这个方法，业务代码中不要用它                                                                                                                       |
@@ -23,18 +25,16 @@
 | onReachBottom             | 页面组件的事件         | 监听用户上拉触底事件                                                                                                                                                             |
 | onPullDownRefresh         | 页面组件的事件         | 监听用户下拉刷新事件                                                                                                                                                             |
 | componentWillMount        | 组件的生命周期钩子     | 页面组件的 props 中有 path, query 等路由相关信息                                                                                                                                 |
-| componentWillUpdate       | 组件的生命周期钩子     |                                                                                                                                                                                  |
+| componentWillUpdate       | 组件的生命周期钩子     |   在小程序中没什么用                                                                                                                                                                               |
 | componentDidMount         | 组件的生命周期钩子     |                                                                                                                                                                                  |
-| componentDidUpdate        | 组件的生命周期钩子     |                                                                                                                                                                                  |
+| componentDidUpdate        | 组件的生命周期钩子     | 在小程序中没什么用                                                                                                                                                                                 |
 | componentWillRecieveProps | 组件的生命周期钩子     |                                                                                                                                                                                  |
 | componentWillUnmount      | 组件的生命周期钩子     |                                                                                                                                                                                  |
 | shouldComponentUpdate     | 组件的生命周期钩子     |                                                                                                                                                                                  |
 | componentDidCatch         | 组件的生命周期钩子     |
-| getSnapshotBeforeUpdate   | 组件的生命周期钩子     |                                                                                                                                                                                  |
-| getDerivedStateFromProps  | 组件的生命周期钩子     |                                                                                                                                                                                  |
-| getDerivedStateFromCatch  | 组件的生命周期钩子     |
 | getChildContext           | 组件的方法             |                                                                                                                                                                                  |  |
 | setState                  | 组件的方法             | 更新页面                                                                                                                                                                         |
 | forceUpdate               | 组件的方法             | 更新页面                                                                                                                                                                         |
 | refs                      | 组件实例上的对象       | 里面保存着子组件的实例（由于没有 DOM，对于普通标签来说， <br />虽然也能保存着它的虚拟 DOM )                                                                                      |
 | render                    | 组件的方法             | 里面必须使用 JSX ，其他方法不能存在 JSX，不能显式使用 createElement  
+
