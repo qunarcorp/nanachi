@@ -38,20 +38,124 @@
 
 ### 左中右分栏
 
-```css
+![左中右分栏](../images/style_row.png)
+
+```html
+<template>
+  <div class="main">
+    <div class="cell cell--left"></div>
+    <div class="cell cell--center"></div>
+    <div class="cell cell--right"></div>
+  </div>
+</template>
+
+<style>
+  .main {
+    display: flex;
+    flex-direction: row;
+  }
+  .cell {
+    flex: 1;
+    height: 200px;
+    background-color: rgb(78, 192, 245);
+    border: 2px solid #444;
+  }
+</style>
 ```
 
 ### 上中下分栏
 
-```css
+![上中下分栏](../images/style_column.png)
+
+```html
+<template>
+  <div class="main">
+    <div class="cell cell--top"></div>
+    <div class="cell cell--middle"></div>
+    <div class="cell cell--bottom"></div>
+  </div>
+</template>
+
+<style>
+  .main {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+  }
+  .cell {
+    flex: 1;
+    background-color: rgb(78, 192, 245);
+    border: 2px solid #444;
+  }
+</style>
 ```
 
 ### 格子
 
-```css
+![格子](../images/style_grid.png)
+
+```html
+<template>
+  <div class="main">
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+  </div>
+</template>
+
+<style>
+  .main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .cell {
+    width: 33.333%;
+    height: 200px;
+    background-color: rgb(78, 192, 245);
+    border: 2px solid #444;
+  }
+</style>
 ```
 
 ### 图片里面有文字
 
-```css
+![图片里面有文字](../images/style_hero_image.png)
+
+```html
+<template>
+  <div class="main">
+    <image class="cover" src="https://img1.qunarzz.com/order/comp/1808/c3/dda9c77c3b1d8802.png" />
+    <div class="content"><text class="text">Hero</text></div>
+  </div>
+</template>
+
+<style>
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cover, .content {
+    height: 300px;
+  }
+  .cover {
+    width: 100%;
+
+  }
+  .content {
+    margin: -300px 0 0 0;
+  }
+  .text {
+    color: red;
+    font-size: 80px;
+    font-weight: bold;
+  }
+</style>
 ```
