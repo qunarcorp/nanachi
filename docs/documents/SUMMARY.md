@@ -2,6 +2,7 @@
 
 * [介绍](intro.md#)
 * [安装](install.md)
+* [升级](update.md)
 * [应用组件](app.md)
 * [页面组件](page.md)
 * [通用组件](component.md)
