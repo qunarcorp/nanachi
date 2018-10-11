@@ -2,7 +2,7 @@
       <div class="icon">&#xf0fd;</div>
       <input type="text" class="input js-input" placeholder="搜索" />
       <div class="m-search-result js-search-result"></div>
-    </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item "><a class="href" href="../documents/intro.html">文档</a></li><li class="item "><a class="href" href="../component/index.html">组件</a></li><li class="item active"><a class="href" href="index.html">API</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>图片</h1>
+    </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item "><a class="href" href="../documents/intro.html">文档</a></li><li class="item "><a class="href" href="../component/index.html">组件</a></li><li class="item active"><a class="href" href="index.html">API</a></li><li class="item "><a class="href" href="../ui/index.html">UI组件</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>图片</h1>
 <h2 id="chooseimageobject-object">chooseImage(Object object)</h2>
 <p>从本地相册选择图片或使用相机拍照。</p>
 <p><strong>参数</strong></p>
@@ -70,6 +70,30 @@
 </tbody>
 </table>
 <p><strong>success 返回值</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+<th>支持平台</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tempFilePaths</td>
+<td>String Array</td>
+<td>图片的本地文件路径列表</td>
+<td>都支持</td>
+</tr>
+<tr>
+<td>tempFiles</td>
+<td>Object Array</td>
+<td>图片的本地文件列表，每一项是一个 File 对象。</td>
+<td>微信小程序&gt;=1.2.0, 百度小程序</td>
+</tr>
+</tbody>
+</table>
 <p>Object res</p>
 <table>
 <thead>
@@ -172,6 +196,18 @@
 </tr>
 </tbody>
 </table>
+<pre><code class="language-javascript"> React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">previewImage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+   current<span class="token punctuation">:</span> <span class="token string">'http://xxxxxxx'</span><span class="token punctuation">,</span> <span class="token comment">// 当前显示图片链接</span>
+   urls<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">''</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 需要预览的图片http链接列表,</span>
+   success<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'success'</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   fail<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'错误码：'</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>errCode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'错误信息：'</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>errMsg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <h2 id="saveimagetophotosalbumobject-object">saveImageToPhotosAlbum(Object object)</h2>
 <p>保存图片到系统相册</p>
 <p><strong>参数</strong></p>

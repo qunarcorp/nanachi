@@ -2,7 +2,7 @@
       <div class="icon">&#xf0fd;</div>
       <input type="text" class="input js-input" placeholder="搜索" />
       <div class="m-search-result js-search-result"></div>
-    </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item "><a class="href" href="../documents/intro.html">文档</a></li><li class="item "><a class="href" href="../component/index.html">组件</a></li><li class="item active"><a class="href" href="index.html">API</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>缓存</h1>
+    </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item "><a class="href" href="../documents/intro.html">文档</a></li><li class="item "><a class="href" href="../component/index.html">组件</a></li><li class="item active"><a class="href" href="index.html">API</a></li><li class="item "><a class="href" href="../ui/index.html">UI组件</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>缓存</h1>
 <h2 id="setstorageobject-object">setStorage(Object object)</h2>
 <p>将数据存储在本地缓存中指定的 key 中，会覆盖掉原来该 key 对应的内容。</p>
 <p><strong>参数</strong></p>
@@ -55,6 +55,18 @@
 </tr>
 </tbody>
 </table>
+<p>代码示例</p>
+<pre><code class="language-javascript">React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">setStorage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'key'</span><span class="token punctuation">,</span>
+  data<span class="token punctuation">:</span> <span class="token string">'value'</span><span class="token punctuation">,</span>
+  success<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'success'</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  fail<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'fail'</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <h2 id="setstoragesyncstring-key,-object|string-data">setStorageSync(string key, Object|string data)</h2>
 <p>wx.setStorage 的同步版本</p>
 <p><strong>参数</strong></p>
@@ -86,6 +98,9 @@
 </tr>
 </tbody>
 </table>
+<p>代码示例</p>
+<pre><code class="language-javascript">React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">setStorageSync</span><span class="token punctuation">(</span><span class="token string">'key'</span><span class="token punctuation">,</span><span class="token string">'values'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <h2 id="getstorage">getStorage</h2>
 <p>获取缓存数据。</p>
 <blockquote>
@@ -134,6 +149,35 @@
 </tr>
 </tbody>
 </table>
+<p>success返回参数说明：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>string</td>
+<td>key 对应的内容</td>
+</tr>
+</tbody>
+</table>
+<p>代码示例</p>
+<pre><code class="language-javascript">React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getStorage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token string">'key'</span><span class="token punctuation">,</span>
+  success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  fail<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'错误码：'</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>errCode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'错误信息：'</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>errMsg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <h2 id="getstoragesync">getStorageSync</h2>
 <p>同步获取缓存数据。</p>
 <p><strong>参数</strong></p>
