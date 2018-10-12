@@ -6,7 +6,9 @@
 
 | API                            | 类型          | 说明                                                                   |
 |--------------------------------|-------------|----------------------------------------------------------------------|
-| React.createElement            | 内部 API      | 创建元素, 框架在内部会帮你调用这个方法，业务代码中不要用它                                       |
+| React.createElement            | 内部 API      | 创建元素, 由于只允许你使用JSX，因此无法使用     
+| React.cloneElement             | 内部 API      | 复制元素, 由于只允许你使用JSX，因此无法使用        
+| React.createFactory            | 内部 API      | 包装组件, 由于只允许你使用JSX，因此无法使用                                   |
 | React.createRef                | &nbsp;      | 不存在                                                                  |
 | React.forwardRef               | &nbsp;      | 不存在                                                                  |
 | React.api                      | &nbsp;      | 相当于微信的 wx, 支付宝小程序的 my，百度小程的 swan,为了方便编译，请不要在业务代码中直接用 wx,要用 React.api |
