@@ -67,6 +67,7 @@ Object object
 | fail     | function |        | 否       | 接口调用失败的回调函数                           |
 | complete | function |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） |
 
+
 success返回参数说明：
 | 参数     | 类型     | 说明                                             |
 | -------- | -------- |  ------------------------------------------------ |
@@ -86,13 +87,13 @@ React.api.getStorage({
   }
 });
 ```
-## getStorageSync
+## getStorageSync(string key)
 
 同步获取缓存数据。
 
 **参数**
 
-Object object
+String 
 
 | 属性 | 类型   | 默认值 | 是否必须 | 说明                 |
 | ---- | ------ | ------ | -------- | -------------------- |
@@ -101,7 +102,7 @@ Object object
 代码示例：
 
 ```javascript
-let res = React.api.getStorageSync({ key: 'currentCity' });
+let res = React.api.getStorageSync('currentCity');
 console.log('res', res);
 ```
 
