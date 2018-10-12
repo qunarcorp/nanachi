@@ -88,7 +88,13 @@ created或onInit时，抓取小程序实例与对应的react实例，将props, s
 
 ## 官网
 
-<a href="https://developers.weixin.qq.com/miniprogram/dev/index.html" target="_blank">微信小程序 </a> <br />
-<a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/">百度小程序 </a> <br />
-<a href="https://docs.alipay.com/mini/developer/getting-started">支付小程序</a> <br />
-<a href="https://doc.quickapp.cn/features/">快应用</a> <br />
+* [微信小程序文档](https://developers.weixin.qq.com/miniprogram/dev/index.html)
+* [百度小程序文档](https://smartprogram.baidu.com/docs/develop/tutorial/codedir/)
+* [支付小程序文档](https://docs.alipay.com/mini/developer/getting-started)
+* [快应用文档](https://doc.quickapp.cn/features/)
+* [快应用demo1](https://github.com/quickappcn/sample)
+* [快应用demo2](https://github.com/RubyLouvre/quickdemo)
+
+
+
+

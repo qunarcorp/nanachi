@@ -17,7 +17,13 @@ Object object
 | fail       | function     |                            | 否       | 接口调用失败的回调函数                           | 都支持   |
 | complete   | function     |                            | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） | 都支持   |
 
+
 **success 返回值**
+| 字段     | 类型         | 说明  | 支持平台 |
+| -------- | ------------ | -------- | -------- |
+| tempFilePaths | String Array | 图片的本地文件路径列表 | 都支持 |
+| tempFiles | Object Array | 图片的本地文件列表，每一项是一个 File 对象。 | 微信小程序>=1.2.0, 百度小程序 |
+
 
 Object res
 
@@ -69,6 +75,20 @@ Object res
 | fail     | function | 否       | 接口调用失败的回调函数                           | 都支持   |
 | complete | function | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） | 都支持   |
 
+
+```javascript
+ React.api.previewImage({
+   current: 'http://xxxxxxx', // 当前显示图片链接
+   urls: [''], // 需要预览的图片http链接列表,
+   success: function(res) {
+      console.log('success', res);
+   },
+   fail: function (err) {
+      console.log('错误码：' + err.errCode);
+      console.log('错误信息：' + err.errMsg);
+   }
+});
+```
 ## saveImageToPhotosAlbum(Object object)
 
 保存图片到系统相册
