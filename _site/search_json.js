@@ -150,7 +150,27 @@ window.ydoc_plugin_search_json = {
         {
           "title": "图片里面有文字",
           "url": "/documents/style.html#示例-图片里面有文字",
-          "content": "图片里面有文字  \n    \n    Hero\n  \n\n\n\n  .main {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n  .cover, .content {\n    height: 300px;\n  }\n  .cover {\n    width: 100%;\n\n  }\n  .content {\n    margin: -300px 0 0 0;\n  }\n  .text {\n    color: red;\n    font-size: 80px;\n    font-weight: bold;\n  }\n\n"
+          "content": "图片里面有文字  \n    \n    Hero\n  \n\n\n\n  .stack {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n  .stack__cover, .stack__content {\n    height: 300px;\n  }\n  .stack__cover {\n    width: 100%;\n\n  }\n  .stack__content {\n    margin: -300px 0 0 0;\n  }\n  .text {\n    color: red;\n    font-size: 80px;\n    font-weight: bold;\n  }\n\n由于快应用不支持 absolute 布局。对于图片里面有文字的这种堆叠样式可以使用负的 margin 或者背景图片来布局，不过需要注意的是快应用的背景图片暂时不支持网络资源。上面就是一个负 margin 的实现，我们可以抽取出其中可复用的样式，把它变成一个 scss mixin：@mixin stack($height) {  display: flex;\n  flex-direction: column;\n  .stack__cover, .stack__content {\n    height: $height;\n  }\n  .stack__cover {\n    width: 100%;\n\n  }\n  .stack__content {\n    margin: -$height 0 0 0;\n  }\n}\n然后上面的样式就可以写成这样：  .stack {    align-items: center;\n    @include stack(300px);\n  }\n  .text {\n    color: red;\n    font-size: 80px;\n    font-weight: bold;\n  }\n"
+        },
+        {
+          "title": "垂直和水平居中",
+          "url": "/documents/style.html#示例-垂直和水平居中",
+          "content": "垂直和水平居中由于在快应用中元素组件默认使用横向 flex 布局，因此居中可以很方便的使用 justify-content: center 和 align-items: center 来实现主轴和交叉轴方向上的居中。"
+        },
+        {
+          "title": "注意点",
+          "url": "/documents/style.html#注意点",
+          "content": "注意点"
+        },
+        {
+          "title": "样式的继承",
+          "url": "/documents/style.html#注意点-样式的继承",
+          "content": "样式的继承快应用的样式的继承和 H5 类似，不过需要注意的是在快应用中其基本容器（div）所支持的样式及其有限（见上表）。例如字体相关的样式只有 ，  和  等组件支持并且它们都不支持  这样的块级子组件，所以对于字体的样式来说没法像 H5 那样自由的继承。"
+        },
+        {
+          "title": "flex 元素的宽度问题",
+          "url": "/documents/style.html#注意点-flex-元素的宽度问题",
+          "content": "flex 元素的宽度问题当 flex 元素为垂直方向时（ flex-direction: column），其宽度并不会默认占满父元素的宽度，有些情况下你需要设置 width: 100% 来然他满父元素的宽度：  \n    \n      \n      \n    \n  \n\n\n\n  .row, .col {\n    display: flex;\n  }\n  .row {\n    border: 1px solid black;\n    flex-direction: row;\n  }\n  .col {\n    width: 100%;\n    border: 1px solid red;\n    flex-direction: column;\n  }\n  .item {\n    border: 1px solid blue;\n    height: 300px;\n  }\n\n"
         }
       ]
     },
@@ -310,7 +330,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "概述",
           "url": "/apis/index.html#概述",
-          "content": "概述\n\nAPI\n类型\n说明\n\n\n\n\nReact.createElement\n内部 API\n创建元素, 框架在内部会帮你调用这个方法，业务代码中不要用它\n\n\nReact.createRef\n \n不存在\n\n\nReact.forwardRef\n \n不存在\n\n\nReact.api\n \n相当于微信的 wx, 支付宝小程序的 my，百度小程的 swan,为了方便编译，请不要在业务代码中直接用 wx,要用 React.api\n\n\nReact.getApp\n \n相当于微信的 getApp\n\n\nReact.getCurrentPages\n \n相当于微信的 geCurrentPage\n\n\nReact.Component\n \n所有组件的基类\n\n\nReact.toComponent\n内部 API\n用来创建组件\n\n\nReact.toRenderProps\n内部 API\n用来代替 render 属性对应的函数\n\n\nReact.toClass\n内部 API\n用来转译 es6 类\n\n\nReact.toStyle\n内部 API\n用来转译样式\n\n\nReact.toPage\n内部 API\n页面组件会自动在底部添加这方法\n\n\ncomponentDidShow\n页面组件的生命周期钩子\n相当于 onShow\n\n\ncomponentDidHide\n页面组件的生命周期钩子\n相当于 onHide\n\n\nonPageScroll\n页面组件的事件\n监听用户滑动页面事件\n\n\nonShareAppMessage\n页面组件的事件\n监听用户点击页面内转发按钮（ 组件 open-type=\"share\"）或右上角菜单“转发”按钮的行为，并自定义转发内容。注意：只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮\n\n\nonReachBottom\n页面组件的事件\n监听用户上拉触底事件\n\n\nonPullDownRefresh\n页面组件的事件\n监听用户下拉刷新事件\n\n\ncomponentWillMount\n组件的生命周期钩子\n页面组件的 props 中有 path, query 等路由相关信息\n\n\ncomponentWillUpdate\n组件的生命周期钩子\n在小程序中没什么用\n\n\ncomponentDidMount\n组件的生命周期钩子\n\n\n\ncomponentDidUpdate\n组件的生命周期钩子\n在小程序中没什么用\n\n\ncomponentWillRecieveProps\n组件的生命周期钩子\n\n\n\ncomponentWillUnmount\n组件的生命周期钩子\n\n\n\nshouldComponentUpdate\n组件的生命周期钩子\n\n\n\ncomponentDidCatch\n组件的生命周期钩子\n\n\n\ngetChildContext\n组件的方法\n\n\n\nsetState\n组件的方法\n更新页面\n\n\nforceUpdate\n组件的方法\n更新页面\n\n\nrefs\n组件实例上的对象\n里面保存着子组件的实例（由于没有 DOM，对于普通标签来说， 虽然也能保存着它的虚拟 DOM )\n\n\nrender\n组件的方法\n里面必须使用 JSX ，其他方法不能存在 JSX，不能显式使用 createElement\n\n\n"
+          "content": "概述\n\nAPI\n类型\n说明\n\n\n\n\nReact.createElement\n内部 API\n创建元素, 由于只允许你使用JSX，因此无法使用\n\n\nReact.cloneElement\n内部 API\n复制元素, 由于只允许你使用JSX，因此无法使用\n\n\nReact.createFactory\n内部 API\n包装组件, 由于只允许你使用JSX，因此无法使用\n\n\nReact.createRef\n \n不存在\n\n\nReact.forwardRef\n \n不存在\n\n\nReact.api\n \n相当于微信的 wx, 支付宝小程序的 my，百度小程的 swan,为了方便编译，请不要在业务代码中直接用 wx,要用 React.api\n\n\nReact.getApp\n \n相当于微信的 getApp\n\n\nReact.getCurrentPages\n \n相当于微信的 geCurrentPages\n\n\nReact.Component\n \n所有组件的基类\n\n\nReact.toComponent/useComponent\n内部 API\n用来创建组件\n\n\nReact.toRenderProps\n内部 API\n用来代替 render 属性对应的函数\n\n\nReact.toClass\n内部 API\n用来转译 es6 类\n\n\nReact.toStyle\n内部 API\n用来转译样式\n\n\nReact.toPage/registerPage\n内部 API\n页面组件会自动在底部添加这方法\n\n\nonShow\n页面组件的生命周期钩子\n\n\n\nonHide\n页面组件的生命周期钩子\n\n\n\nonPageScroll\n页面组件的事件\n监听用户滑动页面事件\n\n\nonShareAppMessage\n页面组件的事件\n用于返回分享的内容\n\n\nonReachBottom\n页面组件的事件\n监听用户上拉触底事件\n\n\nonPullDownRefresh\n页面组件的事件\n监听用户下拉刷新事件\n\n\ncomponentWillMount\n组件的生命周期钩子\n相当于小程序的onLoad  props 中有 path, query 等路由相关信息\n\n\ncomponentWillUpdate\n组件的生命周期钩子\n在小程序中没什么用\n\n\ncomponentDidMount\n组件的生命周期钩子\n相当于小程序的onReady\n\n\ncomponentDidUpdate\n组件的生命周期钩子\n在小程序中没什么用\n\n\ncomponentWillUnmount\n组件的生命周期钩子\n相当于小程序的onUnload\n\n\ncomponentWillRecieveProps\n组件的生命周期钩子\n\n\n\nshouldComponentUpdate\n组件的生命周期钩子\n\n\n\ncomponentDidCatch\n组件的生命周期钩子\n\n\n\ngetChildContext\n组件的方法\n\n\n\nsetState\n组件的方法\n更新页面\n\n\nforceUpdate\n组件的方法\n更新页面\n\n\nrefs\n组件实例上的对象\n里面保存着子组件的实例（由于没有 DOM，对于普通标签来说， 虽然也能保存着它的虚拟 DOM )\n\n\nrender\n组件的方法\n里面必须使用 JSX ，其他方法不能存在 JSX，不能显式使用 createElement\n\n\n"
         }
       ]
     },
@@ -844,9 +864,9 @@ window.ydoc_plugin_search_json = {
           "content": "getStorage获取缓存数据。这是一个异步接口\n参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkey\nstring\n\n是\n本地缓存中指定的 key\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\nsuccess返回参数说明：\n\n参数\n类型\n说明\n\n\n\n\ndata\nstring\nkey 对应的内容\n\n\n代码示例React.api.getStorage({  key: 'key',\n  success: function (res) {\n    console.log(res.data);\n  },\n  fail: function (err) {\n    console.log('错误码：' + err.errCode);\n    console.log('错误信息：' + err.errMsg);\n  }\n});\n"
         },
         {
-          "title": "getStorageSync",
-          "url": "/apis/storage.html#getstoragesync",
-          "content": "getStorageSync同步获取缓存数据。参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkey\nstring\n\n是\n本地缓存中指定的 key\n\n\n代码示例：let res = React.api.getStorageSync({ key: 'currentCity' });console.log('res', res);\n"
+          "title": "getStorageSync(string key)",
+          "url": "/apis/storage.html#getstoragesyncstring-key",
+          "content": "getStorageSync(string key)同步获取缓存数据。参数String\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkey\nstring\n\n是\n本地缓存中指定的 key\n\n\n代码示例：let res = React.api.getStorageSync('currentCity');console.log('res', res);\n"
         },
         {
           "title": "removeStorage(Object object)",
@@ -1118,9 +1138,14 @@ window.ydoc_plugin_search_json = {
           "content": "QunarLoading使用方法import React from '@react';import QunarLoading from '@components/QunarLoading/index';\n// 事件\nclass Data extends React.Component {\n  constructor() {\n    super();\n    this.state = {\n      networkData: {\n        status: -3,\n        loadingDesc: '加载中...',\n        showButton: true\n      }\n    };\n  }\n\n  componentDidMount() {\n    let selfState = this.state;\n    let self = this;\n    setTimeout(\n      function() {\n        selfState.networkData.status = 0;\n        self.setState({ ...selfState }); //自动隐藏\n      }.bind(this),\n      5000\n    );\n  }\n\n  render() {\n    return (\n      \n        加载\n        \n      \n    );\n  }\n}\nexport default Data;\n"
         },
         {
-          "title": "API",
-          "url": "/ui/index.html#qunarloading-api",
-          "content": "API属性说明如下：\n\n属性\n类型\n说明\n\n\n\n\n\bnetworkData\nObject\n网络\b状态信息\n\n\nnetworkRetry\nfunction\n触发重新加载\n\n\nnetworkData Object\n\n属性\n类型\n是否必须\n默认值\n说明\n\n\n\n\n\bstatus\nnumber\n否\n4\n网络状态码       1 toast系统默认加载中 背景白色    2 toast系统默认加载中 背景透明    3 dots加载中mini 背景透明     4 qunar大图骆驼加载中 背景白色    0 成功   -1 网络连接失败  -2 没有数据  -3 提示信息\n\n\nloadingDesc\nstring\n否\n加载中...\nloading描述(可选)\n\n\nshowButton\nboolean\n否\ntrue\n显示重新加载 button, 默认为true\n\n\nstatus: -3 提示信息status: -2 没有数据 和 status: -1 网络连接失败status: 1 加载中 toast系统默认   背景白色status: 2 加载中 toast系统默认   背景透明status: 3 加载中 dots加载中mini 背景透明status: 4 加载中 qunar大图骆驼  背景白色"
+          "title": "属性说明如下：",
+          "url": "/ui/index.html#qunarloading-属性说明如下：",
+          "content": "属性说明如下：\n\n属性\n类型\n说明\n\n\n\n\n\bnetworkData\nObject\n网络\b状态信息\n\n\nnetworkRetry\nfunction\n触发重新加载\n\n\nnetworkData Object\n\n属性\n类型\n是否必须\n默认值\n说明\n\n\n\n\n\bstatus\nnumber\n否\n4\n网络状态码       1 toast系统默认加载中 背景白色    2 toast系统默认加载中 背景透明    3 dots加载中mini 背景透明     4 qunar大图骆驼加载中 背景白色    0 成功   -1 网络连接失败  -2 没有数据  -3 提示信息\n\n\nloadingDesc\nstring\n否\n加载中...\nloading描述(可选)\n\n\nshowButton\nboolean\n否\ntrue\n显示重新加载 button, 默认为true\n\n\nstatus: -3 提示信息status: -2 没有数据 和 status: -1 网络连接失败status: 1 加载中 toast系统默认   背景白色status: 2 加载中 toast系统默认   背景透明status: 3 加载中 dots加载中mini 背景透明status: 4 加载中 qunar大图骆驼  背景白色"
+        },
+        {
+          "title": "CitySelect",
+          "url": "/ui/index.html#cityselect",
+          "content": "CitySelect使用方法// index.js\ncitySelect() {\n    var params = {\n      type: 3, // 0:机票 1:火车票 2:汽车票 3:酒店\n      cityListService: HOTEL_API.HOTEL_LIST.HOTEL_INDEX_CITY,\n      citySuggestService: HOTEL_API.HOTEL_LIST.HOTEL_INDEX_SUGGEST,\n      eventType: HOTEL_EVENT_NAME.CITY_SELECT,\n      placeholder: \"请输入城市名称或首字母\"\n    };\n\n    React.api.navigateTo({\n      url: '/pages/citySelector/index?data='+ JSON.stringify(params)\n    });\n  }\n\n  render() {\n    return (\n      \n        \n          城市列表页\n        \n      \n    );\n  }\n\n  // citySelect.js\n  render() {\n    return (\n      \n        \n      \n    );\n  }\n\n\n\n属性\n类型\n说明\n\n\n\n\nparam\nObject\n不同业务线的数据信息\n\n\n\n\n属性\n类型\n是否必须\n默认值\n说明\n\n\n\n\n\btype\nnumber\n是\n4\n业务线信息      0:机票 1:火车票 2:汽车票 3:酒店\n\n\ncityListService\nstring\n是\n\n请求 city list 的接口地址\n\n\ncitySuggestService\nstring\n是\n\n城市搜索suggest 接口地址\n\n\neventType\nstring\n是\n\n城市\b选择回调名\n\n\nplaceholder\nstring\n否\n请输入城市名称或首字母\n搜索框显示信息\n\n\n以上参数和微信公共组件 citySelect 用法相同"
         }
       ]
     }

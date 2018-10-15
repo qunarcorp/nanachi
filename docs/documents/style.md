@@ -130,32 +130,113 @@
 
 ```html
 <template>
-  <div class="main">
-    <image class="cover" src="https://img1.qunarzz.com/order/comp/1808/c3/dda9c77c3b1d8802.png" />
-    <div class="content"><text class="text">Hero</text></div>
+  <div class="stack">
+    <image class="stack__cover" src="https://img1.qunarzz.com/order/comp/1808/c3/dda9c77c3b1d8802.png" />
+    <div class="stack__content"><text class="text">Hero</text></div>
   </div>
 </template>
 
 <style>
-  .main {
+  .stack {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .cover, .content {
+  .stack__cover, .stack__content {
     height: 300px;
   }
-  .cover {
+  .stack__cover {
     width: 100%;
 
   }
-  .content {
+  .stack__content {
     margin: -300px 0 0 0;
   }
   .text {
     color: red;
     font-size: 80px;
     font-weight: bold;
+  }
+</style>
+```
+
+由于快应用不支持 absolute 布局。对于图片里面有文字的这种堆叠样式可以使用负的 margin 或者背景图片来布局，不过需要注意的是快应用的背景图片暂时不支持网络资源。
+
+上面就是一个负 margin 的实现，我们可以抽取出其中可复用的样式，把它变成一个 scss mixin：
+
+```scss
+@mixin stack($height) {
+  display: flex;
+  flex-direction: column;
+  .stack__cover, .stack__content {
+    height: $height;
+  }
+  .stack__cover {
+    width: 100%;
+
+  }
+  .stack__content {
+    margin: -$height 0 0 0;
+  }
+}
+```
+
+然后上面的样式就可以写成这样：
+
+```scss
+  .stack {
+    align-items: center;
+    @include stack(300px);
+  }
+  .text {
+    color: red;
+    font-size: 80px;
+    font-weight: bold;
+  }
+```
+
+### 垂直和水平居中
+
+由于在快应用中元素组件默认使用横向 flex 布局，因此居中可以很方便的使用 `justify-content: center` 和 `align-items: center` 来实现主轴和交叉轴方向上的居中。
+
+## 注意点
+
+### 样式的继承
+
+快应用的样式的继承和 H5 类似，不过需要注意的是在快应用中其基本容器（div）所支持的样式及其有限（见上表）。
+
+例如字体相关的样式只有 `<text>`， `<span>` 和 `<a>` 等组件支持并且它们都不支持 `<div>` 这样的块级子组件，所以对于字体的样式来说没法像 H5 那样自由的继承。
+
+### flex 元素的宽度问题
+
+当 flex 元素为垂直方向时（ `flex-direction: column`），其宽度并不会默认占满父元素的宽度，有些情况下你需要设置 `width: 100%` 来然他满父元素的宽度：
+
+```html
+<template>
+  <div class="row">
+    <div class="col">
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+  </div>
+</template>
+
+<style>
+  .row, .col {
+    display: flex;
+  }
+  .row {
+    border: 1px solid black;
+    flex-direction: row;
+  }
+  .col {
+    width: 100%;
+    border: 1px solid red;
+    flex-direction: column;
+  }
+  .item {
+    border: 1px solid blue;
+    height: 300px;
   }
 </style>
 ```
