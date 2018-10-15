@@ -44,10 +44,7 @@ class Data extends React.Component {
 export default Data;
 ```
 
-### API
-
-属性说明如下：
-
+### 属性说明如下：
 
 | 属性     | 类型     | 说明                                             |
 | -------- | -------- |  ------------------------------------------------ |
@@ -89,3 +86,61 @@ export default Data;
 
 <img src="../images/loading-4.png" width="50%"/>
 
+
+## CitySelect
+
+使用方法
+
+```javascript
+
+// index.js
+citySelect() {
+    var params = {
+      type: 3, // 0:机票 1:火车票 2:汽车票 3:酒店
+      cityListService: HOTEL_API.HOTEL_LIST.HOTEL_INDEX_CITY,
+      citySuggestService: HOTEL_API.HOTEL_LIST.HOTEL_INDEX_SUGGEST,
+      eventType: HOTEL_EVENT_NAME.CITY_SELECT,
+      placeholder: "请输入城市名称或首字母"
+    };
+
+    React.api.navigateTo({
+      url: '/pages/citySelector/index?data='+ JSON.stringify(params)
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <div hover-class="navigator-hover">
+          <button onTap={this.citySelect}>城市列表页</button>
+        </div>
+      </div>
+    );
+  }
+
+  // citySelect.js
+  render() {
+    return (
+      <div class="container">
+        <CitySelector param={this.props.query.data} />
+      </div>
+    );
+  }
+
+```
+
+| 属性     | 类型     | 说明                                             |
+| -------- | -------- |  ------------------------------------------------ |
+| param   | Object    |         不同业务线的数据信息                    | 
+
+
+
+| 属性     | 类型   | 是否必须 |默认值| 说明                                             |
+| -------- | ------|-- |  -----|------------------------------------------- |
+| type   | number    |      是| 4| 业务线信息 <br>     0:机票 <br>1:火车票 <br>2:汽车票 <br>3:酒店 | 
+| cityListService  | string  |是 ||请求 city list 的接口地址                  |
+| citySuggestService  | string |是 | |城市搜索suggest 接口地址                    |
+| eventType  | string  |是 | | 城市选择回调名                    |
+| placeholder  |string  |否 |请输入城市名称或首字母 |搜索框显示信息                     |
+
+以上参数和微信公共组件 citySelect 用法相同

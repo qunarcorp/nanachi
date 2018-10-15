@@ -17,7 +17,17 @@
 <tr>
 <td>React.createElement</td>
 <td>内部 API</td>
-<td>创建元素, 框架在内部会帮你调用这个方法，业务代码中不要用它</td>
+<td>创建元素, 由于只允许你使用JSX，因此无法使用</td>
+</tr>
+<tr>
+<td>React.cloneElement</td>
+<td>内部 API</td>
+<td>复制元素, 由于只允许你使用JSX，因此无法使用</td>
+</tr>
+<tr>
+<td>React.createFactory</td>
+<td>内部 API</td>
+<td>包装组件, 由于只允许你使用JSX，因此无法使用</td>
 </tr>
 <tr>
 <td>React.createRef</td>
@@ -42,7 +52,7 @@
 <tr>
 <td>React.getCurrentPages</td>
 <td> </td>
-<td>相当于微信的 geCurrentPage</td>
+<td>相当于微信的 geCurrentPages</td>
 </tr>
 <tr>
 <td>React.Component</td>
@@ -50,7 +60,7 @@
 <td>所有组件的基类</td>
 </tr>
 <tr>
-<td>React.toComponent</td>
+<td>React.toComponent/useComponent</td>
 <td>内部 API</td>
 <td>用来创建组件</td>
 </tr>
@@ -70,19 +80,19 @@
 <td>用来转译样式</td>
 </tr>
 <tr>
-<td>React.toPage</td>
+<td>React.toPage/registerPage</td>
 <td>内部 API</td>
 <td>页面组件会自动在底部添加这方法</td>
 </tr>
 <tr>
-<td>componentDidShow</td>
+<td>onShow</td>
 <td>页面组件的生命周期钩子</td>
-<td>相当于 onShow</td>
+<td></td>
 </tr>
 <tr>
-<td>componentDidHide</td>
+<td>onHide</td>
 <td>页面组件的生命周期钩子</td>
-<td>相当于 onHide</td>
+<td></td>
 </tr>
 <tr>
 <td>onPageScroll</td>
@@ -92,7 +102,7 @@
 <tr>
 <td>onShareAppMessage</td>
 <td>页面组件的事件</td>
-<td>监听用户点击页面内转发按钮（<code>&lt;button&gt;</code> 组件 open-type=&quot;share&quot;）或右上角菜单“转发”按钮的行为，并自定义转发内容。<br>注意：只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮</td>
+<td>用于返回分享的内容</td>
 </tr>
 <tr>
 <td>onReachBottom</td>
@@ -107,7 +117,7 @@
 <tr>
 <td>componentWillMount</td>
 <td>组件的生命周期钩子</td>
-<td>页面组件的 props 中有 path, query 等路由相关信息</td>
+<td>相当于小程序的onLoad <br> props 中有 path, query 等路由相关信息</td>
 </tr>
 <tr>
 <td>componentWillUpdate</td>
@@ -117,7 +127,7 @@
 <tr>
 <td>componentDidMount</td>
 <td>组件的生命周期钩子</td>
-<td></td>
+<td>相当于小程序的onReady</td>
 </tr>
 <tr>
 <td>componentDidUpdate</td>
@@ -125,12 +135,12 @@
 <td>在小程序中没什么用</td>
 </tr>
 <tr>
-<td>componentWillRecieveProps</td>
+<td>componentWillUnmount</td>
 <td>组件的生命周期钩子</td>
-<td></td>
+<td>相当于小程序的onUnload</td>
 </tr>
 <tr>
-<td>componentWillUnmount</td>
+<td>componentWillRecieveProps</td>
 <td>组件的生命周期钩子</td>
 <td></td>
 </tr>

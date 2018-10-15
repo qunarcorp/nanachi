@@ -44,6 +44,12 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
+      "title": "如何升级",
+      "content": "娜娜奇转译器正处在高速迭代的时期，不断添加更多好用的特性，支持更多的平台。因此出BUG时，可以给我们提ISSUE。我们修复后，大家如何应用新的娜娜奇版本呢？回到你之前下载的anu目录下，然后定位到packages/cli目录，再次npm i 或 yarn就行了。然后你在自己的工程，再次mpreact watch或mpreact watch:bu就是使用新的娜娜奇版本进行编译",
+      "url": "/documents/update.html",
+      "children": []
+    },
+    {
       "title": "应用",
       "content": "在小程序中，一个应用由多个页面组成，一个页面由多个组件组成。项目根目录下的 app.js 最大的作用就是将里面所有以 ./pages/ 开头的依赖放到 app.json 中 pages 配置项中。其他配置项统一放在config对象中，详细配置列表参见这里如果在使用娜娜奇之前，已经开发了一半，一些组件是用小程序的自定义组件方式定义的，那么可以在usingComponents配置项中定义好。import React from '@react';import './pages/index/index';\nimport './pages/demo/base/index';\nimport './pages/demo/native/index/index';\nimport './app.less';\n\nclass Demo extends React.Component {\n    static config = {\n        window: {\n            backgroundTextStyle: 'light',\n            navigationBarBackgroundColor: '#0088a4',\n            navigationBarTitleText: 'mpreact',\n            navigationBarTextStyle: '#fff'\n        }\n    };\n    // 全局数据\n    globalData = {\n        ufo: 'ufo'\n    };\n    onLaunch() {\n        console.log('App launched');\n    }\n}\n\nApp(new Demo());\n",
       "url": "/documents/app.html",
@@ -108,6 +114,43 @@ window.ydoc_plugin_search_json = {
           "title": "事件回调",
           "url": "/documents/event.html#事件回调",
           "content": "事件回调事件回调本身必须定义在类的原型里，不能通过 props 传递进来。"
+        }
+      ]
+    },
+    {
+      "title": "通用样式",
+      "content": "",
+      "url": "/documents/style.html",
+      "children": [
+        {
+          "title": "样式表",
+          "url": "/documents/style.html#样式表",
+          "content": "样式表\n\n名称\n类型\n默认值\n描述\n\n\n\n\nwidth\n | \n-\n未设置时使用组件自身内容需要的宽度\n\n\nheight\n | \n-\n未设置时使用组件自身内容需要的高度\n\n\npadding\n\n0\n简写属性，在一个声明中设置所有的内边距属性，该属性可以有1到4个值\n\n\npadding-[left|top|right|bottom]\n\n0\n\n\n\nmargin\n\n0\n简写属性，在一个声明中设置所有的外边距属性，该属性可以有1到4个值\n\n\nmargin-[left|top|right|bottom]\n\n0\n\n\n\nborder\n-\n0\n简写属性，在一个声明中设置所有的边框属性，可以按顺序设置属性width style color，不设置的值为默认值\n\n\nborder-style\ndotted | dashed | solid\nsolid\n暂时仅支持1个值，为元素的所有边框设置样式\n\n\nborder-width\n\n0\n简写属性，在一个声明中设置元素的所有边框宽度，或者单独为各边边框设置宽度\n\n\nborder-[left|top|right|bottom]-width\n\n0\n\n\n\nborder-color\n\nblack\n简写属性，在一个声明中设置元素的所有边框颜色，或者单独为各边边框设置颜色\n\n\nborder-[left|top|right|bottom]-color\n\nblack\n\n\n\nborder-radius\n\n0\n圆角时只使用border-width，border-[left|top|right|bottom]-width无效圆角时只使用border-color，border-[left|top|right|bottom]-color无效\n\n\nborder-[top|bottom]-[left|right]-radius\n\n0\n\n\n\nbackground\n\n-\n支持 渐变样式，暂时不能与background-color、background-image同时使用\n\n\nbackground-color\n\n-\n\n\n\nbackground-image\n\n-\n暂时不支持与background-color，border-color同时使用；不支持网络图片资源，请使用本地图片资源；1010+版本支持9-patch图，详情见背景图样式\n\n\nbackground-size 1000+\ncontain | cover | auto |  | \n100% 100%\n设置背景图片大小，详情见背景图样式\n\n\nbackground-repeat 1000+\nrepeat | repeat-x | repeat-y | no-repeat\nrepeat\n设置是否及如何重复绘制背景图像，详情见背景图样式\n\n\nbackground-position 1010+\n || left | right | top | bottom | center\n0px 0px\n描述了背景图片在容器中绘制的位置，支持1-4个参数，详情见背景图样式\n\n\nopacity\n\n0xff\n\n\n\ndisplay\nflex | none\nflex\n\n\n\nvisibility\nvisible | hidden\nvisible\n\n\n\nflex\n\n-\n父容器为、、时生效\n\n\nflex-grow\n\n0\n父容器为、时生效\n\n\nflex-shrink\n\n1\n父容器为、时生效\n\n\nflex-basis\n\n-1\n父容器为、时生效\n\n\nposition\nnone | fixed\nnone\n父容器为、时不生效\n\n\n[left|top|right|bottom]\n\n-\n-\n\n\n"
+        },
+        {
+          "title": "示例",
+          "url": "/documents/style.html#示例",
+          "content": "示例"
+        },
+        {
+          "title": "左中右分栏",
+          "url": "/documents/style.html#示例-左中右分栏",
+          "content": "左中右分栏  \n    \n    \n    \n  \n\n\n\n  .main {\n    display: flex;\n    flex-direction: row;\n  }\n  .cell {\n    flex: 1;\n    height: 200px;\n    background-color: rgb(78, 192, 245);\n    border: 2px solid #444;\n  }\n\n"
+        },
+        {
+          "title": "上中下分栏",
+          "url": "/documents/style.html#示例-上中下分栏",
+          "content": "上中下分栏  \n    \n    \n    \n  \n\n\n\n  .main {\n    display: flex;\n    flex-direction: column;\n    height: 600px;\n  }\n  .cell {\n    flex: 1;\n    background-color: rgb(78, 192, 245);\n    border: 2px solid #444;\n  }\n\n"
+        },
+        {
+          "title": "格子",
+          "url": "/documents/style.html#示例-格子",
+          "content": "格子  \n    \n    \n    \n    \n    \n    \n    \n    \n    \n  \n\n\n\n  .main {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n  }\n  .cell {\n    width: 33.333%;\n    height: 200px;\n    background-color: rgb(78, 192, 245);\n    border: 2px solid #444;\n  }\n\n"
+        },
+        {
+          "title": "图片里面有文字",
+          "url": "/documents/style.html#示例-图片里面有文字",
+          "content": "图片里面有文字  \n    \n    Hero\n  \n\n\n\n  .main {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n  .cover, .content {\n    height: 300px;\n  }\n  .cover {\n    width: 100%;\n\n  }\n  .content {\n    margin: -300px 0 0 0;\n  }\n  .text {\n    color: red;\n    font-size: 80px;\n    font-weight: bold;\n  }\n\n"
         }
       ]
     },
@@ -180,7 +223,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "官网",
           "url": "/documents/diff.html#官网",
-          "content": "官网微信小程序  百度小程序  \n支付小程序 \n快应用 "
+          "content": "官网微信小程序文档\n百度小程序文档\n支付小程序文档\n快应用文档\n快应用demo1\n快应用demo2\n"
         }
       ]
     },
@@ -198,7 +241,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "打包发布",
-      "content": "在开始之前，提一下两种重要的概念。带JSX的页面组件与通用组件，它们分别放在pages与components目录下，它们具有巨大的转换成本（毕竟JSX会被提取出来转换成wxml, axml, swan或ux文件），还有一种不带JSX的纯JS文件，建议放在common目录,  当然还有一些通用的东西可以通过npm安装，但不要使用那些有JSX的第三方依赖。开发目录如下src   |--components\n   |    |--HotelDialog\n   |    |--HotelXXX\n   |    |--FlightYYY\n   |    └── ...\n   |--pages\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--common\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--app.js\ncomponents目录下为了扁平化管理，以事业部做前端+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from \"@react\"`components目录下不要使用Fragments来命名子目录，这留给系统用。\npages目录下每个事业部各建一个目录，以事件部的名字命名，里面为index.js 及页面的目录，index.js要引入自己目录的所有页面，页面也以index.js命名，并且里面必须是有状态的React组件（转译器会转换成页面组件。）页面的index.js各种引入通用组件与common目录的依赖   |--pages   |    |--hotel\n            |--index.js //目录, import里面所有index.js\n            |--page1\n            |    |---index.js\n            |    └── index.scss\n            |--page2\n            |    |---index.js\n            |    └── index.scss\n            |--page3\n            |    |---index.js\n            |    └── index.scss\n            |--about\n            |    |---index.js\n            |    └── index.scss\ncommon目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用全部有效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中",
+      "content": "在开始之前，提一下两种重要的概念。带JSX的页面组件与通用组件，它们分别放在pages与components目录下，它们具有巨大的转换成本（毕竟JSX会被提取出来转换成wxml, axml, swan或ux文件），还有一种不带JSX的纯JS文件，建议放在common目录,  当然还有一些通用的东西可以通过npm安装，但不要使用那些有JSX的第三方依赖。开发目录如下src   |--components\n   |    |--HotelDialog\n   |    |--HotelXXX\n   |    |--FlightYYY\n   |    └── ...\n   |--pages\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--common\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--app.js\ncomponents目录下为了扁平化管理，以事业部做前端+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from \"@react\"`components目录下不要使用Fragments来命名子目录，这留给系统用。\npages目录下每个事业部各建一个目录，以事件部的名字命名，里面为index.js 及页面的目录，index.js要引入自己目录的所有页面，页面也以index.js命名，并且里面必须是有状态的React组件（转译器会转换成页面组件。）页面的index.js各种引入通用组件与common目录的依赖   |--pages   |    |--hotel\n            |--index.js //目录, import里面所有index.js\n            |--page1\n            |    |---index.js\n            |    └── index.scss\n            |--page2\n            |    |---index.js\n            |    └── index.scss\n            |--page3\n            |    |---index.js\n            |    └── index.scss\n            |--about\n            |    |---index.js\n            |    └── index.scss\ncommon目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用全部有效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中共享数据的处理， 大家都在globalData对象中放一些命名空间对象. globalData不能放函数。大家不要放在其他全局对象上，因此在快应用等个别小程序中，页面跳转时，会清空掉除globalData之外的数据与变量。{    globalData: {\n        flight: {\n            xxx:111,222:444\n        },\n        hotel: {\n\n        }\n    }\n}\n",
       "url": "/documents/publish.html",
       "children": []
     },
@@ -249,6 +292,11 @@ window.ydoc_plugin_search_json = {
           "title": "画布",
           "url": "/component/index.html#画布",
           "content": "画布\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\ncanvas\n\n\n\n\n\n注： 画布属性写 id 而不是 canvas-id\n"
+        },
+        {
+          "title": "开放能力",
+          "url": "/component/index.html#开放能力",
+          "content": "开放能力\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\nweb-view\n\n支付宝 (bindLoad, bindError) 百度 (bindLoad, bindError)\n\n\n\n"
         }
       ]
     }
@@ -262,7 +310,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "概述",
           "url": "/apis/index.html#概述",
-          "content": "概述\n\nAPI\n类型\n说明\n\n\n\n\nReact.createElement\n内部 API\n创建元素, 框架在内部会帮你调用这个方法，业务代码中不要用它\n\n\nReact.createRef\n \n不存在\n\n\nReact.forwardRef\n \n不存在\n\n\nReact.api\n \n相当于微信的 wx, 支付宝小程序的 my，百度小程的 swan,为了方便编译，请不要在业务代码中直接用 wx,要用 React.api\n\n\nReact.getApp\n \n相当于微信的 getApp\n\n\nReact.getCurrentPages\n \n相当于微信的 geCurrentPage\n\n\nReact.Component\n \n所有组件的基类\n\n\nReact.toComponent\n内部 API\n用来创建组件\n\n\nReact.toRenderProps\n内部 API\n用来代替 render 属性对应的函数\n\n\nReact.toClass\n内部 API\n用来转译 es6 类\n\n\nReact.toStyle\n内部 API\n用来转译样式\n\n\nReact.toPage\n内部 API\n页面组件会自动在底部添加这方法\n\n\ncomponentDidShow\n页面组件的生命周期钩子\n相当于 onShow\n\n\ncomponentDidHide\n页面组件的生命周期钩子\n相当于 onHide\n\n\nonPageScroll\n页面组件的事件\n监听用户滑动页面事件\n\n\nonShareAppMessage\n页面组件的事件\n监听用户点击页面内转发按钮（ 组件 open-type=\"share\"）或右上角菜单“转发”按钮的行为，并自定义转发内容。注意：只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮\n\n\nonReachBottom\n页面组件的事件\n监听用户上拉触底事件\n\n\nonPullDownRefresh\n页面组件的事件\n监听用户下拉刷新事件\n\n\ncomponentWillMount\n组件的生命周期钩子\n页面组件的 props 中有 path, query 等路由相关信息\n\n\ncomponentWillUpdate\n组件的生命周期钩子\n\n\n\ncomponentDidMount\n组件的生命周期钩子\n\n\n\ncomponentDidUpdate\n组件的生命周期钩子\n\n\n\ncomponentWillRecieveProps\n组件的生命周期钩子\n\n\n\ncomponentWillUnmount\n组件的生命周期钩子\n\n\n\nshouldComponentUpdate\n组件的生命周期钩子\n\n\n\ncomponentDidCatch\n组件的生命周期钩子\n\n\n\ngetSnapshotBeforeUpdate\n组件的生命周期钩子\n\n\n\ngetDerivedStateFromProps\n组件的生命周期钩子\n\n\n\ngetDerivedStateFromCatch\n组件的生命周期钩子\n\n\n\ngetChildContext\n组件的方法\n\n\n\nsetState\n组件的方法\n更新页面\n\n\nforceUpdate\n组件的方法\n更新页面\n\n\nrefs\n组件实例上的对象\n里面保存着子组件的实例（由于没有 DOM，对于普通标签来说， 虽然也能保存着它的虚拟 DOM )\n\n\nrender\n组件的方法\n里面必须使用 JSX ，其他方法不能存在 JSX，不能显式使用 createElement\n\n\n"
+          "content": "概述\n\nAPI\n类型\n说明\n\n\n\n\nReact.createElement\n内部 API\n创建元素, 框架在内部会帮你调用这个方法，业务代码中不要用它\n\n\nReact.createRef\n \n不存在\n\n\nReact.forwardRef\n \n不存在\n\n\nReact.api\n \n相当于微信的 wx, 支付宝小程序的 my，百度小程的 swan,为了方便编译，请不要在业务代码中直接用 wx,要用 React.api\n\n\nReact.getApp\n \n相当于微信的 getApp\n\n\nReact.getCurrentPages\n \n相当于微信的 geCurrentPage\n\n\nReact.Component\n \n所有组件的基类\n\n\nReact.toComponent\n内部 API\n用来创建组件\n\n\nReact.toRenderProps\n内部 API\n用来代替 render 属性对应的函数\n\n\nReact.toClass\n内部 API\n用来转译 es6 类\n\n\nReact.toStyle\n内部 API\n用来转译样式\n\n\nReact.toPage\n内部 API\n页面组件会自动在底部添加这方法\n\n\ncomponentDidShow\n页面组件的生命周期钩子\n相当于 onShow\n\n\ncomponentDidHide\n页面组件的生命周期钩子\n相当于 onHide\n\n\nonPageScroll\n页面组件的事件\n监听用户滑动页面事件\n\n\nonShareAppMessage\n页面组件的事件\n监听用户点击页面内转发按钮（ 组件 open-type=\"share\"）或右上角菜单“转发”按钮的行为，并自定义转发内容。注意：只有定义了此事件处理函数，右上角菜单才会显示“转发”按钮\n\n\nonReachBottom\n页面组件的事件\n监听用户上拉触底事件\n\n\nonPullDownRefresh\n页面组件的事件\n监听用户下拉刷新事件\n\n\ncomponentWillMount\n组件的生命周期钩子\n页面组件的 props 中有 path, query 等路由相关信息\n\n\ncomponentWillUpdate\n组件的生命周期钩子\n在小程序中没什么用\n\n\ncomponentDidMount\n组件的生命周期钩子\n\n\n\ncomponentDidUpdate\n组件的生命周期钩子\n在小程序中没什么用\n\n\ncomponentWillRecieveProps\n组件的生命周期钩子\n\n\n\ncomponentWillUnmount\n组件的生命周期钩子\n\n\n\nshouldComponentUpdate\n组件的生命周期钩子\n\n\n\ncomponentDidCatch\n组件的生命周期钩子\n\n\n\ngetChildContext\n组件的方法\n\n\n\nsetState\n组件的方法\n更新页面\n\n\nforceUpdate\n组件的方法\n更新页面\n\n\nrefs\n组件实例上的对象\n里面保存着子组件的实例（由于没有 DOM，对于普通标签来说， 虽然也能保存着它的虚拟 DOM )\n\n\nrender\n组件的方法\n里面必须使用 JSX ，其他方法不能存在 JSX，不能显式使用 createElement\n\n\n"
         }
       ]
     },
@@ -289,7 +337,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "connectSocket(Object object)",
           "url": "/apis/network.html#connectsocketobject-object",
-          "content": "connectSocket(Object object)创建一个 WebSocket 的连接；一个支付宝小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接。（微信： 1.7.0 及以上版本，最多可以同时存在 5（小游戏）/2（小程序）个 WebSocket 连接。）参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\nurl\nstring\n\n是\n下载资源的 url\n都支持\n\n\nheader\n\bObject\n\n否\nHTTP 请求的 Header，Header 中不能设置 Referer\n都支持\n\n\nprotocols\nArray. string\n\n否\n子协议数组\n微信\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n\n"
+          "content": "connectSocket(Object object)创建一个 WebSocket 的连接；一个支付宝小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接。（微信： 1.7.0 及以上版本，最多可以同时存在 5（小游戏）/2（小程序）个 WebSocket 连接。百度：1.9.4以上支持多个WebSockcet连接）参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\nurl\nstring\n\n是\n开发者服务器接口地址，必须是 wss 协议，且域名必须是后台配置的合法域名。\n都支持\n\n\nheader\n\bObject\n\n否\nHTTP 请求的 Header，Header 中不能设置 Referer\n都支持\n\n\nprotocols\nArray. string\n\n否\n子协议数组\n微信\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n"
         },
         {
           "title": "onSocketOpen(function callback)",
@@ -756,12 +804,12 @@ window.ydoc_plugin_search_json = {
         {
           "title": "chooseImage(Object object)",
           "url": "/apis/image.html#chooseimageobject-object",
-          "content": "chooseImage(Object object)从本地相册选择图片或使用相机拍照。参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\ncount\nnumber\n微信：9， 支付宝： 1\n否\n最多可以选择的图片张数\n都支持\n\n\nsourceType\nString Array\n['album', 'camera']\n否\n选择图片的来源\n都支持\n\n\nsizeType\nString Array\n['original', 'compressed']\n否\n所选的图片的尺寸\n微信\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\nsuccess 返回值Object res\n\n属性\n类型\n描述\n支持平台\n\n\n\n\ntempFilePaths\nStringArray\n图片的本地文件路径列表\n都支持\n\n\ntempFiles\nObjectArray\n图片的本地文件列表，每一项是一个 File 对象\n微信\n\n\n  choose() {    React.api.chooseImage({\n      count: 2,\n      success: res => {\n        this.setState({\n          img: res.tempFilePaths\n        })\n      }\n    });\n  }\n\n  render() {\n    return (\n      \n        选择图片\n        {\n          this.state.img.map(function(item) {\n            return  \n          })\n        }\n\n      \n    );\n  }\n"
+          "content": "chooseImage(Object object)从本地相册选择图片或使用相机拍照。参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\ncount\nnumber\n微信、百度：9， 支付宝： 1\n否\n最多可以选择的图片张数\n都支持\n\n\nsourceType\nString Array\n['album', 'camera']\n否\n选择图片的来源\n都支持\n\n\nsizeType\nString Array\n['original', 'compressed']\n否\noriginal 原图，compressed 压缩图，默认二者都有\n微信\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\nsuccess 返回值\n\n字段\n类型\n说明\n支持平台\n\n\n\n\ntempFilePaths\nString Array\n图片的本地文件路径列表\n都支持\n\n\ntempFiles\nObject Array\n图片的本地文件列表，每一项是一个 File 对象。\n微信小程序>=1.2.0, 百度小程序\n\n\nObject res\n\n属性\n类型\n描述\n支持平台\n\n\n\n\ntempFilePaths\nStringArray\n图片的本地文件路径列表\n都支持\n\n\ntempFiles\nObjectArray\n图片的本地文件列表，每一项是一个 File 对象\n微信、百度\n\n\n  choose() {    React.api.chooseImage({\n      count: 2,\n      success: res => {\n        this.setState({\n          img: res.tempFilePaths\n        })\n      }\n    });\n  }\n\n  render() {\n    return (\n      \n        选择图片\n        {\n          this.state.img.map(function(item) {\n            return  \n          })\n        }\n\n      \n    );\n  }\n"
         },
         {
           "title": "previewImage(Object object)",
           "url": "/apis/image.html#previewimageobject-object",
-          "content": "previewImage(Object object)预览图片参数\bObject object\n\n属性\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nurls\nArray\n是\n要预览的图片链接列表\n都支持\n\n\ncurrent\nString\n否\n当前显示图片的链接\t，urls 的第一张\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n"
+          "content": "previewImage(Object object)预览图片参数\bObject object\n\n属性\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nurls\nArray\n是\n要预览的图片链接列表\n都支持\n\n\ncurrent\nString\n否\n当前显示图片的链接\t，urls 的第一张\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\n React.api.previewImage({   current: 'http://xxxxxxx', // 当前显示图片链接\n   urls: [''], // 需要预览的图片http链接列表,\n   success: function(res) {\n      console.log('success', res);\n   },\n   fail: function (err) {\n      console.log('错误码：' + err.errCode);\n      console.log('错误信息：' + err.errMsg);\n   }\n});\n"
         },
         {
           "title": "saveImageToPhotosAlbum(Object object)",
@@ -783,17 +831,17 @@ window.ydoc_plugin_search_json = {
         {
           "title": "setStorage(Object object)",
           "url": "/apis/storage.html#setstorageobject-object",
-          "content": "setStorage(Object object)将数据存储在本地缓存中指定的 key 中，会覆盖掉原来该 key 对应的内容。参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkey\nstring\n\n是\n本地缓存中指定的 key\n\n\ndata\nObject/string\n\n是\n需要存储的内容\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
+          "content": "setStorage(Object object)将数据存储在本地缓存中指定的 key 中，会覆盖掉原来该 key 对应的内容。参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkey\nstring\n\n是\n本地缓存中指定的 key\n\n\ndata\nObject/string\n\n是\n需要存储的内容\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n代码示例React.api.setStorage({  key: 'key',\n  data: 'value',\n  success: function(res) {\n    console.log('success', res)\n  },\n  fail: function(err) {\n    console.log('fail', err)\n  }\n});\n"
         },
         {
           "title": "setStorageSync(string key, Object|string data)",
           "url": "/apis/storage.html#setstoragesyncstring-key,-object|string-data",
-          "content": "setStorageSync(string key, Object|string data)wx.setStorage 的同步版本参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkey\nstring\n\n是\n本地缓存中指定的 key\n\n\ndata\nObject/string\n\n是\n需要存储的内容\n\n\n"
+          "content": "setStorageSync(string key, Object|string data)wx.setStorage 的同步版本参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkey\nstring\n\n是\n本地缓存中指定的 key\n\n\ndata\nObject/string\n\n是\n需要存储的内容\n\n\n代码示例React.api.setStorageSync('key','values');"
         },
         {
           "title": "getStorage",
           "url": "/apis/storage.html#getstorage",
-          "content": "getStorage获取缓存数据。这是一个异步接口\n参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkey\nstring\n\n是\n本地缓存中指定的 key\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
+          "content": "getStorage获取缓存数据。这是一个异步接口\n参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkey\nstring\n\n是\n本地缓存中指定的 key\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\nsuccess返回参数说明：\n\n参数\n类型\n说明\n\n\n\n\ndata\nstring\nkey 对应的内容\n\n\n代码示例React.api.getStorage({  key: 'key',\n  success: function (res) {\n    console.log(res.data);\n  },\n  fail: function (err) {\n    console.log('错误码：' + err.errCode);\n    console.log('错误信息：' + err.errMsg);\n  }\n});\n"
         },
         {
           "title": "getStorageSync",
@@ -872,7 +920,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "getLocation(Object object)",
           "url": "/apis/location.html#getlocationobject-object",
-          "content": "getLocation(Object object)获取当前的地理位置、速度。当用户离开小程序后，此接口无法调用。注：支付宝和微信小程序参数都不一致参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\ntype\nstring\nwgs84\n是\nwgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标\n\n\naltitude\nstring\nfalse\n否\n传入 true 会返回高度信息，由于获取高度需要较高精确度，会减慢接口返回速度，微信版本>=1.6.0支持\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\nobject.success 回调函数参数Object res\n\n属性\n类型\n说明\n支持平台\n\n\n\n\nlatitude\nnumber\n纬度，范围为 -90~90，负数表示南纬\n微信小程序，百度小程序\n\n\nlongitude\nnumber\n经度，范围为 -180~180，负数表示西经\n微信小程序，百度小程序\n\n\nspeed\nnumber\n速度，单位 m/s\n微信小程序，百度小程序\n\n\naccuracy\nnumber\n位置的精确度\n微信小程序，百度小程序\n\n\naltitude\nnumber\n高度，单位 m\n微信小程序>= 1.2.0，百度小程序\n\n\nverticalAccuracy\nnumber\n垂直精度，单位 m（Android 无法获取，返回 0）\n微信小程序>= 1.2.0，百度小程序\n\n\nhorizontalAccuracy\nnumber\n水平精度，单位 m\n微信小程序>= 1.2.0，百度小程序\n\n\nstreet\nstring\n街道名称\n百度小程序\n\n\ncityCode\nstring\n城市编码\n百度小程序\n\n\ncity\nstring\n城市名称\n百度小程序\n\n\ncountry\nstring\n国家\n百度小程序\n\n\nprovince\nstring\n省份\n百度小程序\n\n\nstreetNumber\nstring\n街道号码\n百度小程序\n\n\ndistrict\nstring\n区\n百度小程序\n\n\n代码示例React.api.getLocation({  type: 'gcj02',\n  success: function (res) {\n     console.log('纬度：' + res.latitude);\n     console.log('经度：' + res.longitude);\n  },\n  fail: function (err) {\n     console.log('错误码：' + err.errCode);\n     console.log('错误信息：' + err.errMsg);\n  }\n})\n"
+          "content": "getLocation(Object object)获取当前的地理位置、速度。当用户离开小程序后，此接口无法调用。注：支付宝和微信小程序参数都不一致参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n支持平台\n\n\n\n\ntype\nstring\nwgs84\n是\nwgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标\n微信小程序，百度小程序\n\n\naltitude\nstring\nfalse\n否\n传入 true 会返回高度信息，由于获取高度需要较高精确度，会减慢接口返回速度\n微信小程序>=1.6.0，百度小程序\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n微信小程序，百度小程序\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n微信小程序，百度小程序\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n微信小程序，百度小程序\n\n\nobject.success 回调函数参数Object res\n\n属性\n类型\n说明\n支持平台\n\n\n\n\nlatitude\nnumber\n纬度，范围为 -90~90，负数表示南纬\n微信小程序，百度小程序\n\n\nlongitude\nnumber\n经度，范围为 -180~180，负数表示西经\n微信小程序，百度小程序\n\n\nspeed\nnumber\n速度，单位 m/s\n微信小程序，百度小程序\n\n\naccuracy\nnumber\n位置的精确度\n微信小程序，百度小程序\n\n\naltitude\nnumber\n高度，单位 m\n微信小程序>= 1.2.0，百度小程序\n\n\nverticalAccuracy\nnumber\n垂直精度，单位 m（Android 无法获取，返回 0）\n微信小程序>= 1.2.0，百度小程序\n\n\nhorizontalAccuracy\nnumber\n水平精度，单位 m\n微信小程序>= 1.2.0，百度小程序\n\n\nstreet\nstring\n街道名称\n百度小程序\n\n\ncityCode\nstring\n城市编码\n百度小程序\n\n\ncity\nstring\n城市名称\n百度小程序\n\n\ncountry\nstring\n国家\n百度小程序\n\n\nprovince\nstring\n省份\n百度小程序\n\n\nstreetNumber\nstring\n街道号码\n百度小程序\n\n\ndistrict\nstring\n区\n百度小程序\n\n\n代码示例React.api.getLocation({  type: 'gcj02',\n  success: function (res) {\n     console.log('纬度：' + res.latitude);\n     console.log('经度：' + res.longitude);\n  },\n  fail: function (err) {\n     console.log('错误码：' + err.errCode);\n     console.log('错误信息：' + err.errMsg);\n  }\n})\n"
         },
         {
           "title": "openLocation(Object object)",
@@ -941,12 +989,12 @@ window.ydoc_plugin_search_json = {
         {
           "title": "getNetworkType(Object object)",
           "url": "/apis/miniprogram.html#getnetworktypeobject-object",
-          "content": "getNetworkType(Object object)获取网络类型参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\nobject.success 回调函数Object res\n\n属性\n类型\n描述\n支持平台\n\n\n\n\nnetworkType\nstring\n网络类型值 UNKNOWN / NOTREACHABLE / WIFI / 3G / 2G / 4G / WWAN\n都支持\n\n\nnetworkAvailable\nNumber\n网络是否可用\n支付宝\n\n\n"
+          "content": "getNetworkType(Object object)获取网络类型参数Object object\n\n属性\n类型\n默认值\n是否必须\n说明\n\n\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\nobject.success 回调函数Object res\n\n属性\n类型\n描述\n支持平台\n\n\n\n\nnetworkType\nstring\n网络类型值 unknown / NOTREACHABLE(支付宝) / WWAN(支付宝) / wifi / 3g / 2g / 4g / none(百度、微信)\n都支持\n\n\nnetworkAvailable\nNumber\n网络是否可用\n支付宝\n\n\n"
         },
         {
           "title": "onNetworkStatusChange(function callback)",
           "url": "/apis/miniprogram.html#onnetworkstatuschangefunction-callback",
-          "content": "onNetworkStatusChange(function callback)监听网络状态变化事件参数function callback网络状态变化事件的回调函数object.success 回调函数Object res\n\n属性\n类型\n描述\n支持平台\n\n\n\n\nnetworkType\nstring\n网络类型值 UNKNOWN / NOTREACHABLE / WIFI / 3G / 2G / 4G / WWAN\n都支持\n\n\nisConnected\nboolean\n当前是否有网络链接\n都支持\n\n\n"
+          "content": "onNetworkStatusChange(function callback)监听网络状态变化事件参数function callback网络状态变化事件的回调函数object.success 回调函数Object res\n\n属性\n类型\n描述\n支持平台\n\n\n\n\nnetworkType\nstring\n网络类型值 unknown / NOTREACHABLE(支付宝) / WWAN(支付宝) / wifi / 3g / 2g / 4g / none(百度、微信)\n都支持\n\n\nisConnected\nboolean\n当前是否有网络链接\n都支持\n\n\n"
         },
         {
           "title": "剪切板",
@@ -971,7 +1019,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "setKeepScreenOn(Object object)",
           "url": "/apis/miniprogram.html#setkeepscreenonobject-object",
-          "content": "setKeepScreenOn(Object object)设置是否保持屏幕长亮状态。仅在当前小程序生效，离开小程序后失效。参数Object object\n\n参数\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkeepScreenOn\nstring\n\n是\n是否保持屏幕长亮状态\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
+          "content": "setKeepScreenOn(Object object)设置是否保持屏幕长亮状态。仅在当前小程序生效，离开小程序后失效。参数Object object\n\n参数\n类型\n默认值\n是否必须\n说明\n\n\n\n\nkeepScreenOn\nBoolean\n\n是\n是否保持屏幕长亮状态\n\n\nsuccess\nfunction\n\n否\n接口调用成功的回调函数\n\n\nfail\nfunction\n\n否\n接口调用失败的回调函数\n\n\ncomplete\nfunction\n\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n\n\n"
         },
         {
           "title": "getScreenBrightness(Object object)",
@@ -987,6 +1035,41 @@ window.ydoc_plugin_search_json = {
           "title": "boolean canIUse(string schema)",
           "url": "/apis/miniprogram.html#boolean-caniusestring-schema",
           "content": "boolean canIUse(string schema)判断小程序的API，回调，参数，组件等是否在当前版本可用。参数string schema使用 ${API}.${method}.${param}.${options} 或者 ${component}.${attribute}.${option} 方式来调用返回值boolean当前版本是否可用参数说明${API} 代表 API 名字\n${method} 代表调用方式，有效值为return, success, object, callback\n${param} 代表参数或者返回值\n${options} 代表参数的可选值\n${component} 代表组件名字\n${attribute} 代表组件属性\n${option} 代表组件属性的可选值\n代码示例：React.api.canIUse('getFileInfo')React.api.canIUse('closeSocket.object.code')\nReact.api.canIUse('getLocation.object.type')\nReact.api.canIUse('getSystemInfo.return.brand')\nReact.api.canIUse('lifestyle')\nReact.api.canIUse('button.open-type.share')\n"
+        },
+        {
+          "title": "系统信息",
+          "url": "/apis/miniprogram.html#系统信息",
+          "content": "系统信息"
+        },
+        {
+          "title": "getSystemInfo(Object object)",
+          "url": "/apis/miniprogram.html#getsysteminfoobject-object",
+          "content": "getSystemInfo(Object object)获取系统信息参数\bObject object\n\n属性\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nsrc\nstring\n是\n图片路径，目前支持：网络图片路径、apFilePath 路径、相对路径\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\nsuccess 返回值\n\n名称\n类型\n描述\n支持平台\n\n\n\n\nbrand\nstring\n手机品牌\n都支持\n\n\nmodel\nstring\n手机型号\n都支持\n\n\npixelRatio\nnumber\n设备像素比\n都支持\n\n\nscreenWidth\nnumber\n屏幕宽度\n都支持\n\n\nscreenHeight\nnumber\n屏幕高度\n都支持\n\n\nwindowWidth\nnumber\n可使用窗口宽度\n都支持\n\n\nwindowHeight\nnumber\n可使用窗口高度\n都支持\n\n\nstatusBarHeight\nnumber\n状态栏的高度\n百度、微信\n\n\nlanguage\nstring\n微信设置的语言\n都支持\n\n\nversion\nstring\n版本号\n都支持\n\n\nsystem\nstring\n操作系统版本\n都支持\n\n\nplatform\nstring\n客户端平台\n都支持\n\n\nfontSizeSetting\nstring\n用户字体大小设置。以“我-设置-通用-字体大小”中的设置为准，单位 px\n都支持\n\n\nSDKVersion\nstring\n客户端基础库版本\n百度、微信\n\n\nstorage\nstring\n设备磁盘容量\n支付宝\n\n\ncurrentBattery\nstring\n当前电量百分比\n支付宝\n\n\napp\nstring\n当前运行的客户端，当前是支付宝则有效值是\"alipay\"\n支付宝\n\n\nbenchmarkLevel\nstring\n(仅Android小游戏) 性能等级，-2 或 0：该设备无法运行小游戏，-1：性能未知，>=1 设备性能值，该值越高，设备性能越好 (目前设备最高不到50)\n微信\n\n\n"
+        },
+        {
+          "title": "getSystemInfoSync(Object object)",
+          "url": "/apis/miniprogram.html#getsysteminfosyncobject-object",
+          "content": "getSystemInfoSync(Object object)同步获取系统信息返回值Object\n\n名称\n类型\n描述\n支持平台\n\n\n\n\nbrand\nstring\n手机品牌\n都支持\n\n\nmodel\nstring\n手机型号\n都支持\n\n\npixelRatio\nnumber\n设备像素比\n都支持\n\n\nscreenWidth\nnumber\n屏幕宽度\n都支持\n\n\nscreenHeight\nnumber\n屏幕高度\n都支持\n\n\nwindowWidth\nnumber\n可使用窗口宽度\n都支持\n\n\nwindowHeight\nnumber\n可使用窗口高度\n都支持\n\n\nstatusBarHeight\nnumber\n状态栏的高度\n百度、微信\n\n\nlanguage\nstring\n微信设置的语言\n都支持\n\n\nversion\nstring\n版本号\n都支持\n\n\nsystem\nstring\n操作系统版本\n都支持\n\n\nplatform\nstring\n客户端平台\n都支持\n\n\nfontSizeSetting\nstring\n用户字体大小设置。以“我-设置-通用-字体大小”中的设置为准，单位 px\n都支持\n\n\nSDKVersion\nstring\n客户端基础库版本\n百度、微信\n\n\nstorage\nstring\n设备磁盘容量\n支付宝\n\n\ncurrentBattery\nstring\n当前电量百分比\n支付宝\n\n\napp\nstring\n当前运行的客户端，当前是支付宝则有效值是\"alipay\"\n支付宝\n\n\nbenchmarkLevel\nstring\n(仅Android小游戏) 性能等级，-2 或 0：该设备无法运行小游戏，-1：性能未知，>=1 设备性能值，该值越高，设备性能越好 (目前设备最高不到50)\n微信\n\n\n"
+        },
+        {
+          "title": "扫码",
+          "url": "/apis/miniprogram.html#扫码",
+          "content": "扫码"
+        },
+        {
+          "title": "scanCode(Object object)",
+          "url": "/apis/miniprogram.html#scancodeobject-object",
+          "content": "scanCode(Object object)调起客户端扫码界面进行扫码参数\bObject object\n\n属性\n类型\n是否必须\n说明\n支持平台\n\n\n\n\nonlyFromCamera\nboolean\n否\n是否只能从相机扫码，不允许从相册选择图片，默认false\n都支持\n\n\nscanType\nArray.\n否\n扫码类型，默认(微信)['barCode', 'qrCode'], 支付宝默认值['qrCode'],数组只识别第一个\n都支持\n\n\nsuccess\nfunction\n否\n接口调用成功的回调函数\n都支持\n\n\nfail\nfunction\n否\n接口调用失败的回调函数\n都支持\n\n\ncomplete\nfunction\n否\n接口调用结束的回调函数（调用成功、失败都会执行）\n都支持\n\n\nobject.scanType 的合法值\n\n值\n描述\n支持平台\n\n\n\n\nbarCode\n一维码\n都支持\n\n\nqrCode\n二维码\n都支持\n\n\ndatamatrix\nData Matrix 码\n\b微信\n\n\npdf417\nPDF417 条码\n微信\n\n\nsuccess 返回值\n\n名称\n类型\n描述\n支持平台\n\n\n\n\nresult\nstring\n所扫码的内容\n都支持\n\n\nscanType\nstring\n所扫码的类型\n\b支付宝不支持\n\n\ncharSet\nstring\n所扫码的字符集\n支付宝不支持\n\n\nqrCode\nstring\n扫描二维码时返回二维码数据\n支付宝\n\n\nbarCode\nstring\n扫描条形码时返回条形码数据\n支付宝\n\n\npath\nnumber\n当所扫的码为当前小程序的合法二维码时，会返回此字段，内容为二维码携带的 path\n微信\n\n\nrawData\nstring\n原始数据，base64编码\n微信\n\n\n"
+        },
+        {
+          "title": "用户截屏事件",
+          "url": "/apis/miniprogram.html#用户截屏事件",
+          "content": "用户截屏事件"
+        },
+        {
+          "title": "onUserCaptureScreen(Object object)",
+          "url": "/apis/miniprogram.html#onusercapturescreenobject-object",
+          "content": "onUserCaptureScreen(Object object)监听用户主动截屏事件，用户使用系统截屏按键截屏时触发此事件。参数callbackReact.api.onUserCaptureScreen(function() {    console.log('用户截屏了')\n});\n"
         }
       ]
     },
@@ -1019,6 +1102,25 @@ window.ydoc_plugin_search_json = {
           "title": "onBeaconServiceChange(CALLBACK)",
           "url": "/apis/iBeacon.html#onbeaconservicechangecallback",
           "content": "onBeaconServiceChange(CALLBACK)监听 iBeacon 服务的状态变化CALLBACK返回参数说明：\n\n参数名\n类型\n描述\n\n\n\n\navailable\nBoolean\n服务目前是否可用\n\n\ndiscovering\nBoolean\n目前是否处于搜索状态\n\n\n"
+        }
+      ]
+    }
+  ],
+  "UI组件": [
+    {
+      "title": "",
+      "content": "",
+      "url": "/ui/index.html",
+      "children": [
+        {
+          "title": "QunarLoading",
+          "url": "/ui/index.html#qunarloading",
+          "content": "QunarLoading使用方法import React from '@react';import QunarLoading from '@components/QunarLoading/index';\n// 事件\nclass Data extends React.Component {\n  constructor() {\n    super();\n    this.state = {\n      networkData: {\n        status: -3,\n        loadingDesc: '加载中...',\n        showButton: true\n      }\n    };\n  }\n\n  componentDidMount() {\n    let selfState = this.state;\n    let self = this;\n    setTimeout(\n      function() {\n        selfState.networkData.status = 0;\n        self.setState({ ...selfState }); //自动隐藏\n      }.bind(this),\n      5000\n    );\n  }\n\n  render() {\n    return (\n      \n        加载\n        \n      \n    );\n  }\n}\nexport default Data;\n"
+        },
+        {
+          "title": "API",
+          "url": "/ui/index.html#qunarloading-api",
+          "content": "API属性说明如下：\n\n属性\n类型\n说明\n\n\n\n\n\bnetworkData\nObject\n网络\b状态信息\n\n\nnetworkRetry\nfunction\n触发重新加载\n\n\nnetworkData Object\n\n属性\n类型\n是否必须\n默认值\n说明\n\n\n\n\n\bstatus\nnumber\n否\n4\n网络状态码       1 toast系统默认加载中 背景白色    2 toast系统默认加载中 背景透明    3 dots加载中mini 背景透明     4 qunar大图骆驼加载中 背景白色    0 成功   -1 网络连接失败  -2 没有数据  -3 提示信息\n\n\nloadingDesc\nstring\n否\n加载中...\nloading描述(可选)\n\n\nshowButton\nboolean\n否\ntrue\n显示重新加载 button, 默认为true\n\n\nstatus: -3 提示信息status: -2 没有数据 和 status: -1 网络连接失败status: 1 加载中 toast系统默认   背景白色status: 2 加载中 toast系统默认   背景透明status: 3 加载中 dots加载中mini 背景透明status: 4 加载中 qunar大图骆驼  背景白色"
         }
       ]
     }
