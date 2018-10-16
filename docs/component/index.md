@@ -78,3 +78,39 @@
 | 组件名 | 缺少 | 缺少的属性 | 微信多出的属性 |
 | -------- | ----------------------------------|-------------- |------|
 | web-view |  | 支付宝 (`bindLoad`, `bindError`) 百度 (`bindLoad`, `bindError`) | |
+
+ ### 支付宝中 web-view 组件的用法
+
+ ```javascript
+ import React from '@react';
+
+// 事件
+class Data extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+    React.webview.instance = this
+    React.webview.cb = this.test // 绑定到 onMessage 上的函数
+  }
+
+  
+  componentDidMount() {}
+
+  test(e) {
+    console.log(JSON.stringify(e.detail))
+  }
+
+  render() {
+    return (
+      <div>
+        <web-view src="http://localhost/" onMessage={this.test.bind(this)}></web-view>
+      </div>
+    );
+  }
+}
+export default Data;
+
+
+ ```
+
+
