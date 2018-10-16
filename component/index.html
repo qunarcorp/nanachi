@@ -296,6 +296,37 @@
 </tr>
 </tbody>
 </table>
+<h3 id="开放能力-支付宝中-web-view-组件的用法">支付宝中 web-view 组件的用法</h3>
+<pre><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 事件</span>
+<span class="token keyword">class</span> <span class="token class-name">Data</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+ <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+   React<span class="token punctuation">.</span>webview<span class="token punctuation">.</span>instance <span class="token operator">=</span> <span class="token keyword">this</span>
+   React<span class="token punctuation">.</span>webview<span class="token punctuation">.</span>cb <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>test <span class="token comment">// 绑定到 onMessage 上的函数</span>
+ <span class="token punctuation">}</span>
+
+ 
+ <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+ <span class="token function">test</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>detail<span class="token punctuation">)</span><span class="token punctuation">)</span>
+ <span class="token punctuation">}</span>
+
+ <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token punctuation">(</span>
+     <span class="token operator">&lt;</span>div<span class="token operator">></span>
+       <span class="token operator">&lt;</span>web<span class="token operator">-</span>view src<span class="token operator">=</span><span class="token string">"http://localhost/"</span> onMessage<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>test<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>web<span class="token operator">-</span>view<span class="token operator">></span>
+     <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+   <span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> Data<span class="token punctuation">;</span>
+
+
+</code></pre>
 </div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));

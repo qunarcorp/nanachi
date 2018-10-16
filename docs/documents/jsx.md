@@ -9,11 +9,13 @@
 
 有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例
 
+为了兼容所有平台，我们定下这些规则
 
-不支持switch语句
->如果想支持转换**快应用**，那么所有文本应该写text, a, optionp这三种标签内！
+1. 原来打算使用view标签的地方，请使用div,h1这些块状元素代替
+2. 文本必须包含在text, span, a, option这几种标签内
+3. text标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签
+4. jsx中不能出现 声明变量或函数的语句，不能出现switch语句
 
-快应用， 自带span标签，只能作为`<text>`与`<a>`的子组件
 
 错误的用法
 
