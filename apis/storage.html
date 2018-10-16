@@ -178,10 +178,10 @@
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="getstoragesync">getStorageSync</h2>
+<h2 id="getstoragesyncstring-key">getStorageSync(string key)</h2>
 <p>同步获取缓存数据。</p>
 <p><strong>参数</strong></p>
-<p>Object object</p>
+<p>String</p>
 <table>
 <thead>
 <tr>
@@ -203,7 +203,7 @@
 </tbody>
 </table>
 <p>代码示例：</p>
-<pre><code class="language-javascript"><span class="token keyword">let</span> res <span class="token operator">=</span> React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getStorageSync</span><span class="token punctuation">(</span><span class="token punctuation">{</span> key<span class="token punctuation">:</span> <span class="token string">'currentCity'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="language-javascript"><span class="token keyword">let</span> res <span class="token operator">=</span> React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getStorageSync</span><span class="token punctuation">(</span><span class="token string">'currentCity'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'res'</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="removestorageobject-object">removeStorage(Object object)</h2>
