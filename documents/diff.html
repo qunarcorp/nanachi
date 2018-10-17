@@ -30,10 +30,17 @@
 </tr>
 <tr>
 <td>for 指令</td>
-<td>wx:for<br> wx:for-index<br> wx:for-item<br> wx:key</td>
+<td>wx:for<br> wx:for-index<br> wx:for-item<br></td>
 <td>将<code>wx:</code>改成<code>s-</code></td>
 <td>将<code>wx:</code>改成<code>a:</code></td>
 <td>for=&quot;(personIndex, personItem) in list&quot;</td>
+</tr>
+<tr>
+<td>key 指令</td>
+<td>wx:key</td>
+<td>未知</td>
+<td>key</td>
+<td>tid</td>
 </tr>
 <tr>
 <td><code>&lt;block&gt;</code>容器标签</td>
@@ -80,7 +87,7 @@
 <tr>
 <td>template 包含 template</td>
 <td>支持</td>
-<td>不支持循环中使用template</td>
+<td>不支持循环中使用 template</td>
 <td>支持</td>
 <td>未知</td>
 </tr>
@@ -136,7 +143,7 @@
 <tr>
 <td>大小限制</td>
 <td>4M</td>
-<td>4M(分包8M)</td>
+<td>4M(分包 8M)</td>
 <td>2M</td>
 <td>1M（可以独单与厂商谈）</td>
 </tr>
@@ -312,8 +319,8 @@
 </tr>
 </tbody>
 </table>
-<p>思路：properties定义两个属性 <code>{props: Object, context: Object}</code>
-created或onInit时，抓取小程序实例与对应的react实例，将props, state, context给小程序实例</p>
+<p>思路：properties 定义两个属性 <code>{props: Object, context: Object}</code>
+created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 props, state, context 给小程序实例</p>
 <h2 id="页面组件在快应用的模拟">页面组件在快应用的模拟</h2>
 <ol>
 <li>
@@ -355,8 +362,8 @@ refresh.refresh --&gt; onPullDownRefresh</p>
 <li><a href="https://smartprogram.baidu.com/docs/develop/tutorial/codedir/" target="_blank">百度小程序文档</a></li>
 <li><a href="https://docs.alipay.com/mini/developer/getting-started" target="_blank">支付小程序文档</a></li>
 <li><a href="https://doc.quickapp.cn/features/" target="_blank">快应用文档</a></li>
-<li><a href="https://github.com/quickappcn/sample" target="_blank">快应用demo1</a></li>
-<li><a href="https://github.com/RubyLouvre/quickdemo" target="_blank">快应用demo2</a></li>
+<li><a href="https://github.com/quickappcn/sample" target="_blank">快应用 demo1</a></li>
+<li><a href="https://github.com/RubyLouvre/quickdemo" target="_blank">快应用 demo2</a></li>
 </ul>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="router.html" class="href"><span class="ui-font-ydoc"></span>路由</a></div><div class="m-paging-next m-paging-item"><a href="redux.html" class="href">Redux<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
