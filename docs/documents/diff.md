@@ -5,7 +5,7 @@
 | 命名空间                     | wx                                                | swam                                       | my                                             | 无,需要 require 它提供的所有接口按 wx 形式封装   |
 | if 指令                      | wx:if                                             | s-if                                       | a:if                                           | if                                               |
 | for 指令                     | wx:for<br /> wx:for-index<br /> wx:for-item<br /> | 将`wx:`改成`s-`                            | 将`wx:`改成`a:`                                | for="(personIndex, personItem) in list"          |
-| key 指令                     | wx:key                                            | 未知                                       | key                                            | tid                                              |
+| key 指令                     | wx:key                                            | s-key                                       | key                                            | tid                                              |
 | `<block>`容器标签            | 存在                                              | 存在                                       | 存在                                           | 存在                                             |
 | 事件绑定                     | bind/catch[事件名全小写]="回调名"                 | bind/catch[事件名全小写]="回调名"          | on/catch[事件名驼峰]="回调名"                  | on[事件名全小写]="回调名/回调(arguments)"        |
 | {{}}插值是否支持函数         | 不支持                                            | 不支持                                     | 不支持                                         | 支持                                             |
