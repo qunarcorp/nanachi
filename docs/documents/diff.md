@@ -63,6 +63,19 @@ Component 构造器可用于定义组件，调用 Component 构造器时可以�
 思路：properties 定义两个属性 `{props: Object, context: Object}`
 created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 props, state, context 给小程序实例
 
+## 支付宝小程序的大小查看
+
+### 流量
+–单个资源：页面单个资源控制在50k以下，最大不超过100k
+–页面总大小：页面完全加载前，资源累计必须小于200K
+–离线包：amr压缩包总大小小于2M
+–网络总请求数——页面完全加载前，请求总数必须小于20个
+
+离线包的文件大小就是你项目的压缩包大小。C:\Users\计算机用户名\AppData\Local\Temp\.alipay-tiny\项目名\pack-production\dist.amr 上传小程序包的大小可以在beta版IDE右上角“详情”中查看“上次上传”的文件大
+
+![size](./size.jpg)
+
+
 ## 页面组件在快应用的模拟
 
 1. onShow onHide （大家都有）
