@@ -44,9 +44,14 @@ export default Data;
 
 ### 属性说明如下：
 
-| 属性         | 类型     | 说明           |
-| ------------ | -------- | -------------- |
-| networkData  | Object   | 网络  状态信息 |
+| 属性         | 类型     | 默认值|说明           |
+| ------------ | -------- | ---|----------- |
+| networkData  | Object   | |网络  状态信息 |
+| top  | String/Number   |0|距离页面顶部的高度 |
+| bottom  | String/Number   |0|距离页面底部部的高度 |
+| width  | String/Number   |100%|页面宽度 |
+| height  | String/Number   |auto|页面高度 |
+| zIndex  | String/Number   |100| 页面的层叠顺序|
 | networkRetry | function | 触发重新加载   |
 
 **networkData Object**
@@ -55,7 +60,7 @@ export default Data;
 | ----------- | ------- | -------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | status      | number  | 否       | 4         | 网络状态码 <br> 1 toast 系统默认加载中 背景白色 <br> 2 toast 系统默认加载中 背景透明 <br> 3 dots 加载中 mini 背景透明 <br> 4 qunar 大图骆驼加载中 背景白色 <br> 0 成功 <br> -1 网络连接失败 <br> -2 没有数据 <br> -3 提示信息 |
 | loadingDesc | string  | 否       | 加载中... | loading 描述(可选)                                                                                                                                                                                                            |
-| showButton  | boolean | 否       | true      | 显示重新加载 button, 默认为 true                                                                                                                                                                                              |
+| showButton  | boolean | 否       | true      | 显示重新加载 button, 默认为 true                                                                                                               
 
 **status: -3 提示信息**
 
