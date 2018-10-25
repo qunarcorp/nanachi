@@ -101,11 +101,3 @@ created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 pr
     > 详见[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%A2%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0)
     > 与 [这里](https://doc.quickapp.cn/features/system/share.html)
 
-## 官网
-
--   [微信小程序文档](https://developers.weixin.qq.com/miniprogram/dev/index.html)
--   [百度小程序文档](https://smartprogram.baidu.com/docs/develop/tutorial/codedir/)
--   [支付小程序文档](https://docs.alipay.com/mini/developer/getting-started)
--   [快应用文档](https://doc.quickapp.cn/features/)
--   [快应用 demo1](https://github.com/quickappcn/sample)
--   [快应用 demo2](https://github.com/RubyLouvre/quickdemo)
