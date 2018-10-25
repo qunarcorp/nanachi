@@ -7,7 +7,7 @@
 ```jsx
 import React from '@react';
 
-class Animal extends React.Component {
+class Animal extends React.Component { //组件名必须大写开头，与目录名一样
   constructor(props) {
     super();
     this.state = {

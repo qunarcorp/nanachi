@@ -21,12 +21,16 @@ cd anu/packages/cli & npm link
 cd ../../ && mpreact init demo
 cd demo && <yarn|npm|cnpm> install
 mpreact build:<wx|ali|bu|quick>
-mpreact start:<wx|ali|bu|quick>
+mpreact watch:<wx|ali|bu|quick>
 ```
-![image](./1538220971720.png)
-![image](./1538220971721.png)
-![image](./1538220971722.png)
 
+![image](./select_tmpl.png)
+![image](./build_wx.png)
+![image](./watch_wx.png)
+![image](./build_bu.png)
+![image](./watch_bu.png)
+![image](./build_ali.png)
+![image](./watch_ali.png)
 
 拼多多模板，请打开右上角 “>>” 详情，  不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书 打上勾
 
@@ -68,7 +72,4 @@ nanachi init
 
 在项目根目录执行 `nanachi build` 即可编译项目至 `dist/` 目录下。
 
-## 开发计划
-
-nanachi未来将支持一键打包支付宝小程序，百度智能小程序，快应用。
 
