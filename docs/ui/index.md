@@ -44,6 +44,21 @@ export default Data;
 
 ### 属性说明如下：
 
+| 属性     | 类型     | 说明                                             |
+| -------- | -------- |  ------------------------------------------------ |
+| networkData   | Object    |         网络状态信息                    |
+| networkRetry  | function   | 触发重新加载                      |
+
+
+**networkData Object**
+
+
+| 属性     | 类型   | 是否必须 |默认值| 说明                                             |
+| -------- | ------|-- |  -----|------------------------------------------- |
+| status   | number    |      否| 4| 网络状态码      <br> 1 toast系统默认加载中 背景白色 <br>   2 toast系统默认加载中 背景透明 <br>   3 dots加载中mini 背景透明 <br>    4 qunar大图骆驼加载中 背景白色 <br>   0 成功 <br>  -1 网络连接失败 <br> -2 没有数据 <br> -3 提示信息   |
+| loadingDesc  | string  |否 | 加载中...|loading描述(可选)                     |
+| showButton  | boolean  |否 | true|显示重新加载 button, 默认为true                     |
+
 | 属性         | 类型     | 默认值|说明           |
 | ------------ | -------- | ---|----------- |
 | networkData  | Object   | |网络  状态信息 |
@@ -60,7 +75,7 @@ export default Data;
 | ----------- | ------- | -------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | status      | number  | 否       | 4         | 网络状态码 <br> 1 toast 系统默认加载中 背景白色 <br> 2 toast 系统默认加载中 背景透明 <br> 3 dots 加载中 mini 背景透明 <br> 4 qunar 大图骆驼加载中 背景白色 <br> 0 成功 <br> -1 网络连接失败 <br> -2 没有数据 <br> -3 提示信息 |
 | loadingDesc | string  | 否       | 加载中... | loading 描述(可选)                                                                                                                                                                                                            |
-| showButton  | boolean | 否       | true      | 显示重新加载 button, 默认为 true                                                                                                               
+| showButton  | boolean | 否       | true      | 显示重新加载 button, 默认为 true
 
 **status: -3 提示信息**
 
@@ -126,6 +141,9 @@ citySelect() {
   }
 ```
 
+| 属性     | 类型     | 说明                                             |
+| -------- | -------- |  ------------------------------------------------ |
+| param   | Object    |         不同业务线的数据信息                    |
 | 属性  | 类型          | 说明                 |
 | ----- | ------------- | -------------------- |
 | param | Object/String | 不同业务线的数据信息 |
@@ -137,6 +155,16 @@ citySelect() {
 | citySuggestService | string | 是       |                        | 城市搜索 suggest 接口地址                                   |
 | eventType          | string | 是       |                        | 城市  选择回调名                                            |
 | placeholder        | string | 否       | 请输入城市名称或首字母 | 搜索框显示信息                                              |
+
+以上参数和微信公共组件 citySelect 用法相同
+
+| 属性     | 类型   | 是否必须 |默认值| 说明                                             |
+| -------- | ------|-- |  -----|------------------------------------------- |
+| type   | number    |      是| 4| 业务线信息 <br>     0:机票 <br>1:火车票 <br>2:汽车票 <br>3:酒店 |
+| cityListService  | string  |是 ||请求 city list 的接口地址                  |
+| citySuggestService  | string |是 | |城市搜索suggest 接口地址                    |
+| eventType  | string  |是 | | 城市选择回调名                    |
+| placeholder  |string  |否 |请输入城市名称或首字母 |搜索框显示信息                     |
 
 以上参数和微信公共组件 citySelect 用法相同
 
@@ -202,3 +230,31 @@ class Data extends React.Component {
 }
 export default Data;
 ```
+## Calendar
+
+使用方法
+
+```javascript
+    var params = {
+        date: '2019-01-01',   // 选中的日期
+        eDate: '2019-01-11',  // 双选时的第二个日期
+        eventType: CONSTANTS.HOTEL_EVENT_NAME.ARRIVA_DEPARTURE_DATE_SELECT, // 回调事件名字
+        isDoubleSelect: true, // 是否双选
+        calendarDays: 90,     // 日历显示的天数
+        sText: '入住',         // 选中的文案
+        eText: '离店',         // 双选时的第二个文案
+        url: encodeURIComponent('/train/product/api/train/TrainCalendar'), // 请求日历数据的url，一定要encode
+        reqData: {
+            bizType: 0   请求url的数据
+        },
+        bizType: 'train',     // 业务线
+        isMultiSelect: false  // 是否多选
+        dates: ['20181016'],  // 已经选择的备选日期s
+        maxSelectDays: 6      // 最多备选多少个
+    };
+    React.api.navigateTo({
+        url: "/pages/calendar/index?data=" + JSON.stringify(params)
+    });
+```
+
+以上参数和微信公共组件 Calendar 用法相同
