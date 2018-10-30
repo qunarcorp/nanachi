@@ -27,9 +27,9 @@
 | onReachBottom                  | 页面组件的事件     | 监听用户上拉触底事件                                                           |
 | onPullDownRefresh              | 页面组件的事件     | 监听用户下拉刷新事件                                                           |
 | componentWillMount             | 组件的生命周期钩子   | 相当于小程序的onLoad <br> props 中有 path, query 等路由相关信息                      |
-| componentWillUpdate            | 组件的生命周期钩子   | 在小程序中没什么用                                                            |
+| componentWillUpdate            | 组件的生命周期钩子   | 没有对应的小程序生命周期钩子                                                            |
 | componentDidMount              | 组件的生命周期钩子   | 相当于小程序的onReady                                                       |
-| componentDidUpdate             | 组件的生命周期钩子   | 在小程序中没什么用                                                            |
+| componentDidUpdate             | 组件的生命周期钩子   | 没有对应的小程序生命周期钩子                                                          |
 | componentWillUnmount           | 组件的生命周期钩子   | 相当于小程序的onUnload                                                      |
 | componentWillRecieveProps      | 组件的生命周期钩子   |                                                                      |
 | shouldComponentUpdate          | 组件的生命周期钩子   |                                                                      |

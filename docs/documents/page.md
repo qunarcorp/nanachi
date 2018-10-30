@@ -9,6 +9,7 @@
 比如：
 
 ```jsx
+//pages/train/index.js
 import React from '@react';
 
 class P extends React.Component {

@@ -7,7 +7,8 @@
 <p>它必须是一个有状态的 React 组件。JSX 只能出现在 <code>render()</code> 方法里，它会编译成相应的 <code>wxml</code> 文件，因此不能使用 R <code>React.createElement()</code>代替 JSX。有关 JSX 的注意事项可以看<a href="jsx.html">这里</a>。</p>
 <p>页面组件与components目录下的通用组件有一些特异点，它是多出了componentDidShow, componentDidHide这两个生命周期钩子，与onPullDownRefresh onReachBottom onPageScroll onShareAppMessage这些事件。并且在config中能指定tabBar与分享按钮。</p>
 <p>比如：</p>
-<pre><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span><span class="token punctuation">;</span>
+<pre><code class="language-jsx"><span class="token comment">//pages/train/index.js</span>
+<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">class</span> <span class="token class-name">P</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>

@@ -5,6 +5,7 @@
 ## 组件的样板
 
 ```jsx
+//components/Animal/index.js
 import React from '@react';
 
 class Animal extends React.Component { //组件名必须大写开头，与目录名一样
