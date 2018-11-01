@@ -4,6 +4,14 @@
       <div class="m-search-result js-search-result"></div>
     </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item active"><a class="href" href="intro.html">文档</a></li><li class="item "><a class="href" href="../component/index.html">组件</a></li><li class="item "><a class="href" href="../apis/index.html">API</a></li><li class="item "><a class="href" href="../ui/index.html">UI组件</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>关于</h1>
 <p>此项目由 <a href="https://ymfe.org" target="_blank">YMFE</a> 提供支持。</p>
+<p>大约从11月份开始，我们切换到branch3开发</p>
+<p>原来master上使用 template机制来编写组件，它其实规避了许多问题，因为4大小程序的自定义组件机制都各有不同，template则是兼容成本最低的方案。但是用template编写组件，其实那不是组件，对于小程序来说就是视图片段。换言之，一个页面只有一个组件，而这个组件的数据则是非常庞大。果不其然，它在支付宝小程序的IOS8/9中因为性能问题挂掉，只好匆匆切到branch3</p>
+<p>branch3使用自定义组件机制实现组件，目前来看，微信与百度很相似，内部是运行一个迷你React,加上我们的迷你React，事实上是两个React拼接视图，创建组件。并且这两套React生命周期触发顺序与官方React是一样的。</p>
+<p>我们的组件机制是这样的实现的，首先，anu diff 虚拟DOM ，在onBeforeRender时机 将组件实例放到构造器上的reactInstances数组上然后小程序在渲染视图，它内部也diff 虚拟DOM，在created生命周期钩子中，拿到this(小程序的组件实例)，
+然后再从reactInstances shift出一个React组件实例，让它们互相关联，用React的数据刷新小程序组件实例。</p>
+<p>但支付宝的生命周期名字不一样，并且少了created钩子，那我们想在didMount钩子（对应微信的attached钩子）拿到this，然后。。。</p>
+<p>可惜支付宝没有让我们这么顺利。 假设一个页面有4个名为Dialog的组件，那么它们钩子的触发顺序应该根据它们在视图的位置从上到下，从左至右触发的，而支付宝是随机触发的。于是我们在编译阶段，在React的JSX 与 支付宝的awxml上都添加了一个UUID，确保我们的React实例能找到真正对应的支付宝小程序实例。</p>
+<p>快应用就更麻烦些，它像vue那样三种格式都放在同一个文件中，而script标签是无法export出任何东西，于是我只好将组件定义单独拆到另一个文件。这样搞定引用父类的问题。不过快应用最大的问题是对CSS支持太差，比如说不支持<code>display: block, display: line</code>, 不支持浮动，不支持相对绝对定位，不支持<code>.class1.class2</code>的写法……  API也比小程序少这么多东西。</p>
 <p><img src="1538220971726.jpeg" alt="nanachi"></p>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="publish.html" class="href"><span class="ui-font-ydoc"></span>发布打包</a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
