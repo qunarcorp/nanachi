@@ -62,6 +62,17 @@ class P extends React.Component {
 export default P;
 ```
 
+## 页面的生命周期
+
+```shell
+componentWillMount(onLoad) -> onShow -> componentWillMount(onReady)
+componentWillReceiveProps -> shouldComponentUpdate -> componentWillUpdate
+componentDidUpdate -> componentWillUnmount(onUnload)
+```
+
+只有页面组件才有onShow, onHide钩子，普通组件没有这两个钩子
+
+
 页面组件必须使用 es6 风格来引入依赖与导出自己。
 
 它的静态属性 config 会抽取出来生成对应的 JSON 配置对象，有关配置项可以看[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE)
