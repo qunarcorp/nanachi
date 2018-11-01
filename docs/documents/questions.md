@@ -11,5 +11,6 @@
 - 不要在 `props`, `state`, `context` 里面放 JSX，因为 JSX 的结构容易出现环引用，导到微信小程序内部的 JSON.stringify 出错
 - `slot` 机制与 render props 是有代价，它们会在 `components/Fragments` 目下添加许多当作桥梁用的碎片文件，不要滥用
 - render props 机制只能用于有狀态组件，并且只应用于 `render()` 属性，只能传一个参数，参数只能是 `this.state` 或 `this.props`
+- input组件 统一使用onChange事件，因为有的平台支持onInput, 有的平台支持onChange, 转译器会翻译相应支持的事件
 
 更多问题请到 GitHub 提 [Issue](https://github.com/roland-reed/nanachi-cli/issues)。
