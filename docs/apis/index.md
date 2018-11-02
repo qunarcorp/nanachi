@@ -13,13 +13,13 @@
 | React.forwardRef               | &nbsp;      | 不存在                                                                  |
 | React.api                      | &nbsp;      | 相当于微信的 wx, 支付宝小程序的 my，百度小程的 swan,为了方便编译，请不要在业务代码中直接用 wx,要用 React.api |
 | React.getApp                   | &nbsp;      | 相当于微信的 getApp                                                        |
-| React.getCurrentPages          | &nbsp;      | 相当于微信的 geCurrentPages                                                 |
 | React.Component                | &nbsp;      | 所有组件的基类                                                              |
-| React.toComponent/useComponent | 内部 API      | 用来创建组件                                                               |
+| React.useComponent | 内部 API      | 用来创建组件                                                               |
 | React.toRenderProps            | 内部 API      | 用来代替 render 属性对应的函数                                                  |
 | React.toClass                  | 内部 API      | 用来转译 es6 类                                                           |
 | React.toStyle                  | 内部 API      | 用来转译样式                                                               |
-| React.toPage/registerPage      | 内部 API      | 页面组件会自动在底部添加这方法                                                      |
+| React.registerPage      | 内部 API      | 页面组件会自动在底部添加这方法                                                      |
+| React.registerComponent      | 内部 API      | 通用组件会自动在底部添加这方法                                                      |
 | onShow                         | 页面组件的生命周期钩子 |                                                         |
 | onHide                         | 页面组件的生命周期钩子 |                                                          |
 | onPageScroll                   | 页面组件的事件     | 监听用户滑动页面事件                                                           |

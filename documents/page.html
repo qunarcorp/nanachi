@@ -3,7 +3,58 @@
       <input type="text" class="input js-input" placeholder="搜索" />
       <div class="m-search-result js-search-result"></div>
     </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item active"><a class="href" href="intro.html">文档</a></li><li class="item "><a class="href" href="../component/index.html">组件</a></li><li class="item "><a class="href" href="../apis/index.html">API</a></li><li class="item "><a class="href" href="../ui/index.html">UI组件</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>页面组件</h1>
-<p>页面定义在 <code>pages</code> 目录下。</p>
+<p>页面定义在 <code>pages</code> 目录下的index.js文件中。这样一来，就会存在这么多index.js,因此它们必须包含在相应的文件夹中，而这些文件夹不要以index命名。</p>
+<blockquote>
+<p>原因：快应用有一个manifest.json文件, 里面有一个router对象，包含所有页面</p>
+</blockquote>
+<pre><code class="language-json"><span class="token property">"router"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"entry"</span><span class="token operator">:</span> <span class="token string">"pages/index"</span><span class="token punctuation">,</span>
+    <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"pages/index"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"component"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"pages/demo/syntax/index"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"component"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"pages/demo/syntax/api"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"component"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"pages/demo/syntax/await"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"component"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"pages/demo/syntax/children"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"component"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"pages/demo/syntax/extend"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"component"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"pages/demo/syntax/if"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"component"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>然后我们页面切换是通过React.api.redirectTo实现</p>
+<pre><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">createRouter</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> router <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@system.router'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> params <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> uri <span class="token operator">=</span> obj<span class="token punctuation">.</span>url<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>url<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'/pages'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        uri <span class="token operator">=</span> uri<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\?(.*)/</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            b<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'='</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                params<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> v<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\/index$/</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>uri<span class="token punctuation">,</span> <span class="token string">"createRouter"</span><span class="token punctuation">)</span>
+        router<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            uri<span class="token punctuation">:</span><span class="token string">"/"</span><span class="token operator">+</span> uri<span class="token punctuation">,</span>
+            params<span class="token punctuation">:</span> params
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>因此文件名目录名好重要！</p>
 <p>它必须是一个有状态的 React 组件。JSX 只能出现在 <code>render()</code> 方法里，它会编译成相应的 <code>wxml</code> 文件，因此不能使用 R <code>React.createElement()</code>代替 JSX。有关 JSX 的注意事项可以看<a href="jsx.html">这里</a>。</p>
 <p>页面组件与components目录下的通用组件有一些特异点，它是多出了componentDidShow, componentDidHide这两个生命周期钩子，与onPullDownRefresh onReachBottom onPageScroll onShareAppMessage这些事件。并且在config中能指定tabBar与分享按钮。</p>
 <p>比如：</p>

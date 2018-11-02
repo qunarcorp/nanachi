@@ -1,6 +1,58 @@
 # 页面组件
 
-页面定义在 `pages` 目录下。
+页面定义在 `pages` 目录下的index.js文件中。这样一来，就会存在这么多index.js,因此它们必须包含在相应的文件夹中，而这些文件夹不要以index命名。
+>原因：快应用有一个manifest.json文件, 里面有一个router对象，包含所有页面
+```json
+"router": {
+    "entry": "pages/index",
+    "pages": {
+      "pages/index": {
+        "component": "index"
+      },
+      "pages/demo/syntax/index": {
+        "component": "index"
+      },
+      "pages/demo/syntax/api": {
+        "component": "index"
+      },
+      "pages/demo/syntax/await": {
+        "component": "index"
+      },
+      "pages/demo/syntax/children": {
+        "component": "index"
+      },
+      "pages/demo/syntax/extend": {
+        "component": "index"
+      },
+      "pages/demo/syntax/if": {
+        "component": "index"
+      }
+    }
+}
+```
+然后我们页面切换是通过React.api.redirectTo实现
+```javascript
+function createRouter(name) {
+    return function (obj) {
+        var router = require('@system.router');
+        var params = {};
+        var uri = obj.url.slice(obj.url.indexOf('/pages') + 1);
+        uri = uri.replace(/\?(.*)/, function (a, b) {
+            b.split('=').forEach(function (k, v) {
+                params[k] = v;
+            });
+            return '';
+        }).replace(/\/index$/, '');
+        console.log(uri, "createRouter")
+        router[name]({
+            uri:"/"+ uri,
+            params: params
+        });
+    };
+}
+```
+因此文件名目录名好重要！
+
 
 它必须是一个有状态的 React 组件。JSX 只能出现在 `render()` 方法里，它会编译成相应的 `wxml` 文件，因此不能使用 R `React.createElement()`代替 JSX。有关 JSX 的注意事项可以看[这里](jsx.md)。
 
