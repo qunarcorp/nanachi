@@ -14,7 +14,6 @@
 5.  `mpreact build` 构建，<br />
 6.  `mpreact watch` 监听文件变化实时构建，<br />
 7. 用微信开发工具打开当中的dist目录，自己在src目录中进行开发<br />
-如果想构建支付宝或百度小程序  `mpreact build:ali`或`mpreact build:bu`或`mpreact build:quick` 构建，<br />
 
 ```shell
 cd anu/packages/cli & npm link

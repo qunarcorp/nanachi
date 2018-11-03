@@ -5,13 +5,155 @@
     </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item active"><a class="href" href="intro.html">文档</a></li><li class="item "><a class="href" href="../component/index.html">组件</a></li><li class="item "><a class="href" href="../apis/index.html">API</a></li><li class="item "><a class="href" href="../ui/index.html">UI组件</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>关于</h1>
 <p>此项目由 <a href="https://ymfe.org" target="_blank">YMFE</a> 提供支持。</p>
 <p>大约从11月份开始，我们切换到branch3开发</p>
-<p>原来master上使用 template机制来编写组件，它其实规避了许多问题，因为4大小程序的自定义组件机制都各有不同，template则是兼容成本最低的方案。但是用template编写组件，其实那不是组件，对于小程序来说就是视图片段。换言之，一个页面只有一个组件，而这个组件的数据则是非常庞大。果不其然，它在支付宝小程序的IOS8/9中因为性能问题挂掉，只好匆匆切到branch3</p>
-<p>branch3使用自定义组件机制实现组件，目前来看，微信与百度很相似，内部是运行一个迷你React,加上我们的迷你React，事实上是两个React拼接视图，创建组件。并且这两套React生命周期触发顺序与官方React是一样的。</p>
-<p>我们的组件机制是这样的实现的，首先，anu diff 虚拟DOM ，在onBeforeRender时机 将组件实例放到构造器上的reactInstances数组上然后小程序在渲染视图，它内部也diff 虚拟DOM，在created生命周期钩子中，拿到this(小程序的组件实例)，
-然后再从reactInstances shift出一个React组件实例，让它们互相关联，用React的数据刷新小程序组件实例。</p>
-<p>但支付宝的生命周期名字不一样，并且少了created钩子，那我们想在didMount钩子（对应微信的attached钩子）拿到this，然后。。。</p>
-<p>可惜支付宝没有让我们这么顺利。 假设一个页面有4个名为Dialog的组件，那么它们钩子的触发顺序应该根据它们在视图的位置从上到下，从左至右触发的，而支付宝是随机触发的。于是我们在编译阶段，在React的JSX 与 支付宝的awxml上都添加了一个UUID，确保我们的React实例能找到真正对应的支付宝小程序实例。</p>
-<p>快应用就更麻烦些，它像vue那样三种格式都放在同一个文件中，而script标签是无法export出任何东西，于是我只好将组件定义单独拆到另一个文件。这样搞定引用父类的问题。不过快应用最大的问题是对CSS支持太差，比如说不支持<code>display: block, display: line</code>, 不支持浮动，不支持相对绝对定位，不支持<code>.class1.class2</code>的写法……  API也比小程序少这么多东西。</p>
+<p>原来master上使用 template标签来编写组件，它其实规避了许多问题，因为4大小程序的自定义组件机制都各有不同，template则是兼容成本最低的方案。但是用template标签编写组件，其实那不是组件，对于小程序来说就是视图片段。换言之，一个页面只有一个组件，而这个组件的数据则是非常庞大。果不其然，它在支付宝小程序的IOS8/9中因为性能问题挂掉，只好匆匆切到branch3。</p>
+<p>简单回顾一下四大小程序的模板</p>
+<pre><code class="language-html"><span class="token markup"><span class="token comment">&lt;!--wxml--></span></span>
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>userinfo<span class="token punctuation">"</span></span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>eventCanBubble<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">wx:</span>if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{!hasUserInfo &amp;&amp; canIUse}}<span class="token punctuation">"</span></span> <span class="token attr-name">catchtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>eventNoBubble<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 获取头像昵称 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>block</span> <span class="token attr-name"><span class="token namespace">wx:</span>else</span><span class="token punctuation">></span></span></span>
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name"><span class="token namespace">wx:</span>for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>array<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">wx:</span>for-item</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>el<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">wx:</span>for-index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>index<span class="token punctuation">"</span></span>  <span class="token attr-name"><span class="token namespace">wx:</span>key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>*this<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+         {{el.title}}
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>block</span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+
+<span class="token markup"><span class="token comment">&lt;!--axml--></span></span>
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>userinfo<span class="token punctuation">"</span></span> <span class="token attr-name">onTap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>eventCanBubble<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">a:</span>if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{!hasUserInfo &amp;&amp; canIUse}}<span class="token punctuation">"</span></span> <span class="token attr-name">catchTap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>eventCanBubble<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 获取头像昵称 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>block</span> <span class="token attr-name"><span class="token namespace">a:</span>else</span><span class="token punctuation">></span></span></span>
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name"><span class="token namespace">a:</span>for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>array<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">a:</span>for-item</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>el<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">a:</span>for-index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>index<span class="token punctuation">"</span></span>  <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span></span>
+         {{el.title}}
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>block</span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+
+<span class="token markup"><span class="token comment">&lt;!--swan--></span></span>
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>userinfo<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">bind:</span>tap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>eventCanBubble<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">s-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{!hasUserInfo &amp;&amp; canIUse}}<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">catch:</span>tap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>eventCanBubble<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 获取头像昵称 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>block</span> <span class="token attr-name">s-else</span><span class="token punctuation">></span></span></span>
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">s-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(index, el) in array<span class="token punctuation">"</span></span> <span class="token attr-name">s-key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span></span>
+         {{el.title}}
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>block</span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+
+<span class="token markup"><span class="token comment">&lt;!--快应用ux--></span></span>
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>userinfo<span class="token punctuation">"</span></span> <span class="token attr-name">onClick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>eventCanBubble<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{!hasUserInfo &amp;&amp; canIUse}}<span class="token punctuation">"</span></span> <span class="token attr-name">onClick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>eventCanBubble<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span><span class="token punctuation">></span></span> 获取头像昵称<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></span>
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>block</span> <span class="token attr-name">else</span><span class="token punctuation">></span></span></span>
+        <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(index, el) in array<span class="token punctuation">"</span></span> <span class="token attr-name">tid</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span></span>
+          <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span><span class="token punctuation">></span></span>el.title}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span></span>
+        <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>block</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></span>
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></span>
+</code></pre>
+<p>从模板来看，其实差别不大，改一下属性名，每个公司都想通过它们来标识自己的存在。但内部实现完全不一样，因为源码并没有公开或者混淆了。使用自定义组件机制的风险就比<template>标签大很多。 BAT三公司都暴露了一个Component入口函数，让你传入一个配置对象实现组件机制，而以小米为首的快应用则是内部走vue，没有Component这个方法，只需你export一个配置对象。</template></p>
+<pre><code class="language-javascript"><span class="token comment">//微信</span>
+<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  lifetimes<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token comment">//钩子必须放在lifetimes</span>
+    <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token comment">//拿不到实例的UUID</span>
+    <span class="token function">attached</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token comment">//钩子触发顺序与元素在文档位置一致</span>
+    <span class="token function">dettached</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token comment">//事件句柄必须放在methods</span>
+    <span class="token function">onClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">//支付宝</span>
+<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">//没有与created对应的didCreate/willMount钩子</span>
+  <span class="token function">didMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token comment">//能拿到实例的UUID</span>
+  <span class="token function">didUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token comment">//钩子触发顺序是随机的</span>
+  <span class="token function">didUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">onClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">//百度</span>
+<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token comment">//应该是微信自定义组件的早期格式，没有lifetimes，methods</span>
+  <span class="token function">attached</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token comment">//拿不到实例的UUID</span>
+  <span class="token function">dettached</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token comment">//钩子触发顺序与元素在文档位置一致</span>
+  <span class="token function">onClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">//小米（快应用都是由小米提供技术方案）</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span>
+   props<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token comment">//基本与百度差不多</span>
+   <span class="token function">onInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token function">onReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token function">onDestroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+   methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token function">onClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>从内部实现来看，BAT 都是走迷你React虚拟DOM， 快应用走迷你 vue虚拟DOM， 但支付宝的实现不好，钩子的触发顺序是随机的。因此在非随机的三种中，我们内部有一个迷你React , anu，产生的组件实例放进一个队列中，而BTM （百度，微信，小米）的created/onInit钩子再逐个再出来，执行setData实现视图的更新。而支付宝需要在编译层，为每个自定义组件标签添加一个UUID ，然后在didMount匹配取出。</p>
+<pre><code class="language-javascript"><span class="token comment">//anu </span>
+<span class="token function">onBeforeRender</span><span class="token punctuation">(</span>fiber<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">var</span> type <span class="token operator">=</span> fiber<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
+   <span class="token keyword">var</span> reactInstances <span class="token operator">=</span> type<span class="token punctuation">.</span>reactInstances<span class="token punctuation">;</span>
+   <span class="token keyword">var</span> instance <span class="token operator">=</span> fiber<span class="token punctuation">.</span>stateNode<span class="token punctuation">;</span>
+   <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>instance<span class="token punctuation">.</span>wx <span class="token operator">&amp;&amp;</span> reactInstances<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     reactInstances<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//BTM的created/onReady  &lt;anu-dog>&lt;/anu-dog></span>
+<span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">var</span> reactInstances <span class="token operator">=</span> type<span class="token punctuation">.</span>reactInstances<span class="token punctuation">;</span>
+   <span class="token keyword">var</span> reactInstance <span class="token operator">=</span> reactInstances<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   reactInstance<span class="token punctuation">.</span>wx <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span>reactInstance <span class="token operator">=</span> reactInstance<span class="token punctuation">;</span>
+   <span class="token function">updateMiniApp</span><span class="token punctuation">(</span>reactInstance<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//支付宝  &lt;anu-dog instanceUid="{{'i32432' }}">&lt;/anu-dog></span>
+<span class="token function">didMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> reactInstances <span class="token operator">=</span> type<span class="token punctuation">.</span>reactInstances<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> uid <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>instanceUid<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> reactInstances<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> reactInstance <span class="token operator">=</span> reactInstances<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>reactInstance<span class="token punctuation">.</span>instanceUid <span class="token operator">===</span> uid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          reactInstance<span class="token punctuation">.</span>wx <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>reactInstance <span class="token operator">=</span> reactInstance<span class="token punctuation">;</span>
+          <span class="token function">updateMiniApp</span><span class="token punctuation">(</span>reactInstance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          reactInstances<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>支付宝在didMount钩子才更新数据还有一个问题，就是会带来reflow。</p>
+<p>快应用就更麻烦些，主要有以下问题</p>
+<ol>
+<li>
+<p>快应用要求像vue那样三种格式都放在同一个文件中，但script标签是无法export出任何东西，于是我只好将组件定义单独拆到另一个文件， 才搞定引用父类的问题。</p>
+</li>
+<li>
+<p>快应用在标签的使用上更为严格，文本节点必须放在a, span, text, option这4种标签中，实际上span的使用限制还严厉些，于是我们在编译时，只用到a, text, option。而a是对标BAT的navigator，因此一般也用不到。</p>
+</li>
+<li>
+<p>最大的问题是对CSS支持太差，比如说不支持<code>display: block, display: line</code>, 不支持浮动，不支持相对绝对定位，不支持<code>.class1.class2</code>的写法……</p>
+</li>
+<li>
+<p>API也比BAT的API少这么多东西，兼容起来非常吃力。</p>
+</li>
+</ol>
 <p><img src="1538220971726.jpeg" alt="nanachi"></p>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="publish.html" class="href"><span class="ui-font-ydoc"></span>发布打包</a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
