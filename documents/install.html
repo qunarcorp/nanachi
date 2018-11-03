@@ -7,6 +7,7 @@
 <ul>
 <li>下载并安装微信开发者工具</li>
 <li>本地 <code>Node.js</code> 版本 <code>8.0</code> 以上</li>
+<li>开发过程中，对文件夹及文件的命名都有一定要求，见<a href="publish.html">发布打包一节</a></li>
 </ul>
 <h2 id="微信支付宝百度的安装流程，-快应用见下方">微信/支付宝/百度的安装流程， 快应用见下方</h2>
 <ol>
@@ -47,6 +48,7 @@ mpreact watch:quick  // 编译代码
 <p><a href="https://statres.quickapp.cn/quickapp/quickapp/201806/file/quickapp_debugger.apk" target="_blank">快应用调试器</a></p>
 <p><a href="https://statres.quickapp.cn/quickapp/quickapp/201806/file/quickapp_platform_preview_release_v1020.apk" target="_blank">快应用预览版</a></p>
 <p>快应用的目标代码分别在src（ux文件）与dist（二进制）
+在编译二进制过程，可能有许多警告，因为快应用的标签不支持 <code>data-*属性</code>及许多HTML样式，但这不会影响结果。
 <img src="./quick2ma.jpg" alt="image">
 <img src="./quickdebugger.jpg" alt="image">
 <img src="./watch_quick.jpg" alt="image"></p>

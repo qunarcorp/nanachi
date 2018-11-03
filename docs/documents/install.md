@@ -4,6 +4,7 @@
 
 * 下载并安装微信开发者工具
 * 本地 `Node.js` 版本 `8.0` 以上
+* 开发过程中，对文件夹及文件的命名都有一定要求，见[发布打包一节](publish.md)
 
 ## 微信/支付宝/百度的安装流程， 快应用见下方
 
@@ -57,6 +58,7 @@ npm run server --watch      // 这是hap 的打开远程服务，生成二维码
 [快应用预览版](https://statres.quickapp.cn/quickapp/quickapp/201806/file/quickapp_platform_preview_release_v1020.apk)
 
 快应用的目标代码分别在src（ux文件）与dist（二进制）
+在编译二进制过程，可能有许多警告，因为快应用的标签不支持 `data-*属性`及许多HTML样式，但这不会影响结果。
 ![image](./quick2ma.jpg)
 ![image](./quickdebugger.jpg)
 ![image](./watch_quick.jpg)

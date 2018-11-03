@@ -8,6 +8,7 @@
 <pre><code class="language-jsx">src
    <span class="token operator">|</span><span class="token operator">--</span>components
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>HotelDialog
+   <span class="token operator">|</span>    <span class="token operator">|</span>     └──index<span class="token punctuation">.</span>js  <span class="token comment">//必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog</span>
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>HotelXXX
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>FlightYYY
    <span class="token operator">|</span>    └── <span class="token operator">...</span>
@@ -32,7 +33,8 @@
 <p>pages目录下每个事业部各建一个目录，以事件部的名字命名，里面为index.js 及页面的目录，index.js要引入自己目录的所有页面，页面也以index.js命名，并且里面必须是有状态的React组件（转译器会转换成页面组件。）页面的index.js各种引入通用组件与common目录的依赖</p>
 <pre><code class="language-jsx">   <span class="token operator">|</span><span class="token operator">--</span>pages
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>hotel
-            <span class="token operator">|</span><span class="token operator">--</span>index<span class="token punctuation">.</span>js <span class="token comment">//目录, import里面所有index.js</span>
+            <span class="token operator">|</span><span class="token operator">--</span>index
+            <span class="token operator">|</span>    └──index<span class="token punctuation">.</span>js <span class="token comment">//目录, import里面所有index.js</span>
             <span class="token operator">|</span><span class="token operator">--</span>page1
             <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>js
             <span class="token operator">|</span>    └── index<span class="token punctuation">.</span>scss

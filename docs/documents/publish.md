@@ -8,6 +8,7 @@
 src
    |--components
    |    |--HotelDialog
+   |    |     └──index.js  //必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog
    |    |--HotelXXX
    |    |--FlightYYY
    |    └── ...
@@ -33,7 +34,8 @@ pages目录下每个事业部各建一个目录，以事件部的名字命名，
 ```jsx
    |--pages
    |    |--hotel
-            |--index.js //目录, import里面所有index.js
+            |--index
+            |    └──index.js //目录, import里面所有index.js
             |--page1
             |    |---index.js
             |    └── index.scss
