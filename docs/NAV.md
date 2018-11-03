@@ -5,3 +5,4 @@
 * [组件](component/index.md)
 * [API](apis/index.md)
 * [UI组件](ui/index.md)
+* [关于](documents/about.md)
