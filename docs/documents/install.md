@@ -11,16 +11,15 @@
 2. 命令行定位到`packages/cli`目录下，执行`npm link` 如果之前装过要先npm unlink<br />
 3. 然后定位到外面的目录，不要在cli目录中建工程。 使用 `cd ../../ && mpreact init demo` 创建工程<br />
 4. 定位到 `demo` 目录下安装依赖`npm i `或`yarn`
-5.  `mpreact build` 构建，<br />
-6.  `mpreact watch` 监听文件变化实时构建，<br />
-7. 用微信开发工具打开当中的dist目录，自己在src目录中进行开发<br />
+5.  `mpreact build` 全量编译代码，build后面可跟参数， 如mpreact build:ali<br />
+6.  `mpreact watch` 增量编译代码并监听文件变化，watch后面可跟参数<br />
+7. 用微信开发工具打开当中的dist目录，自己在source目录中进行开发<br />
 
 ```shell
-cd anu/packages/cli & npm link
+cd anu/packages/cli && npm link
 cd ../../ && mpreact init demo
-cd demo && <yarn|npm|cnpm> install
-mpreact build:<wx|ali|bu|quick>
-mpreact watch:<wx|ali|bu|quick>
+cd demo && yarn
+mpreact watch   //或 mpreact watch:wx 或 mpreact watch:bu 或 mpreact watch:ali
 ```
 
 ![image](./select_tmpl.png)
@@ -37,38 +36,30 @@ mpreact watch:<wx|ali|bu|quick>
 ![image](https://user-images.githubusercontent.com/190846/45038189-53f44a80-b093-11e8-9ecb-a4080f21b262.png)
 
 
-
-=============
-
-另一种新的安装方式（还在测试中）
+## 快应用的安装流程
 
 执行以下命令：
 
 ```bash
-npm i -g nanachi-cli
-
-# if you are using yarn
-yarn global add nanachi-cli
+npm install -g hap-toolkit //安装快应用的hap编译器， 只需安装一次
+mpreact init xxx     // 初始化工程
+cd xxx && npm i      // npm i可以改成yarn， 安装nanachi的依赖
+mpreact watch:quick  // 编译代码
+npm i                // 这是安装快应用的编译器hap的依赖，
+npm run build        // 这是hap 的构建命令
+npm run server       // 这是hap 的打开远程服务，生成二维码让你用手机扫码查看编译后的app
 ```
+。
+快应用还没有像微信， 支付宝， 百度那样提供好用的开发者工具，想查看结果需要手机装 `快应用调试器`。快应用只能用于安卓。
 
-即可全局安装 `nanachi`。
+[快应用调试器](https://statres.quickapp.cn/quickapp/quickapp/201806/file/quickapp_debugger.apk)
 
-## 初始化项目
+[快应用预览版](https://statres.quickapp.cn/quickapp/quickapp/201806/file/quickapp_platform_preview_release_v1020.apk)
 
-执行一下命令可以在当前目录新建一个项目：
+快应用的目标代码分别在src（ux文件）与dist（二进制）
+![image](./quick2ma.jpg)
+![image](./quickdebugger.jpg)
+![image](./watch_quick.jpg)
 
-```bash
-nanachi init
-```
-
-回答数个问题即可生成一个新项目。
-
-## 启动项目
-
-初始化之后在项目根目录中执行 `nanachi start` 命令，即可进入开发模式。注意，微信开发者工具在选择目录时需要选择项目根目录下的 `dist/` 目录。
-
-## 编译项目
-
-在项目根目录执行 `nanachi build` 即可编译项目至 `dist/` 目录下。
 
 
