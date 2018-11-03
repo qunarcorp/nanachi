@@ -7,7 +7,7 @@
 
 ## 微信/支付宝/百度的安装流程， 快应用见下方
 
-1. `git clone git@github.com:RubyLouvre/anu.git` 或`git clone https://github.com/RubyLouvre/anu.git`<br /> 注意想支持支付宝/百度/快应用，请使用branch3 分支，正忙着业务线，以后会合并到master
+1. `git clone git@github.com:RubyLouvre/anu.git` 或`git clone https://github.com/RubyLouvre/anu.git`<br />
 2. 命令行定位到`packages/cli`目录下，执行`npm link` 如果之前装过要先npm unlink<br />
 3. 然后定位到外面的目录，不要在cli目录中建工程。 使用 `cd ../../ && mpreact init demo` 创建工程<br />
 4. 定位到 `demo` 目录下安装依赖`npm i `或`yarn`
