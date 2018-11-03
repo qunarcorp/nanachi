@@ -5,7 +5,7 @@
 * 下载并安装微信开发者工具
 * 本地 `Node.js` 版本 `8.0` 以上
 
-## 安装
+## 微信/支付宝/百度的安装流程， 快应用见下方
 
 1. `git clone git@github.com:RubyLouvre/anu.git` 或`git clone https://github.com/RubyLouvre/anu.git`<br /> 注意想支持支付宝/百度/快应用，请使用branch3 分支，正忙着业务线，以后会合并到master
 2. 命令行定位到`packages/cli`目录下，执行`npm link` 如果之前装过要先npm unlink<br />
@@ -15,7 +15,7 @@
 6.  `mpreact watch` 增量编译代码并监听文件变化，watch后面可跟参数<br />
 7. 用微信开发工具打开当中的dist目录，自己在source目录中进行开发<br />
 
-```shell
+```bash
 cd anu/packages/cli && npm link
 cd ../../ && mpreact init demo
 cd demo && yarn
@@ -30,7 +30,7 @@ mpreact watch   //或 mpreact watch:wx 或 mpreact watch:bu 或 mpreact watch:al
 ![image](./build_ali.png)
 ![image](./watch_ali.png)
 
-拼多多模板，请打开右上角 “>>” 详情，  不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书 打上勾
+有远程请求的页面，需要打开右上角 “>>” 详情，  `不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书` 打上勾
 
 
 ![image](https://user-images.githubusercontent.com/190846/45038189-53f44a80-b093-11e8-9ecb-a4080f21b262.png)
