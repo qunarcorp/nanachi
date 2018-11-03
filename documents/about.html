@@ -4,8 +4,8 @@
       <div class="m-search-result js-search-result"></div>
     </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item active"><a class="href" href="intro.html">文档</a></li><li class="item "><a class="href" href="../component/index.html">组件</a></li><li class="item "><a class="href" href="../apis/index.html">API</a></li><li class="item "><a class="href" href="../ui/index.html">UI组件</a></li><li class="item "><a class="href" href="">关于</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>关于</h1>
 <p>此项目由 <a href="https://ymfe.org" target="_blank">YMFE</a> 提供支持。</p>
-<p>大约从11月份开始，我们切换到branch3开发</p>
-<p>原来master上使用 template标签来编写组件，它其实规避了许多问题，因为4大小程序的自定义组件机制都各有不同，template则是兼容成本最低的方案。但是用template标签编写组件，其实那不是组件，对于小程序来说就是视图片段。换言之，一个页面只有一个组件，而这个组件的数据则是非常庞大。果不其然，它在支付宝小程序的IOS8/9中因为性能问题挂掉，只好匆匆切到branch3。</p>
+<p>大约从11月份开始，我们切换到branch3开发，正式启动自定义组件机制实现nanachi的组件机制</p>
+<p>原来master上使用 template标签来编写组件，它其实规避了许多问题，因为4大小程序的自定义组件机制都各有不同，template则是兼容成本最低的方案。但是用template标签编写组件，其实那不是组件，对于小程序来说就是视图片段。换言之，一个页面只有一个组件，而这个组件的数据则是非常庞大。果不其然，它在支付宝小程序的IOS8/9中因为性能问题挂掉，只好匆匆启动后备方案</p>
 <p>简单回顾一下四大小程序的模板</p>
 <pre><code class="language-html"><span class="token markup"><span class="token comment">&lt;!--wxml--></span></span>
 <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
@@ -101,7 +101,7 @@
    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>从内部实现来看，BAT 都是走迷你React虚拟DOM， 快应用走迷你 vue虚拟DOM， 但支付宝的实现不好，钩子的触发顺序是随机的。因此在非随机的三种中，我们内部有一个迷你React , anu，产生的组件实例放进一个队列中，而BTM （百度，微信，小米）的created/onInit钩子再逐个再出来，执行setData实现视图的更新。而支付宝需要在编译层，为每个自定义组件标签添加一个UUID ，然后在didMount匹配取出。</p>
+<p>从内部实现来看，BAT 都是走迷你React虚拟DOM， 快应用走迷你 vue虚拟DOM， 但支付宝的实现不好，钩子的触发顺序是随机的。因此在非随机的三种中，我们内部有一个迷你React, anu，产生的组件实例放进一个队列中，而BTM （百度，微信，小米）的created/onInit钩子再逐个再出来，执行setData实现视图的更新。而支付宝需要在编译层，为每个自定义组件标签添加一个UUID ，然后在didMount匹配取出。</p>
 <pre><code class="language-javascript"><span class="token comment">//anu </span>
 <span class="token function">onBeforeRender</span><span class="token punctuation">(</span>fiber<span class="token punctuation">)</span><span class="token punctuation">{</span>
    <span class="token keyword">var</span> type <span class="token operator">=</span> fiber<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
@@ -138,7 +138,9 @@
 <span class="token punctuation">}</span>
 
 </code></pre>
-<p>支付宝在didMount钩子才更新数据还有一个问题，就是会带来reflow。</p>
+<p>其实如果一个页面的数据量不大，template标签实现的组件机制比自定义组件的性能要好，自定义组件标签会对用户的属性根据props配置项进行过滤，
+还要传入slot，启动构造函数等等。但数据量大，自定义组件机制由于能实现局部更新，性能就反超了。</p>
+<p>但支付宝是个例，由于它延迟到在didMount钩子才更新数据，即视图出来了又要刷新视图，比其他小程序多了一次rerender与伴随而来的reflow。</p>
 <p>快应用就更麻烦些，主要有以下问题</p>
 <ol>
 <li>
