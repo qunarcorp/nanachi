@@ -26,6 +26,9 @@
     globalData <span class="token operator">=</span> <span class="token punctuation">{</span>
         ufo<span class="token punctuation">:</span> <span class="token string">'ufo'</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token function">onShareAppMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//这是全局的分享，如果某个页面组件没有定义onShareAppMessage，它就会调用这个</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token function">onLaunch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'App launched'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>

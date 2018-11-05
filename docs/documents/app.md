@@ -28,6 +28,9 @@ class Demo extends React.Component {
     globalData = {
         ufo: 'ufo'
     };
+    onShareAppMessage(){ //这是全局的分享，如果某个页面组件没有定义onShareAppMessage，它就会调用这个
+        return {}
+    };
     onLaunch() {
         console.log('App launched');
     }
