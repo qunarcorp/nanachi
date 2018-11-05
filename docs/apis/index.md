@@ -15,6 +15,7 @@
 | React.getApp                   | &nbsp;      | 相当于微信的 getApp                                                        |
 | React.Component                | &nbsp;      | 所有组件的基类                                                              |
 | React.useComponent | 内部 API      | 用来创建组件                                                               |
+| React.getCurrentPage |       | 得到当前页面的react实例， instance.props.query, instance.props.path为当前路径与参数对象                                                             |
 | React.toRenderProps            | 内部 API      | 用来代替 render 属性对应的函数                                                  |
 | React.toClass                  | 内部 API      | 用来转译 es6 类                                                           |
 | React.toStyle                  | 内部 API      | 用来转译样式                                                               |
