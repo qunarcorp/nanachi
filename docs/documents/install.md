@@ -48,7 +48,7 @@ cd xxx && npm i      // npm i可以改成yarn， 安装nanachi的依赖
 mpreact watch:quick  // 编译代码
 npm i                // 这是安装快应用的编译器hap的依赖，
 npm run build        // 这是hap 的构建命令
-npm run server --watch      // 这是hap 的打开远程服务，生成二维码让你用手机扫码查看编译后的app
+npm run server  -- --watch  // 这是hap 的打开远程服务，生成二维码让你用手机扫码查看编译后的app
 ```
 。
 快应用还没有像微信， 支付宝， 百度那样提供好用的开发者工具，想查看结果需要手机装 `快应用调试器`。快应用只能用于安卓。
