@@ -7,10 +7,11 @@
 <ul>
 <li>下载并安装微信开发者工具</li>
 <li>本地 <code>Node.js</code> 版本 <code>8.0</code> 以上</li>
+<li>开发过程中，对文件夹及文件的命名都有一定要求，见<a href="publish.html">发布打包一节</a></li>
 </ul>
 <h2 id="微信支付宝百度的安装流程，-快应用见下方">微信/支付宝/百度的安装流程， 快应用见下方</h2>
 <ol>
-<li><code>git clone git@github.com:RubyLouvre/anu.git</code> 或<code>git clone https://github.com/RubyLouvre/anu.git</code><br> 注意想支持支付宝/百度/快应用，请使用branch3 分支，正忙着业务线，以后会合并到master</li>
+<li><code>git clone git@github.com:RubyLouvre/anu.git</code> 或<code>git clone https://github.com/RubyLouvre/anu.git</code><br></li>
 <li>命令行定位到<code>packages/cli</code>目录下，执行<code>npm link</code> 如果之前装过要先npm unlink<br></li>
 <li>然后定位到外面的目录，不要在cli目录中建工程。 使用 <code>cd ../../ &amp;&amp; mpreact init demo</code> 创建工程<br></li>
 <li>定位到 <code>demo</code> 目录下安装依赖<code>npm i</code>或<code>yarn</code></li>
@@ -40,13 +41,14 @@ mpreact init xxx     // 初始化工程
 mpreact watch:quick  // 编译代码
 <span class="token function">npm</span> i                // 这是安装快应用的编译器hap的依赖，
 <span class="token function">npm</span> run build        // 这是hap 的构建命令
-<span class="token function">npm</span> run server       // 这是hap 的打开远程服务，生成二维码让你用手机扫码查看编译后的app
+<span class="token function">npm</span> run server  -- --watch  //或hap server --watch 这是hap 的打开远程服务，生成二维码让你用手机扫码查看编译后的app
 </code></pre>
 <p>。
 快应用还没有像微信， 支付宝， 百度那样提供好用的开发者工具，想查看结果需要手机装 <code>快应用调试器</code>。快应用只能用于安卓。</p>
 <p><a href="https://statres.quickapp.cn/quickapp/quickapp/201806/file/quickapp_debugger.apk" target="_blank">快应用调试器</a></p>
 <p><a href="https://statres.quickapp.cn/quickapp/quickapp/201806/file/quickapp_platform_preview_release_v1020.apk" target="_blank">快应用预览版</a></p>
 <p>快应用的目标代码分别在src（ux文件）与dist（二进制）
+在编译二进制过程，可能有许多警告，因为快应用的标签不支持 <code>data-*属性</code>及许多HTML样式，但这不会影响结果。
 <img src="./quick2ma.jpg" alt="image">
 <img src="./quickdebugger.jpg" alt="image">
 <img src="./watch_quick.jpg" alt="image"></p>
