@@ -12,7 +12,7 @@
 为了兼容所有平台，我们定下这些规则
 
 1. 原来打算使用view标签的地方，请使用div,h1这些块状元素代替
-2. 文本必须包含在text, span, a, option这几种标签内
+2. 文本必须包含在text, span, a, option, label这几种标签内
 3. text标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签
 4. jsx中不能出现 声明变量或函数的语句，不能出现switch语句
 
