@@ -101,9 +101,7 @@ export {
    onInit(){},
    onReady(){},
    onDestroy(){},
-   methods: {
-      onClick(){}
-   }
+   onClick(){}
 }
 ```
 
@@ -169,7 +167,7 @@ didMount(){
 
 娜娜奇主要分为两大部分， 编译期的转译框架， 统一将以React为技术栈的工程转换为各种小程序认识的文件与结构
 
-转译框架又细分为4部分， react组件转换器，es6转换器， 样式转换器及各种辅助用的helpers.
+转译框架又细分为4部分， react组件转译器，es6转译器， 样式转译器及各种辅助用的helpers.
 
 运行时的底层框架与补丁组件， 底层框架为ReactWx, ReactBu, ReactAli, ReactQuick,分别对标微信，百度，
 支付宝小程序及快应用，因为官方React的size太大，并没有适用的钩子机制，让我们在渲染前将数据传给原生组件进行
@@ -193,8 +191,8 @@ index.js 要exports与目录名同名的类名
 但希望每个业务线的组件都放在与业务线同名的目录下
 - assets目录， 放静态资源
 
-app.js pages目录，components目录会应用react转换器与样式转换器， commons目录应用es6转换器，
-assets目录应用样式转换器
+app.js pages目录，components目录会应用react转译器与样式转译器， commons目录应用es6转译器，
+assets目录应用样式转译器
 
 
 直观的效果见 [这里的两个图](publish.md)
@@ -218,7 +216,7 @@ React.api 将对所有平台的上百个API进行抹平，API是wx, swan, my这�
 
 React.api 里的所有异步方法，都Promise化，方便大家直接用es7 的async ,await语法
 
-样式转换器，帮用户处理样式表中的rpx/px之间的转换。
+样式转译器，帮用户处理样式表中的rpx/px之间的转换。
 
 ## 为了保证跨平台，设计娜娜奇技术方案的重要原则和开发规范，哪些不支持
 
@@ -233,8 +231,11 @@ position:absolute/relative
 ## 娜娜奇如何和原生小程序兼容，以及其他有用的辅助功能或者工具
 
 娜娜奇不与某一种原生小程序兼容，因为它要照顾4种小程序
+
 如果你的目录名，样式不符合规范，我们在转译阶段会给出友好提示
+
 快应用的文本节点要求放在text, a, option下，娜娜奇会在编译阶段自动对没有放在里面的文本包一个text标签
+
 页面配置对象的许多配置项（如tabBar, titBar的配置参数，页面背景参数）， 我们也进行了抹平，用户只需要以微信方式
 写，我们自动转换为各个平台对应的名字，在快应用中，是没有tabBar, 我们直接让每个页面组件继承了一个父类，父类里面
 有tabBar, 令它长得与其他小程序一模一样
