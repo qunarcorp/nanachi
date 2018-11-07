@@ -9,20 +9,20 @@
 <li>本地 <code>Node.js</code> 版本 <code>8.0</code> 以上</li>
 <li>开发过程中，对文件夹及文件的命名都有一定要求，见<a href="publish.html">发布打包一节</a></li>
 </ul>
-<h2 id="微信支付宝百度的安装流程，-快应用见下方">微信/支付宝/百度的安装流程， 快应用见下方</h2>
+<h2 id="微信支付宝百度头条的安装流程，-快应用见下方">微信/支付宝/百度/头条的安装流程， 快应用见下方</h2>
 <ol>
 <li><code>git clone git@github.com:RubyLouvre/anu.git</code> 或<code>git clone https://github.com/RubyLouvre/anu.git</code><br></li>
 <li>命令行定位到<code>packages/cli</code>目录下，执行<code>npm link</code> 如果之前装过要先npm unlink<br></li>
-<li>然后定位到外面的目录，不要在cli目录中建工程。 使用 <code>cd ../../ &amp;&amp; mpreact init demo</code> 创建工程<br></li>
+<li>然后定位到外面的目录，不要在cli目录中建工程。 使用 <code>cd ../../ &amp;&amp; nanachi init demo</code> 创建工程<br></li>
 <li>定位到 <code>demo</code> 目录下安装依赖<code>npm i</code>或<code>yarn</code></li>
-<li><code>mpreact build</code> 全量编译代码，build后面可跟参数， 如mpreact build:ali<br></li>
-<li><code>mpreact watch</code> 增量编译代码并监听文件变化，watch后面可跟参数<br></li>
+<li><code>nanachi build</code> 全量编译代码，build后面可跟参数， 如nanachi build:ali<br></li>
+<li><code>nanachi watch</code> 增量编译代码并监听文件变化，watch后面可跟参数<br></li>
 <li>用微信开发工具打开当中的dist目录，自己在source目录中进行开发<br></li>
 </ol>
 <pre><code class="language-bash"><span class="token function">cd</span> anu/packages/cli <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> <span class="token function">link</span>
-<span class="token function">cd</span> <span class="token punctuation">..</span>/<span class="token punctuation">..</span>/ <span class="token operator">&amp;&amp;</span> mpreact init demo
+<span class="token function">cd</span> <span class="token punctuation">..</span>/<span class="token punctuation">..</span>/ <span class="token operator">&amp;&amp;</span> nanachi init demo
 <span class="token function">cd</span> demo <span class="token operator">&amp;&amp;</span> yarn
-mpreact <span class="token function">watch</span>   //或 mpreact watch:wx 或 mpreact watch:bu 或 mpreact watch:ali
+nanachi <span class="token function">watch</span>   //或 nanachi watch:wx 或 nanachi watch:bu 或 nanachi watch:ali 或 或 nanachi watch:tt
 </code></pre>
 <p><img src="./select_tmpl.png" alt="image">
 <img src="./build_wx.png" alt="image">
@@ -36,9 +36,9 @@ mpreact <span class="token function">watch</span>   //或 mpreact watch:wx 或 m
 <h2 id="快应用的安装流程">快应用的安装流程</h2>
 <p>执行以下命令：</p>
 <pre><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g hap-toolkit //安装快应用的hap编译器， 只需安装一次
-mpreact init xxx     // 初始化工程
+nanachi init xxx     // 初始化工程
 <span class="token function">cd</span> xxx <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> i      // <span class="token function">npm</span> i可以改成yarn， 安装nanachi的依赖
-mpreact watch:quick  // 编译代码
+nanachi watch:quick  // 编译代码
 <span class="token function">npm</span> i                // 这是安装快应用的编译器hap的依赖，
 <span class="token function">npm</span> run build        // 这是hap 的构建命令
 <span class="token function">npm</span> run server  -- --watch  //或hap server --watch 这是hap 的打开远程服务，生成二维码让你用手机扫码查看编译后的app

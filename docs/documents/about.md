@@ -59,7 +59,22 @@
     </view>
   </view>
 </template>
+
+<!--头条小程序-->
+<view class="container">
+  <view class="userinfo" bindtap="eventCanBubble">
+    <button tt:if="{{!hasUserInfo && canIUse}}" catchtap="eventCanBubble"> 获取头像昵称 </button>
+    <block tt:else>
+      <view tt:for="array" tt:for-item="el" tt:for-index="index"  tt:key="*this">
+         {{el.title}}
+      </view>
+    </block>
+  </view>
+</view>
+
 ```
+
+
 
 从模板来看，其实差别不大，改一下属性名，每个公司都想通过它们来标识自己的存在。但内部实现完全不一样，因为源码并没有公开或者混淆了。使用自定义组件机制的风险就比<template>标签大很多。 BAT三公司都暴露了一个Component入口函数，让你传入一个配置对象实现组件机制，而以小米为首的快应用则是内部走vue，没有Component这个方法，只需你export一个配置对象。
 ```javascript
@@ -94,6 +109,17 @@ Component({
   attached(){},//拿不到实例的UUID
   dettached(){},//钩子触发顺序与元素在文档位置一致
   onClick(){}
+})
+
+//头条小程序
+Component({
+  data: {},
+  created(){},//拿不到实例的UUID
+  attached(){},//钩子触发顺序与元素在文档位置一致
+  dettached(){}
+  methods: {//事件句柄必须放在methods
+    onClick(){}
+  }
 })
 //小米（快应用都是由小米提供技术方案）
 export {
