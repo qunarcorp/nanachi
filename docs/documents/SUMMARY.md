@@ -9,6 +9,8 @@
 * [事件系统](event.md)
 * [JSX](jsx.md)
 * [样式](style.md)
+* [转发分享](share.md)
+* [日志收集与上传](report.md)
 * [async/await](async.md)
 * [支持npm模块](npm.md)
 * [兼容native组件](support-native-component.md)
