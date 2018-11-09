@@ -4,14 +4,15 @@
 
 小程序编译阶段，会将所有事件转换为一个全局的dispatchEvent方法，因此我们可以这里做统一的日志的收集
 
-```
- <div onclick="dispatchEvent" class="item" data-click-uid="e1765" data-class-uid="c1321">
+```jsx
+ <div onclick="dispatchEvent" data-beacon-id="clickForVibration" class="item" data-click-uid="e1765" data-class-uid="c1321">
      <text>震动</text>
  </div>
 ```
-如果我们发现这事件类型是click/tap, 并且标签名是button, a, 或带有data-beacon-id那么我们就会访问全局的onCollectLogs方法，让用户整理成一个对象，放到一个数组中, 并尝试使用onSendLogs自动发送；
 
-在每个页面的Unload事件中，框架也会访问onSendLogs方法来发送数据。
+如果我们发现这事件类型是click/tap, 并且标签中带有`data-beacon-id`那么我们就会访问全局的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中, 并尝试使用`onReportLogs`自动发送；
+
+在每个页面的Unload事件中，框架也会访问`onReportLogs`方法来发送数据, `onReportLogs`应该有一个数组参数。
 
 因此用户只需要在app.js定义好这两个事件，框架帮你搞定日志上传。下面是示例：
 
@@ -56,10 +57,10 @@ class Demo extends React.Component {
         });
         if(logs.length > 20){
             var uploadLogs = logs.splice(0, 10);//截取前十条；
-            this.onSendLogs(uploadLogs)
+            this.onReportLogs(uploadLogs)
         }
     };
-    onSendLogs(logs){ //自己实现
+    onReportLogs(logs){ //自己实现
         if(!logs){
             if(!Array.isArray(this.globalData.logs) && this.globalData.logs.length == 0){
                return
