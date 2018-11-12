@@ -10,12 +10,11 @@
  </div>
 ```
 
-如果我们发现这事件类型是click/tap, 并且标签中带有`data-beacon-id`那么我们就会访问全局的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中, 并尝试使用`onReportLogs`自动发送；
+如果我们发现这事件类型是click/tap, 并且标签中带有`data-beacon-id`那么我们就会访问全局的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中。每收集到20个日志， 就会尝试使用`onReportLogs`自动发送；
 
-在每个页面的Unload事件中，框架也会访问`onReportLogs`方法来发送数据, `onReportLogs`应该有一个数组参数。
+当用户退出APP时，会进入onHide事件，这时我们就会上传剩余的所有日志
 
 因此用户只需要在app.js定义好这两个事件，框架帮你搞定日志上传。下面是示例：
-
 
 ```jsx
 import React from '@react';
@@ -59,6 +58,9 @@ class Demo extends React.Component {
             var uploadLogs = logs.splice(0, 10);//截取前十条；
             this.onReportLogs(uploadLogs)
         }
+    };
+    onHide(){//app退出时，必然触发这个，上传所有数据
+        this.onReportLogs();
     };
     onReportLogs(logs){ //自己实现
         if(!logs){

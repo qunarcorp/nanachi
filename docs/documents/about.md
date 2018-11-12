@@ -121,7 +121,14 @@ Component({
   dettached(){},//钩子触发顺序与元素在文档位置一致
   onClick(){}
 })
-
+//小米（快应用都是由小米提供技术方案）
+export {
+   props: {},//基本与百度差不多
+   onInit(){},
+   onReady(){},
+   onDestroy(){},
+   onClick(){}
+}
 //头条小程序
 Component({
   data: {},
@@ -132,14 +139,6 @@ Component({
     onClick(){}
   }
 })
-//小米（快应用都是由小米提供技术方案）
-export {
-   props: {},//基本与百度差不多
-   onInit(){},
-   onReady(){},
-   onDestroy(){},
-   onClick(){}
-}
 ```
 
 从内部实现来看，BAT 都是走迷你React虚拟DOM， 快应用走迷你 vue虚拟DOM， 但支付宝的实现不好，钩子的触发顺序是随机的。因此在非随机的三种中，我们内部有一个迷你React, anu，产生的组件实例放进一个队列中，而BTM （百度，微信，小米）的created/onInit钩子再逐个再出来，执行setData实现视图的更新。而支付宝需要在编译层，为每个自定义组件标签添加一个UUID ，然后在didMount匹配取出。
@@ -278,3 +277,5 @@ position:absolute/relative
 有tabBar, 令它长得与其他小程序一模一样
 
 ![nanachi](1538220971726.jpeg)
+
+
