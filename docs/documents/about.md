@@ -101,7 +101,18 @@ Component({
     onClick(){}
   }
 })
-
+//支付宝 生命周期V2
+Component({
+  data: {},
+  onInit(){},//对应 react constructor， 只可以读取 this.props 设置 this.data 或调用 this.setData/$spliceData 修改 已有data
+  deriveDataFromProps(props){},//对应 react getDerivedStateFromProps，只可以调用 this.setData/$spliceData 修改 data
+  onMount(){},//对应 react componentDidMount
+  onUpdate(){},//对应 react componentDidUpdate
+  onUnmount(){},//对应 react componentWillUnmount
+  methods: {
+    onClick(){}
+  }
+})
 //百度
 Component({
   data: {},
