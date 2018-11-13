@@ -13,7 +13,6 @@
 * [日志收集与上传](report.md)
 * [async/await](async.md)
 * [支持npm模块](npm.md)
-* [兼容native组件](support-native-component.md)
 * [按平台打包业务代码](platform.md)
 * [路由](router.md)
 * [各种小程序的比较](diff.md)
