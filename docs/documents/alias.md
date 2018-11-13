@@ -2,23 +2,26 @@
 
 在项目package.json中，可配置alias别名。
 package.json中配置：
+
 ```jsx
 {
     "nanachi": {
         "alias": {
-            "@co": "/source/a/b"
+            "@components": '/components',
+            "@assets": '/assets'
         }
     }
 }
 ```
 
 使用方式：
+
 ```jsx
 //js中
-import module from '@com/module/index.js';
+import FlightButton from '@components/FlightButton/index.js';
 ```
 
 ```jsx
 //style中
-@import '@com/style/g.scss';
+@import '@assets/style/g.scss';
 ```
