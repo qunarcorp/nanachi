@@ -58,6 +58,8 @@ function createRouter(name) {
 
 页面组件与components目录下的通用组件有一些特异点，它是多出了componentDidShow, componentDidHide这两个生命周期钩子，与onPullDownRefresh onReachBottom onPageScroll onShareAppMessage这些事件。并且在config中能指定tabBar与分享按钮。
 
+应用组件更新 `state` 必须通过 `this.setState` 函数。
+
 比如：
 
 ```jsx
