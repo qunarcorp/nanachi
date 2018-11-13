@@ -10,11 +10,28 @@
  </div>
 ```
 
-<<<<<<< HEAD
 如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个`data-beacon-id`，然后在dispatchEvent执行app.js的全局对象的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中, 并尝试使用`onReportLogs`自动发送；
-=======
-如果我们发现这事件类型是click/tap, 并且标签中带有`data-beacon-id`那么我们就会访问全局的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中。每收集到20个日志， 就会尝试使用`onReportLogs`自动发送；
->>>>>>> 9daa20af860624546ff70e9d5951c16f372f77ee
+
+```javascript
+//dispatchEvent的源码
+export function dispatchEvent(e) {
+    const eventType = e.type;
+    const target = e.currentTarget;
+    const dataset = target.dataset || {};
+    const app = _getApp()
+    if ( dataset.beaconId && app ) {
+        let fn = app.onCollectLogs;
+        if(isFn(fn)){
+            app.onCollectLogs(dataset, eventType)
+        }
+    }
+    const instance = this.reactInstance;
+    if (!instance || !instance.$$eventCached) {
+        return;
+    }
+    //....略
+}
+```
 
 当用户退出APP时，会进入onHide事件，这时我们就会上传剩余的所有日志
 
@@ -60,16 +77,11 @@ class Demo extends React.Component {
             }
         }
     };
-<<<<<<< HEAD
     onHide(){
       this.onReportLogs(); //微信，支付宝，百度
     };
     onDistory(){
       this.onReportLogs(); //快应用
-=======
-    onHide(){//app退出时，必然触发这个，上传所有数据
-        this.onReportLogs();
->>>>>>> 9daa20af860624546ff70e9d5951c16f372f77ee
     };
     onReportLogs(logs){ //自己实现
         if(!logs){
@@ -105,12 +117,10 @@ class Demo extends React.Component {
 }
 
 export default App(new Demo());
-
-
-
 ```
 
 在common目录下
+
 ```jsx
 import React from '@react'
 //此方法用于手动埋点
