@@ -9,7 +9,7 @@
      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span><span class="token punctuation">></span></span><span class="token plain-text">震动</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span><span class="token plain-text">
  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 </code></pre>
-<p>如果我们发现这事件类型是click/tap, 并且标签中带有<code>data-beacon-id</code>那么我们就会访问全局的<code>onCollectLogs</code>方法，让用户整理成一个对象，放到一个数组中, 并尝试使用<code>onReportLogs</code>自动发送；</p>
+<p>如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个<code>data-beacon-id</code>，然后在dispatchEvent执行app.js的全局对象的<code>onCollectLogs</code>方法，让用户整理成一个对象，放到一个数组中, 并尝试使用<code>onReportLogs</code>自动发送；</p>
 <p>在每个页面的Unload事件中，框架也会访问<code>onReportLogs</code>方法来发送数据, <code>onReportLogs</code>应该有一个数组参数。</p>
 <p>因此用户只需要在app.js定义好这两个事件，框架帮你搞定日志上传。下面是示例：</p>
 <pre><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span><span class="token punctuation">;</span>
@@ -31,28 +31,31 @@
     globalData <span class="token operator">=</span> <span class="token punctuation">{</span>
         ufo<span class="token punctuation">:</span> <span class="token string">'ufo'</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token function">onCollectLogs</span><span class="token punctuation">(</span>dataset<span class="token punctuation">)</span><span class="token punctuation">{</span> 
+    <span class="token function">onCollectLogs</span><span class="token punctuation">(</span>dataset<span class="token punctuation">,</span> eventType<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//这里会在框架的dispatchEvent自动调起，实现自动理点</span>
         <span class="token keyword">var</span> beaconId <span class="token operator">=</span> dataset<span class="token punctuation">.</span>beaconId<span class="token punctuation">;</span>
         <span class="token keyword">var</span> otherData <span class="token operator">=</span> dataset<span class="token punctuation">.</span>xxx<span class="token comment">//data-xxxx</span>
         <span class="token keyword">var</span> otherData2 <span class="token operator">=</span> dataset<span class="token punctuation">.</span>xxx2<span class="token punctuation">;</span>
-        <span class="token keyword">var</span> path <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">getCurrentPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>path<span class="token punctuation">;</span><span class="token comment">//狂妄自大</span>
-        <span class="token keyword">var</span> type <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>buildType<span class="token punctuation">;</span><span class="token comment">// wx, bu, ali</span>
-        <span class="token keyword">var</span> info <span class="token operator">=</span> React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getSystemInfornSync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">var</span> <span class="token punctuation">{</span> brand<span class="token punctuation">,</span> model<span class="token punctuation">,</span> version<span class="token punctuation">,</span> platform<span class="token punctuation">}</span> <span class="token operator">=</span> info <span class="token punctuation">;</span><span class="token comment">//获取手机品牌，手机型号， 微信版本号, 客户端平台;</span>
+        <span class="token keyword">var</span> timeStamp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span> <span class="token operator">-</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> path <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">getCurrentPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>path<span class="token punctuation">;</span><span class="token comment">//页面路径</span>
         <span class="token keyword">var</span> logs <span class="token operator">=</span>  <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
         logs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
             pid<span class="token punctuation">:</span> beaconId<span class="token punctuation">,</span>
             path<span class="token punctuation">:</span> path<span class="token punctuation">,</span>
-            bd_source<span class="token punctuation">:</span> type<span class="token punctuation">,</span><span class="token comment">// 固定值 'wx'</span>
-            brand<span class="token punctuation">:</span> brand<span class="token punctuation">,</span>
-            model<span class="token punctuation">:</span> model<span class="token punctuation">,</span>
-            version<span class="token punctuation">:</span>  version<span class="token punctuation">,</span>
-            platform<span class="token punctuation">:</span> platform
+            timeStamp<span class="token punctuation">:</span> timeStamp
+            action<span class="token punctuation">:</span> eventType
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span>logs<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">var</span> uploadLogs <span class="token operator">=</span> logs<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//截取前十条；</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onReportLogs</span><span class="token punctuation">(</span>uploadLogs<span class="token punctuation">)</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>onReportLogs<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onReportLogs</span><span class="token punctuation">(</span>uploadLogs<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token function">onHide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onReportLogs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//微信，支付宝，百度</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token function">onDistory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onReportLogs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//快应用</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token function">onReportLogs</span><span class="token punctuation">(</span>logs<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//自己实现</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>logs<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -62,10 +65,24 @@
            logs <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs<span class="token punctuation">;</span>
            <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>logs<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">var</span> buildType <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>buildType<span class="token punctuation">;</span><span class="token comment">// wx, bu, ali</span>
+        <span class="token keyword">var</span> info <span class="token operator">=</span> React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getSystemInfornSync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> <span class="token punctuation">{</span> brand<span class="token punctuation">,</span> model<span class="token punctuation">,</span> version<span class="token punctuation">,</span> platform<span class="token punctuation">}</span> <span class="token operator">=</span> info <span class="token punctuation">;</span><span class="token comment">//获取手机品牌，手机型号， 微信版本号, 客户端平台;</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
             url<span class="token punctuation">:</span> <span class="token string">"/fdsfdsf/sdfds"</span><span class="token punctuation">,</span>
             type<span class="token punctuation">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
-            data： <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringif</span><span class="token punctuation">(</span>logs<span class="token punctuation">)</span>
+            data： <span class="token punctuation">{</span>
+                logs<span class="token punctuation">,</span>  <span class="token comment">//logData</span>
+                buildType<span class="token punctuation">,</span><span class="token comment">//wx, bu, ali, quick, tt, qq</span>
+                brand<span class="token punctuation">,</span> <span class="token comment">//commonData</span>
+                model<span class="token punctuation">,</span> <span class="token comment">//commonData</span>
+                version<span class="token punctuation">,</span><span class="token comment">//commonData</span>
+                platform<span class="token punctuation">,</span><span class="token comment">//commonData</span>
+             <span class="token comment">//other</span>
+            <span class="token punctuation">}</span> 
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span> 
     <span class="token function">onLaunch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -74,6 +91,19 @@
 <span class="token punctuation">}</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Demo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+
+</code></pre>
+<p>在common目录下</p>
+<pre><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span>
+<span class="token comment">//此方法用于手动埋点</span>
+<span class="token keyword">function</span> <span class="token function">createLog</span><span class="token punctuation">(</span>dataset<span class="token punctuation">,</span> eventType<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> app <span class="token operator">=</span>  React<span class="token punctuation">.</span><span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> app<span class="token punctuation">.</span>onCollectLogs <span class="token operator">===</span> <span class="token string">'function'</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+        app<span class="token punctuation">.</span><span class="token function">onCollectLogs</span><span class="token punctuation">(</span>dataset<span class="token punctuation">,</span> eventType<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="share.html" class="href"><span class="ui-font-ydoc"></span>转发分享</a></div><div class="m-paging-next m-paging-item"><a href="async.html" class="href">async/await<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');

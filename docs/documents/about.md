@@ -1,6 +1,6 @@
 # 关于
 
-此项目由 [YMFE](https://ymfe.org) 提供支持。
+此项目由 [Qunar.com](https://github.com/qunarcorp) 提供支持。
 
 
 大约从11月份开始，我们切换到branch3开发，正式启动自定义组件机制实现nanachi的组件机制
