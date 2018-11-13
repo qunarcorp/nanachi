@@ -10,7 +10,7 @@
  </div>
 ```
 
-如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个`data-beacon-id`，然后在dispatchEvent执行app.js的全局对象的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中, 并尝试使用`onReportLogs`自动发送；
+如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个`data-beacon-id`(如果你已经写了，它就不会添加，自动添加data-beacon-id的格式为 `标签名＋行号+"_"＋列号`，如`input24_56`,行号列号为源码的位置，方便我们调试)，然后在dispatchEvent执行app.js的全局对象的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中, 并尝试使用`onReportLogs`自动发送；
 
 ```javascript
 //dispatchEvent的源码

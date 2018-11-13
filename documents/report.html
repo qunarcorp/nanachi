@@ -9,7 +9,7 @@
      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span><span class="token punctuation">></span></span><span class="token plain-text">震动</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span><span class="token plain-text">
  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 </code></pre>
-<p>如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个<code>data-beacon-id</code>，然后在dispatchEvent执行app.js的全局对象的<code>onCollectLogs</code>方法，让用户整理成一个对象，放到一个数组中, 并尝试使用<code>onReportLogs</code>自动发送；</p>
+<p>如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个<code>data-beacon-id</code>(如果你已经写了，它就不会添加，自动添加data-beacon-id的格式为 <code>标签名＋行号+&quot;_&quot;＋列号</code>，如<code>input24_56</code>,行号列号为源码的位置，方便我们调试)，然后在dispatchEvent执行app.js的全局对象的<code>onCollectLogs</code>方法，让用户整理成一个对象，放到一个数组中, 并尝试使用<code>onReportLogs</code>自动发送；</p>
 <pre><code class="language-javascript"><span class="token comment">//dispatchEvent的源码</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">dispatchEvent</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> eventType <span class="token operator">=</span> e<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
