@@ -2,7 +2,7 @@
 
 小程序寄生在大流量的App中，因此转发共享功能非常重要，能实现病毒性传播。
 
-小程序的页面顶部都有一个转发按钮，想激活它，需要在当前的页面实例添加一个onShareAppMessage方法，如果没有那么它就到app.js找全局的onShareAppMessage方法。
+小程序的页面顶部都有一个转发按钮，想激活它，需要在当前的页面实例添加一个onShareAppMessage方法，如果没有那么它就到app.js找全局的onGlobalShare方法。
 
 ```javascript
 // pages/pagexx/index.js
@@ -98,7 +98,7 @@ class Demo extends React.Component {
     globalData = {
         ufo: 'ufo'
     };
-    onShareAppMessage() {
+    onGlobalShare() {
         var navigateToUrl = '/pages/index/index';
         return {
             title: '预订火车票 - 去哪儿旅行',

@@ -9,15 +9,17 @@ app.js外表上看来是一个React组件
 *  全局配置对象 config 配置标题栏与tab栏
 *  全局数据对象 globalData
 *  全局回调
-   -  onShareAppMessage  分享
+   -  onGlobalShare  如果页面组件**没有**定义onShareAppMessage方法，那么就会调用此方法，此方法要求返回对象
    -  onCollectLogs 所有click/tap/change/input/blur等核心的与用户行为相关的事件触发时，都会调用这个回调
    -  onSendLogs  onCollectLogs理应凑够一定数量的日志或在app.js onHide方法调用此方法，用于上传日志
-   -  onGlobalLoad 每个页面在开始渲染页面时就会执行此回调，相当于页面的onLoad钩子
-   -  onGlobalReady 每个页面在渲染页面后（布局完成）就会执行此回调，相当于页面的onReady钩子
+   -  onGlobalLoad 每个页面在开始渲染页面时就会执行此回调，页面有onLoad方法时，也会同时执行此方法
+   -  onGlobalReady 每个页面在渲染页面后（布局完成）就会执行此回调，页面有onReady方法时，也会同时执行此方法
+   -  onGlobalShow 每个页面在显示时就会调用此方法，页面有onShow方法时，也会同时执行此方法
+   -  onGlobalHide 每个页面在隐藏时就会调用此方法，页面有onHide方法时，也会同时执行此方法
+   -  onHide 小程序在退出时会调用此方法（如果是快应用则是onDistory）
 *  全局样式 自己手动`import 'app.scss'`或`import 'app.less'`
 *  import 所有以 `./pages/` 开头的依赖放到 `app.json` 中 `pages` 配置项中。
-
-
+ 
 
 ```jsx
 import React from '@react';
