@@ -27,7 +27,7 @@ export function dispatchEvent(e) {
     let key = dataset.key;
     eventUid += key != null ? '-' + key : '';
     let fiber = instance.$$eventCached[eventUid + 'Fiber'];
-    if ( dataset.beaconId && app && app.onCollectLogs) {
+    if ( /click|tap/.test(eventType) && app && app.onCollectLogs) {
         app.onCollectLogss(dataset, eventType, fiber && fiber.stateNode);
     }
    
@@ -44,7 +44,7 @@ import React from '@react';
 import './pages/index/index';
 import './pages/demo/base/index';
 import './pages/demo/native/index/index';
-import './app.less';
+import './app.scss';
 function computeXpath(node){ //通过xpath实现自动埋点
     var xpath = [];
     while (node.parentNode){
@@ -53,7 +53,7 @@ function computeXpath(node){ //通过xpath实现自动埋点
         xpath.unshift(tag+'['+index+']');
         node = node.parentNode;
     }
-    return  uuid = '/page/'+ xpath.join('/');
+    return  '/page/'+ xpath.join('/');
 }
 class Demo extends React.Component {
     static config = {
