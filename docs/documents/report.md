@@ -64,7 +64,7 @@ function computeCompressedXpath(node){ //压缩后的xpath
     }
     return xpath.join('/');
 }
-class Demo extends React.Component {
+class Global extends React.Component {
     static config = {
         window: {
             backgroundTextStyle: 'light',
@@ -78,9 +78,9 @@ class Demo extends React.Component {
         ufo: 'ufo'
     };
     onCollectLogs(dataset, eventType, node){ //这里会在框架的dispatchEvent自动调起，实现自动理点
-        var beaconId = dataset.beaconId;
+        var beaconId = dataset.beaconUid;
         if( beaconId == 'default' && node ){
-            beaconId = computeXpath(node);
+            beaconId = computeCompressedXpath(node);
         }
         var otherData = dataset.xxx//data-xxxx
         var otherData2 = dataset.xxx2;
@@ -139,7 +139,7 @@ class Demo extends React.Component {
     }
 }
 
-export default App(new Demo());
+export default App(new Global());
 ```
 
 在common目录下
@@ -155,3 +155,11 @@ function createLog(dataset, eventType){
 }
 ```
 
+## 各种日志的处理
+
+1. 订单 等这样重要的行为， 要业务中进行手动埋点，使用上面的createLog方法
+2. 点击，输入这样的事件，使用自动埋点，框架会在内部的dispatchEvent方法中自行调用全局的
+onCollectLogs方法
+3. 页面流转情况， 建议对React.api.redirectTo等四个方法进行再包装，里面封入onCollectLogs方法，
+4. 页面渲染时间，通过全局的onGlobalLoad, onGlobalReady等到某一页的渲染时间
+5. 页面停留时间，通过全局的onGlobalShow onGlobalHide等到某一页的停留时间

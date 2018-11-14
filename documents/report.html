@@ -57,7 +57,7 @@
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> xpath<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+<span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
         window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
             backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
@@ -71,9 +71,9 @@
         ufo<span class="token punctuation">:</span> <span class="token string">'ufo'</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token function">onCollectLogs</span><span class="token punctuation">(</span>dataset<span class="token punctuation">,</span> eventType<span class="token punctuation">,</span> node<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//这里会在框架的dispatchEvent自动调起，实现自动理点</span>
-        <span class="token keyword">var</span> beaconId <span class="token operator">=</span> dataset<span class="token punctuation">.</span>beaconId<span class="token punctuation">;</span>
+        <span class="token keyword">var</span> beaconId <span class="token operator">=</span> dataset<span class="token punctuation">.</span>beaconUid<span class="token punctuation">;</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span> beaconId <span class="token operator">==</span> <span class="token string">'default'</span> <span class="token operator">&amp;&amp;</span> node <span class="token punctuation">)</span><span class="token punctuation">{</span>
-            beaconId <span class="token operator">=</span> <span class="token function">computeXpath</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            beaconId <span class="token operator">=</span> <span class="token function">computeCompressedXpath</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token keyword">var</span> otherData <span class="token operator">=</span> dataset<span class="token punctuation">.</span>xxx<span class="token comment">//data-xxxx</span>
         <span class="token keyword">var</span> otherData2 <span class="token operator">=</span> dataset<span class="token punctuation">.</span>xxx2<span class="token punctuation">;</span>
@@ -132,7 +132,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Demo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Global</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>在common目录下</p>
 <pre><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span>
@@ -144,6 +144,15 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h2 id="各种日志的处理">各种日志的处理</h2>
+<ol>
+<li>订单 等这样重要的行为， 要业务中进行手动埋点，使用上面的createLog方法</li>
+<li>点击，输入这样的事件，使用自动埋点，框架会在内部的dispatchEvent方法中自行调用全局的
+onCollectLogs方法</li>
+<li>页面流转情况， 建议对React.api.redirectTo等四个方法进行再包装，里面封入onCollectLogs方法，</li>
+<li>页面渲染时间，通过全局的onGlobalLoad, onGlobalReady等到某一页的渲染时间</li>
+<li>页面停留时间，通过全局的onGlobalShow onGlobalHide等到某一页的停留时间</li>
+</ol>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="share.html" class="href"><span class="ui-font-ydoc"></span>转发分享</a></div><div class="m-paging-next m-paging-item"><a href="async.html" class="href">async/await<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));
