@@ -25,6 +25,9 @@
 <p>事件回调本身必须定义在类的原型里，不能通过 <code>props</code> 传递进来。</p>
 <h2 id="注意事项">注意事项</h2>
 <p>定义了事件的标签，会自动添加<code>data-key</code>,<code>data-class-uid</code>, <code>data-instance-uid</code>这三个属性，请不要自行添加这三个属性</p>
+<blockquote>
+<p>2018.11.14起 添加新的data-beacon-id策略，有事件的标签不再添加data-class-uid与data-key</p>
+</blockquote>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="component.html" class="href"><span class="ui-font-ydoc"></span>通用组件</a></div><div class="m-paging-next m-paging-item"><a href="jsx.html" class="href">JSX<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));

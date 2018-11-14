@@ -53,7 +53,7 @@ function computeXpath(node){ //通过xpath实现自动埋点
         xpath.unshift(tag+'['+index+']');
         node = node.parentNode;
     }
-    return  uuid = './path/'+ xpath.join('/');
+    return  uuid = '/page/'+ xpath.join('/');
 }
 class Demo extends React.Component {
     static config = {
