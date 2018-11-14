@@ -48,6 +48,15 @@
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span>  <span class="token string">'/page/'</span><span class="token operator">+</span> xpath<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">computeCompressedXpath</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//压缩后的xpath</span>
+    <span class="token keyword">var</span> xpath <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>parentNode<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> index <span class="token operator">=</span> node<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        xpath<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        node <span class="token operator">=</span> node<span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> xpath<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
         window<span class="token punctuation">:</span> <span class="token punctuation">{</span>

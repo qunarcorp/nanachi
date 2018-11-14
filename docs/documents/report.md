@@ -55,6 +55,15 @@ function computeXpath(node){ //通过xpath实现自动埋点
     }
     return  '/page/'+ xpath.join('/');
 }
+function computeCompressedXpath(node){ //压缩后的xpath
+    var xpath = [];
+    while (node.parentNode){
+        var index = node.parentNode.children.indexOf(node);
+        xpath.unshift(index);
+        node = node.parentNode;
+    }
+    return xpath.join('/');
+}
 class Demo extends React.Component {
     static config = {
         window: {
