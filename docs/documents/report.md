@@ -10,25 +10,27 @@
  </div>
 ```
 
-如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个`data-beacon-id`(如果你已经写了，它就不会添加，自动添加data-beacon-id的格式为 `标签名＋行号+"_"＋列号`，如`input24_56`,行号列号为源码的位置，方便我们调试)，然后在dispatchEvent执行app.js的全局对象的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中, 并尝试使用`onReportLogs`自动发送；
+如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个`data-beacon-id`, 值为default,(如果你已经写了，它就不会添加)，然后在dispatchEvent执行app.js的全局对象的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中, 并尝试使用`onReportLogs`自动发送；
 
 ```javascript
 //dispatchEvent的源码
 export function dispatchEvent(e) {
-    const eventType = e.type;
-    const target = e.currentTarget;
-    const dataset = target.dataset || {};
-    const app = _getApp()
-    if ( dataset.beaconId && app ) {
-        let fn = app.onCollectLogs;
-        if(isFn(fn)){
-            app.onCollectLogs(dataset, eventType)
-        }
-    }
     const instance = this.reactInstance;
     if (!instance || !instance.$$eventCached) {
         return;
     }
+    const eventType = e.type;
+    const target = e.currentTarget;
+    const dataset = target.dataset || {};
+    const app = _getApp();
+    let eventUid = dataset[toLowerCase(e.type) + 'Uid'];
+    let key = dataset.key;
+    eventUid += key != null ? '-' + key : '';
+    let fiber = instance.$$eventCached[eventUid + 'Fiber'];
+    if ( dataset.beaconId && app && app.onCollectLogs) {
+        app.onCollectLogss(dataset, eventType, fiber && fiber.stateNode);
+    }
+   
     //....略
 }
 ```
@@ -43,7 +45,16 @@ import './pages/index/index';
 import './pages/demo/base/index';
 import './pages/demo/native/index/index';
 import './app.less';
-
+function computeXpath(node){ //通过xpath实现自动埋点
+    var xpath = [];
+    while (node.parentNode){
+        var index = node.parentNode.children.indexOf(node);
+        var tag = node.type == 'div' ? 'view': node.type;
+        xpath.unshift(tag+'['+index+']');
+        node = node.parentNode;
+    }
+    return  uuid = './path/'+ xpath.join('/');
+}
 class Demo extends React.Component {
     static config = {
         window: {
@@ -57,8 +68,11 @@ class Demo extends React.Component {
     globalData = {
         ufo: 'ufo'
     };
-    onCollectLogs(dataset, eventType){ //这里会在框架的dispatchEvent自动调起，实现自动理点
+    onCollectLogs(dataset, eventType, node){ //这里会在框架的dispatchEvent自动调起，实现自动理点
         var beaconId = dataset.beaconId;
+        if( beaconId == 'default' && node ){
+            beaconId = computeXpath(node);
+        }
         var otherData = dataset.xxx//data-xxxx
         var otherData2 = dataset.xxx2;
         var timeStamp = new Date - 0;
@@ -127,7 +141,7 @@ import React from '@react'
 function createLog(dataset, eventType){
     var app =  React.getApp();
     if(typeof app.onCollectLogs === 'function' ){
-        app.onCollectLogs(dataset, eventType)
+        app.onCollectLogs(dataset, eventType, null)
     }
 }
 ```
