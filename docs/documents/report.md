@@ -5,12 +5,12 @@
 小程序编译阶段，会将所有事件转换为一个全局的dispatchEvent方法，因此我们可以这里做统一的日志的收集
 
 ```jsx
- <div onclick="dispatchEvent" data-beacon-id="clickForVibration" class="item" data-click-uid="e1765" data-class-uid="c1321">
+ <div onclick="dispatchEvent" data-beacon-uid="clickForVibration" class="item" data-click-uid="e1765" data-class-uid="c1321">
      <text>震动</text>
  </div>
 ```
 
-如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个`data-beacon-id`, 值为default,(如果你已经写了，它就不会添加)，然后在dispatchEvent执行app.js的全局对象的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中, 并尝试使用`onReportLogs`自动发送；
+如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个`data-beacon-uid`, 值为default,(如果你已经写了，它就不会添加)，然后在dispatchEvent执行app.js的全局对象的`onCollectLogs`方法，让用户整理成一个对象，放到一个数组中, 并尝试使用`onReportLogs`自动发送；
 
 ```javascript
 //dispatchEvent的源码
