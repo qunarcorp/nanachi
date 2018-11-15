@@ -7,7 +7,7 @@
 <p>假设我们有一个叫xxx的项目，用<code>nanachi init xxx</code> 创建后，大概是这个样子</p>
 <p><img src="./alias.png" alt="alias"></p>
 <p>我们打开package.json在里面添加nanachi对象，nanachi下面再添加alias对象
-假设我们在assets目录下有一个global.scss，我不想在pages在很深层次的目录中每次都要
+假设我们在assets目录下有一个global.scss，我们不想在pages在很深层次的目录中每次都要
 <code>../../../assets/global.scss</code> 地引用它。可以定义一个@assets别名，指向assets目录。
 由于当前执行命令在xxx目录下，assets又在source里，于是其路径为 <code>source/assets</code></p>
 <pre><code class="language-json"><span class="token punctuation">{</span>
@@ -74,7 +74,7 @@
         <span class="token property">"alias"</span><span class="token operator">:</span>  <span class="token punctuation">{</span>
             <span class="token property">"@assets"</span><span class="token operator">:</span><span class="token string">"source/assets"</span><span class="token punctuation">,</span>
             <span class="token property">"@hotel"</span> <span class="token operator">:</span><span class="token string">"source/common/hotelCommon"</span><span class="token punctuation">,</span>
-            <span class="token property">"@flight"</span> <span class="token operator">:</span><span class="token string">"source/common/trainCommon"</span><span class="token punctuation">,</span>
+            <span class="token property">"@train"</span> <span class="token operator">:</span><span class="token string">"source/common/trainCommon"</span><span class="token punctuation">,</span>
             <span class="token property">"@flight"</span> <span class="token operator">:</span><span class="token string">"source/common/flightCommon"</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -85,7 +85,7 @@
 </code></pre>
 <p>使用方式：</p>
 <pre><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span>
-<span class="token keyword">import</span> trainPay <span class="token keyword">from</span> <span class="token string">'@flight/pay'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> trainPay <span class="token keyword">from</span> <span class="token string">'@train/pay'</span><span class="token punctuation">;</span>
 <span class="token comment">//....其他代码</span>
 
 </code></pre>
