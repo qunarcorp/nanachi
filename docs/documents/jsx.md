@@ -59,9 +59,11 @@ render() {
 ```
 
 翻译出的XML会出现 null字样，因为`{{null}}` 会null +"" 变成"null"
+
 ```jsx
 <block a:if="{{state.isOk}}">{{null}}</block><block a:else="true"><view>Home Page</view></block>
 ```
+
 正确的用法
 
 ```jsx
@@ -69,7 +71,9 @@ render() {
     return this.state.isOk ? <div>Home Page</div>: null;
   }
 ```
+
 翻译出的XML体积还小这么多
+
 ```jsx
 <block a:if="{{state.isOk}}"><view>Home Page</view></block>
 ```
