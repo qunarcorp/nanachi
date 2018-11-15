@@ -8,7 +8,8 @@
 <p><img src="./alias.png" alt="alias"></p>
 <p>我们打开package.json在里面添加nanachi对象，nanachi下面再添加alias对象
 假设我们在assets目录下有一个global.scss，我不想在pages在很深层次的目录中每次都要
-｀../../../assets/global.scss<code>地引用它。可以定义一个@assets别名，指向assets目录。 由于当前执行命令在xxx目录下，assets又在source里，于是其路径为</code>source/assets`</p>
+<code>../../../assets/global.scss</code> 地引用它。可以定义一个@assets别名，指向assets目录。
+由于当前执行命令在xxx目录下，assets又在source里，于是其路径为 <code>source/assets</code></p>
 <pre><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"MIT"</span><span class="token punctuation">,</span>
     <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>

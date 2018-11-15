@@ -8,7 +8,7 @@
 
 我们打开package.json在里面添加nanachi对象，nanachi下面再添加alias对象
 假设我们在assets目录下有一个global.scss，我不想在pages在很深层次的目录中每次都要
-｀../../../assets/global.scss`地引用它。可以定义一个@assets别名，指向assets目录。
+`../../../assets/global.scss` 地引用它。可以定义一个@assets别名，指向assets目录。
 由于当前执行命令在xxx目录下，assets又在source里，于是其路径为 `source/assets`
 
 ```json
