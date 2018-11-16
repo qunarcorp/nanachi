@@ -18,20 +18,38 @@ nanachi 为了大家方便，还是换回大家熟悉的风格，但不能冒泡
 <div onClick={this.clickHandle.bind(this, 111)} />
 ```
 
-tap 事件相当于 PC 端的 `click` 事件，因此大家可以用 `onClick` 代替 `onTap`, 娜娜奇会友好地帮你转换成 `onTap`.
+tap 事件相当于 PC 端的 `click` 事件，因此建议大家用 `onClick` 代替 `onTap`, 娜娜奇会友好地帮你转换成 `onTap`.
 
 ## 事件对象
 
-娜娜奇帮你抹平了 PC 与小程序的差异，小程序原来将这么特殊属性放在 `event.detail` 对象上，现在都放在 `target` 上。并且还添加了 stopPropagation 与 `preventDefault()` 方法。
+由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有`stopPropagation` 与 `preventDefault`。
+
+但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 `stopPropagation` 与 `preventDefault()` 方法。
 
 注意 `stopPropagation()` 是没有效果的，你想并且冒泡还需要用 `catchClick` 的方式来绑定事件。
 
+小程序事件对象的属性如下：
+
+```jsx
+{
+    target,//里面有dataset
+    pageX,
+    pageY,
+    value, //不一定有，但input, change事件有
+    timeStamp,
+    type,
+    stopPropagation,
+    preventDefault,
+    //还可能有其他属性，不同的事件类型会产生额外的属性
+}
+```
+
 ## 事件回调
 
-事件回调本身必须定义在类的原型里，不能通过 `props` 传递进来。
+事件回调本身必须定义在类的原型里，不能在视图中使用 `this.props.onClick` ,只能`this.onClick`
 
 ## 注意事项
 
-定义了事件的标签，会自动添加`data-key`,`data-class-uid`, `data-instance-uid`这三个属性，请不要自行添加这三个属性
+定义了事件的标签，可能会自动添加`data-beacon-uid`,  `data-key`, `data-class-uid`, `data-instance-uid`这些属性，注意不要与它们冲突
 
-> 2018.11.14起 添加新的data-beacon-id策略，有事件的标签不再添加data-class-uid与data-key
+> 2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积   

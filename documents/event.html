@@ -17,16 +17,30 @@
 </ul>
 <pre><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>clickHandle<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token number">111</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
 </code></pre>
-<p>tap 事件相当于 PC 端的 <code>click</code> 事件，因此大家可以用 <code>onClick</code> 代替 <code>onTap</code>, 娜娜奇会友好地帮你转换成 <code>onTap</code>.</p>
+<p>tap 事件相当于 PC 端的 <code>click</code> 事件，因此建议大家用 <code>onClick</code> 代替 <code>onTap</code>, 娜娜奇会友好地帮你转换成 <code>onTap</code>.</p>
 <h2 id="事件对象">事件对象</h2>
-<p>娜娜奇帮你抹平了 PC 与小程序的差异，小程序原来将这么特殊属性放在 <code>event.detail</code> 对象上，现在都放在 <code>target</code> 上。并且还添加了 stopPropagation 与 <code>preventDefault()</code> 方法。</p>
+<p>由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有<code>stopPropagation</code> 与 <code>preventDefault</code>。</p>
+<p>但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 <code>stopPropagation</code> 与 <code>preventDefault()</code> 方法。</p>
 <p>注意 <code>stopPropagation()</code> 是没有效果的，你想并且冒泡还需要用 <code>catchClick</code> 的方式来绑定事件。</p>
+<p>小程序事件对象的属性如下：</p>
+<pre><code class="language-jsx"><span class="token punctuation">{</span>
+    target<span class="token punctuation">,</span><span class="token comment">//里面有dataset</span>
+    pageX<span class="token punctuation">,</span>
+    pageY<span class="token punctuation">,</span>
+    value<span class="token punctuation">,</span> <span class="token comment">//不一定有，但input, change事件有</span>
+    timeStamp<span class="token punctuation">,</span>
+    type<span class="token punctuation">,</span>
+    stopPropagation<span class="token punctuation">,</span>
+    preventDefault<span class="token punctuation">,</span>
+    <span class="token comment">//还可能有其他属性，不同的事件类型会产生额外的属性</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h2 id="事件回调">事件回调</h2>
-<p>事件回调本身必须定义在类的原型里，不能通过 <code>props</code> 传递进来。</p>
+<p>事件回调本身必须定义在类的原型里，不能在视图中使用 <code>this.props.onClick</code> ,只能<code>this.onClick</code></p>
 <h2 id="注意事项">注意事项</h2>
-<p>定义了事件的标签，会自动添加<code>data-key</code>,<code>data-class-uid</code>, <code>data-instance-uid</code>这三个属性，请不要自行添加这三个属性</p>
+<p>定义了事件的标签，可能会自动添加<code>data-beacon-uid</code>,  <code>data-key</code>, <code>data-class-uid</code>, <code>data-instance-uid</code>这些属性，注意不要与它们冲突</p>
 <blockquote>
-<p>2018.11.14起 添加新的data-beacon-id策略，有事件的标签不再添加data-class-uid与data-key</p>
+<p>2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积</p>
 </blockquote>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="component.html" class="href"><span class="ui-font-ydoc"></span>通用组件</a></div><div class="m-paging-next m-paging-item"><a href="jsx.html" class="href">JSX<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
