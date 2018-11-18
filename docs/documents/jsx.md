@@ -15,6 +15,8 @@
 2. 文本必须包含在text, span, a, option, label这几种标签内
 3. text标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签
 4. jsx中不能出现 声明变量或函数的语句，不能出现switch语句
+5. 不要在标签内部使用纯空白或通过两边的空白撑开空间，即`<div>   </div`与`<div>  111  </div`,它们会变成
+   `<div></div`与`<div>111</div`
 
 
 错误的用法

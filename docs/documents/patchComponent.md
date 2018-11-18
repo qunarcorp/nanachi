@@ -1,13 +1,24 @@
-# 组件补丁
+# 补丁组件
 
-由于平台的差异性， 可能存在内置组件的差异， nanachi 自己实现了一套差异化组件。如小程序中存在 `button` 组件， 快应用不存在。
-当打包快应用时，会自动打包该组件补丁，以规避平台的差异性。
+不是所有小程序都照着微信的那一套抄的，并且微信小程序的个别组件是基于native，他们（支付宝，百度等）拿不到源码，因此实现有所差异或延迟，并且为了以后让娜娜奇也运行于H5端，我们也需要实现那些不是H5标签的组件，因此就有补丁组件。
 
-```jsx
-[1] build success: src/components/Button/index.js [3.3KB]
-[2] build success: src/components/Button/index.ux [2.1KB]
-```
+用户在使用时，还是像微信那样直接用全小写的组件标签，如`<icon></icon>`，我们会自动转换成大写开头的标签
+`<Icon></Icon>`,并且自动引入Icom组件的依赖。
 
-## 组件补丁列表
 
-整理中...
+目前需要处理的补丁组件有
+
+- icon 完工
+- button 完工
+- slider 它们都依赖于touch事件，快应用暂时不支持，可以先在微信上测试
+- swiper 它们都依赖于touch事件，快应用暂时不支持，可以先在微信上测试
+- picker 开发中
+- switch 待开发
+- navigator 完工
+- scroller 待开发
+- list 待开发
+
+## 微信系的但业务中经常用的功能组件
+
+- citySelector
+- rating
