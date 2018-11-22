@@ -7,7 +7,7 @@
 ![alias](./alias.png)
 
 我们打开package.json在里面添加nanachi对象，nanachi下面再添加alias对象
-假设我们在assets目录下有一个global.scss，我不想在pages在很深层次的目录中每次都要
+假设我们在assets目录下有一个global.scss，我们不想在pages在很深层次的目录中每次都要
 `../../../assets/global.scss` 地引用它。可以定义一个@assets别名，指向assets目录。
 由于当前执行命令在xxx目录下，assets又在source里，于是其路径为 `source/assets`
 
@@ -84,7 +84,7 @@ src
         "alias":  {
             "@assets":"source/assets",
             "@hotel" :"source/common/hotelCommon",
-            "@flight" :"source/common/trainCommon",
+            "@train" :"source/common/trainCommon",
             "@flight" :"source/common/flightCommon"
         }
     },
@@ -97,7 +97,7 @@ src
 
 ```jsx
 import React from '@react'
-import trainPay from '@flight/pay';
+import trainPay from '@train/pay';
 //....其他代码
 
 ```

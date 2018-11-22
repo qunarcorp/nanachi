@@ -3,6 +3,62 @@
       <input type="text" class="input js-input" placeholder="搜索" />
       <div class="m-search-result js-search-result"></div>
     </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item active"><a class="href" href="intro.html">文档</a></li><li class="item "><a class="href" href="../component/index.html">组件</a></li><li class="item "><a class="href" href="../apis/index.html">API</a></li><li class="item "><a class="href" href="../ui/index.html">UI组件</a></li><li class="item "><a class="href" href="about.html">关于</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>通用样式</h1>
+<blockquote>
+<p>因为快应用只支持flexbox，因此建议都使用flexbox布局，不要用绝对定位与相对定位与浮动</p>
+</blockquote>
+<h2 id="注意点">注意点</h2>
+<h3 id="注意点-样式的继承">样式的继承</h3>
+<p>快应用的样式的继承和 H5 类似，不过需要注意的是在快应用中其基本容器（div）所支持的样式及其有限（见上表）。</p>
+<p>例如字体相关的样式只有 <code>&lt;text&gt;</code>， <code>&lt;span&gt;</code> 和 <code>&lt;a&gt;</code> 等组件支持并且它们都不支持 <code>&lt;div&gt;</code> 这样的块级子组件，所以对于字体的样式来说没法像 H5 那样自由的继承。</p>
+<h3 id="注意点-组件出现在伸缩盒项目位置时的处理">组件出现在伸缩盒项目位置时的处理</h3>
+<p>错误的写法</p>
+<pre><code class="language-html">  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span>flex<span class="token punctuation">;</span> <span class="token property">flex-direction</span><span class="token punctuation">:</span>column<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>xxx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>anu-com</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>anu-com</span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
+</code></pre>
+<p>正确的写法</p>
+<pre><code class="language-html">  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span>flex<span class="token punctuation">;</span> <span class="token property">flex-direction</span><span class="token punctuation">:</span>column<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>xxx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span></span>
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>anu-com</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>anu-com</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
+</code></pre>
+<h3 id="注意点-垂直和水平居中">垂直和水平居中</h3>
+<p>由于在快应用中元素组件默认使用横向 flex 布局，因此居中可以很方便的使用 <code>justify-content: center</code> 和 <code>align-items: center</code> 来实现主轴和交叉轴方向上的居中。</p>
+<h3 id="注意点-单位的转换问题">单位的转换问题</h3>
+<p>有的平台支持px与rpx，有的只支持px。但如果你不想转换px，你需要将px改成PX;</p>
+<h3 id="注意点-flex-元素的宽度问题">flex 元素的宽度问题</h3>
+<p>当 flex 元素为垂直方向时（ <code>flex-direction: column</code>），其宽度并不会默认占满父元素的宽度，有些情况下你需要设置 <code>width: 100%</code> 来然他满父元素的宽度：</p>
+<pre><code class="language-html"><span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
+      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
+    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
+  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></span>
+
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span></span>
+  <span class="token tag">.row</span>, .col {
+    display: flex;
+  }
+  <span class="token tag">.row</span> {
+    border: 1px solid black;
+    flex-direction: row;
+  }
+  <span class="token tag">.col</span> {
+    width: 100%;
+    border: 1px solid red;
+    flex-direction: column;
+  }
+  <span class="token tag">.item</span> {
+    border: 1px solid blue;
+    height: 300px;
+  }
+<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span></span>
+</code></pre>
 <h2 id="样式表">样式表</h2>
 <table>
 <thead>
@@ -326,42 +382,6 @@
     <span class="token property">font-size</span><span class="token punctuation">:</span> 80px<span class="token punctuation">;</span>
     <span class="token property">font-weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-</code></pre>
-<h3 id="示例-垂直和水平居中">垂直和水平居中</h3>
-<p>由于在快应用中元素组件默认使用横向 flex 布局，因此居中可以很方便的使用 <code>justify-content: center</code> 和 <code>align-items: center</code> 来实现主轴和交叉轴方向上的居中。</p>
-<h2 id="注意点">注意点</h2>
-<h3 id="注意点-样式的继承">样式的继承</h3>
-<p>快应用的样式的继承和 H5 类似，不过需要注意的是在快应用中其基本容器（div）所支持的样式及其有限（见上表）。</p>
-<p>例如字体相关的样式只有 <code>&lt;text&gt;</code>， <code>&lt;span&gt;</code> 和 <code>&lt;a&gt;</code> 等组件支持并且它们都不支持 <code>&lt;div&gt;</code> 这样的块级子组件，所以对于字体的样式来说没法像 H5 那样自由的继承。</p>
-<h3 id="注意点-flex-元素的宽度问题">flex 元素的宽度问题</h3>
-<p>当 flex 元素为垂直方向时（ <code>flex-direction: column</code>），其宽度并不会默认占满父元素的宽度，有些情况下你需要设置 <code>width: 100%</code> 来然他满父元素的宽度：</p>
-<pre><code class="language-html"><span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span></span>
-  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
-    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
-      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
-      <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
-    <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
-  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
-<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></span>
-
-<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span></span>
-  <span class="token tag">.row</span>, .col {
-    display: flex;
-  }
-  <span class="token tag">.row</span> {
-    border: 1px solid black;
-    flex-direction: row;
-  }
-  <span class="token tag">.col</span> {
-    width: 100%;
-    border: 1px solid red;
-    flex-direction: column;
-  }
-  <span class="token tag">.item</span> {
-    border: 1px solid blue;
-    height: 300px;
-  }
-<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span></span>
 </code></pre>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="jsx.html" class="href"><span class="ui-font-ydoc"></span>JSX</a></div><div class="m-paging-next m-paging-item"><a href="patchComponent.html" class="href">补丁组件<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');

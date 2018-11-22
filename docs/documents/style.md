@@ -1,5 +1,82 @@
 # 通用样式
 
+> 因为快应用只支持flexbox，因此建议都使用flexbox布局，不要用绝对定位与相对定位与浮动
+
+
+
+## 注意点
+
+### 样式的继承
+
+快应用的样式的继承和 H5 类似，不过需要注意的是在快应用中其基本容器（div）所支持的样式及其有限（见上表）。
+
+例如字体相关的样式只有 `<text>`， `<span>` 和 `<a>` 等组件支持并且它们都不支持 `<div>` 这样的块级子组件，所以对于字体的样式来说没法像 H5 那样自由的继承。
+
+### 组件出现在伸缩盒项目位置时的处理
+
+错误的写法
+
+```html
+  <div style="display:flex; flex-direction:column;">
+    <div>xxx</div>
+    <anu-com><anu-com>
+  </div>
+```
+
+正确的写法
+
+```html
+  <div style="display:flex; flex-direction:column;">
+    <div>xxx</div>
+    <div>
+      <anu-com><anu-com>
+    </div>
+  </div>
+````
+
+### 垂直和水平居中
+
+由于在快应用中元素组件默认使用横向 flex 布局，因此居中可以很方便的使用 `justify-content: center` 和 `align-items: center` 来实现主轴和交叉轴方向上的居中。
+
+### 单位的转换问题
+
+有的平台支持px与rpx，有的只支持px。但如果你不想转换px，你需要将px改成PX;
+
+
+### flex 元素的宽度问题
+
+当 flex 元素为垂直方向时（ `flex-direction: column`），其宽度并不会默认占满父元素的宽度，有些情况下你需要设置 `width: 100%` 来然他满父元素的宽度：
+
+```html
+<template>
+  <div class="row">
+    <div class="col">
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+  </div>
+</template>
+
+<style>
+  .row, .col {
+    display: flex;
+  }
+  .row {
+    border: 1px solid black;
+    flex-direction: row;
+  }
+  .col {
+    width: 100%;
+    border: 1px solid red;
+    flex-direction: column;
+  }
+  .item {
+    border: 1px solid blue;
+    height: 300px;
+  }
+</style>
+```
+
 ## 样式表
 
 | 名称 | 类型 | 默认值 | 描述 |
@@ -195,48 +272,3 @@
   }
 ```
 
-### 垂直和水平居中
-
-由于在快应用中元素组件默认使用横向 flex 布局，因此居中可以很方便的使用 `justify-content: center` 和 `align-items: center` 来实现主轴和交叉轴方向上的居中。
-
-## 注意点
-
-### 样式的继承
-
-快应用的样式的继承和 H5 类似，不过需要注意的是在快应用中其基本容器（div）所支持的样式及其有限（见上表）。
-
-例如字体相关的样式只有 `<text>`， `<span>` 和 `<a>` 等组件支持并且它们都不支持 `<div>` 这样的块级子组件，所以对于字体的样式来说没法像 H5 那样自由的继承。
-
-### flex 元素的宽度问题
-
-当 flex 元素为垂直方向时（ `flex-direction: column`），其宽度并不会默认占满父元素的宽度，有些情况下你需要设置 `width: 100%` 来然他满父元素的宽度：
-
-```html
-<template>
-  <div class="row">
-    <div class="col">
-      <div class="item"></div>
-      <div class="item"></div>
-    </div>
-  </div>
-</template>
-
-<style>
-  .row, .col {
-    display: flex;
-  }
-  .row {
-    border: 1px solid black;
-    flex-direction: row;
-  }
-  .col {
-    width: 100%;
-    border: 1px solid red;
-    flex-direction: column;
-  }
-  .item {
-    border: 1px solid blue;
-    height: 300px;
-  }
-</style>
-```
