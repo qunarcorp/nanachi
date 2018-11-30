@@ -1,26 +1,26 @@
 # 各种小程序的差异点
 
-| 项目                         | 微信小程序                                        | 百度小程序                                 | 支付小程序                                     | 快应用                                           |
-| ---------------------------- | ------------------------------------------------- | ------------------------------------------ | ---------------------------------------------- | ------------------------------------------------ |
-| 命名空间                     | wx                                                | swan                                       | my                                             | 无,需要 require 它提供的所有接口按 wx 形式封装   |
-| if 指令                      | wx:if                                             | s-if                                       | a:if                                           | if                                               |
-| for 指令                     | wx:for<br /> wx:for-index<br /> wx:for-item<br /> | 将`wx:`改成`s-`                            | 将`wx:`改成`a:`                                | for="(personIndex, personItem) in list"          |
-| key 指令                     | wx:key                                            | s-key                                       | key                                            | tid                                              |
-| `<block>`容器标签            | 存在                                              | 存在                                       | 存在                                           | 存在                                             |
-| 事件绑定                     | bind/catch[事件名全小写]="回调名"                 | bind/catch[事件名全小写]="回调名"          | on/catch[事件名驼峰]="回调名"                  | on[事件名全小写]="回调名/回调(arguments)"        |
-| {{}}插值是否支持函数         | 不支持                                            | 不支持                                     | 不支持                                         | 支持                                             |
-| 模块中使用脚本               | `<wxs />`                                         | `<filter />`                               | `<import-sjs />`                               | `<script />`                                     |
-| 模板文件后缀                 | wxml                                              | swan                                       | axml                                           | 没有独立的文件 放 template 中                    |
-| 样式文件后缀                 | wxss                                              | css                                        | acss                                           | 没有独立的文件 放 style 中，不需要处理 less,sass |
-| template 包含 template       | 支持                                              | 不支持循环中使用 template                  | 支持                                           | 未知                                             |
-| template 的 data 是否支持... | `{{...aaa}}`                                      | `{{{...aaa}}}` 三个括号                    | `{{...aaa}}`                                   | 只能一个个数据分开写                             |
-| 缺省的组件(视图容器)         |                                                   |                                            | moveable-view、cover-view                      | 未知                                             |
-| 缺省的组件(基础内容)         |                                                   |                                            | rich-text                                      | 未知                                             |
-| 缺省的组件(导航)             |                                                   |                                            | functional-page-navigator                      | 未知                                             |
-| 缺省的组件(媒体组件)         |                                                   |                                            | audio、video、camera、live-player、live-pusher | 未知                                             |
-| open-data                    |                                                   |                                            | 不支持                                         | 未知                                             |
-| 样式单位 rpx 支持情况        | 支持                                              | 不支持（用 rem，最新的基础库版本已经支持） | 支持                                           | 不支持                                           |
-| 大小限制                     | 4M                                                | 4M(分包 8M)                                | 2M                                             | 1M（可以独单与厂商谈）                           |
+| 项目 | 微信小程序| 百度小程序 | 支付小程序 | 快应用  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| 命名空间| wx | swan | my  | 无,需要 require 它提供的所有接口按 wx 形式封装   |
+| if 指令 | wx:if | s-if  | a:if| if |
+| for 指令 | wx:for<br /> wx:for-index<br /> wx:for-item<br /> | 将`wx:`改成`s-` | 将`wx:`改成`a:` | for="(personIndex, personItem) in list" |
+| key 指令 | wx:key | s-key| key| tid |
+| `<block>`容器标签  | 存在  | 存在 | 存在  | 存在  |
+| 事件绑定  | bind/catch[事件名全小写]="回调名" | bind/catch[事件名全小写]="回调名"| on/catch[事件名驼峰]="回调名" | on[事件名全小写]="回调名/回调(arguments)" |
+| {{}}插值是否支持函数 | 不支持 | 不支持 | 不支持  | 支持|
+| 模块中使用脚本 | `<wxs />` | `<filter />` | `<import-sjs />`  | `<script />` |
+| 模板文件后缀 | wxml| swan  | axml | 没有独立的文件 放 template 中 |
+| 样式文件后缀  | wxss| css | acss | 没有独立的文件 放 style 中，不需要处理 less,sass |
+| template 包含 template | 支持| 不支持循环中使用 template | 支持 | 未知  |
+| template 的 data 是否支持... | `{{...aaa}}`  | `{{{...aaa}}}` 三个括号  | `{{...aaa}}` | 只能一个个数据分开写  |
+| 缺省的组件(视图容器) |movable-view、cover-view|  | movable-view、cover-view  | 未知  |
+| 缺省的组件(基础内容)  | rich-text|  |  | 未知  |
+| 缺省的组件(导航)   |functional-page-navigator| |  | 未知 |
+| 缺省的组件(媒体组件) | audio、video、camera、live-player、live-pusher |  | | 未知  |
+| open-data ||   | 不支持  | 未知 |
+| 样式单位 rpx 支持情况 | 支持  | 不支持（用 rem，最新的基础库版本已经支持） | 支持   | 不支持  |
+| 大小限制  | 4M  | 4M(分包 8M)  | 2M   | 1M（可以独单与厂商谈） |
 
 APIs 的这么多方法都不一样，可能以后针对不同的平台打包不同的 api.js 来屏蔽差异性
 

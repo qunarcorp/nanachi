@@ -53,7 +53,7 @@
       <button if="{{!hasUserInfo && canIUse}}" onClick="eventCanBubble"><text> 获取头像昵称</text> </button>
       <block else>
         <view for="(index, el) in array" tid="title" >
-          <text>el.title}}</text>
+          <text>{{el.title}}</text>
         </view>
       </block>
     </view>
@@ -76,7 +76,7 @@
 
 
 
-从模板来看，其实差别不大，改一下属性名，每个公司都想通过它们来标识自己的存在。但内部实现完全不一样，因为源码并没有公开或者混淆了。使用自定义组件机制的风险就比<template>标签大很多。 BAT三公司都暴露了一个Component入口函数，让你传入一个配置对象实现组件机制，而以小米为首的快应用则是内部走vue，没有Component这个方法，只需你export一个配置对象。
+从模板来看，其实差别不大，改一下属性名，每个公司都想通过它们来标识自己的存在。但内部实现完全不一样，因为源码并没有公开或者混淆了。使用自定义组件机制的风险就比`<template>`标签大很多。 BAT三公司都暴露了一个Component入口函数，让你传入一个配置对象实现组件机制，而以小米为首的快应用则是内部走vue，没有Component这个方法，只需你export一个配置对象。
 ```javascript
 //微信
 Component({

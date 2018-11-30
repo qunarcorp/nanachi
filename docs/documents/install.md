@@ -27,7 +27,6 @@ nanachi watch   //或 nanachi watch:wx 或 nanachi watch:bu 或 nanachi watch:al
 ![image](./build_wx.png)
 ![image](./watch_wx.png)
 ![image](./build_bu.png)
-![image](./watch_bu.png)
 ![image](./build_ali.png)
 ![image](./watch_ali.png)
 
