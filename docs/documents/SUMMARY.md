@@ -9,6 +9,7 @@
 * [事件系统](event.md)
 * [JSX](jsx.md)
 * [样式](style.md)
+* [样式编译特性](style_compile_feature.md)
 * [补丁组件](patchComponent.md)
 * [转发分享](share.md)
 * [日志收集与上传](report.md)
