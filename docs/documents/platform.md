@@ -1,6 +1,6 @@
 # 按平台打包业务代码
 
-某些情况下，业务代码中，可能需要差异化打包不同平台的代码，娜娜奇提供环境变量process.env.ANU_ENV来识别不同平台。在编译前，ANU_ENV变量已静默配置。
+很多场景下可能需要差异化打包不同平台的代码，娜娜奇提供环境变量process.env.ANU_ENV来识别不同平台。在编译前，ANU_ENV变量已静默配置。
 
 ```jsx
 componentDidMount(){
@@ -14,3 +14,20 @@ componentDidMount(){
     }
 }
 ```
+
+有时候需要按平台引入相关模块，在写法上有所不同，必须通过注释节点来匹配相关的import引入。
+例如:
+```jsx
+// if process.env.ANU_ENV == 'wx';
+import wx from './wx.js';
+// if process.env.ANU_ENV == 'ali';
+import ali from './ali.js';
+```
+
+编译结果(ANU_ENV:wx):
+```jsx
+import wx from './wx.js';
+```
+
+
+
