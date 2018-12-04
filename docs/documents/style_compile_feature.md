@@ -41,3 +41,4 @@ Less:
      color: #333;
    }
 ```
+注: postcss暂不支持该特性。
