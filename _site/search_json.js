@@ -241,12 +241,17 @@ window.ydoc_plugin_search_json = {
         {
           "title": "使用方式",
           "url": "/documents/iconfont.html#使用方式",
-          "content": "使用方式定义 iconfont 样式：// 本地字体@font-face {\n    font-family: 'fontLocal';\n    src: url('../../../assets/fonts/font.woff') format('woff'),\n    url('../../../assets/fonts/font.ttf') format('truetype')\n}\n// 远程地址\n@font-face {\n    font-family: 'fontOnline';\n    src: url(https://ss.qunarzz.com/yo/font/1.0.3/font.woff) format(\"woff\"),\n    url(https://ss.qunarzz.com/yo/font/1.0.3/font.ttf) format(\"truetype\")\n}\n\n.iconfont-local {\n    font-family: 'fontLocal';\n}\n.iconfont-online {\n    font-family: 'fontOnline';\n}\n定义组件：import React from '@react';import './index.scss';\n\nclass P extends React.Component {\n\n    render() {\n        return (\n            本地图标\n            &#xe351;\n            &#xe351;\n            远程图标\n            &#xf077;\n            &#xf078;\n        );\n    }\n}\n\nexport default P;\n需要注意的是，字体图标文件必须放在 assets 文件，使用远程 iconfont 时需要填写完整的 url 地址，不能省略前面的 http 或者 https。因为娜娜奇的样式是组件封闭的，所以为了能够共用 iconfont 相关的样式，我们推荐建立一个公共的 iconfont 样式文件，然后在需要使用 iconfont 的组件里通过 @import 引入该样式。"
+          "content": "使用方式定义 iconfont 样式：// 本地字体@font-face {\n    font-family: 'fontLocal';\n    src: url('../../../assets/fonts/font.ttf');\n}\n// 远程地址\n@font-face {\n    font-family: 'fontOnline';\n    src: url(https://ss.qunarzz.com/yo/font/1.0.3/font.ttf);\n}\n\n.iconfont-local {\n    font-family: 'fontLocal';\n}\n.iconfont-online {\n    font-family: 'fontOnline';\n}\n定义组件：import React from '@react';import './index.scss';\n\nclass P extends React.Component {\n\n    render() {\n        return (\n            本地字体\n            &#xe351;\n            &#xe351;\n            远程字体\n            &#xf077;\n            &#xf078;\n        );\n    }\n}\n\nexport default P;\n"
+        },
+        {
+          "title": "需要注意的点",
+          "url": "/documents/iconfont.html#需要注意的点",
+          "content": "需要注意的点\n字体图标文件必须放在 assets 目录下。\n\n\n为了兼容快应用，字体文件应仅使用 ttf(TrueType) 格式字体且不要加 format 属性，参考上面的示例。\n\n\n使用远程 iconfont 时必须填写完整的 url 地址，不能省略前面的 http 或者 https。\n\n\n因为娜娜奇的样式是组件封闭的，为了能够共用 iconfont 相关的样式，我们推荐建立一个公共的 iconfont 样式文件，然后在需要使用 iconfont 的组件里通过 @import 引入该样式。\n\n"
         },
         {
           "title": "支持情况",
           "url": "/documents/iconfont.html#支持情况",
-          "content": "支持情况\n\n\n本地\n远程\n\n\n\n\n微信小程序\n✗\n✓\n\n\n支付宝小程序\n✓\n✓\n\n\n百度小程序\n✗\n✓\n\n\n快应用\n✗\n✗\n\n\n"
+          "content": "支持情况\n\n\n本地\n远程\n\n\n\n\n微信小程序\n✗\n✓\n\n\n支付宝小程序\n✓\n✓\n\n\n百度小程序\n✗\n✓\n\n\n快应用\n✓\n✓\n\n\n"
         }
       ]
     },
