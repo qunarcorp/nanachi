@@ -14,6 +14,7 @@
 * [转发分享](share.md)
 * [日志收集与上传](report.md)
 * [async/await](async.md)
+* [Iconfont 的支持情况](iconfont.md)
 * [支持npm模块](npm.md)
 * [按平台打包业务代码](platform.md)
 * [别名配置](alias.md)
