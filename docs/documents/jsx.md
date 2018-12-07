@@ -68,27 +68,33 @@ render() {
 
 正确的用法
 
+三元表达式与&&逻辑语句会转换为block标签，在快应用中，组件的根节点不能为block标签，因此需要包一层
+
 ```jsx
 render() {
-    return this.state.isOk ? <div>Home Page</div>: null;
+    return <div>{ this.state.isOk ? <div>Home Page</div>: null }<div>
   }
 ```
 
 翻译出的XML体积还小这么多
 
 ```jsx
-<block a:if="{{state.isOk}}"><view>Home Page</view></block>
+<div><block a:if="{{state.isOk}}"><view>Home Page</view></block></div>
 ```
 
 ## 事件绑定的使用
+
 错误的用法
 ```jsx
 <div onTap={this.props.fn}>点我</div>
 ```
+
 正确的用法， 事件必须直接以this开头，来源于实例
+
 ```jsx
 <div onTap={this.fn}>点我</div>
 ```
+
 ## map方法必须将this往里面传递, map的第一个参数不要用箭头函数
 
 ```jsx
@@ -100,7 +106,9 @@ this.state.list.map(function(el, index){
 ```
 
 ## render的使用
+
 错误的用法
+
 ```jsx
 class A extends React.Component{
   render(){
@@ -109,7 +117,9 @@ class A extends React.Component{
   }
 }
 ```
+
 正确的用法
+
 ```jsx
 class A extends React.Component{
   render(){

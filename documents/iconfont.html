@@ -8,14 +8,12 @@
 <pre><code class="language-scss"><span class="token comment">// 本地字体</span>
 <span class="token atrule"><span class="token rule">@font-face</span></span> <span class="token punctuation">{</span>
     <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">'fontLocal'</span><span class="token punctuation">;</span>
-    <span class="token property">src</span><span class="token punctuation">:</span> <span class="token url">url</span><span class="token punctuation">(</span><span class="token string">'../../../assets/fonts/font.woff'</span><span class="token punctuation">)</span> <span class="token function">format</span><span class="token punctuation">(</span><span class="token string">'woff'</span><span class="token punctuation">)</span>,
-    <span class="token url">url</span><span class="token punctuation">(</span><span class="token string">'../../../assets/fonts/font.ttf'</span><span class="token punctuation">)</span> <span class="token function">format</span><span class="token punctuation">(</span><span class="token string">'truetype'</span><span class="token punctuation">)</span>
+    <span class="token property">src</span><span class="token punctuation">:</span> <span class="token url">url</span><span class="token punctuation">(</span><span class="token string">'../../../assets/fonts/font.ttf'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token comment">// 远程地址</span>
 <span class="token atrule"><span class="token rule">@font-face</span></span> <span class="token punctuation">{</span>
     <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">'fontOnline'</span><span class="token punctuation">;</span>
-    <span class="token property">src</span><span class="token punctuation">:</span> <span class="token url">url</span><span class="token punctuation">(</span><span class="token property">https</span><span class="token punctuation">:</span><span class="token comment">//ss.qunarzz.com/yo/font/1.0.3/font.woff) format("woff"),</span>
-    <span class="token url">url</span><span class="token punctuation">(</span><span class="token property">https</span><span class="token punctuation">:</span><span class="token comment">//ss.qunarzz.com/yo/font/1.0.3/font.ttf) format("truetype")</span>
+    <span class="token property">src</span><span class="token punctuation">:</span> <span class="token url">url</span><span class="token punctuation">(</span><span class="token property">https</span><span class="token punctuation">:</span><span class="token comment">//ss.qunarzz.com/yo/font/1.0.3/font.ttf);</span>
 <span class="token punctuation">}</span>
 
 <span class="token selector">.iconfont-local </span><span class="token punctuation">{</span>
@@ -33,10 +31,10 @@
 
     <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token operator">&lt;</span>div<span class="token operator">></span>
-            <span class="token operator">&lt;</span>p<span class="token operator">></span>本地图标<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+            <span class="token operator">&lt;</span>p<span class="token operator">></span>本地字体<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
             <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"iconfont-local"</span><span class="token operator">></span><span class="token operator">&amp;</span>#xe351<span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
             <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"iconfont-local"</span><span class="token operator">></span><span class="token operator">&amp;</span>#xe351<span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-            <span class="token operator">&lt;</span>p<span class="token operator">></span>远程图标<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+            <span class="token operator">&lt;</span>p<span class="token operator">></span>远程字体<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
             <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"iconfont-online"</span><span class="token operator">></span><span class="token operator">&amp;</span>#xf077<span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
             <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"iconfont-online"</span><span class="token operator">></span><span class="token operator">&amp;</span>#xf078<span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
         <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -45,8 +43,21 @@
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token constant">P</span><span class="token punctuation">;</span>
 </code></pre>
-<p>需要注意的是，字体图标文件必须放在 assets 文件，使用远程 iconfont 时需要填写完整的 url 地址，不能省略前面的 http 或者 https。</p>
-<p>因为娜娜奇的样式是组件封闭的，所以为了能够共用 iconfont 相关的样式，我们推荐建立一个公共的 iconfont 样式文件，然后在需要使用 iconfont 的组件里通过 <code>@import</code> 引入该样式。</p>
+<h2 id="需要注意的点">需要注意的点</h2>
+<ul>
+<li>
+<p>字体图标文件必须放在 assets 目录下。</p>
+</li>
+<li>
+<p>为了兼容快应用，字体文件应仅使用 ttf(TrueType) 格式字体且不要加 format 属性，参考上面的示例。</p>
+</li>
+<li>
+<p>使用远程 iconfont 时必须填写完整的 url 地址，不能省略前面的 http 或者 https。</p>
+</li>
+<li>
+<p>因为娜娜奇的样式是组件封闭的，为了能够共用 iconfont 相关的样式，我们推荐建立一个公共的 iconfont 样式文件，然后在需要使用 iconfont 的组件里通过 <code>@import</code> 引入该样式。</p>
+</li>
+</ul>
 <h2 id="支持情况">支持情况</h2>
 <table>
 <thead>
@@ -74,8 +85,8 @@
 </tr>
 <tr>
 <td>快应用</td>
-<td>✗</td>
-<td>✗</td>
+<td>✓</td>
+<td>✓</td>
 </tr>
 </tbody>
 </table>
