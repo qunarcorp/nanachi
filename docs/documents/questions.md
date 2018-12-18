@@ -14,3 +14,5 @@
 - 业务有涉及拿globalData.systemInfo里面高度的，改为React.api.getSystemInfoSync()。第一次进入页面有底bar的话 高度会拿错，导致业务液面高度计算错误，下面空一块。
 - `React.getCurrentPage()` 能得到当前页面的react实例， instance.props.query, instance.props.path为当前路径与参数对象
 更多问题请到 GitHub 提 [Issue](https://github.com/roland-reed/nanachi-cli/issues)。
+
+

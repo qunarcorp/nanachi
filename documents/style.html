@@ -10,6 +10,8 @@
 <h3 id="注意点-样式的继承">样式的继承</h3>
 <p>快应用的样式的继承和 H5 类似，不过需要注意的是在快应用中其基本容器（div）所支持的样式及其有限（见上表）。</p>
 <p>例如字体相关的样式只有 <code>&lt;text&gt;</code>， <code>&lt;span&gt;</code> 和 <code>&lt;a&gt;</code> 等组件支持并且它们都不支持 <code>&lt;div&gt;</code> 这样的块级子组件，所以对于字体的样式来说没法像 H5 那样自由的继承。</p>
+<p>为了支持快应用下, pages目录下的样式表，<strong>不能</strong>@import pages目录下的其他样式表，也<strong>不能</strong>@import components目录下的样式表， 只能引用assets目录下的样式表。</p>
+<p>components目录下的样式也是如此，想共享一些已有的样式，也能引用assets目录下的样式表，不要引用其他组件的样式表。</p>
 <h3 id="注意点-组件出现在伸缩盒项目位置时的处理">组件出现在伸缩盒项目位置时的处理</h3>
 <p>错误的写法</p>
 <pre><code class="language-html">  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span>flex<span class="token punctuation">;</span> <span class="token property">flex-direction</span><span class="token punctuation">:</span>column<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span>
