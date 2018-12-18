@@ -25,6 +25,7 @@
 </li>
 <li>全局样式 自己手动<code>import 'app.scss'</code>或<code>import 'app.less'</code></li>
 <li>import 所有以 <code>./pages/</code> 开头的依赖放到 <code>app.json</code> 中 <code>pages</code> 配置项中。</li>
+<li>默认我们会把 第一个<code>./pages</code>开头的依赖当作<strong>首页</strong>。</li>
 </ul>
 <pre><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token string">'./pages/index/index'</span><span class="token punctuation">;</span> <span class="token comment">//引入所有页面。</span>

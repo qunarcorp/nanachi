@@ -21,6 +21,7 @@ app.js外表上看来是一个React组件
    -  onHide 小程序在退出时会调用此方法（如果是快应用则是onDistory），它的行为类似浏览器中的onbeforeunload
 *  全局样式 自己手动`import 'app.scss'`或`import 'app.less'`
 *  import 所有以 `./pages/` 开头的依赖放到 `app.json` 中 `pages` 配置项中。
+*  默认我们会把 第一个`./pages`开头的依赖当作**首页**。
  
 
 ```jsx
