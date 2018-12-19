@@ -27,6 +27,9 @@ yarn global add nanachi-cli
 3. `nanachi watch:[wx|bu|ali|quick]` 监听构建小程序<br />
 4. 用对应的小程序开发工具打开当中的dist目录，自己在source目录中进行开发<br />
 
+
+> `nanachi watch:wx`默认是从npm拉对应的ReactWx, ReactAli...的稳定版，一星期发布一次。如果出BUG，急紧修复，着急要最新版本，可以使用`nanachi watch:wx --beta`命令。
+
 注意：快应用下构建结束后，需要执行以下三步骤
 ```shell
 npm install    #  需要开另一个窗口, 安装快应用的hap编译器， 只需安装一次 
