@@ -6,7 +6,38 @@
 * 本地 `Node.js` 版本 `8.6.0` 以上
 * 开发过程中，对文件夹及文件的命名都有一定要求，见[发布打包一节](publish.md)
 
-## 开发者安装微信/支付宝/百度/头条的安装流程， 快应用见下方
+
+
+## 安装
+
+npm
+
+```bash
+npm install nanachi-cli -g
+```
+
+yarn
+
+```bash
+yarn global add nanachi-cli
+```
+
+1. nanachi init `<project-name> ` 创建工程<br />
+2. `cd <project-name> && npm i ` 安装依赖<br />
+3. `nanachi watch:[wx|bu|ali|quick]` 监听构建小程序<br />
+4. 用对应的小程序开发工具打开当中的dist目录，自己在source目录中进行开发<br />
+
+注意：快应用下构建结束后，需要执行以下三步骤
+```shell
+npm install    #  需要开另一个窗口, 安装快应用的hap编译器， 只需安装一次 
+npm run build  # 与上面同一窗口, 生成dist目录
+npm run server # 需要第三个窗口, 运行node环境，这时会出一个二维码与一个链接，保证PC的WIFI与手机的WIFI是同一个，然后用手机上的快应用调试器 扫描，就能看到效果。也可以将链接贴到chrome中，这时二维码会出现页面上，也是手机扫描，可以同时在手机与网页上看到效果，此这种方式用于调式。
+```
+
+## 第二种安装
+
+此方式下适用于去哪儿网内部用户，在参与开发nanachi框架的技术人员
+
 
 1. `git clone git@github.com:RubyLouvre/anu.git` 或`git clone https://github.com/RubyLouvre/anu.git`<br />
 2. 命令行定位到`packages/cli`目录下，执行`npm link` 如果之前装过要先npm unlink<br />
@@ -36,31 +67,6 @@ nanachi watch   //或 nanachi watch:wx 或 nanachi watch:bu 或 nanachi watch:al
 ![image](https://user-images.githubusercontent.com/190846/45038189-53f44a80-b093-11e8-9ecb-a4080f21b262.png)
 
 
-
-
-## 安装[普通用户]
-
-npm
-```bash
-npm install nanachi-cli -g
-```
-
-yarn
-```bash
-yarn global add nanachi-cli
-```
-
-## 使用方式
-1. nanachi init `<project-name> ` 创建工程<br />
-2. `cd <project-name> && npm i ` 安装依赖<br />
-3. `nanachi watch:[wx|bu|ali|quick]` 监听构建小程序<br />
-4. `nanachi build:[wx|bu|ali|quick]` 构建小程序<br />
-5. 用对应的小程序开发工具打开当中的dist目录，自己在source目录中进行开发<br />
-
-注意：快应用下构建结束后，需要执行以下三步骤
-1. npm install <br />
-2. npm run build <br />
-3. npm run server <br />
 
 ## 快应用的安装流程
 

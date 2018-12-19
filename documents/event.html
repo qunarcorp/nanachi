@@ -22,6 +22,7 @@
 <p>由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有<code>stopPropagation</code> 与 <code>preventDefault</code>。</p>
 <p>但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 <code>stopPropagation</code> 与 <code>preventDefault()</code> 方法。</p>
 <p>注意 <code>stopPropagation()</code> 是没有效果的，你想并且冒泡还需要用 <code>catchClick</code> 的方式来绑定事件。</p>
+<p>如果 你想它转译成H5，那么catchXXX的回调内部需要大家执行 <code>e.stopPropagation()</code>。</p>
 <p>小程序事件对象的属性如下：</p>
 <pre><code class="language-jsx"><span class="token punctuation">{</span>
     target<span class="token punctuation">,</span><span class="token comment">//里面有dataset</span>

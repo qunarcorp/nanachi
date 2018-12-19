@@ -28,6 +28,8 @@ tap 事件相当于 PC 端的 `click` 事件，因此建议大家用 `onClick` �
 
 注意 `stopPropagation()` 是没有效果的，你想并且冒泡还需要用 `catchClick` 的方式来绑定事件。
 
+如果 你想它转译成H5，那么catchXXX的回调内部需要大家执行 `e.stopPropagation()`。
+
 小程序事件对象的属性如下：
 
 ```jsx

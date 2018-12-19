@@ -40,6 +40,8 @@ Sass:</p>
    }
 </code></pre>
 <p>注: postcss暂不支持该特性。</p>
+<h3 id="注意!!!">注意!!!</h3>
+<p>pages目录下需要引用公用样式，请将公用样式放入source/assets目录下或者source/style下。组件的样式必须在组件里面引用，禁止在pages页面样式文件中@import组件样式。</p>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="style.html" class="href"><span class="ui-font-ydoc"></span>样式</a></div><div class="m-paging-next m-paging-item"><a href="patchComponent.html" class="href">补丁组件<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));

@@ -9,7 +9,26 @@
 <li>本地 <code>Node.js</code> 版本 <code>8.6.0</code> 以上</li>
 <li>开发过程中，对文件夹及文件的命名都有一定要求，见<a href="publish.html">发布打包一节</a></li>
 </ul>
-<h2 id="微信支付宝百度头条的安装流程，-快应用见下方">微信/支付宝/百度/头条的安装流程， 快应用见下方</h2>
+<h2 id="安装">安装</h2>
+<p>npm</p>
+<pre><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> nanachi-cli -g
+</code></pre>
+<p>yarn</p>
+<pre><code class="language-bash">yarn global add nanachi-cli
+</code></pre>
+<ol>
+<li>nanachi init <code>&lt;project-name&gt;</code> 创建工程<br></li>
+<li><code>cd &lt;project-name&gt; &amp;&amp; npm i</code> 安装依赖<br></li>
+<li><code>nanachi watch:[wx|bu|ali|quick]</code> 监听构建小程序<br></li>
+<li>用对应的小程序开发工具打开当中的dist目录，自己在source目录中进行开发<br></li>
+</ol>
+<p>注意：快应用下构建结束后，需要执行以下三步骤</p>
+<pre><code class="language-shell"><span class="token function">npm</span> <span class="token function">install</span>    <span class="token comment">#  需要开另一个窗口, 安装快应用的hap编译器， 只需安装一次 </span>
+<span class="token function">npm</span> run build  <span class="token comment"># 与上面同一窗口, 生成dist目录</span>
+<span class="token function">npm</span> run server <span class="token comment"># 需要第三个窗口, 运行node环境，这时会出一个二维码与一个链接，保证PC的WIFI与手机的WIFI是同一个，然后用手机上的快应用调试器 扫描，就能看到效果。也可以将链接贴到chrome中，这时二维码会出现页面上，也是手机扫描，可以同时在手机与网页上看到效果，此这种方式用于调式。</span>
+</code></pre>
+<h2 id="第二种安装">第二种安装</h2>
+<p>此方式下适用于去哪儿网内部用户，在参与开发nanachi框架的技术人员</p>
 <ol>
 <li><code>git clone git@github.com:RubyLouvre/anu.git</code> 或<code>git clone https://github.com/RubyLouvre/anu.git</code><br></li>
 <li>命令行定位到<code>packages/cli</code>目录下，执行<code>npm link</code> 如果之前装过要先npm unlink<br></li>
