@@ -42,3 +42,6 @@ Less:
    }
 ```
 注: postcss暂不支持该特性。
+
+### 注意!!!
+pages目录下需要引用公用样式，请将公用样式放入source/assets目录下或者source/style下。组件的样式必须在组件里面引用，禁止在pages页面样式文件中@import组件样式。
