@@ -96,4 +96,3 @@ npm run server  -- --watch  //或hap server --watch 这是hap 的打开远程服
 ![image](./quick2ma.jpg)
 ![image](./quickdebugger.jpg)
 ![image](./watch_quick.jpg)
-
