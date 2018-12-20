@@ -2,7 +2,12 @@
 
 ## createCanvasContext(canvasId)
 
+```
+const ctx = React.api.createCanvasContext('myCanvas', this);  // 在快应用中this必须添加
+```
+
 > Tips: 快应用 canvas API
+
 
 1. 调用的时间是在 onShow  绘制图片， 如果是 组件的话在componentDidMount 中延迟 300 ms
 2. setShadow 没有这个属性
