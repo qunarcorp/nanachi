@@ -2,6 +2,13 @@
 
 ## createCanvasContext(canvasId)
 
+> Tips: 快应用 canvas API
+
+1. 调用的时间是在 onShow  绘制图片， 如果是 组件的话在componentDidMount 中延迟 300 ms
+2. setShadow 没有这个属性
+3. createCircularGradient   创建圆形渐变属性没有
+4. canvasToTempFilePath   把当前画布指定区域的内容导出生成指定大小的图片  该方法没有
+
 创建 canvas 绘图上下文
 
 > 该绘图上下文只作用于对应 canvasId 的 `<canvas />`
