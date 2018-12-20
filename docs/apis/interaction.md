@@ -12,11 +12,11 @@ Object object
 | ------------ | -------- | ------- | -------- | -------------------------------------------------- | -------- |
 | title        | string   |         | 是       | 提示的标题                                         | 都支持   |
 | content      | string   |         | 是       | 提示的内容                                         | 都支持   |
-| showCancel   | boolean  | true    | 否       | 是否  显示取消按钮                                 | 微信,百度     |
+| showCancel   | boolean  | true    | 否       | 是否  显示取消按钮                                 | 微信,百度,快应用     |
 | cancelText   | string   | '取消'  | 否       | 取消  按钮的文字，最多 4 个  字符                  | 都支持   |
-| cancelColor  | string   | #000000 | 否       | 取消按钮的文字颜色，必须是 16 进制格式的颜色字符串 | 微信     |
+| cancelColor  | string   | #000000 | 否       | 取消按钮的文字颜色，必须是 16 进制格式的颜色字符串 | 微信, 快应用    |
 | confirmText  | string   | '确定'  | 否       | 确定  按钮的文字，最多 4 个  字符                  | 都支持   |
-| confirmColor | string   | #3cc51f，百度为#3c76ff | 否       | 确认按钮的文字颜色，必须是 16 进制格式的颜色字符串 | 微信，百度     |
+| confirmColor | string   | #3cc51f，百度为#3c76ff | 否       | 确认按钮的文字颜色，必须是 16 进制格式的颜色字符串 | 微信，百度, 块应用     |
 | success      | function |         | 否       | 接口调用成功的回调函数                             | 都支持   |
 | fail         | function |         | 否       | 接口调用失败的回调函数                             | 都支持   |
 | complete     | function |         | 否       | 接口调用结束的回调函数（调用成功、失败都会执行）   | 都支持   |

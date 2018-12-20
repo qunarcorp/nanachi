@@ -1,6 +1,6 @@
 # 文件
 
-## getFileInfo(Object object)
+## getFileInfo(Object object) [快应用不支持]
 
 获取文件信息
 
@@ -100,6 +100,7 @@ Object object
 | 属性     | 类型          | 默认值 | 是否必须 | 说明                                             |
 | -------- | ------------- | ------ | -------- | ------------------------------------------------ |
 | tempFilePath      | string        |        | 是       | 需要保存的文件的临时路径                       |
+| destinationFilePath      | string        |        | 是       | 目标文件的uri, 快应用必须                      |
 | success  | function      |        | 否       | 接口调用成功的回调函数                           |
 | fail     | function      |        | 否       | 接口调用失败的回调函数                           |
 | complete | function      |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） |
