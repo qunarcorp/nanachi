@@ -41,7 +41,29 @@ Sass:</p>
 </code></pre>
 <p>注: postcss暂不支持该特性。</p>
 <h3 id="注意!!!">注意!!!</h3>
-<p>pages目录下需要引用公用样式，请将公用样式放入source/assets目录下或者source/style下。组件的样式必须在组件里面引用，禁止在pages页面样式文件中@import组件样式。</p>
+<p>pages目录下需要引用公用样式，请将公用样式放入source/assets目录下。禁止pages目录下的文件以任何方式引入components目录下的任何样式表, components目录下的样式表也不能引用pages目录下的样式表。</p>
+<p>错误的用法1, pages下的JS文件引用components下的样式表</p>
+<pre><code class="language-javascript"><span class="token comment">//pages/xxx/index.js</span>
+<span class="token keyword">import</span> <span class="token string">'../../components/Dog/index.scss'</span>
+<span class="token keyword">import</span> React form <span class="token string">'@react'</span>
+
+<span class="token keyword">class</span> <span class="token class-name">P</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token punctuation">{</span>
+</code></pre>
+<p>错误的用法2，pages下的CSS文件（csss, wxss, acss）引用components下的样式表</p>
+<pre><code class="language-css"><span class="token comment">/*pages/xxx/index.scsss*/</span>
+<span class="token selector">import '../../components/Dog/index.scss'
+.xxx</span><span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid red
+<span class="token punctuation">}</span>
+</code></pre>
+<p>错误的用法3，component下的CSS文件引用pages目录下的样式表</p>
+<pre><code class="language-css"><span class="token comment">/*compoents/xxx/index.scsss*/</span>
+<span class="token selector">import '../../pages/train/index.scss'
+.xxx</span><span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid red
+<span class="token punctuation">}</span>
+</code></pre>
+<p>组件的样式必须在组件里面引用，禁止在pages页面样式文件中@import组件样式。</p>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="style.html" class="href"><span class="ui-font-ydoc"></span>样式</a></div><div class="m-paging-next m-paging-item"><a href="patchComponent.html" class="href">补丁组件<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));
