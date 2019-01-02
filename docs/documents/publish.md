@@ -69,5 +69,18 @@ app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个�
 }
 ```
 
+# 自定义打包目录
+nanachi 默认打包目录是dist, 可以在package.json中自定义配置 buildDir 来定义打包目录。
+```javascript
+{
+    "nanachi": {
+        "alias": {
+            "@assets": "source/assets"
+        },
+        "buildDir": "yourDir"
+    }
+}
+```
+
 # 压缩打包
 执行 `nanachi build -c` 会将项目中css, js进行压缩。
