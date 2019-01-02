@@ -7,3 +7,7 @@
 ## 支付宝小程序（需要使用支付宝APP 扫码打开）
 
 ![](logo/qunar_ali_logo.png)
+
+## 快应用的布丁组件 Demo（需要先扫码下载，然后在[快应用调试器](https://doc.quickapp.cn/tools/debugging-tools.html)里选择本地安装打开）
+
+![](logo/schnee_ui_logo.png)
