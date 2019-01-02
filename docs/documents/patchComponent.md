@@ -7,6 +7,6 @@
 用户在使用时，还是像微信那样直接用全小写的组件标签，如`<icon></icon>`，我们会自动转换成大写开头的标签
 `<Icon></Icon>`,并且自动引入Icom组件的依赖。
 
-## 对应快应用的 Demo 测试包（需要先扫码下载，然后在[快应用调试器](https://doc.quickapp.cn/tools/debugging-tools.html)里选择本地安装打开）
+## 快应用 Demo（需要先扫码下载，然后在[快应用调试器](https://doc.quickapp.cn/tools/debugging-tools.html)里选择本地安装打开）
 
 ![](logo/schnee_ui_logo.png)

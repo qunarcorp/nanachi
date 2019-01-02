@@ -8,6 +8,6 @@
 
 ![](logo/qunar_ali_logo.png)
 
-## 快应用的布丁组件 Demo（需要先扫码下载，然后在[快应用调试器](https://doc.quickapp.cn/tools/debugging-tools.html)里选择本地安装打开）
+## 补丁组件快应用 Demo（需要先扫码下载，然后在[快应用调试器](https://doc.quickapp.cn/tools/debugging-tools.html)里选择本地安装打开）
 
 ![](logo/schnee_ui_logo.png)
