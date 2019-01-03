@@ -127,3 +127,18 @@ class A extends React.Component{
   }
 }
 ```
+
+在早期的百度小程序中s-for指令不支持数组字面量，1.14.13已经修复
+
+```jsx
+class A extends React.Component{
+  render(){
+    return <div>
+    { 
+    [111,222,333].map(function(el){
+        return <p>{el}</p>
+    })
+    }</div>
+  }
+}
+```

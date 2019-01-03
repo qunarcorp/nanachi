@@ -97,7 +97,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "render的使用",
           "url": "/documents/jsx.html#render的使用",
-          "content": "render的使用错误的用法class A extends React.Component{  render(){\n    var a = this.props\n    return {a.content}\n  }\n}\n正确的用法class A extends React.Component{  render(){\n    return {this.props.content}\n  }\n}\n"
+          "content": "render的使用错误的用法class A extends React.Component{  render(){\n    var a = this.props\n    return {a.content}\n  }\n}\n正确的用法class A extends React.Component{  render(){\n    return {this.props.content}\n  }\n}\n在早期的百度小程序中s-for指令不支持数组字面量，1.14.13已经修复class A extends React.Component{  render(){\n    return \n    { \n    [111,222,333].map(function(el){\n        return {el}\n    })\n    }\n  }\n}\n"
         }
       ]
     },
