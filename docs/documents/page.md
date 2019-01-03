@@ -1,4 +1,4 @@
-# 页面组件
+# 页面组件与生命周期
 
 页面定义在 `pages` 目录下的index.js文件中。这样一来，就会存在这么多index.js,因此它们必须包含在相应的文件夹中，而这些文件夹不要以index命名。
 >原因：快应用有一个manifest.json文件, 里面有一个router对象，包含所有页面
@@ -118,15 +118,34 @@ export default P;
 
 ## 页面的生命周期
 
+页面组件会依次触发如下生命周期钩子
+
 ```shell
-componentWillMount(onLoad) -> onShow -> componentWillMount(onReady)
-componentWillReceiveProps -> shouldComponentUpdate -> componentWillUpdate
-componentDidUpdate -> componentWillUnmount(onUnload)
+componentWillMount或getDerivedStateFromProps -> 
+onGlobalLoad -> onShow -> onGlobalShow ->
+componentDidMount -> onGlobalReady 
+# 只有页面组件才有onShow, onHide钩子，普通组件没有这两个钩子
 ```
 
-只有页面组件才有onShow, onHide钩子，普通组件没有这两个钩子
+如果对页面组件进行setState,会依次触发如下生命周期钩子
 
+```shell
+shouldComponentUpdate(如果return false, 后面的不会触发) ->
+componentWillUpdate或getDerivedStateFromProps -> 
+componentDidUpdate
+# componentWillMount/Update/ReceiveProps这三个钩子是 React15的旧钩子，如果定义了它们
+# 就不会触发React 16的新钩子getDerivedStateFromProps
+```
 
-页面组件必须使用 es6 风格来引入依赖与导出自己。
+如果用户从A页面跳转到B页面，是不会触页面组件的componentWillUnmount(即onUnload),而是触发页面的onHide钩子与
+app.js上的onGlobalHide钩子。然后再依次触发B的componentWillMount，onGlobalLoad，onShow。。。
+
+![](./pagelife.jpg)
+
+当然，除了页面的生命周期及页面上所有子组件的生命周期，应用本身还有生命周期，实际上我们看到的生命周期触发顺序是这样的。
+
+![](./pagelife2.jpg)
+
+注： 页面组件必须使用 es6 风格来引入依赖与导出自己。
 
 它的静态属性 config 会抽取出来生成对应的 JSON 配置对象，有关配置项可以看[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE)

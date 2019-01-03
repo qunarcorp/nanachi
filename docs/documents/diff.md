@@ -63,9 +63,12 @@ Component 构造器可用于定义组件，调用 Component 构造器时可以�
 思路：properties 定义两个属性 `{props: Object, context: Object}`
 created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 props, state, context 给小程序实例
 
+## 各平台的组件差异
+
+[点我查看](./component/index.md)
+
 ## 支付宝小程序的大小查看
 
-### 流量
 –单个资源：页面单个资源控制在50k以下，最大不超过100k
 –页面总大小：页面完全加载前，资源累计必须小于200K
 –离线包：amr压缩包总大小小于2M

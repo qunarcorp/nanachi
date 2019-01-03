@@ -1,4 +1,4 @@
-# 打包发布
+# 开发目录结构与输出目录指定
 
 在开始之前，提一下两种重要的概念。带JSX的页面组件与通用组件，它们分别放在pages与components目录下，它们具有巨大的转换成本（毕竟JSX会被提取出来转换成wxml, axml, swan或ux文件），还有一种不带JSX的纯JS文件，建议放在common目录,  当然还有一些通用的东西可以通过npm安装，但不要使用那些有JSX的第三方依赖。
 
@@ -69,7 +69,7 @@ app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个�
 }
 ```
 
-# 自定义打包目录
+## 自定义输出目录
 nanachi 默认打包目录是dist, 可以在package.json中自定义配置 buildDir 来定义打包目录。
 ```javascript
 {
@@ -82,5 +82,5 @@ nanachi 默认打包目录是dist, 可以在package.json中自定义配置 build
 }
 ```
 
-# 压缩打包
+#￥ 压缩打包
 执行 `nanachi build -c` 会将项目中css, js进行压缩。

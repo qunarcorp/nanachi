@@ -46,14 +46,14 @@ window.ydoc_plugin_search_json = {
       "children": []
     },
     {
-      "title": "页面组件",
+      "title": "页面组件与生命周期",
       "content": "页面定义在 pages 目录下的index.js文件中。这样一来，就会存在这么多index.js,因此它们必须包含在相应的文件夹中，而这些文件夹不要以index命名。原因：快应用有一个manifest.json文件, 里面有一个router对象，包含所有页面\n\"router\": {    \"entry\": \"pages/index\",\n    \"pages\": {\n      \"pages/index\": {\n        \"component\": \"index\"\n      },\n      \"pages/demo/syntax/index\": {\n        \"component\": \"index\"\n      },\n      \"pages/demo/syntax/api\": {\n        \"component\": \"index\"\n      },\n      \"pages/demo/syntax/await\": {\n        \"component\": \"index\"\n      },\n      \"pages/demo/syntax/children\": {\n        \"component\": \"index\"\n      },\n      \"pages/demo/syntax/extend\": {\n        \"component\": \"index\"\n      },\n      \"pages/demo/syntax/if\": {\n        \"component\": \"index\"\n      }\n    }\n}\n然后我们页面切换是通过React.api.redirectTo实现function createRouter(name) {    return function (obj) {\n        var router = require('@system.router');\n        var params = {};\n        var uri = obj.url.slice(obj.url.indexOf('/pages') + 1);\n        uri = uri.replace(/\\?(.*)/, function (a, b) {\n            b.split('=').forEach(function (k, v) {\n                params[k] = v;\n            });\n            return '';\n        }).replace(/\\/index$/, '');\n        console.log(uri, \"createRouter\")\n        router[name]({\n            uri:\"/\"+ uri,\n            params: params\n        });\n    };\n}\n因此文件名目录名好重要！它必须是一个有状态的 React 组件。JSX 只能出现在 render() 方法里，它会编译成相应的 wxml 文件，因此不能使用 R React.createElement()代替 JSX。有关 JSX 的注意事项可以看这里。页面组件与components目录下的通用组件有一些特异点，它是多出了componentDidShow, componentDidHide这两个生命周期钩子，与onPullDownRefresh onReachBottom onPageScroll onShareAppMessage这些事件。并且在config中能指定tabBar与分享按钮。应用组件更新 state 必须通过 this.setState 函数。比如：//pages/train/index.jsimport React from '@react';\n\nclass P extends React.Component {\n  constructor() {\n    super();\n    this.state = {\n      iconSize: [20, 30, 40, 50, 60, 70],\n      text: 'this is first line\\nthis is second line'\n    };\n  }\n  static config = {};\n\n  add() {\n    this.setState({\n      text: this.state.text + '\\nthis is new line'\n    });\n  }\n\n  remove() {\n    var textAry = this.state.text.split('\\n');\n    if (!textAry.length) return;\n    textAry.pop();\n\n    this.setState({\n      text: textAry.join('\\n')\n    });\n  }\n  componentWillMount() {\n    console.log('base componentWillMount');\n  }\n  componentDidMount() {\n    console.log('base componentDidMount');\n  }\n  render() {\n    return (\n      \n        \n          Icon\n          \n            {this.state.iconSize.map(function(item) {\n              return ;\n            })}\n          \n        \n      \n    );\n  }\n}\n\nexport default P;\n",
       "url": "/documents/page.html",
       "children": [
         {
           "title": "页面的生命周期",
           "url": "/documents/page.html#页面的生命周期",
-          "content": "页面的生命周期componentWillMount(onLoad) -> onShow -> componentWillMount(onReady)componentWillReceiveProps -> shouldComponentUpdate -> componentWillUpdate\ncomponentDidUpdate -> componentWillUnmount(onUnload)\n只有页面组件才有onShow, onHide钩子，普通组件没有这两个钩子页面组件必须使用 es6 风格来引入依赖与导出自己。它的静态属性 config 会抽取出来生成对应的 JSON 配置对象，有关配置项可以看这里"
+          "content": "页面的生命周期页面组件会依次触发如下生命周期钩子componentWillMount或getDerivedStateFromProps -> onGlobalLoad -> onShow -> onGlobalShow ->\ncomponentDidMount -> onGlobalReady \n# 只有页面组件才有onShow, onHide钩子，普通组件没有这两个钩子\n如果对页面组件进行setState,会依次触发如下生命周期钩子shouldComponentUpdate(如果return false, 后面的不会触发) ->componentWillUpdate或getDerivedStateFromProps -> \ncomponentDidUpdate\n# componentWillMount/Update/ReceiveProps这三个钩子是 React15的旧钩子，如果定义了它们\n# 就不会触发React 16的新钩子getDerivedStateFromProps\n如果用户从A页面跳转到B页面，是不会触页面组件的componentWillUnmount(即onUnload),而是触发页面的onHide钩子与app.js上的onGlobalHide钩子。然后再依次触发B的componentWillMount，onGlobalLoad，onShow。。。当然，除了页面的生命周期及页面上所有子组件的生命周期，应用本身还有生命周期，实际上我们看到的生命周期触发顺序是这样的。注： 页面组件必须使用 es6 风格来引入依赖与导出自己。它的静态属性 config 会抽取出来生成对应的 JSON 配置对象，有关配置项可以看这里"
         }
       ]
     },
@@ -70,29 +70,7 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "事件系统",
-      "content": "小程序有两种绑定事件的方式。bindtap 绑定一个会冒泡的 tap 事件\ncatchtap 绑定一个不会冒泡的 tap 事件\nnanachi 为了大家方便，还是换回大家熟悉的风格，但不能冒泡的限制还没有搞定，因此也是两种绑定风格。onTap 绑定一个会冒泡的 tap 事件\ncatchTap 绑定一个不会冒泡的 tap 事件\ntap 事件相当于 PC 端的 click 事件，因此建议大家用 onClick 代替 onTap, 娜娜奇会友好地帮你转换成 onTap.",
-      "url": "/documents/event.html",
-      "children": [
-        {
-          "title": "事件对象",
-          "url": "/documents/event.html#事件对象",
-          "content": "事件对象由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有stopPropagation 与 preventDefault。但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 stopPropagation 与 preventDefault() 方法。注意 stopPropagation() 是没有效果的，你想并且冒泡还需要用 catchClick 的方式来绑定事件。如果 你想它转译成H5，那么catchXXX的回调内部需要大家执行 e.stopPropagation()。小程序事件对象的属性如下：{    target,//里面有dataset\n    pageX,\n    pageY,\n    value, //不一定有，但input, change事件有\n    timeStamp,\n    type,\n    stopPropagation,\n    preventDefault,\n    //还可能有其他属性，不同的事件类型会产生额外的属性\n}\n"
-        },
-        {
-          "title": "事件回调",
-          "url": "/documents/event.html#事件回调",
-          "content": "事件回调事件回调本身必须定义在类的原型里，不能在视图中使用 this.props.onClick ,只能this.onClick"
-        },
-        {
-          "title": "注意事项",
-          "url": "/documents/event.html#注意事项",
-          "content": "注意事项定义了事件的标签，可能会自动添加data-beacon-uid,  data-key, data-class-uid, data-instance-uid这些属性，注意不要与它们冲突2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积\ninput标签 统一使用onChange事件，不要用onInput\n"
-        }
-      ]
-    },
-    {
-      "title": "JSX",
+      "title": "使用JSX的注意事项",
       "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例为了兼容所有平台，我们定下这些规则原来打算使用view标签的地方，请使用div,h1这些块状元素代替\n文本必须包含在text, span, a, option, label这几种标签内\ntext标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签\njsx中不能出现 声明变量或函数的语句，不能出现switch语句\n不要在标签内部使用纯空白或通过两边的空白撑开空间，即  111 111</div\n错误的用法  我是文本\n\n正确的用法   我是文本\n   我是文本\n\n",
       "url": "/documents/jsx.html",
       "children": [
@@ -124,7 +102,7 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "通用样式",
+      "title": "使用CSS的注意事项",
       "content": "因为快应用只支持flexbox，因此建议都使用flexbox布局，不要用绝对定位与相对定位与浮动\n",
       "url": "/documents/style.html",
       "children": [
@@ -191,15 +169,10 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "样式编译特性",
-      "content": "nanachi支持less, sass, postcss。默认情况下支持less。针对sass，由于sass环境安装比较麻烦，若用户工程目录没安装node-sass依赖，nanachi就会用过postcss来解析sass或者scss文件。",
+      "title": "按平台引入CSS文件",
+      "content": "nanachi支持less, sass, postcss。默认情况下支持less。针对sass，由于sass环境安装比较麻烦，若用户工程目录没安装node-sass依赖，nanachi就会用过postcss来解析sass或者scss文件。各大样式预处理器对被依赖的@import资源内容打包到当前文件，在很多场景下，这种打包策略会造成应用体积臃肿，比如每个样式文件都引用了基础样式。nanachi对这种策略做了改进，实现了模块化打包。例如:\nSass:   //sass   @import './moduleA.scss';\n   @import './moduleB.scss';\n   .box {\n     color: #333;\n   }\n编译结果：   //sass   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\nLess:   //less   @import (reference) './moduleA.less';\n   @import (reference) './moduleB.less';\n   .box {\n     color: #333;\n   }\n编译结果：   //less   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\n注: postcss暂不支持该特性。",
       "url": "/documents/style_compile_feature.html",
       "children": [
-        {
-          "title": "模块化打包样式。",
-          "url": "/documents/style_compile_feature.html#模块化打包样式。",
-          "content": "模块化打包样式。各大样式预处理器对被依赖的@import资源内容打包到当前文件，在很多场景下，这种打包策略会造成应用体积臃肿，比如每个样式文件都引用了基础样式。nanachi对这种策略做了改进，实现了模块化打包。例如:\nSass:   //sass   @import './moduleA.scss';\n   @import './moduleB.scss';\n   .box {\n     color: #333;\n   }\n编译结果：   //sass   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\nLess:   //less   @import (reference) './moduleA.less';\n   @import (reference) './moduleB.less';\n   .box {\n     color: #333;\n   }\n编译结果：   //less   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\n注: postcss暂不支持该特性。"
-        },
         {
           "title": "注意!!!",
           "url": "/documents/style_compile_feature.html#注意!!!",
@@ -208,14 +181,48 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
+      "title": "事件系统",
+      "content": "小程序有两种绑定事件的方式。bindtap 绑定一个会冒泡的 tap 事件\ncatchtap 绑定一个不会冒泡的 tap 事件\nnanachi 为了大家方便，还是换回大家熟悉的风格，但不能冒泡的限制还没有搞定，因此也是两种绑定风格。onTap 绑定一个会冒泡的 tap 事件\ncatchTap 绑定一个不会冒泡的 tap 事件\ntap 事件相当于 PC 端的 click 事件，因此建议大家用 onClick 代替 onTap, 娜娜奇会友好地帮你转换成 onTap.",
+      "url": "/documents/event.html",
+      "children": [
+        {
+          "title": "事件对象",
+          "url": "/documents/event.html#事件对象",
+          "content": "事件对象由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有stopPropagation 与 preventDefault。但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 stopPropagation 与 preventDefault() 方法。注意 stopPropagation() 是没有效果的，你想并且冒泡还需要用 catchClick 的方式来绑定事件。如果 你想它转译成H5，那么catchXXX的回调内部需要大家执行 e.stopPropagation()。小程序事件对象的属性如下：{    target,//里面有dataset\n    pageX,\n    pageY,\n    value, //不一定有，但input, change事件有\n    timeStamp,\n    type,\n    stopPropagation,\n    preventDefault,\n    //还可能有其他属性，不同的事件类型会产生额外的属性\n}\n"
+        },
+        {
+          "title": "事件回调",
+          "url": "/documents/event.html#事件回调",
+          "content": "事件回调事件回调本身必须定义在类的原型里，不能在视图中使用 this.props.onClick ,只能this.onClick"
+        },
+        {
+          "title": "注意事项",
+          "url": "/documents/event.html#注意事项",
+          "content": "注意事项定义了事件的标签，可能会自动添加data-beacon-uid,  data-key, data-class-uid, data-instance-uid这些属性，注意不要与它们冲突2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积\ninput标签 统一使用onChange事件，不要用onInput\n"
+        }
+      ]
+    },
+    {
+      "title": "开发目录结构与输出目录指定",
+      "content": "在开始之前，提一下两种重要的概念。带JSX的页面组件与通用组件，它们分别放在pages与components目录下，它们具有巨大的转换成本（毕竟JSX会被提取出来转换成wxml, axml, swan或ux文件），还有一种不带JSX的纯JS文件，建议放在common目录,  当然还有一些通用的东西可以通过npm安装，但不要使用那些有JSX的第三方依赖。开发目录如下src   |--components\n   |    |--HotelDialog\n   |    |     └──index.js  //必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog\n   |    |--HotelXXX\n   |    |--FlightYYY\n   |    └── ...\n   |--pages\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--common\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--app.js\ncomponents目录下为了扁平化管理，以事业部做前端+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from \"@react\"`components目录下不要使用Fragments来命名子目录，这留给系统用。\npages目录下每个事业部各建一个目录，以事件部的名字命名，里面为index.js 及页面的目录，index.js要引入自己目录的所有页面，页面也以index.js命名，并且里面必须是有状态的React组件（转译器会转换成页面组件。）页面的index.js各种引入通用组件与common目录的依赖   |--pages   |    |--hotel\n            |--index\n            |    └──index.js //目录, import里面所有index.js\n            |--page1\n            |    |---index.js\n            |    └── index.scss\n            |--page2\n            |    |---index.js\n            |    └── index.scss\n            |--page3\n            |    |---index.js\n            |    └── index.scss\n            |--about\n            |    |---index.js\n            |    └── index.scss\ncommon目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用全部有效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中共享数据的处理， 大家都在globalData对象中放一些命名空间对象. globalData不能放函数。大家不要放在其他全局对象上，因此在快应用等个别小程序中，页面跳转时，会清空掉除globalData之外的数据与变量。{    globalData: {\n        flight: {\n            xxx:111,222:444\n        },\n        hotel: {\n\n        }\n    }\n}\n",
+      "url": "/documents/publish.html",
+      "children": [
+        {
+          "title": "自定义输出目录",
+          "url": "/documents/publish.html#自定义输出目录",
+          "content": "自定义输出目录nanachi 默认打包目录是dist, 可以在package.json中自定义配置 buildDir 来定义打包目录。{    \"nanachi\": {\n        \"alias\": {\n            \"@assets\": \"source/assets\"\n        },\n        \"buildDir\": \"yourDir\"\n    }\n}\n#￥ 压缩打包执行 nanachi build -c 会将项目中css, js进行压缩。"
+        }
+      ]
+    },
+    {
       "title": "补丁组件",
-      "content": "不是所有小程序都照着微信的那一套抄的，并且微信小程序的个别组件是基于native，他们（支付宝，百度等）拿不到源码，因此实现有所差异或延迟，并且为了以后让娜娜奇也运行于H5端，我们也需要实现那些不是H5标签的组件，因此就有补丁组件。用户在使用时，还是像微信那样直接用全小写的组件标签，如，我们会自动转换成大写开头的标签,并且自动引入Icom组件的依赖。目前需要处理的补丁组件有icon 完工\nbutton 完工\nslider 它们都依赖于touch事件，快应用暂时不支持，可以先在微信上测试\nswiper 它们都依赖于touch事件，快应用暂时不支持，可以先在微信上测试\npicker 开发中\nswitch 待开发\nnavigator 完工\nscroller 待开发\nlist 待开发\n",
+      "content": "不是所有小程序都照着微信的那一套抄的，并且微信小程序的个别组件是基于native，他们（支付宝，百度等）拿不到源码，因此实现有所差异或延迟，并且为了以后让娜娜奇也运行于H5端，我们也需要实现那些不是H5标签的组件，因此就有补丁组件。现在我们把补丁组件单独拿了出来 Schnee UI作为 Nanachi 项目的依赖使用。用户在使用时，还是像微信那样直接用全小写的组件标签，如，我们会自动转换成大写开头的标签,并且自动引入Icom组件的依赖。",
       "url": "/documents/patchComponent.html",
       "children": [
         {
-          "title": "微信系的但业务中经常用的功能组件",
-          "url": "/documents/patchComponent.html#微信系的但业务中经常用的功能组件",
-          "content": "微信系的但业务中经常用的功能组件citySelector\nrating\n"
+          "title": "快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
+          "url": "/documents/patchComponent.html#快应用-demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
+          "content": "快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）"
         }
       ]
     },
@@ -321,14 +328,14 @@ window.ydoc_plugin_search_json = {
           "content": "微信小程序与快应用差异(更新中...)\n\n差异\n微信小程序\n快应用\n\n\n\n\n入口文件\napp.js, app.json\napp.ux, manifest.json\n\n\n结构，表现，行为组织方式\n分离：如 page.js, page.wxss, page.wxml\n聚合：类似 vue\n\n\n文件扩展名\n.js, .json, .wxml, .wxss\n.ux, .json\n\n\n路由注册\napp.json 中配置 pages 字段 例如\"pages\": [\"path1\", \"path2\"]\nmanifest.json 中配置 router 字段 详见文档\n\n\n路由跳转\n1.组件跳转[navigator 组件] 2.五种 js 跳转方式详见文档\n1. 组件跳转[a 组件] 2. router.push(OBJECT)\n\n\n获取应用实例\n调用函数：getApp()\n访问变量：this.$app\n\n\n模板逻辑渲染\n配置命名空间： 例如：wx:if/wx:elif/wx:else\n不需要 例如：if/elif/else\n\n\n钩子函数\nonLoad: 页面加载时触发\nonInit: 页面加载时触发\n\n\n\nonDestroy: 页面卸载\nonUnload: 页面卸载\n\n\n\nonBackPress：不支持\nonBackPress：支持\n\n\n\nonPageScroll：支持\nonPageScroll：不支持\n\n\n\nonPullDownRefresh： 支持\nonPullDownRefresh：不支持\n\n\n初始化状态(state)\ndata: {list: []}\nprivate: { list: [] }\n\n\n更新组件状态\nsetData 函数更新\n类 vue 语法\n\n\nUI 事件绑定方式\nbindEventName\n（on|@)EventName\n\n\nUI 事件自定义传参\n不支持\n支持\n\n\nAPI\n挂载在 wx 命名空间下：如 wx.showShareMenu(OBJECT)\n需引用相关模块：import share from '@system.share'\n\n\n组件机制Component 构造器可用于定义组件，调用 Component 构造器时可以指定组件的属性、数据、方法等。\n\n字段\n说明\n微信\n支付宝\n百度\n轻应用\n\n\n\n\nproperties\n接收的数据\n同名\n同名\n同名\nprops\n\n\ndata\n内部数据\n同名\n同名\n同名\nprivate\n\n\nmethods\n方法集合\n同名\n同名\n同名\n不存在\n\n\ncreated\n组件创建时\n同名\n同名\n同名\nonInit\n\n\nattached\n组件插入时\n同名\n同名\n同名\n不存在\n\n\nready\n组件完成布局后\n同名\n同名\n同名\nonReady\n\n\ndetached\n组件移除时\n同名\n同名\n同名\nonDestroy\n\n\n思路：properties 定义两个属性 {props: Object, context: Object}created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 props, state, context 给小程序实例"
         },
         {
-          "title": "支付宝小程序的大小查看",
-          "url": "/documents/diff.html#支付宝小程序的大小查看",
-          "content": "支付宝小程序的大小查看"
+          "title": "各平台的组件差异",
+          "url": "/documents/diff.html#各平台的组件差异",
+          "content": "各平台的组件差异点我查看"
         },
         {
-          "title": "流量",
-          "url": "/documents/diff.html#支付宝小程序的大小查看-流量",
-          "content": "流量–单个资源：页面单个资源控制在50k以下，最大不超过100k–页面总大小：页面完全加载前，资源累计必须小于200K\n–离线包：amr压缩包总大小小于2M\n–网络总请求数——页面完全加载前，请求总数必须小于20个离线包的文件大小就是你项目的压缩包大小。C:\\Users\\计算机用户名\\AppData\\Local\\Temp.alipay-tiny\\项目名\\pack-production\\dist.amr 上传小程序包的大小可以在beta版IDE右上角“详情”中查看“上次上传”的文件大"
+          "title": "支付宝小程序的大小查看",
+          "url": "/documents/diff.html#支付宝小程序的大小查看",
+          "content": "支付宝小程序的大小查看–单个资源：页面单个资源控制在50k以下，最大不超过100k–页面总大小：页面完全加载前，资源累计必须小于200K\n–离线包：amr压缩包总大小小于2M\n–网络总请求数——页面完全加载前，请求总数必须小于20个离线包的文件大小就是你项目的压缩包大小。C:\\Users\\计算机用户名\\AppData\\Local\\Temp.alipay-tiny\\项目名\\pack-production\\dist.amr 上传小程序包的大小可以在beta版IDE右上角“详情”中查看“上次上传”的文件大"
         },
         {
           "title": "页面组件在快应用的模拟",
@@ -353,12 +360,6 @@ window.ydoc_plugin_search_json = {
       "title": "常见问题",
       "content": "暂时不支持 redux,请使用 React.getApp().globalData 来在页面间交换数据\nrender 里面不能定义变量,即不能出现 var, const, let 语句。render() 里只能使用 JSX 来描述结构，不能使用 React.createElement()。\n组件必须定义在 components 中\n为什么底部不出现 TabBar？ 这是小程序自身的 BUG，详见这里\n路由跳转时，如何拿到当前路径与参数，原来是通过 onLoad 方法拿，现在你可以通过任何一个页面组件的生命周期钩子，访问 this.props，里面就有 path 与 query 属性\n静态资源统一放到 src 目录下的 assets 目录下\nwxml 模板部分，如果使用了箭头函数，那么它里面不能出现 this 关键字\n不要在 props, state, context 里面放 JSX，因为 JSX 的结构容易出现环引用，导到微信小程序内部的 JSON.stringify 出错\nslot 机制与 render props 是有代价，它们会在 components/Fragments 目下添加许多当作桥梁用的碎片文件，不要滥用\nrender props 机制只能用于有狀态组件，并且只应用于 render() 属性，只能传一个参数，参数只能是 this.state 或 this.props, 目前不支持快应用\ninput组件 统一使用onChange事件，因为有的平台支持onInput, 有的平台支持onChange, 转译器会翻译相应支持的事件\n业务有涉及拿globalData.systemInfo里面高度的，改为React.api.getSystemInfoSync()。第一次进入页面有底bar的话 高度会拿错，导致业务液面高度计算错误，下面空一块。\nReact.getCurrentPage() 能得到当前页面的react实例， instance.props.query, instance.props.path为当前路径与参数对象\n更多问题请到 GitHub 提 Issue。\n",
       "url": "/documents/questions.html",
-      "children": []
-    },
-    {
-      "title": "打包发布自定义打包目录压缩打包",
-      "content": "在开始之前，提一下两种重要的概念。带JSX的页面组件与通用组件，它们分别放在pages与components目录下，它们具有巨大的转换成本（毕竟JSX会被提取出来转换成wxml, axml, swan或ux文件），还有一种不带JSX的纯JS文件，建议放在common目录,  当然还有一些通用的东西可以通过npm安装，但不要使用那些有JSX的第三方依赖。开发目录如下src   |--components\n   |    |--HotelDialog\n   |    |     └──index.js  //必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog\n   |    |--HotelXXX\n   |    |--FlightYYY\n   |    └── ...\n   |--pages\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--common\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--app.js\ncomponents目录下为了扁平化管理，以事业部做前端+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from \"@react\"`components目录下不要使用Fragments来命名子目录，这留给系统用。\npages目录下每个事业部各建一个目录，以事件部的名字命名，里面为index.js 及页面的目录，index.js要引入自己目录的所有页面，页面也以index.js命名，并且里面必须是有状态的React组件（转译器会转换成页面组件。）页面的index.js各种引入通用组件与common目录的依赖   |--pages   |    |--hotel\n            |--index\n            |    └──index.js //目录, import里面所有index.js\n            |--page1\n            |    |---index.js\n            |    └── index.scss\n            |--page2\n            |    |---index.js\n            |    └── index.scss\n            |--page3\n            |    |---index.js\n            |    └── index.scss\n            |--about\n            |    |---index.js\n            |    └── index.scss\ncommon目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用全部有效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中共享数据的处理， 大家都在globalData对象中放一些命名空间对象. globalData不能放函数。大家不要放在其他全局对象上，因此在快应用等个别小程序中，页面跳转时，会清空掉除globalData之外的数据与变量。{    globalData: {\n        flight: {\n            xxx:111,222:444\n        },\n        hotel: {\n\n        }\n    }\n}\nnanachi 默认打包目录是dist, 可以在package.json中自定义配置 buildDir 来定义打包目录。{    \"nanachi\": {\n        \"alias\": {\n            \"@assets\": \"source/assets\"\n        },\n        \"buildDir\": \"yourDir\"\n    }\n}\n执行 nanachi build -c 会将项目中css, js进行压缩。",
-      "url": "/documents/publish.html",
       "children": []
     },
     {
@@ -390,60 +391,6 @@ window.ydoc_plugin_search_json = {
           "title": "娜娜奇如何和原生小程序兼容，以及其他有用的辅助功能或者工具",
           "url": "/documents/about.html#娜娜奇如何和原生小程序兼容，以及其他有用的辅助功能或者工具",
           "content": "娜娜奇如何和原生小程序兼容，以及其他有用的辅助功能或者工具娜娜奇不与某一种原生小程序兼容，因为它要照顾4种小程序如果你的目录名，样式不符合规范，我们在转译阶段会给出友好提示快应用的文本节点要求放在text, a, option, label下，娜娜奇会在编译阶段自动对没有放在里面的文本包一个text标签页面配置对象的许多配置项（如tabBar, titBar的配置参数，页面背景参数）， 我们也进行了抹平，用户只需要以微信方式写，我们自动转换为各个平台对应的名字，在快应用中，是没有tabBar, 我们直接让每个页面组件继承了一个父类，父类里面\n有tabBar, 令它长得与其他小程序一模一样"
-        }
-      ]
-    }
-  ],
-  "各平台的组件差异": [
-    {
-      "title": "组件对比",
-      "content": "",
-      "url": "/component/index.html",
-      "children": [
-        {
-          "title": "视图容器",
-          "url": "/component/index.html#视图容器",
-          "content": "视图容器\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\nview\n\n\n\n\n\nscroll-view\n\n\n\n\n\nswiper\n\n支付宝缺少属性（current-item-id, display-multiple-items）\nskip-hidden-item-layout\n\n\nmovable-area\n支付宝\n\n\n\n\ncover-view\n支付宝\n\n\n\n\n"
-        },
-        {
-          "title": "基础内容",
-          "url": "/component/index.html#基础内容",
-          "content": "基础内容\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\nicon\n\n\n\n\n\ntext\n\n支付宝（space）\nselectable, decode\n\n\nprogress\n\n支付宝缺少属性（color, active-mode）\n\n\n\nrich-text\n支付宝\n\n\n\n\nanimation\n支付宝, 微信\n\n\n\n\n"
-        },
-        {
-          "title": "表单组件",
-          "url": "/component/index.html#表单组件",
-          "content": "表单组件\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\nbutton\n\n支付宝缺少属性（hover-stop-propagation,bindgetuserinfo ）\nlang,  微信多出一些open-type存在的属性\n\n\ncheckbox\n\n支付宝（color）\n\n\n\nform\n\n\n\n\n\ninput\n\n支付宝缺少属性（cursor-spacing ）\n\n\n\ntextarea\n\n支付宝缺少属性（show-confirm-bar,selection-start,selection-end,adjust-position, bindlinechange）\n\n\n\nlabel\n\n\n\n\n\npicker\n\n支付宝缺少属性mode\n\n\n\npicker-view\n\n支付宝属性是 indicatorStyle， 支付宝缺少的属性是（indicator-class,mask-style,mask-class）\n\n\n\nradio\n\n支付宝缺少属性color\n\n\n\nswitch\n\n百度缺少属性disabled\n\n\n\nslider\n\n支付宝（handleSize,handleColor）;微信，百度（block-size,block-color）\n\n\n\n"
-        },
-        {
-          "title": "导航",
-          "url": "/component/index.html#导航",
-          "content": "导航\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\nnavigator\n\n支付宝缺少属性（delta ）\napp-id, path, extra-data, version\n\n\nanimation\n支付宝, 百度\n\n\n\n\n"
-        },
-        {
-          "title": "媒体组件",
-          "url": "/component/index.html#媒体组件",
-          "content": "媒体组件\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\nimage\n\n支付宝（lazyLoad ）;微信，百度（lazy-load）\n\n\n\naudio\n支付宝\n\ndanmu-list,danmu-btn,enable-danmu\n\n\ncamera\n支付宝\n\nmode,flash,bindscancode\n\n\nlive-player\n支付宝\n\nmode\n\n\nlive-pusher\n支付宝, 百度\n\n\n\n\n"
-        },
-        {
-          "title": "地图",
-          "url": "/component/index.html#地图",
-          "content": "地图\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\nmap\n\n百度（polygons ）\nenable-overlooking,enable-zoom, enable-scroll,enable-rotate\n\n\n"
-        },
-        {
-          "title": "画布",
-          "url": "/component/index.html#画布",
-          "content": "画布\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\ncanvas\n\n\n\n\n\n注： 画布属性写 id 而不是 canvas-id\n"
-        },
-        {
-          "title": "开放能力",
-          "url": "/component/index.html#开放能力",
-          "content": "开放能力\n\n组件名\n缺少\n缺少的属性\n微信多出的属性\n\n\n\n\nweb-view\n\n支付宝 (bindLoad, bindError) 百度 (bindLoad, bindError)\n\n\n\n"
-        },
-        {
-          "title": "支付宝中 web-view 组件的用法",
-          "url": "/component/index.html#开放能力-支付宝中-web-view-组件的用法",
-          "content": "支付宝中 web-view 组件的用法import React from '@react';\n// 事件\nclass Data extends React.Component {\n constructor() {\n   super();\n   this.state = {};\n   React.webview.instance = this\n   React.webview.cb = this.test // 绑定到 onMessage 上的函数\n }\n\n \n componentDidMount() {}\n\n test(e) {\n   console.log(JSON.stringify(e.detail))\n }\n\n render() {\n   return (\n     \n       \n     \n   );\n }\n}\nexport default Data;\n\n\n"
         }
       ]
     }
@@ -1253,40 +1200,6 @@ window.ydoc_plugin_search_json = {
       ]
     }
   ],
-  "去哪儿内部组件": [
-    {
-      "title": "",
-      "content": "",
-      "url": "/ui/index.html",
-      "children": [
-        {
-          "title": "QunarLoading",
-          "url": "/ui/index.html#qunarloading",
-          "content": "QunarLoading使用方法import React from '@react';import QunarLoading from '@components/QunarLoading/index';\n// 事件\nclass Data extends React.Component {\n  constructor() {\n    super();\n    this.state = {\n      networkData: {\n        status: -3,\n        loadingDesc: '加载中...',\n        showButton: true\n      }\n    };\n  }\n\n  componentDidMount() {\n    let selfState = this.state;\n    let self = this;\n    setTimeout(\n      function() {\n        selfState.networkData.status = 0;\n        self.setState({ ...selfState }); //自动隐藏\n      }.bind(this),\n      5000\n    );\n  }\n\n  render() {\n    return (\n      \n        加载\n        \n      \n    );\n  }\n}\nexport default Data;\n"
-        },
-        {
-          "title": "属性说明如下：",
-          "url": "/ui/index.html#qunarloading-属性说明如下：",
-          "content": "属性说明如下：\n\n属性\n类型\n说明\n\n\n\n\n\bnetworkData\nObject\n网络\b状态信息\n\n\nnetworkRetry\nfunction\n触发重新加载\n\n\nnetworkData Object\n\n属性\n类型\n是否必须\n默认值\n说明\n\n\n\n\n\bstatus\nnumber\n否\n4\n网络状态码       1 toast系统默认加载中 背景白色    2 toast系统默认加载中 背景透明    3 dots加载中mini 背景透明     4 qunar大图骆驼加载中 背景白色    0 成功   -1 网络连接失败  -2 没有数据  -3 提示信息\n\n\nloadingDesc\nstring\n否\n加载中...\nloading描述(可选)\n\n\nshowButton\nboolean\n否\ntrue\n显示重新加载 button, 默认为true\n\n\n\n\n属性\n类型\n默认值\n说明\n\n\n\n\n\bnetworkData\nObject\n\n网络 \b 状态信息\n\n\n\btop\nString/Number\n0\n距离页面顶部的高度\n\n\nbottom\nString/Number\n0\n距离页面底部部的高度\n\n\nwidth\nString/Number\n100%\n页面宽度\n\n\nheight\nString/Number\nauto\n页面高度\n\n\nzIndex\nString/Number\n100\n页面的层叠顺序\n\n\nnetworkRetry\nfunction\n触发重新加载\n\n\n\nnetworkData Object\n\n属性\n类型\n是否必须\n默认值\n说明\n\n\n\n\n\bstatus\nnumber\n否\n4\n网络状态码  1 toast 系统默认加载中 背景白色  2 toast 系统默认加载中 背景透明  3 dots 加载中 mini 背景透明  4 qunar 大图骆驼加载中 背景白色  0 成功  -1 网络连接失败  -2 没有数据  -3 提示信息\n\n\nloadingDesc\nstring\n否\n加载中...\nloading 描述(可选)\n\n\nshowButton\nboolean\n否\ntrue\n显示重新加载 button, 默认为 true\n\n\nstatus: -3 提示信息status: -2 没有数据 和 status: -1 网络连接失败status: 1 加载中 toast 系统默认 背景白色status: 2 加载中 toast 系统默认 背景透明status: 3 加载中 dots 加载中 mini 背景透明status: 4 加载中 qunar 大图骆驼 背景白色"
-        },
-        {
-          "title": "CitySelect",
-          "url": "/ui/index.html#cityselect",
-          "content": "CitySelect使用方法// index.jscitySelect() {\n    var params = {\n      type: 3, // 0:机票 1:火车票 2:汽车票 3:酒店\n      cityListService: HOTEL_API.HOTEL_LIST.HOTEL_INDEX_CITY,\n      citySuggestService: HOTEL_API.HOTEL_LIST.HOTEL_INDEX_SUGGEST,\n      eventType: HOTEL_EVENT_NAME.CITY_SELECT,\n      placeholder: \"请输入城市名称或首字母\"\n    };\n\n    React.api.navigateTo({\n      url: '/pages/citySelector/index?data='+ JSON.stringify(params)\n    });\n  }\n\n  render() {\n    return (\n      \n        \n          城市列表页\n        \n      \n    );\n  }\n\n  // citySelect/index.js\n  render() {\n    return (\n      \n        \n      \n    );\n  }\n\n\n属性\n类型\n说明\n\n\n\n\nparam\nObject\n不同业务线的数据信息\n\n\n属性\n类型\n说明\n\n\n-----\n-------------\n--------------------\n\n\nparam\nObject/String\n不同业务线的数据信息\n\n\n\n\n属性\n类型\n是否必须\n默认值\n说明\n\n\n\n\n\btype\nnumber\n是\n4\n业务线信息  0:机票 1:火车票 2:汽车票 3:酒店\n\n\ncityListService\nstring\n是\n\n请求 city list 的接口地址\n\n\ncitySuggestService\nstring\n是\n\n城市搜索 suggest 接口地址\n\n\neventType\nstring\n是\n\n城市 \b 选择回调名\n\n\nplaceholder\nstring\n否\n请输入城市名称或首字母\n搜索框显示信息\n\n\n以上参数和微信公共组件 citySelect 用法相同\n\n属性\n类型\n是否必须\n默认值\n说明\n\n\n\n\n\btype\nnumber\n是\n4\n业务线信息      0:机票 1:火车票 2:汽车票 3:酒店\n\n\ncityListService\nstring\n是\n\n请求 city list 的接口地址\n\n\ncitySuggestService\nstring\n是\n\n城市搜索suggest 接口地址\n\n\neventType\nstring\n是\n\n城市\b选择回调名\n\n\nplaceholder\nstring\n否\n请输入城市名称或首字母\n搜索框显示信息\n\n\n以上参数和微信公共组件 citySelect 用法相同"
-        },
-        {
-          "title": "SideBar",
-          "url": "/ui/index.html#sidebar",
-          "content": "SideBarimport React from '@react';import SideBar from '@components/sideBar/index';\n\nclass Data extends React.Component {\n  constructor() {\n    super();\n    this.state = {\n      showSideBar: false, // 是否弹起\n      data: {\n        title: '标题', // sidebar title\n        tips: '描述描述描述描述描述描述', // title下方的提示,可见线上填单页房间等选择\n        curIndex: 1, // 当前选中index\n        data: [\n          {\n            // 选项list数据\n            key: 'test key 1',\n            value: 'test value 1'\n          }\n        ]\n      }\n    };\n  }\n\n  componentDidMount() {}\n\n  // 选择item回调\n  selectItem(index, value) {\n    console.log(index, value);\n  }\n\n  showProps() {\n    this.setState({\n      showSideBar: true\n    });\n  }\n\n  // 蒙层点击回调\n  commonSideBarHidden() {\n    console.log('蒙层关闭');\n  }\n\n  render() {\n    return (\n      \n        \n          toggle 弹窗\n        \n        \n      \n    );\n  }\n}\nexport default Data;\n"
-        },
-        {
-          "title": "Calendar",
-          "url": "/ui/index.html#calendar",
-          "content": "Calendar使用方法    var params = {        date: '2019-01-01',   // 选中的日期\n        eDate: '2019-01-11',  // 双选时的第二个日期\n        eventType: CONSTANTS.HOTEL_EVENT_NAME.ARRIVA_DEPARTURE_DATE_SELECT, // 回调事件名字\n        isDoubleSelect: true, // 是否双选\n        calendarDays: 90,     // 日历显示的天数\n        sText: '入住',         // 选中的文案\n        eText: '离店',         // 双选时的第二个文案\n        url: encodeURIComponent('/train/product/api/train/TrainCalendar'), // 请求日历数据的url，一定要encode\n        reqData: {\n            bizType: 0   请求url的数据\n        },\n        bizType: 'train',     // 业务线\n        isMultiSelect: false  // 是否多选\n        dates: ['20181016'],  // 已经选择的备选日期s\n        maxSelectDays: 6      // 最多备选多少个\n    };\n    React.api.navigateTo({\n        url: \"/pages/calendar/index?data=\" + JSON.stringify(params)\n    });\n以上参数和微信公共组件 Calendar 用法相同"
-        }
-      ]
-    }
-  ],
   "谁在用nanachi": [
     {
       "title": "使用娜娜奇生成的小程序",
@@ -1302,6 +1215,11 @@ window.ydoc_plugin_search_json = {
           "title": "支付宝小程序（需要使用支付宝APP 扫码打开）",
           "url": "/documents/logo.html#支付宝小程序（需要使用支付宝app-扫码打开）",
           "content": "支付宝小程序（需要使用支付宝APP 扫码打开）"
+        },
+        {
+          "title": "补丁组件快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
+          "url": "/documents/logo.html#补丁组件快应用-demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
+          "content": "补丁组件快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）"
         }
       ]
     }

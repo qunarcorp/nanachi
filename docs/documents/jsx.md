@@ -1,4 +1,4 @@
-# JSX
+# 使用JSX的注意事项
 
 小程序的 `wxml` 只支持 `view`、`text` 与它的那些内置组件标签，娜娜奇可以让你直接使用 `div`, `span`, `p`, `b`, `strong` 等 HTML 标签。块状元素会转换成 `view`, 内联元素会转换为 `text`。
 
