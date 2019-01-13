@@ -37,6 +37,13 @@ components目录下的样式也是如此，想共享一些已有的样式，也�
   </div>
 ````
 
+### 标签选择器要谨慎避开小程序专有的标签
+
+为了兼容所有平台，尽量避免在CSS样式表中使用 只有小程序 才有的标签，如image, switch, scroller, scroll-div...
+
+这些在小程序特有的标签可能会编译成div或view标签，导致样式失效。
+
+
 ### 垂直和水平居中
 
 由于在快应用中元素组件默认使用横向 flex 布局，因此居中可以很方便的使用 `justify-content: center` 和 `align-items: center` 来实现主轴和交叉轴方向上的居中。

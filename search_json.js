@@ -41,9 +41,15 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "全局对象",
-      "content": "在小程序中，一个应用由多个页面组成，一个页面由多个组件组成。app.js就是用来定义全局配置对象， 全局数据对象，全局回调，全局样式及import所有页面。app.js外表上看来是一个React组件全局配置对象 config 配置标题栏与tab栏\n全局数据对象 globalData\n全局回调\n\nonGlobalShare  如果页面组件没有定义onShareAppMessage方法，那么就会调用此方法，此方法要求返回对象\nonCollectLogs 所有click/tap/change/input/blur等核心的与用户行为相关的事件触发时，都会调用这个回调\nonSendLogs  onCollectLogs理应凑够一定数量的日志就会调用此方法，用于上传日志;并且，我们也应该在app onHide中上传所有日志。\nonGlobalLoad 每个页面在开始渲染页面时就会执行此回调，页面有onLoad方法时，也会同时执行此方法\nonGlobalReady 每个页面在渲染页面后（布局完成）就会执行此回调，页面有onReady方法时，也会同时执行此方法\nonGlobalShow 每个页面在显示时就会调用此方法，页面有onShow方法时，也会同时执行此方法\nonGlobalHide 每个页面在隐藏时就会调用此方法，页面有onHide方法时，也会同时执行此方法\nonGlobalUnload 每个页面在销毁时就会调用此方法，页面隐藏不一定调用它，只有此页面被踢出页面栈时才会调用\n页面栈一共保存5个页面。当页面销毁时，它会依赖调用组件的componentWillUnmount,每个子组件拥componentWillUnmount，页面组件的onUnload，全局可能存在的onGlobalUnload。\nonHide 小程序在退出时会调用此方法（如果是快应用则是onDistory），它的行为类似浏览器中的onbeforeunload\n\n\n全局样式 自己手动import 'app.scss'或import 'app.less'\nimport 所有以 ./pages/ 开头的依赖放到 app.json 中 pages 配置项中。\n默认我们会把 第一个./pages开头的依赖当作首页。\nimport React from '@react';import './pages/index/index'; //引入所有页面。\nimport './pages/demo/base/index';\nimport './pages/demo/native/index/index';\nimport './app.less';\n\nclass Global extends React.Component {\n    //全局配置\n     config = {\n        window: {\n            backgroundTextStyle: 'light',\n            navigationBarBackgroundColor: '#0088a4',\n            navigationBarTitleText: 'mpreact',\n            navigationBarTextStyle: '#fff'\n        }\n    };\n    // 全局数据\n    globalData = {\n        ufo: 'ufo'\n    };\n    // 全局回调，包括 onShareAppMessage， onCollectLogs, onSendLogs, onGlobalLoad, onGlobalReady\n    // 全局的分享，如果某个页面组件没有定义onShareAppMessage，就会调用它\n    onShareAppMessage(){ \n        return {} \n    };\n    onLaunch() {\n        console.log('App launched');\n    }\n}\n\nexport default App(new Global());\n快应用可以这样设置跨页面的全局数据 this.$app.$data = {a:1}其他配置项统一放在config对象中，详细配置列表参见这里",
+      "content": "在小程序中，一个应用由多个页面组成，一个页面由多个组件组成。app.js就是用来定义全局配置对象， 全局数据对象，全局回调，全局样式及import所有页面。app.js外表上看来是一个React组件全局配置对象 config 配置标题栏与tab栏\n全局数据对象 globalData\n全局回调\n\nonGlobalShare  如果页面组件没有定义onShareAppMessage方法，那么就会调用此方法，此方法要求返回对象\nonCollectLogs 所有click/tap/change/input/blur等核心的与用户行为相关的事件触发时，都会调用这个回调\nonSendLogs  onCollectLogs理应凑够一定数量的日志就会调用此方法，用于上传日志;并且，我们也应该在app onHide中上传所有日志。\nonGlobalLoad 每个页面在开始渲染页面时就会执行此回调，页面有onLoad方法时，也会同时执行此方法\nonGlobalReady 每个页面在渲染页面后（布局完成）就会执行此回调，页面有onReady方法时，也会同时执行此方法\nonGlobalShow 每个页面在显示时就会调用此方法，页面有onShow方法时，也会同时执行此方法\nonGlobalHide 每个页面在隐藏时就会调用此方法，页面有onHide方法时，也会同时执行此方法\nonGlobalUnload 每个页面在销毁时就会调用此方法，页面隐藏不一定调用它，只有此页面被踢出页面栈时才会调用\n页面栈一共保存5个页面。当页面销毁时，它会依赖调用组件的componentWillUnmount,每个子组件拥componentWillUnmount，页面组件的onUnload，全局可能存在的onGlobalUnload。\nonHide 小程序在退出时会调用此方法（如果是快应用则是onDistory），它的行为类似浏览器中的onbeforeunload\n\n\n全局样式 自己手动import 'app.scss'或import 'app.less'\nimport 所有以 ./pages/ 开头的依赖放到 app.json 中 pages 配置项中。\n默认我们会把 第一个./pages开头的依赖当作首页。\nimport React from '@react';import './pages/index/index'; //引入所有页面。\nimport './pages/demo/base/index';\nimport './pages/demo/native/index/index';\nimport './app.less';\n\nclass Global extends React.Component {\n    //全局配置\n     config = {\n        window: {\n            backgroundTextStyle: 'light',\n            navigationBarBackgroundColor: '#0088a4',\n            navigationBarTitleText: 'mpreact',\n            navigationBarTextStyle: '#fff'\n        }\n    };\n    // 全局数据\n    globalData = {\n        ufo: 'ufo'\n    };\n    // 全局回调，包括 onShareAppMessage， onCollectLogs, onSendLogs, onGlobalLoad, onGlobalReady\n    // 全局的分享，如果某个页面组件没有定义onShareAppMessage，就会调用它\n    onShareAppMessage(){ \n        return {} \n    };\n    onShow(){\n          var app = React.getApp()\n          console.log(app == this)//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例\n    }\n    onLaunch() {\n      \n        console.log('App launched');\n    }\n}\n\nexport default App(new Global());\n",
       "url": "/documents/app.html",
-      "children": []
+      "children": [
+        {
+          "title": "注意",
+          "url": "/documents/app.html#注意",
+          "content": "注意React.getApp()必须放在app.js 或页面组件或普通组件的生命周期钩子里面执行，不要放在全局作用域下执行快应用可以这样设置跨页面的全局数据 this.$app.$data = {a:1}其他配置项统一放在config对象中，详细配置列表参见这里"
+        }
+      ]
     },
     {
       "title": "页面组件与生命周期",
@@ -120,6 +126,11 @@ window.ydoc_plugin_search_json = {
           "title": "组件出现在伸缩盒项目位置时的处理",
           "url": "/documents/style.html#注意点-组件出现在伸缩盒项目位置时的处理",
           "content": "组件出现在伸缩盒项目位置时的处理错误的写法      xxx\n    \n  \n正确的写法      xxx\n    \n      \n    \n  \n"
+        },
+        {
+          "title": "标签选择器要谨慎避开小程序专有的标签",
+          "url": "/documents/style.html#注意点-标签选择器要谨慎避开小程序专有的标签",
+          "content": "标签选择器要谨慎避开小程序专有的标签为了兼容所有平台，尽量避免在CSS样式表中使用 只有小程序 才有的标签，如image, switch, scroller, scroll-div...这些在小程序特有的标签可能会编译成div或view标签，导致样式失效。"
         },
         {
           "title": "垂直和水平居中",

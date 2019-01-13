@@ -50,7 +50,12 @@ class Global extends React.Component {
     onShareAppMessage(){ 
         return {} 
     };
+    onShow(){
+          var app = React.getApp()
+          console.log(app == this)//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例
+    }
     onLaunch() {
+      
         console.log('App launched');
     }
 }
@@ -58,6 +63,9 @@ class Global extends React.Component {
 export default App(new Global());
 ```
 
+## 注意
+
+ `React.getApp()`必须放在app.js 或页面组件或普通组件的生命周期钩子里面执行，不要放在全局作用域下执行
 
 快应用可以这样设置跨页面的全局数据 `this.$app.$data = {a:1}`
 

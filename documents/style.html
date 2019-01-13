@@ -27,6 +27,9 @@
     <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
   <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span>
 </code></pre>
+<h3 id="注意点-标签选择器要谨慎避开小程序专有的标签">标签选择器要谨慎避开小程序专有的标签</h3>
+<p>为了兼容所有平台，尽量避免在CSS样式表中使用 只有小程序 才有的标签，如image, switch, scroller, scroll-div...</p>
+<p>这些在小程序特有的标签可能会编译成div或view标签，导致样式失效。</p>
 <h3 id="注意点-垂直和水平居中">垂直和水平居中</h3>
 <p>由于在快应用中元素组件默认使用横向 flex 布局，因此居中可以很方便的使用 <code>justify-content: center</code> 和 <code>align-items: center</code> 来实现主轴和交叉轴方向上的居中。</p>
 <h3 id="注意点-单位的转换问题">单位的转换问题</h3>
