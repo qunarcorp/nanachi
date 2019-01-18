@@ -98,7 +98,6 @@ $(function(){
             activeIndex = (activeIndex + 1) % length;
             $captions[activeIndex].classList.add('active');
           } else if (e.keyCode == 13) {
-            $searchResult.hide();
             window.open($captions[activeIndex].href, '_self');
           }
         });
@@ -115,7 +114,7 @@ $(function(){
     }
   }, 300));
 
-  $searchResult.on('click', function (e) {
+  $searchResult.on('click', function(e){
     return false;
   })
 

@@ -7,16 +7,16 @@ banner:
     - { name: 'Github >', href: 'https://github.com/RubyLouvre/anu/tree/master/packages/cli' }
   caption: ''
 features: 
-  - { name: '三套模板', desc: '旅游、商城、音乐三套通用模板' }
-  - { name: '多端支持', desc: '支持微信、百度、支付宝、头条小程序与快应用的转译，H5 SPA正在跟进中' }
-  - { name: '支持 slot', desc: '突破小程序 template 限制，支持组件标签包含其他内容' }
-  - { name: '支持事件传参', desc: '突破 wxml 的限制，实现多次 bind this 与参数' }
+  - { name: '多套模板选择', desc: '旅游、商城、音乐三套通用模板' }
+  - { name: '多端转译支持', desc: '支持微信、百度、支付宝、字节跳动小程序与快应用与H5的转译，app端正在跟进中' }
   - { name: '组件化编程', desc: '完美兼容 React 生命周期钩子' }
-  - { name: '支持 Render Props', desc: '可以更自由地写组件' }
+  - { name: '支持事件传参', desc: '突破 wxml 的限制，实现多次 bind this 与参数' }
+  - { name: '日志收集与上报', desc: '实现自动理点及全自动的上报机制' }
+  - { name: '内置基于flexbox布局的UI库', desc: '无感抹平各个端的标签差异' }
 
 footer:
   copyRight:
-    name: 'YMFE Team'
+    name: 'nanachi Team'
     href: 'https://ymfe.org/'
   links:
     团队网址:
