@@ -22,6 +22,11 @@ window.ydoc_plugin_search_json = {
           "content": "安装npmnpm install nanachi-cli -gyarnyarn global add nanachi-clinanachi init  创建工程\ncd  && npm i 安装依赖\nnanachi watch:[wx|bu|ali|quick] 监听构建小程序\n用对应的小程序开发工具打开当中的dist目录，自己在source目录中进行开发\nnanachi watch:wx默认是从npm拉对应的ReactWx, ReactAli...的稳定版，一星期发布一次。如果出BUG，急紧修复，着急要最新版本，可以使用nanachi watch:wx --beta命令。\n注意：快应用下构建结束后，需要执行以下三步骤npm install    #  需要开另一个窗口, 安装快应用的hap编译器， 只需安装一次 npm run build  # 与上面同一窗口, 生成dist目录\nnpm run server # 需要第三个窗口, 运行node环境，这时会出一个二维码与一个链接，保证PC的WIFI与手机的WIFI是同一个，然后用手机上的快应用调试器 扫描，就能看到效果。也可以将链接贴到chrome中，这时二维码会出现页面上，也是手机扫描，可以同时在手机与网页上看到效果，此这种方式用于调式。\n"
         },
         {
+          "title": "更多便捷的命令",
+          "url": "/documents/install.html#更多便捷的命令",
+          "content": "更多便捷的命令nanachi page aaa # 在pages目录下创建aaa/index.js模板nanachi component Dog # 在components目录下创建Dog/index.js模板\n"
+        },
+        {
           "title": "第二种安装",
           "url": "/documents/install.html#第二种安装",
           "content": "第二种安装此方式下适用于去哪儿网内部用户，在参与开发nanachi框架的技术人员git clone git@github.com:RubyLouvre/anu.git 或git clone https://github.com/RubyLouvre/anu.git\n命令行定位到packages/cli目录下，执行npm link 如果之前装过要先npm unlink\n然后定位到外面的目录，不要在cli目录中建工程。 使用 cd ../../ && nanachi init demo 创建工程\n定位到 demo 目录下安装依赖npm i或yarn\nnanachi build 全量编译代码，build后面可跟参数， 如nanachi build:ali\nnanachi watch 增量编译代码并监听文件变化，watch后面可跟参数\n用微信开发工具打开当中的dist目录，自己在source目录中进行开发\ncd anu/packages/cli && npm linkcd ../../ && nanachi init demo\ncd demo && yarn\nnanachi watch   //或 nanachi watch:wx 或 nanachi watch:bu 或 nanachi watch:ali 或 或 nanachi watch:tt\n\n\n\n\n有远程请求的页面，需要打开右上角 “>>” 详情，  不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书 打上勾"
@@ -226,8 +231,8 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "补丁组件",
-      "content": "不是所有小程序都照着微信的那一套抄的，并且微信小程序的个别组件是基于native，他们（支付宝，百度等）拿不到源码，因此实现有所差异或延迟，并且为了以后让娜娜奇也运行于H5端，我们也需要实现那些不是H5标签的组件，因此就有补丁组件。现在我们把补丁组件单独拿了出来 Schnee UI作为 Nanachi 项目的依赖使用。用户在使用时，还是像微信那样直接用全小写的组件标签，如，我们会自动转换成大写开头的标签,并且自动引入Icom组件的依赖。",
+      "title": "内置UI库: Schnee UI",
+      "content": "不是所有小程序都照着微信的那一套抄的，并且微信小程序的个别组件是基于native，他们（支付宝，百度等）拿不到源码，因此实现有所差异或延迟，并且为了以后让娜娜奇也运行于H5端，我们也需要实现那些不是H5标签的组件，因此就 Schnee UISchnee UI包含了微信weui所有组件，不同之外是它是基于flexbox布局。用户可以自主引用，或在框架编译用户代码时，发现当前的目标编译平台（如快应用），不支持某种标签，就自动用Schnee UI的组件偷偷替换它。如快应用下的，nanachi会自动转换成, 并且自动引入XIcom组件的依赖。",
       "url": "/documents/patchComponent.html",
       "children": [
         {

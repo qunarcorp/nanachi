@@ -5,7 +5,7 @@ banner:
   btns: 
     - { name: '开 始', href: './documents/intro.html', primary: true }
     - { name: 'Github >', href: 'https://github.com/RubyLouvre/anu/tree/master/packages/cli' }
-  caption: ''
+  caption: 'version: v1.0.9' 
 features: 
   - { name: '多套模板选择', desc: '旅游、商城、音乐三套通用模板' }
   - { name: '多端转译支持', desc: '支持微信、百度、支付宝、字节跳动小程序与快应用与H5的转译，app端正在跟进中' }

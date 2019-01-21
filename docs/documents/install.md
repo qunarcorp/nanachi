@@ -37,6 +37,14 @@ npm run build  # 与上面同一窗口, 生成dist目录
 npm run server # 需要第三个窗口, 运行node环境，这时会出一个二维码与一个链接，保证PC的WIFI与手机的WIFI是同一个，然后用手机上的快应用调试器 扫描，就能看到效果。也可以将链接贴到chrome中，这时二维码会出现页面上，也是手机扫描，可以同时在手机与网页上看到效果，此这种方式用于调式。
 ```
 
+## 更多便捷的命令
+
+```bash
+nanachi page aaa # 在pages目录下创建aaa/index.js模板
+nanachi component Dog # 在components目录下创建Dog/index.js模板
+```
+
+
 ## 第二种安装
 
 此方式下适用于去哪儿网内部用户，在参与开发nanachi框架的技术人员
