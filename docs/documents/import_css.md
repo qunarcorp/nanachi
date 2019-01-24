@@ -1,4 +1,5 @@
 # 按平台引入CSS文件
+
 nanachi支持less, sass, postcss。默认情况下支持less。针对sass，由于sass环境安装比较麻烦，若用户工程目录没安装node-sass依赖，nanachi就会用过postcss来解析sass或者scss文件。
 
 各大样式预处理器对被依赖的@import资源内容打包到当前文件，在很多场景下，这种打包策略会造成应用体积臃肿，比如每个样式文件都引用了基础样式。
