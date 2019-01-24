@@ -15,7 +15,7 @@
 * [转发分享](share.md)
 * [智能webview化](webview.md)
 * [分包加载](subpackages.md)
-* [拆包开发](unpack.md)
+* [拆库开发](unpack.md)
 * [日志收集与上传](report.md)
 * [async/await说明](async.md)
 * [Iconfont 的支持情况](iconfont.md)

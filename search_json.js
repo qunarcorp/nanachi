@@ -249,6 +249,67 @@ window.ydoc_plugin_search_json = {
       "children": []
     },
     {
+      "title": "智能webview化",
+      "content": "有一些场合，我们不得不使用webview. 虽说webview有很多缺点，比如它都是远程加载的，没有直接停驻于被寄生的APP上，导致页面加载慢，一些高级的APP特性用不了，需要跳转到小程序才能支付云云。但webview也有一个重要的不可忽视的优势，开发简单——就是我们熟悉的HTML开发。",
+      "url": "/documents/webview.html",
+      "children": [
+        {
+          "title": "webview的使用场合",
+          "url": "/documents/webview.html#webview的使用场合",
+          "content": "webview的使用场合CSS兼容难度大，一些样式不支持需要调整，尤其是快应用，没有display:block/inline, position:absolute/relative, float:left/right,  只能用flexbox布局。这需要小公司来说，大大提高研发成本。\n小程序/快应用的size问题， 尤其是快应用只有1MB大小，很容易超出大小，而webview加载的页面不计入它的size.\n特定平台的限制问题，比如说支付宝不能使用video标签，你想做直播类，需要特殊申请，并必须用优酷上传视频，这时就可以将这个页面变成webview.\n"
+        },
+        {
+          "title": "使用",
+          "url": "/documents/webview.html#使用",
+          "content": "使用在对应频道的页面对象的config添加一个参数{    webview: {\n        quick: true,//将这个页面所在文件夹（频道）的所有页面及子页面都webview\n        ali: [\"pages/video/index\"]\n    }\n}\n频道就是 pages下面的某个文件夹的意思\n"
+        },
+        {
+          "title": "webview标签的兼容",
+          "url": "/documents/webview.html#webview标签的兼容",
+          "content": "webview标签的兼容webview标签在不同平台，它的名称与事件名有点出入\n\nwx\nali\nbu\ntt\nquick\n\n\n\n\nweb-view\nweb-view\nweb-view\nweb-view\nweb\n\n\n"
+        }
+      ]
+    },
+    {
+      "title": "分包加载",
+      "content": "某些情况下，开发者需要将小程序划分成不同的子包，在构建时打包成不同的分包，用户在使用时按需进行加载。此功能已经被各种小程序支持了，这个能有效提升我们打开小程序的速度。",
+      "url": "/documents/subpackages.html",
+      "children": [
+        {
+          "title": "使用",
+          "url": "/documents/subpackages.html#使用",
+          "content": "使用在app.js中config对象上{     \"subpackages\": [\n    {\n      \"root\": \"packageA\",\n      \"pages\": [\"pages/cat\", \"pages/dog\"]\n    },\n    {\n      \"root\": \"packageB\",\n      \"name\": \"pack2\",\n      \"pages\": [\"pages/apple\", \"pages/banana\"]\n    }\n  ]\n}\nsubpackages 中，每个分包的配置有以下几项：\n\n字段\n类型\n说明\n\n\n\n\nroot\nString\n分包根目录\n\n\nname\nString\n分包别名，分包预下载时可以使用\n\n\npages\nStringArray\n分包页面路径，相对与分包根目录\n\n\nindependent\nBoolean\n分包是否是独立分包\n\n\n"
+        },
+        {
+          "title": "打包原则",
+          "url": "/documents/subpackages.html#打包原则",
+          "content": "打包原则声明 subpackages 后，将按 subpackages 配置路径进行打包，subpackages 配置路径外的目录将被打包到 app（主包） 中app（主包）也可以有自己的 pages（即最外层的 pages 字段）\nsubpackage 的根目录不能是另外一个 subpackage 内的子目录\ntabBar 页面必须在 app（主包）内"
+        },
+        {
+          "title": "引用原则",
+          "url": "/documents/subpackages.html#引用原则",
+          "content": "引用原则packageA 无法 require packageB JS 文件，但可以 require app、自己 package 内的 JS 文件packageA 无法 import packageB 的 template，但可以 require app、自己 package 内的 template\npackageA 无法使用 packageB 的资源，但可以使用 app、自己 package 内的资源"
+        },
+        {
+          "title": "低版本兼容",
+          "url": "/documents/subpackages.html#低版本兼容",
+          "content": "低版本兼容由微信后台编译来处理旧版本客户端的兼容，后台会编译两份代码包，一份是分包后代码，另外一份是整包的兼容代码。 新客户端用分包，老客户端还是用的整包，完整包会把各个 subpackage 里面的路径放到 pages 中。"
+        }
+      ]
+    },
+    {
+      "title": "",
+      "content": "",
+      "url": "/documents/unpack.html",
+      "children": [
+        {
+          "title": "拆库开发",
+          "url": "/documents/unpack.html#拆库开发",
+          "content": "拆库开发拆库开发亦称分仓库开发， 如果一个小程序非常大，比如说商场小程序，有许多频道，这涉及多条业务线，每条业务线开发一个频道，那么就需要此功能。我们允许每个频道都独立建一个github/gitlab仓库进行独立开发上线前，通过我们的拆包工具chaika， 将要上线的频道整合成一个要上线的小程序，集中用nanachi进行转译发布。注： chaika还没有发布，内部人士可以先行了解它 https://ued.qunar.com/micrapp/"
+        }
+      ]
+    },
+    {
       "title": "日志收集与上传",
       "content": "出于运营的需要，我们需要将页面的流转信息，用户点击分布，错误，页面渲染情况发送到后端小程序编译阶段，会将所有事件转换为一个全局的dispatchEvent方法，因此我们可以这里做统一的日志的收集      震动\n \n如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个data-beacon-uid, 值为default,(如果你已经写了，它就不会添加)，然后在dispatchEvent执行app.js的全局对象的onCollectLogs方法，让用户整理成一个对象，放到一个数组中, 并尝试使用onReportLogs自动发送；//dispatchEvent的源码export function dispatchEvent(e) {\n    const instance = this.reactInstance;\n    if (!instance || !instance.$$eventCached) {\n        return;\n    }\n    const eventType = e.type;\n    const target = e.currentTarget;\n    const dataset = target.dataset || {};\n    const app = _getApp();\n    let eventUid = dataset[toLowerCase(e.type) + 'Uid'];\n    let key = dataset.key;\n    eventUid += key != null ? '-' + key : '';\n    let fiber = instance.$$eventCached[eventUid + 'Fiber'];\n    if ( /click|tap/.test(eventType) && app && app.onCollectLogs) {\n        app.onCollectLogss(dataset, eventType, fiber && fiber.stateNode);\n    }\n   \n    //....略\n}\n当用户退出APP时，会进入onHide事件，这时我们就会上传剩余的所有日志因此用户只需要在app.js定义好这两个事件，框架帮你搞定日志上传。下面是示例：import React from '@react';import './pages/index/index';\nimport './pages/demo/base/index';\nimport './pages/demo/native/index/index';\nimport './app.scss';\nfunction computeXpath(node){ //通过xpath实现自动埋点\n    var xpath = [];\n    while (node.parentNode){\n        var index = node.parentNode.children.indexOf(node);\n        var tag = node.type == 'div' ? 'view': node.type;\n        xpath.unshift(tag+'['+index+']');\n        node = node.parentNode;\n    }\n    return  '/page/'+ xpath.join('/');\n}\nfunction computeCompressedXpath(node){ //压缩后的xpath\n    var xpath = [];\n    while (node.parentNode){\n        var index = node.parentNode.children.indexOf(node);\n        xpath.unshift(index);\n        node = node.parentNode;\n    }\n    return xpath.join('/');\n}\nclass Global extends React.Component {\n    static config = {\n        window: {\n            backgroundTextStyle: 'light',\n            navigationBarBackgroundColor: '#0088a4',\n            navigationBarTitleText: 'mpreact',\n            navigationBarTextStyle: '#fff'\n        }\n    };\n    // 全局数据\n    globalData = {\n        ufo: 'ufo'\n    };\n    onCollectLogs(dataset, eventType, node){ //这里会在框架的dispatchEvent自动调起，实现自动理点\n        var beaconId = dataset.beaconUid;\n        if( beaconId == 'default' && node ){\n            beaconId = computeCompressedXpath(node);\n        }\n        var otherData = dataset.xxx//data-xxxx\n        var otherData2 = dataset.xxx2;\n        var timeStamp = new Date - 0;\n        var path = React.getCurrentPage().props.path;//页面路径\n        var logs =  this.globalData.logs || (this.globalData.logs = [])\n        logs.push({\n            pid: beaconId,\n            path: path,\n            timeStamp: timeStamp\n            action: eventType\n        });\n        if(logs.length > 20){\n            var uploadLogs = logs.splice(0, 10);//截取前十条；\n            if(this.onReportLogs){\n                this.onReportLogs(uploadLogs)\n            }\n        }\n    };\n    onHide(){\n      this.onReportLogs(); //微信，支付宝，百度\n    };\n    onDistory(){\n      this.onReportLogs(); //快应用\n    };\n    onReportLogs(logs){ //自己实现\n        if(!logs){\n            if(!Array.isArray(this.globalData.logs) && this.globalData.logs.length == 0){\n               return\n            }\n           logs = this.globalData.logs;\n           this.globalData.logs = [];\n        }\n        if(!logs.length){\n            return\n        }\n        var buildType = this.globalData.buildType;// wx, bu, ali\n        var info = React.api.getSystemInfornSync();\n        var { brand, model, version, platform} = info ;//获取手机品牌，手机型号， 微信版本号, 客户端平台;\n        React.api.request({\n            url: \"/fdsfdsf/sdfds\",\n            type: 'GET',\n            data： {\n                logs,  //logData\n                buildType,//wx, bu, ali, quick, tt, qq\n                brand, //commonData\n                model, //commonData\n                version,//commonData\n                platform,//commonData\n             //other\n            } \n        })\n    }, \n    onLaunch() {\n        console.log('App launched');\n    }\n}\n\nexport default App(new Global());\n在common目录下import React from '@react'//此方法用于手动埋点\nfunction createLog(dataset, eventType){\n    var app =  React.getApp();\n    if(typeof app.onCollectLogs === 'function' ){\n        app.onCollectLogs(dataset, eventType, null)\n    }\n}\n",
       "url": "/documents/report.html",
