@@ -1,66 +1,13 @@
 # 页面组件与生命周期
 
-页面定义在 `pages` 目录下的index.js文件中。这样一来，就会存在这么多index.js,因此它们必须包含在相应的文件夹中，而这些文件夹不要以index命名。
->原因：快应用有一个manifest.json文件, 里面有一个router对象，包含所有页面
-```json
-"router": {
-    "entry": "pages/index",
-    "pages": {
-      "pages/index": {
-        "component": "index"
-      },
-      "pages/demo/syntax/index": {
-        "component": "index"
-      },
-      "pages/demo/syntax/api": {
-        "component": "index"
-      },
-      "pages/demo/syntax/await": {
-        "component": "index"
-      },
-      "pages/demo/syntax/children": {
-        "component": "index"
-      },
-      "pages/demo/syntax/extend": {
-        "component": "index"
-      },
-      "pages/demo/syntax/if": {
-        "component": "index"
-      }
-    }
-}
-```
-然后我们页面切换是通过React.api.redirectTo实现
-```javascript
-function createRouter(name) {
-    return function (obj) {
-        var router = require('@system.router');
-        var params = {};
-        var uri = obj.url.slice(obj.url.indexOf('/pages') + 1);
-        uri = uri.replace(/\?(.*)/, function (a, b) {
-            b.split('=').forEach(function (k, v) {
-                params[k] = v;
-            });
-            return '';
-        }).replace(/\/index$/, '');
-        console.log(uri, "createRouter")
-        router[name]({
-            uri:"/"+ uri,
-            params: params
-        });
-    };
-}
-```
-因此文件名目录名好重要！
+一个应用是由许多页面组成，这些页面的文件名都是index.js, 它们都必须放在pages/xxx目录中。xxx为一个文件夹，里面通常有index.js, index.scss或index.less.
 
 
-它必须是一个有状态的 React 组件。JSX 只能出现在 `render()` 方法里，它会编译成相应的 `wxml` 文件，因此不能使用 R `React.createElement()`代替 JSX。有关 JSX 的注意事项可以看[这里](jsx.md)。
 
-页面组件与components目录下的通用组件有一些特异点，它是多出了componentDidShow, componentDidHide这两个生命周期钩子，与onPullDownRefresh onReachBottom onPageScroll onShareAppMessage这些事件。并且在config中能指定tabBar与分享按钮。
+其次， 页面组件必须是一个有状态的 React 组件， 第一行必须为`import React from '@react'`。
 
-应用组件更新 `state` 必须通过 `this.setState` 函数。
+再次， 页面组件必须有render方法， 并且JSX只能出现在render方法中，不能出现在其他方法里面。JSX也不能用`React.createElement()`代替。因此render方法的JSX会被抽取出来，编译成`wxml`, `axml`, `swan`等文件。有关 JSX 的注意事项可以看[这里](jsx.md)。
 
-比如：
 
 ```jsx
 //pages/train/index.js
@@ -116,9 +63,12 @@ class P extends React.Component {
 export default P;
 ```
 
-## 页面的生命周期
+## 页面组件的生命周期
 
-页面组件会依次触发如下生命周期钩子
+由于页面组件也是一个React有状态组件, 因此它拥有React15/16的所有钩子。
+
+
+当我们打开一个页面，页面组件会依次触发如下生命周期钩子
 
 ```shell
 componentWillMount或getDerivedStateFromProps -> 
@@ -149,3 +99,79 @@ app.js上的onGlobalHide钩子。然后再依次触发B的componentWillMount，o
 注： 页面组件必须使用 es6 风格来引入依赖与导出自己。
 
 它的静态属性 config 会抽取出来生成对应的 JSON 配置对象，有关配置项可以看[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE)
+
+
+## 页面事件
+
+除了生命周期钩子， 有一些页面事件，都是以onXXX命名。如果用户没有定义这些页面事件， 框架还会尝试访问app.js中的以onGlobalXXX命名的方法，作为它的后备方案。
+
+
+|页面事件名	  |全局事件名    |	  说明   |  关系 |
+|:---------|:-------------|-------|-------|
+|onShow   	|onGlobalShow	   |没有参数 |总是触发全局事件    |
+|onHide   	|onGlobalHide	   |没有参数 |总是触发全局事件    |
+|页面初次被打开   |onGlobalLoad	   |没有参数 |总是触发全局事件    |
+|页面初次渲染完   |onGlobalReady	 |没有参数 |总是触发全局事件    |
+|页面被销毁   |onGlobalUnload	 |没有参数 |总是触发全局事件    |
+|onResize 	|X	| 有参数, {size } |没有全局事件    |
+|onShare/onShareAppMessage|onGlobalShare	|有参数, 有返回值,{from,target,webViewUrl}|有页面就没有全局    |
+|onPageScroll    	 |	X |有参数,{scrollTop} |没有全局事件    |
+|onReachBottom    |X |没有参数  |没有全局事件    |
+|onPullDownRefresh |X |没有参数 |没有全局事件    |
+|onTabItemTap      |X |有参数{index,pagePath,text}| 没有全局事件   |
+
+
+## 页面组件的JS文件名必须为index.js的原因
+
+主要是为了兼容快应用。快应用有一个manifest.json文件, 里面有一个router对象，包含所有页面
+```json
+"router": {
+    "entry": "pages/index",
+    "pages": {
+      "pages/index": {
+        "component": "index"
+      },
+      "pages/demo/syntax/index": {
+        "component": "index"
+      },
+      "pages/demo/syntax/api": {
+        "component": "index"
+      },
+      "pages/demo/syntax/await": {
+        "component": "index"
+      },
+      "pages/demo/syntax/children": {
+        "component": "index"
+      },
+      "pages/demo/syntax/extend": {
+        "component": "index"
+      },
+      "pages/demo/syntax/if": {
+        "component": "index"
+      }
+    }
+}
+```
+
+然后我们页面切换是通过React.api.redirectTo实现
+```javascript
+function createRouter(name) {
+    return function (obj) {
+        var router = require('@system.router');
+        var params = {};
+        var uri = obj.url.slice(obj.url.indexOf('/pages') + 1);
+        uri = uri.replace(/\?(.*)/, function (a, b) {
+            b.split('=').forEach(function (k, v) {
+                params[k] = v;
+            });
+            return '';
+        }).replace(/\/index$/, '');
+        console.log(uri, "createRouter")
+        router[name]({
+            uri:"/"+ uri,
+            params: params
+        });
+    };
+}
+```
+
