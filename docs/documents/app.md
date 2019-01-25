@@ -50,15 +50,16 @@ class Global extends React.Component {
     globalData = {
         ufo: 'ufo'
     };
-    // 全局回调，包括 onGlobalShare onGlobalLoad  onGlobalReady， onGlobalShow onGlobalHide onCollectLogs onSendLogs,
-    // 全局的分享，如果某个页面组件没有定义onShare/onShareAppMessage，就会调用它
+    onGlobalLoad(){}
+    onGlobalReady(){}
+    onGlobalUnload(){}
+    onGlobalShow(){}
+    onGlobalHide(){}
     onGlobalShare(){ 
-        return {} 
+        return {};
     }
-    onGlobalResize(){
-
-    }
-    onShow(){
+    onCollectLogs(){}
+    onHide(){
           var app = React.getApp()
           console.log(app == this)//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例
     }

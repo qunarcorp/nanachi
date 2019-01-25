@@ -59,15 +59,16 @@
     globalData <span class="token operator">=</span> <span class="token punctuation">{</span>
         ufo<span class="token punctuation">:</span> <span class="token string">'ufo'</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token comment">// 全局回调，包括 onGlobalShare onGlobalLoad  onGlobalReady， onGlobalShow onGlobalHide onCollectLogs onSendLogs,</span>
-    <span class="token comment">// 全局的分享，如果某个页面组件没有定义onShare/onShareAppMessage，就会调用它</span>
+    <span class="token function">onGlobalLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token function">onGlobalReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token function">onGlobalUnload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token function">onGlobalShow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token function">onGlobalHide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
     <span class="token function">onGlobalShare</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
-        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> 
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token function">onGlobalResize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-
-    <span class="token punctuation">}</span>
-    <span class="token function">onShow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">onCollectLogs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token function">onHide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
           <span class="token keyword">var</span> app <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
           console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>app <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token comment">//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例</span>
     <span class="token punctuation">}</span>
