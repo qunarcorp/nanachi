@@ -10,6 +10,7 @@ class P extends React.Component {
         this.state = {
             status: ''
         };
+        this.tapHander = this.tapHander.bind(this);
     }
     say(){
         return new Promise((resolve)=>{

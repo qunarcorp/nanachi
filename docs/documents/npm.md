@@ -3,18 +3,13 @@
 
 例如
 ```jsx
-import fp from 'lodash/fp';
+import cookie from 'cookie';
 ```
 打包后
 ```jsx
 dist/npm/
-├── lodash
-│   ├── fp
-│   │   ├── _baseConvert.js
-│   │   ├── _mapping.js
-│   │   └── placeholder.js
-│   ├── fp.js
-│   └── lodash.min.js
+└── cookie
+    └── index.js
 ```
 
 
