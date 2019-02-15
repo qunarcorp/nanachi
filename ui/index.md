@@ -249,7 +249,7 @@ export default Data;
         },
         bizType: 'train',     // 业务线
         isMultiSelect: false  // 是否多选
-        dates: ['20181016'],  // 已经选择的备选日期s
+        dates: ['2018-10-16'],  // 已经选择的备选日期s
         maxSelectDays: 6      // 最多备选多少个
     };
     React.api.navigateTo({
