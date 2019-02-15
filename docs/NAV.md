@@ -1,6 +1,4 @@
-# nanachi
-
-![logo](ydoc/images/dog@1x.png)
+![logo](images/logo@2x.png)
 
 * [文档](documents/intro.md)
 * [已兼容处理的API](apis/index.md)
