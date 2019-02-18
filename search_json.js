@@ -444,6 +444,23 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
+      "title": "nanachi 项目反馈",
+      "content": "",
+      "url": "/documents/feedback.html",
+      "children": [
+        {
+          "title": "下面是关于您的预编译语言使用情况",
+          "url": "/documents/feedback.html#下面是关于您的预编译语言使用情况",
+          "content": "下面是关于您的预编译语言使用情况    // 修改提交按钮文案为中文\n    document.addEventListener(\"DOMContentLoaded\", function(){\n      const els = document.querySelectorAll('form div[align=\"center\"] *');\n      if(els.length > 2){\n          var button1 = els[0]\n          var button2 = els[els.length-1];\n          button1.value = \"提交投票\";\n          button1.style.backgroundColor = \"#1890ff\";\n          button1.style.color = \"white\";\n          button1.style.padding = \"2px 8px\";\n          button1.style.cursor = \"pointer\";\n          button2.innerHTML = '查看结果';\n      }\n    });\n"
+        },
+        {
+          "title": "下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言:",
+          "url": "/documents/feedback.html#下面区域是关于-nanachi-的反馈，如果你有什么意见或建议欢迎在评论区留言",
+          "content": "下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言:var gitment = new Gitment({\n  id: '页面 ID', // 可选。默认为 location.href\n  owner: 'RubyLouvre',\n  repo: 'nanachi',\n  oauth: {\n    client_id: 'fe315c9f10c8dc15faa9',\n    client_secret: 'c0b02a5f083f1d55b0ea2482da339ebf093dedc7',\n  },\n})\ngitment.render('container')\n"
+        }
+      ]
+    },
+    {
       "title": "常见问题",
       "content": "暂时不支持 redux,请使用 React.getApp().globalData 来在页面间交换数据\nrender 里面不能定义变量,即不能出现 var, const, let 语句。render() 里只能使用 JSX 来描述结构，不能使用 React.createElement()。\n组件必须定义在 components 中\n为什么底部不出现 TabBar？ 这是小程序自身的 BUG，详见这里\n路由跳转时，如何拿到当前路径与参数，原来是通过 onLoad 方法拿，现在你可以通过任何一个页面组件的生命周期钩子，访问 this.props，里面就有 path 与 query 属性\n静态资源统一放到 src 目录下的 assets 目录下\nwxml 模板部分，如果使用了箭头函数，那么它里面不能出现 this 关键字\n不要在 props, state, context 里面放 JSX，因为 JSX 的结构容易出现环引用，导到微信小程序内部的 JSON.stringify 出错\nslot 机制与 render props 是有代价，它们会在 components/Fragments 目下添加许多当作桥梁用的碎片文件，不要滥用\nrender props 机制只能用于有狀态组件，并且只应用于 render() 属性，只能传一个参数，参数只能是 this.state 或 this.props, 目前不支持快应用\ninput组件 统一使用onChange事件，因为有的平台支持onInput, 有的平台支持onChange, 转译器会翻译相应支持的事件\n业务有涉及拿globalData.systemInfo里面高度的，改为React.api.getSystemInfoSync()。第一次进入页面有底bar的话 高度会拿错，导致业务液面高度计算错误，下面空一块。\nReact.getCurrentPage() 能得到当前页面的react实例， instance.props.query, instance.props.path为当前路径与参数对象\n更多问题请到 GitHub 提 Issue。\n",
       "url": "/documents/questions.html",

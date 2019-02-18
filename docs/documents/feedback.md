@@ -5,17 +5,22 @@
 <script type="text/javascript" src="http://www.websitegoodies.com/poll.php?id=116285"></script>
 <script >
     // 修改提交按钮文案为中文
-    const form = document.forms[0];
-    const selectElement = form.querySelector('input[type="submit"]');
-    selectElement.value = "提交投票";
-    selectElement.style.backgroundColor = "#1890ff";
-    selectElement.style.color = "white";
-    selectElement.style.padding = "2 8px";
-    selectElement.style.cursor = "pointer";
-
+    document.addEventListener("DOMContentLoaded", function(){
+      const els = document.querySelectorAll('form div[align="center"] *');
+      if(els.length > 2){
+          var button1 = els[0]
+          var button2 = els[els.length-1];
+          button1.value = "提交投票";
+          button1.style.backgroundColor = "#1890ff";
+          button1.style.color = "white";
+          button1.style.padding = "2px 8px";
+          button1.style.cursor = "pointer";
+          button2.innerHTML = '查看结果';
+      }
+    });
 </script>
 
-### 下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言 :>
+### 下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言:
 
 <div id="container"></div>
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
