@@ -5,32 +5,56 @@
 
 .m-header-title .name, .m-header-title .logo{
     width: 124px !important;
-    padding-left: 20px;
 }
 
 .m-header{
     border: none !important;
+    position: relative;
 }
 
 .banner{
+    position: relative;
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 480px;
-    background: url(../images/banner.png) no-repeat right 55px;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    flex: 1;
+    justify-content:space-between;
+    /* width: 63%; */
+    /* height: 480px; */
+    /* background: url(../images/banner.png) no-repeat right 55px; */
     background-size: 715px 402px;
-    padding: .8rem 0 0 1rem;
+    padding: 0 5% 2%;
+    margin: 2% 0;
 }
-.banner h1{
-    width:444px;
+.banner .banner-img{
+    position: absolute;
+    right: 2%;
+    bottom: 3%;
+    display: flex;
+    z-index: 0;
+}
+.banner .banner-img .imgBanner{
+    width: 100%;
+    height: 100%;
+}
+.banner .banner-content{
+    position: relative;
+    z-index: 1;
+}
+.banner .banner-content h1{
+    /* width:100%; */
     height:70px;
     font-size:50px;
     font-family:PingFangSC-Semibold;
     font-weight:600;
     color:rgba(56,59,71,1);
     line-height:70px;
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.banner .instructions{
+.banner .banner-content .instructions{
     position: relative;
     margin: 44px 0 61px 0;
     font-size:22px;
@@ -39,7 +63,7 @@
     color:rgba(56,59,71,1);
     line-height:46px;
 }
-.banner .instructions .bag{
+.banner .banner-content .instructions .bag{
     position: absolute;
     top: 4px;
     left: -6px;
@@ -49,7 +73,11 @@
     opacity:0.5;
     border-radius: 50%;
 }
-.banner .startBtn{
+
+.banner .banner-content .btn{
+    display: flex;
+}
+.banner .banner-content .btn .startBtn{
     cursor: pointer;
     width:132px;
     height:46px;
@@ -60,7 +88,7 @@
     color: #fff;
     font-size: 18px;
 }
-.banner .githubBtn{
+.banner .banner-content .btn .githubBtn{
     cursor: pointer;
     width:132px;
     height:46px;
@@ -71,7 +99,6 @@
     background: url('../images/GitHub.png') no-repeat 10px;
     background-size: 16px 16px;
 }
-
 .content{
     position: relative;
     width: 100%;
@@ -186,4 +213,59 @@
 
 .padtop{
     padding-top: 29px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .banner .banner-content h1{
+        /* width:100%; */
+        height:70px;
+        font-size:32px;
+        font-family:PingFangSC-Semibold;
+        font-weight:600;
+        color:rgba(56,59,71,1);
+        line-height:70px;
+        width:100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .banner .banner-content .instructions{
+        margin: 10px 0 20px 0;
+    }
+    .banner .banner-content .btn .startBtn{
+        width:90px;
+    }
+    .banner .banner-content .btn .githubBtn{
+        width:90px;
+    }
+    .m-content{
+        padding-top: .3rem;
+    }
+    .foot .group{
+        width: 25%;
+        padding-left: 3%;
+    }
+    .foot .group .title{
+        height:25px;
+        font-size:16px;
+        font-family:PingFangSC-Medium;
+        font-weight:500;
+        color:rgba(239,243,246,1);
+        line-height:25px;
+        margin-bottom: 31px;
+    }
+    .foot .group .t{
+        height:22px;
+        font-size:14px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(239,243,246,1);
+        line-height:22px;
+        margin-bottom: 16px;
+        cursor: pointer;
+    }
+    .wImg100{
+        width: 90%;
+    }
 }
