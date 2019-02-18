@@ -239,6 +239,9 @@
     .banner .banner-content .btn .githubBtn{
         width:90px;
     }
+    .imgBanner{
+        display: none;
+    }
     .m-content{
         padding-top: .3rem;
     }
