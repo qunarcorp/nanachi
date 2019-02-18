@@ -42,6 +42,7 @@ npm run server # 需要第三个窗口, 运行node环境，这时会出一个二
 ```bash
 nanachi page aaa # 在pages目录下创建aaa/index.js模板
 nanachi component Dog # 在components目录下创建Dog/index.js模板
+nanachi -V #查看当前版本
 ```
 
 

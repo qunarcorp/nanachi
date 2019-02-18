@@ -24,7 +24,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "更多便捷的命令",
           "url": "/documents/install.html#更多便捷的命令",
-          "content": "更多便捷的命令nanachi page aaa # 在pages目录下创建aaa/index.js模板nanachi component Dog # 在components目录下创建Dog/index.js模板\n"
+          "content": "更多便捷的命令nanachi page aaa # 在pages目录下创建aaa/index.js模板nanachi component Dog # 在components目录下创建Dog/index.js模板\nnanachi -V #查看当前版本\n"
         },
         {
           "title": "第二种安装",
