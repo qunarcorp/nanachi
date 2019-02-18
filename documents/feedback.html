@@ -31,8 +31,8 @@ var gitment = new Gitment({
   owner: 'RubyLouvre',
   repo: 'nanachi',
   oauth: {
-    client_id: 'fe315c9f10c8dc15faa9',
-    client_secret: 'c0b02a5f083f1d55b0ea2482da339ebf093dedc7',
+    client_id: 'c94e12373b38435e378a',
+    client_secret: '497ad5ef73ba031b895f56cc1d73d0bf87d981d3',
   },
 })
 gitment.render('container')
