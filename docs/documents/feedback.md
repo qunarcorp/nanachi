@@ -2,7 +2,7 @@
 
 ### 下面是关于您的预编译语言使用情况
 
-<script type="text/javascript" src="http://www.websitegoodies.com/poll.php?id=116285"></script>
+<script type="text/javascript" src="https://www.websitegoodies.com/poll.php?id=116285"></script>
 <script >
     // 修改提交按钮文案为中文
     document.addEventListener("DOMContentLoaded", function(){
