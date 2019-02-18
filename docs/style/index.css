@@ -245,6 +245,30 @@
     .m-content{
         padding-top: .3rem;
     }
+    .content .title{
+        padding: 60px 0 56px 0;
+    }
+    .content .introduce .bulk{
+        width: 180px;
+        height: 180px;
+        margin: 0;
+        padding-left: 10px;
+        margin: 50px 0;
+    }
+    .content .introduce .bulk div img{
+        width: 120px;
+        height: 120px;
+    }
+    .content .introduce .bulk .text1{
+        font-size: 16px;
+        margin: 0;
+        height: 24px;
+        line-height: 16px;
+        margin: 10px 0;
+    }
+    .content .introduce .bulk .text2{
+        font-size: 14px;
+    }
     .foot .group{
         width: 25%;
         padding-left: 3%;
