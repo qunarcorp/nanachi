@@ -24,7 +24,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "更多便捷的命令",
           "url": "/documents/install.html#更多便捷的命令",
-          "content": "更多便捷的命令nanachi page aaa # 在pages目录下创建aaa/index.js模板nanachi component Dog # 在components目录下创建Dog/index.js模板\n"
+          "content": "更多便捷的命令nanachi page aaa # 在pages目录下创建aaa/index.js模板nanachi component Dog # 在components目录下创建Dog/index.js模板\nnanachi -V #查看当前版本\n"
         },
         {
           "title": "第二种安装",
@@ -46,7 +46,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "全局对象",
-      "content": "在小程序中，一个应用由多个页面组成，一个页面由多个组件组成。app.js就是用来定义全局配置对象， 全局数据对象，全局回调，全局样式及import所有页面。app.js外表上看来是一个React组件\n全局配置对象 config 配置标题栏与tab栏\n\n\n全局数据对象 globalData\n\n\n全局回调\n\nonGlobalLoad 每个页面在初次加载时就会执行此回调，注意不存在页面级别的onLoad方法\nonGlobalReady 每个页面在初次渲染后（布局完成）就会执行此回调，注意不存在页面级别的onReady方法\nonGlobalUnload 每个页面在被销毁时就会调用此方法，注意不存在页面级别的onUnload方法, 其次路由切换导致当前页面隐藏时，页面不一定销毁，只有此页面被踢出页面栈时才会销毁。页面栈一共保存10个页面. 想用页面级别的onUnload方法，可以用componentWillUnmount代替。\nonGlobalShow 每个页面在显示时就会调用此方法，页面有onShow方法时，也会同时执行此方法\nonGlobalHide 每个页面在隐藏时就会调用此方法，页面有onHide方法时，也会同时执行此方法\nonGlobalShare  只有页面组件没有定义onShare/onShareAppMessage方法，才会调用此方法，此方法要求返回对象\nonCollectLogs 所有click/tap/change/input/blur等核心的与用户行为相关的事件触发时，都会调用这个回调\nonSendLogs  onCollectLogs理应凑够一定数量的日志就会调用此方法，用于上传日\n\n\n\n全局样式 自己手动import 'app.scss'或import 'app.less'\n\n\nimport 所有以 ./pages/ 开头的依赖放到 app.json 中 pages 配置项中。\n\n\n默认我们会把 第一个./pages开头的依赖当作首页。\n\n此外，app.js还支持原生的onLaunch, onError, onShow, onHide。其中onShow, onHide不等同于onGlobalShow, onGlobalHide, 前两者是小程序从前台进入后台或从后台进入前台触发的， 后两者是页面级别的监听方法。由于快应用不支持应用级别的onShow方法，因此不要使用。在快应用下，它没有onLaunch, onHide, 娜娜奇会在自动转译成 onCreate、onDestroy方法。import React from '@react';import './pages/index/index'; //引入所有页面。\nimport './pages/demo/base/index';\nimport './pages/demo/native/index/index';\nimport './app.less';\n\nclass Global extends React.Component {\n    //全局配置\n     config = {\n        window: {\n            backgroundTextStyle: 'light',\n            navigationBarBackgroundColor: '#0088a4',\n            navigationBarTitleText: 'mpreact',\n            navigationBarTextStyle: '#fff'\n        }\n    };\n    // 全局数据\n    globalData = {\n        ufo: 'ufo'\n    };\n    // 全局回调，包括 onGlobalShare onGlobalLoad  onGlobalReady， onGlobalShow onGlobalHide onCollectLogs onSendLogs,\n    // 全局的分享，如果某个页面组件没有定义onShare/onShareAppMessage，就会调用它\n    onGlobalShare(){ \n        return {} \n    }\n    onGlobalResize(){\n\n    }\n    onShow(){\n          var app = React.getApp()\n          console.log(app == this)//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例\n    }\n    onLaunch() {\n        console.log('App launched');\n    }\n}\n\nexport default App(new Global());\n",
+      "content": "在小程序中，一个应用由多个页面组成，一个页面由多个组件组成。app.js就是用来定义全局配置对象， 全局数据对象，全局回调，全局样式及import所有页面。app.js外表上看来是一个React组件\n全局配置对象 config 配置标题栏与tab栏\n\n\n全局数据对象 globalData\n\n\n全局回调\n\nonGlobalLoad 每个页面在初次加载时就会执行此回调，注意不存在页面级别的onLoad方法\nonGlobalReady 每个页面在初次渲染后（布局完成）就会执行此回调，注意不存在页面级别的onReady方法\nonGlobalUnload 每个页面在被销毁时就会调用此方法，注意不存在页面级别的onUnload方法, 其次路由切换导致当前页面隐藏时，页面不一定销毁，只有此页面被踢出页面栈时才会销毁。页面栈一共保存10个页面. 想用页面级别的onUnload方法，可以用componentWillUnmount代替。\nonGlobalShow 每个页面在显示时就会调用此方法，页面有onShow方法时，也会同时执行此方法\nonGlobalHide 每个页面在隐藏时就会调用此方法，页面有onHide方法时，也会同时执行此方法\nonGlobalShare  只有页面组件没有定义onShare/onShareAppMessage方法，才会调用此方法，此方法要求返回对象\nonCollectLogs 所有click/tap/change/input/blur等核心的与用户行为相关的事件触发时，都会调用这个回调\nonSendLogs  onCollectLogs理应凑够一定数量的日志就会调用此方法，用于上传日\n\n\n\n全局样式 自己手动import 'app.scss'或import 'app.less'\n\n\nimport 所有以 ./pages/ 开头的依赖放到 app.json 中 pages 配置项中。\n\n\n默认我们会把 第一个./pages开头的依赖当作首页。\n\n此外，app.js还支持原生的onLaunch, onError, onShow, onHide。其中onShow, onHide不等同于onGlobalShow, onGlobalHide, 前两者是小程序从前台进入后台或从后台进入前台触发的， 后两者是页面级别的监听方法。由于快应用不支持应用级别的onShow方法，因此不要使用。在快应用下，它没有onLaunch, onHide, 娜娜奇会在自动转译成 onCreate、onDestroy方法。import React from '@react';import './pages/index/index'; //引入所有页面。\nimport './pages/demo/base/index';\nimport './pages/demo/native/index/index';\nimport './app.less';\n\nclass Global extends React.Component {\n    //全局配置\n     config = {\n        window: {\n            backgroundTextStyle: 'light',\n            navigationBarBackgroundColor: '#0088a4',\n            navigationBarTitleText: 'mpreact',\n            navigationBarTextStyle: '#fff'\n        }\n    };\n    // 全局数据\n    globalData = {\n        ufo: 'ufo'\n    };\n    onGlobalLoad(){}\n    onGlobalReady(){}\n    onGlobalUnload(){}\n    onGlobalShow(){}\n    onGlobalHide(){}\n    onGlobalShare(){ \n        return {};\n    }\n    onCollectLogs(){}\n    onHide(){\n          var app = React.getApp()\n          console.log(app == this)//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例\n    }\n    onLaunch() {\n        console.log('App launched');\n    }\n}\n\nexport default App(new Global());\n",
       "url": "/documents/app.html",
       "children": [
         {
@@ -321,7 +321,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "async/await",
-      "content": "nanachi可自由使用async/await语法import React from '@react';\nclass P extends React.Component {\n    constructor(){\n        super();\n        this.state = {\n            status: ''\n        };\n    }\n    say(){\n        return new Promise((resolve)=>{\n            setTimeout(()=>{\n                resolve('hello nanachi');\n            }, 2000);\n        });\n    }\n    async tapHander(){\n        this.setState({status: 'waiting...' });\n        let result = await this.say();\n        this.setState({\n            status: result\n        });\n    }\n    render() {\n        return (\n            \n                status: {this.state.status}\n                click me\n            \n        );\n    }\n}\n\nexport default P;\n",
+      "content": "nanachi可自由使用async/await语法import React from '@react';\nclass P extends React.Component {\n    constructor(){\n        super();\n        this.state = {\n            status: ''\n        };\n        this.tapHander = this.tapHander.bind(this);\n    }\n    say(){\n        return new Promise((resolve)=>{\n            setTimeout(()=>{\n                resolve('hello nanachi');\n            }, 2000);\n        });\n    }\n    async tapHander(){\n        this.setState({status: 'waiting...' });\n        let result = await this.say();\n        this.setState({\n            status: result\n        });\n    }\n    render() {\n        return (\n            \n                status: {this.state.status}\n                click me\n            \n        );\n    }\n}\n\nexport default P;\n",
       "url": "/documents/async.html",
       "children": []
     },
@@ -349,7 +349,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "npm模块管理",
-      "content": "针对小程序无法友好管理npm第三方模块问题，nanachi给与了最大限度支持，当文件中引入第三方npm模块，nanachi监听到后会自动安装，并且最小量打包你所依赖的npm模块。例如import fp from 'lodash/fp';打包后dist/npm/├── lodash\n│   ├── fp\n│   │   ├── _baseConvert.js\n│   │   ├── _mapping.js\n│   │   └── placeholder.js\n│   ├── fp.js\n│   └── lodash.min.js\n",
+      "content": "针对小程序无法友好管理npm第三方模块问题，nanachi给与了最大限度支持，当文件中引入第三方npm模块，nanachi监听到后会自动安装，并且最小量打包你所依赖的npm模块。例如import cookie from 'cookie';打包后dist/npm/└── cookie\n    └── index.js\n",
       "url": "/documents/npm.html",
       "children": []
     },
@@ -440,6 +440,23 @@ window.ydoc_plugin_search_json = {
           "title": "各种小程序的官网与调试工具地址",
           "url": "/documents/link.html#各种小程序的官网与调试工具地址",
           "content": "各种小程序的官网与调试工具地址微信小程序文档\n百度小程序文档\n支付小程序文档\n快应用文档\n快应用调试工具\n快应用 demo1\n快应用 demo2\n快应用的一个UI库\n微信小程序升级日志\n快应用升级日志\n百度小程序升级日志\n支付宝小程序升级日志\nQQ轻应用文档\n头条小程序文档\n"
+        }
+      ]
+    },
+    {
+      "title": "nanachi 项目反馈",
+      "content": "",
+      "url": "/documents/feedback.html",
+      "children": [
+        {
+          "title": "下面是关于您的预编译语言使用情况",
+          "url": "/documents/feedback.html#下面是关于您的预编译语言使用情况",
+          "content": "下面是关于您的预编译语言使用情况    // 修改提交按钮文案为中文\n    document.addEventListener(\"DOMContentLoaded\", function(){\n      const els = document.querySelectorAll('form div[align=\"center\"] *');\n      if(els.length > 2){\n          var button1 = els[0]\n          var button2 = els[els.length-1];\n          button1.value = \"提交投票\";\n          button1.style.backgroundColor = \"#1890ff\";\n          button1.style.color = \"white\";\n          button1.style.padding = \"2px 8px\";\n          button1.style.cursor = \"pointer\";\n          button2.innerHTML = '查看结果';\n      }\n    });\n"
+        },
+        {
+          "title": "下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言:",
+          "url": "/documents/feedback.html#下面区域是关于-nanachi-的反馈，如果你有什么意见或建议欢迎在评论区留言",
+          "content": "下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言:var gitment = new Gitment({\n  id: '页面 ID', // 可选。默认为 location.href\n  owner: 'RubyLouvre',\n  repo: 'nanachi',\n  oauth: {\n    client_id: 'fe315c9f10c8dc15faa9',\n    client_secret: 'c0b02a5f083f1d55b0ea2482da339ebf093dedc7',\n  },\n})\ngitment.render('container')\n"
         }
       ]
     },
