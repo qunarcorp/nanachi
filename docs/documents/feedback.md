@@ -22,18 +22,21 @@
 
 ### 下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言:
 
-<div id="container"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
 <script>
-var gitment = new Gitment({
-  id: '页面 ID', // 可选。默认为 location.href
-  owner: 'RubyLouvre',
-  repo: 'nanachi',
-  oauth: {
-    client_id: 'c94e12373b38435e378a',
-    client_secret: '497ad5ef73ba031b895f56cc1d73d0bf87d981d3',
-  },
-})
-gitment.render('container')
+  const gitalk = new Gitalk({
+    clientID: "c94e12373b38435e378a",
+    clientSecret: "497ad5ef73ba031b895f56cc1d73d0bf87d981d3",
+    repo: "nanachi",
+    owner: "RubyLouvre",
+    admin: ["RubyLouvre"],
+    id: location.pathname,
+    distractionFreeMode: false
+  });
+
+gitalk.render("gitalk-container");
+
 </script>
