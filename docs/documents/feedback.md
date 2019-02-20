@@ -32,7 +32,7 @@
     clientSecret: "497ad5ef73ba031b895f56cc1d73d0bf87d981d3",
     repo: "nanachi",
     owner: "RubyLouvre",
-    admin: ["RubyLouvre"],
+    admin: ["RubyLouvre", "xuhen"],
     id: location.pathname,
     distractionFreeMode: false
   });
