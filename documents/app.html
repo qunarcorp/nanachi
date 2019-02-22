@@ -57,7 +57,8 @@
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token comment">// 全局数据</span>
     globalData <span class="token operator">=</span> <span class="token punctuation">{</span>
-        ufo<span class="token punctuation">:</span> <span class="token string">'ufo'</span>
+        ufo<span class="token punctuation">:</span> <span class="token string">'nanachi'</span><span class="token punctuation">,</span><span class="token comment">//only test</span>
+        __storage<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>  <span class="token comment">//快应用的storage在这里保存一份副本</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token function">onGlobalLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
     <span class="token function">onGlobalReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
@@ -72,7 +73,22 @@
           <span class="token keyword">var</span> app <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
           console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>app <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token comment">//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例</span>
     <span class="token punctuation">}</span>
+    <span class="token function">onGlobalLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//快应用需要在每个页面打开的瞬间初始化同步storage API</span>
+        <span class="token comment">//即getStorageSync, setStorageSync, removeStorageSync, clearStorageSync</span>
+        React<span class="token punctuation">.</span>api<span class="token punctuation">.</span>initStorageSync <span class="token operator">&amp;&amp;</span>
+        React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">initStorageSync</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>__storage<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
     <span class="token function">onLaunch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token comment">//针对快应用的全局getApp补丁</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$data <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> global <span class="token operator">===</span> <span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> ref <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>global<span class="token punctuation">)</span> <span class="token operator">||</span> global<span class="token punctuation">;</span>
+            <span class="token keyword">var</span> _this <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+            ref<span class="token punctuation">.</span><span class="token function-variable function">getApp</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> _this<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>globalData <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$def<span class="token punctuation">.</span>globalData<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'App launched'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>

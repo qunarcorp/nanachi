@@ -48,7 +48,8 @@ class Global extends React.Component {
     };
     // 全局数据
     globalData = {
-        ufo: 'ufo'
+        ufo: 'nanachi',//only test
+        __storage: {}  //快应用的storage在这里保存一份副本
     };
     onGlobalLoad(){}
     onGlobalReady(){}
@@ -63,7 +64,22 @@ class Global extends React.Component {
           var app = React.getApp()
           console.log(app == this)//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例
     }
+    onGlobalLoad(){
+        //快应用需要在每个页面打开的瞬间初始化同步storage API
+        //即getStorageSync, setStorageSync, removeStorageSync, clearStorageSync
+        React.api.initStorageSync &&
+        React.api.initStorageSync(this.globalData.__storage)
+    }
     onLaunch() {
+         //针对快应用的全局getApp补丁
+        if (this.$data && typeof global === 'object') {
+            var ref = Object.getPrototypeOf(global) || global;
+            var _this = this;
+            ref.getApp = function() {
+                return _this;
+            };
+            this.globalData = this.$def.globalData;
+        }
         console.log('App launched');
     }
 }

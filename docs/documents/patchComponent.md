@@ -5,6 +5,12 @@
  [Schnee UI](https://qunarcorp.github.io/schnee-ui/index.html)包含了微信weui所有组件，不同之外是它是基于flexbox布局。用户可以自主引用，或在框架编译用户代码时，发现当前的目标编译平台（如快应用），不支持某种标签，就自动用
  Schnee UI的组件偷偷替换它。如快应用下的`<icon></icon>`，nanachi会自动转换成`<XIcon></XIcon>`, 并且自动引入XIcom组件的依赖。
 
+外部组件:
+ [https://qunarcorp.github.io/schnee-ui/index.html](https://qunarcorp.github.io/schnee-ui/index.html)
+
+内部组件:
+[http://gitlab.corp.qunar.com/qunar_miniprogram/nnc_module_qunar_platform](http://gitlab.corp.qunar.com/qunar_miniprogram/nnc_module_qunar_platform/tree/master/source/components)
+
 ## 快应用 Demo（需要先扫码下载，然后在[快应用调试器](https://doc.quickapp.cn/tools/debugging-tools.html)里选择本地安装打开）
 
 ![](logo/schnee_ui_logo.png)

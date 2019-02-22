@@ -13,10 +13,10 @@
 <li>文本必须包含在text, span, a, option, label这几种标签内</li>
 <li>text标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签</li>
 <li>jsx中不能出现 声明变量或函数的语句，不能出现switch语句</li>
-<li>不要在标签内部使用纯空白或通过两边的空白撑开空间，即<code>&lt;div&gt; &lt;/div</code>与<code>&lt;div&gt; 111 &lt;/div</code>,它们会变成
-<code>&lt;div&gt;&lt;/div</code>与<code>&lt;div&gt;111&lt;/div</code></li>
+<li>不要在标签内部使用纯空白或通过两边的空白撑开空间，即<code>&lt;div&gt; &lt;/div</code>与<code>&lt;div&gt; 111 &lt;/div</code>,它们会变成 <code>&lt;div&gt;&lt;/div</code>与<code>&lt;div&gt;111&lt;/div</code></li>
+<li>如果要支持快应用，类似<code>&lt;div&gt;&lt;span&gt;xxx&lt;/span&gt;&lt;/div&gt;</code>应该改成<code>&lt;div&gt;&lt;text&gt;xxx&lt;/text&gt;&lt;/div&gt;</code>，因为在快应用下span只能出现在text标签下，不能放在div下面。
+错误的用法</li>
 </ol>
-<p>错误的用法</p>
 <pre><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Login</span><span class="token punctuation">></span></span><span class="token plain-text">
   </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">我是文本</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Login</span><span class="token punctuation">></span></span>

@@ -206,6 +206,16 @@
 <pre><code class="language-javascript"><span class="token keyword">let</span> res <span class="token operator">=</span> React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getStorageSync</span><span class="token punctuation">(</span><span class="token string">'currentCity'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'res'</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
+<p>快应用中使用 getStorageSync</p>
+<pre><code class="language-javascript"><span class="token comment">// app.js 添加如下代码</span>
+ <span class="token function">onGlobalLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> <span class="token constant">ANU_ENV</span> <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">ANU_ENV</span><span class="token punctuation">;</span><span class="token comment">//wx ali bu quick</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token constant">ANU_ENV</span> <span class="token operator">===</span> <span class="token string">'quick'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">initStorageSync</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>__storage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        
+    <span class="token punctuation">}</span>
+</code></pre>
 <h2 id="removestorageobject-object">removeStorage(Object object)</h2>
 <p>从本地缓存中移除指定 key</p>
 <blockquote>
