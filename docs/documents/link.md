@@ -9,6 +9,7 @@
 -   [快应用 demo1](https://github.com/quickappcn/sample)
 -   [快应用 demo2](https://github.com/RubyLouvre/quickdemo)
 -   [快应用的一个UI库](https://github.com/JDsecretFE/quist-ui)
+-   [华为开发者工具](https://developer.huawei.com/consumer/cn/service/hms/catalog/fastapp.html?page=fastapp_fastapp_devprepare_my_first_app)
 -   [微信小程序升级日志](https://developers.weixin.qq.com/miniprogram/dev/devtools/uplog.html)
 -   [快应用升级日志](https://doc.quickapp.cn/changelog/1020.html)
 -   [百度小程序升级日志](https://smartprogram.baidu.com/docs/develop/tutorial/swanchangelog/)
