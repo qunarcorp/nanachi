@@ -16,7 +16,7 @@ class P extends React.Component {
     }
 
     onShareAppMessage() {
-            var navigateToUrl = '/pages/train/index/index';
+            var navigateToUrl =  React.getCurrentPage().props.path;
             return {
                 title: '预订火车票 - 去哪儿旅行',
                 imageUrl: 'https://s.qunarzz.com/open_m_train/miniprogram/aliShare.jpg',
@@ -112,12 +112,11 @@ class Demo extends React.Component {
     },
     //快应用想实现 分享转发， 关于， 保存桌面
     onShowMenu(pageInstance, app){
-         let ANU_ENV = process.env.ANU_ENV;//wx ali bu quick
-         if(ANU_ENV === 'quick'){
-            var api = React.api
+         if(process.env.ANU_ENV === 'quick'){
+            var api = React.api;
             api.getSystemInfo({
                 success: function(appInfo){
-                    showActionSheet({
+                    api.showActionSheet({
                         itemList: ['转发', '保存到桌面', '关于', '取消'],
                         success: function (ret) {
                             switch (ret.index) {
@@ -125,10 +124,11 @@ class Demo extends React.Component {
                                     var fn = pageInstance.onShareAppMessage || app.onGlobalShare;
                                     var obj = fn && fn();
                                     if (obj){
-                                        obj.success = function(a){
+                                        obj.data = obj.data || obj.path;
+                                        obj.success = obj.success || function(a){
                                            console.log(a, '分享成功')
                                         }
-                                        obj.fail = function(a){
+                                        obj.fail = obj.fail || function(a){
                                            console.log(a, '分享失败')
                                         }
                                         api.share(obj);
