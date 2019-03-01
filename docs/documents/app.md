@@ -67,18 +67,23 @@ class Global extends React.Component {
     onGlobalLoad(){
         //快应用需要在每个页面打开的瞬间初始化同步storage API
         //即getStorageSync, setStorageSync, removeStorageSync, clearStorageSync
-        React.api.initStorageSync &&
-        React.api.initStorageSync(this.globalData.__storage)
+        let ANU_ENV = process.env.ANU_ENV;
+        if ( ANU_ENV === 'quick' ) { 
+           React.api.initStorageSync &&
+           React.api.initStorageSync(this.globalData.__storage)
+        }
     }
     onLaunch() {
-         //针对快应用的全局getApp补丁
-        if (this.$data && typeof global === 'object') {
-            var ref = Object.getPrototypeOf(global) || global;
-            var _this = this;
-            ref.getApp = function() {
-                return _this;
-            };
-            this.globalData = this.$def.globalData;
+        let ANU_ENV = process.env.ANU_ENV;
+        if ( ANU_ENV === 'quick' ) { //非快应用的平台在编译阶段会被干掉
+            if ( this.$data && typeof global === 'object') {  //针对快应用的全局getApp补丁
+                var ref = Object.getPrototypeOf(global) || global;
+                var _this = this;
+                ref.getApp = function() {
+                    return _this;
+                };
+                this.globalData = this.$def.globalData;
+            }
         }
         console.log('App launched');
     }
