@@ -23,6 +23,7 @@
 - [按平台引入 CSS 文件](import_css.md)
 - [按平台打包 JS 代码](import_js.md)
 - [快应用的scroll-view兼容](quicklist.md)
+- [快应用的同步Storage API兼容](quickstorage.md)
 - [别名配置](alias.md)
 - [路由使用](router.md)
 - [各种小程序的比较](diff.md)
