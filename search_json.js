@@ -456,7 +456,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言:",
           "url": "/documents/feedback.html#下面区域是关于-nanachi-的反馈，如果你有什么意见或建议欢迎在评论区留言",
-          "content": "下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言:var gitment = new Gitment({\n  id: '页面 ID', // 可选。默认为 location.href\n  owner: 'RubyLouvre',\n  repo: 'nanachi',\n  oauth: {\n    client_id: 'c94e12373b38435e378a',\n    client_secret: '497ad5ef73ba031b895f56cc1d73d0bf87d981d3',\n  },\n})\ngitment.render('container')\n"
+          "content": "下面区域是关于 nanachi 的反馈，如果你有什么意见或建议欢迎在评论区留言:  const gitalk = new Gitalk({\n    clientID: \"c94e12373b38435e378a\",\n    clientSecret: \"497ad5ef73ba031b895f56cc1d73d0bf87d981d3\",\n    repo: \"nanachi\",\n    owner: \"RubyLouvre\",\n    admin: [\"RubyLouvre\", \"xuhen\"],\n    id: location.pathname,\n    distractionFreeMode: false\n  });\n\ngitalk.render(\"gitalk-container\");\n\n"
         }
       ]
     },

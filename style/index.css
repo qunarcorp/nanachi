@@ -142,9 +142,9 @@
     width: 100%;
     position: relative;
     z-index: 2;
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     background: rgba(239,243,246,1);
 }
 .content .introduce .bulk{
@@ -152,10 +152,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 320px;
-    margin: 50px;
+    /* width: 320px; */
+    height: 300px;
+    /* margin: 50px; */
     text-align: center;
     background:rgba(239,243,246,1);
+}
+.content .introduce .bulk img {
+    height: 150px;
 }
 .content .introduce .bulk .text1{
     margin: 28px 0 13px 0;
@@ -165,6 +169,7 @@
     font-weight:500;
     color:rgba(21,24,39,1);
     line-height:30px;
+    padding: 0 12px;
 }
 .content .introduce .bulk .text2{
     height:22px;
@@ -173,6 +178,7 @@
     font-weight:400;
     color:rgba(108,123,138,1);
     line-height:22px;
+    padding: 0 12px;
 }
 
 .foot{
@@ -248,7 +254,7 @@
     .content .title{
         padding: 60px 0 56px 0;
     }
-    .content .introduce .bulk{
+    /* .content .introduce .bulk{
         width: 180px;
         height: 180px;
         margin: 0;
@@ -268,7 +274,7 @@
     }
     .content .introduce .bulk .text2{
         font-size: 14px;
-    }
+    } */
     .foot .group{
         width: 25%;
         padding-left: 3%;
