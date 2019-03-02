@@ -16,7 +16,7 @@ class P extends React.Component {
     }
 
     onShareAppMessage() {
-            var navigateToUrl = '/pages/train/index/index';
+            var navigateToUrl =  React.getCurrentPage().props.path;
             return {
                 title: '预订火车票 - 去哪儿旅行',
                 imageUrl: 'https://s.qunarzz.com/open_m_train/miniprogram/aliShare.jpg',
@@ -109,11 +109,55 @@ class Demo extends React.Component {
     onLaunch() {
         // eslint-disable-next-line
         console.log('App launched');
+    },
+    //快应用想实现 分享转发， 关于， 保存桌面
+    onShowMenu(pageInstance, app){
+         if(process.env.ANU_ENV === 'quick'){
+            var api = React.api;
+            api.showActionSheet({
+                itemList: ['转发', '保存到桌面', '关于', '取消'],
+                    success: function (ret) {
+                        switch (ret.index) {
+                            case 0: //分享转发
+                                var fn = pageInstance.onShareAppMessage || app.onGlobalShare;
+                                var obj = fn && fn();
+                                if (obj){
+                                    obj.data = obj.data || obj.path;
+                                    obj.success = obj.success || function(a){
+                                        console.log(a, '分享成功')
+                                    }
+                                    obj.fail = obj.fail || function(a){
+                                        console.log(a, '分享失败')
+                                    }
+                                    api.share(obj);
+                                }
+                                break;
+                            case 1:
+                                // 保存桌面
+                                api.createShortcut();
+                                break;
+                            case 2:
+                                // 关于
+                                    api.getSystemInfo({
+                                        success: function(appInfo){
+                                            api.redirectTo({
+                                                url: `pages/about/index?brand=${appInfo.brand}&version=${appInfo.version}`
+                                            });
+                                        }
+                                    });
+                                break;
+                            case 3:
+                                // 取消
+                                break;
+                        }
+                
+                    }
+               });
+            }
+        }
     }
 }
-//这样写相当于为每一个页面组件的外面都加上一个<Provider />，如果你想在页面上用到store里的数据，
-//需要用react-redux的connect方法包一下，详见pages/demo/syntax/redux
-//React.applyAppStore(store);
+
 // eslint-disable-next-line
 export default App(new Demo());
 ```

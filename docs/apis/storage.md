@@ -106,6 +106,19 @@ let res = React.api.getStorageSync('currentCity');
 console.log('res', res);
 ```
 
+快应用中使用 getStorageSync 
+
+```javascript
+// app.js 添加如下代码
+ onGlobalLoad() {
+        let ANU_ENV = process.env.ANU_ENV;//wx ali bu quick
+        if(ANU_ENV === 'quick') {
+            React.api.initStorageSync(this.globalData.__storage);
+        }
+        
+    }
+```
+
 ## removeStorage(Object object)
 
 从本地缓存中移除指定 key

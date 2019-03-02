@@ -23,19 +23,18 @@
     /* height: 480px; */
     /* background: url(../images/banner.png) no-repeat right 55px; */
     background-size: 715px 402px;
-    padding: 0 5% 2%;
+    padding: 0 10% 2%;
     margin: 2% 0;
 }
 .banner .banner-img{
     position: absolute;
-    right: 2%;
+    right: 6%;
     bottom: 3%;
     display: flex;
     z-index: 0;
 }
 .banner .banner-img .imgBanner{
     width: 100%;
-    height: 100%;
 }
 .banner .banner-content{
     position: relative;

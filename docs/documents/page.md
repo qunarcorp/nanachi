@@ -21,7 +21,13 @@ class P extends React.Component {
       text: 'this is first line\nthis is second line'
     };
   }
-  static config = {};
+  static config = {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "微信接口功能演示",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
+  };
 
   add() {
     this.setState({
@@ -62,6 +68,18 @@ class P extends React.Component {
 
 export default P;
 ```
+## 页面组件的配置对象
+
+其实就是来源于[微信小程序官网](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE)
+
+|  属性   | 类型 | 	默认值 |描述 |
+| --- | --- | --- |---|
+| navigationBarBackgroundColor | HexColor | #000000 |导航栏背景颜色，如 #ff0000|
+| navigationBarTextStyle       | String   | white | 导航栏标题颜色，仅支持 black / white|
+| navigationBarTitleText	     |String	  | &nbsp;  |	导航栏标题文字内容|
+| backgroundColor	             |HexColor  |	#ffffff	|窗口的背景色      |
+| enablePullDownRefresh	       |Boolean  	|false	  |是否全局开启下拉刷新|
+| tabBar	                     |Object  	|null	    |如果tabBar已定义，并且里面有list数组|
 
 ## 页面组件的生命周期
 
