@@ -3,10 +3,10 @@
 用户可以自定义项目配置
 
 ### 快应用
-快应用下需要在项目根目录里新建`qConfig.json`配置文件。
+快应用下需要在项目根目录里新建`quickConfig.json`配置文件。
 ```
 ├── package.json
-├── qConfig.json
+├── quickConfig.json
 └── source
 ```
 
