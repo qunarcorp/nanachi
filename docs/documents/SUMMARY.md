@@ -15,6 +15,7 @@
 - [转发分享](share.md)
 - [智能 webview 化](webview.md)
 - [分包加载](subpackages.md)
+- [自定义项目配置](userProjectConfig.md)
 - [拆库开发](unpack.md)
 - [日志收集与上传](report.md)
 - [async/await 说明](async.md)
