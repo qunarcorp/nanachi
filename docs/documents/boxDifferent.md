@@ -5,9 +5,9 @@
 * 在微信小程序中，盒子的 `box-sizing` 属性默认是 `content-box`
 * 在快应用中，盒子的 `box-sizing` 属性默认是 `border-box`
 
-![box-sizing](./a58380e154f003ee1bb62d04b1367e8f.jpg)
+![different](box-sizing-defferent-code.jpg)
 
-![different](0ba5d47fe77baebe1965f64957f0ebee.jpg)
+![box-sizing](box-sizing-defferent.jpg)
 
 * 很明显在快应用下：为元素设定的宽度和高度决定了元素的边框盒，元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制
 * 在微信小程序下：在宽度和高度之外绘制元素的内边距和边框，如有需要，在微信下可以手动加上 `box-sizing: border-box;` 让其和快应用表现一致
