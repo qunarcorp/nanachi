@@ -26,25 +26,26 @@ APIs 的这么多方法都不一样，可能以后针对不同的平台打包不
 
 ### 微信小程序与快应用差异(更新中...)
 
-| 差异                     | 微信小程序                                                                                                                                              | 快应用                                                                                                                   |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 入口文件                 | app.js, app.json                                                                                                                                        | app.ux, manifest.json                                                                                                    |
-| 结构，表现，行为组织方式 | 分离：如 page.js, page.wxss, page.wxml                                                                                                                  | 聚合：类似 vue                                                                                                           |
-| 文件扩展名               | .js, .json, .wxml, .wxss                                                                                                                                | .ux, .json                                                                                                               |
-| 路由注册                 | app.json 中配置 pages 字段 例如"pages": ["path1", "path2"]                                                                                              | manifest.json 中配置 router 字段 [详见文档](https://doc.quickapp.cn/tutorial/getting-started/project-configuration.html) |
-| 路由跳转                 | 1.组件跳转[navigator 组件]<br /> 2.五种 js 跳转方式[详见文档](https://developers.weixin.qq.com/miniprogram/dev/api/ui-navigate.html#wxnavigatetoobject) | 1. 组件跳转[a 组件]<br /> 2. router.push(OBJECT)                                                                         |
-| 获取应用实例             | 调用函数：getApp()                                                                                                                                      | 访问变量：this.$app                                                                                                      |
-| 模板逻辑渲染             | 配置命名空间： 例如：wx:if/wx:elif/wx:else                                                                                                              | 不需要 例如：if/elif/else                                                                                                |
-| 钩子函数                 | onLoad: 页面加载时触发                                                                                                                                  | onInit: 页面加载时触发                                                                                                   |
-|                          | onDestroy: 页面卸载                                                                                                                                     | onUnload: 页面卸载                                                                                                       |
-|                          | onBackPress：不支持                                                                                                                                     | onBackPress：支持                                                                                                        |
-|                          | onPageScroll：支持                                                                                                                                      | onPageScroll：不支持                                                                                                     |
-|                          | onPullDownRefresh： 支持                                                                                                                                | onPullDownRefresh：不支持                                                                                                |
-| 初始化状态(state)        | data: {list: []}                                                                                                                                        | private: { list: [] }                                                                                                    |
-| 更新组件状态             | setData 函数更新                                                                                                                                        | 类 vue 语法                                                                                                              |
-| UI 事件绑定方式          | bindEventName                                                                                                                                           | （on\|@)EventName                                                                                                        |
-| UI 事件自定义传参        | 不支持                                                                                                                                                  | 支持                                                                                                                     |
-| API                      | 挂载在 wx 命名空间下：如 wx.showShareMenu(OBJECT)                                                                                                       | 需引用相关模块：import share from '@system.share'                                                                        |
+| 差异                     | 微信小程序                                                   | 快应用                                                       |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 入口文件                 | app.js, app.json                                             | app.ux, manifest.json                                        |
+| 结构，表现，行为组织方式 | 分离：如 page.js, page.wxss, page.wxml                       | 聚合：类似 vue                                               |
+| 文件扩展名               | .js, .json, .wxml, .wxss                                     | .ux, .json                                                   |
+| 路由注册                 | app.json 中配置 pages 字段 例如"pages": ["path1", "path2"]   | manifest.json 中配置 router 字段 [详见文档](https://doc.quickapp.cn/tutorial/getting-started/project-configuration.html) |
+| 路由跳转                 | 1.组件跳转[navigator 组件]<br /> 2.五种 js 跳转方式[详见文档](https://developers.weixin.qq.com/miniprogram/dev/api/ui-navigate.html#wxnavigatetoobject) | 1. 组件跳转[a 组件]<br /> 2. router.push(OBJECT)             |
+| 获取应用实例             | 调用函数：getApp()                                           | 访问变量：this.$app                                          |
+| 模板逻辑渲染             | 配置命名空间： 例如：wx:if/wx:elif/wx:else                   | 不需要 例如：if/elif/else                                    |
+| 钩子函数                 | onLoad: 页面加载时触发                                       | onInit: 页面加载时触发                                       |
+|                          | onDestroy: 页面卸载                                          | onUnload: 页面卸载                                           |
+|                          | onBackPress：不支持                                          | onBackPress：支持                                            |
+|                          | onPageScroll：支持                                           | onPageScroll：不支持                                         |
+|                          | onPullDownRefresh： 支持                                     | onPullDownRefresh：不支持                                    |
+| 初始化状态(state)        | data: {list: []}                                             | private: { list: [] }                                        |
+| 更新组件状态             | setData 函数更新                                             | 类 vue 语法                                                  |
+| UI 事件绑定方式          | bindEventName                                                | （on\|@)EventName                                            |
+| UI 事件自定义传参        | 不支持                                                       | 支持                                                         |
+| API                      | 挂载在 wx 命名空间下：如 wx.showShareMenu(OBJECT)            | 需引用相关模块：import share from '@system.share'            |
+| 盒子的box-sizing         | 默认 content-box                                             | 默认 border-box                                              |
 
 组件机制
 
