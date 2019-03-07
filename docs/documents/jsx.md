@@ -80,6 +80,33 @@ render() {
 <div><block a:if="{{state.isOk}}"><view>Home Page</view></block></div>
 ```
 
+## JSX中不能出现if、switch语句或do表达式
+
+错误的用法
+
+```jsx
+render() {
+    return if( this.state.isOk ) {
+      return <div>Home Page</div>
+    } else{
+      return "" //null会直接输出null,最好改成空字符串
+    }
+  }
+```
+do表达式也不允许
+
+```jsx
+// https://babeljs.io/docs/en/babel-plugin-proposal-do-expressions
+const Component = props =>
+  <div className='myComponent'>
+    {do {
+      if(color === 'blue') { <BlueComponent/>; }
+      else if(color === 'red') { <RedComponent/>; }
+      else if(color === 'green') { <GreenComponent/>; }
+    }}
+  </div>
+```
+
 ## 事件绑定的使用
 
 错误的用法

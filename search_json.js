@@ -111,6 +111,11 @@ window.ydoc_plugin_search_json = {
           "content": "三元表达式的用法错误的用法render() {    return this.state.isOk ? null : Home Page;\n  }\n翻译出的XML会出现 null字样，因为{{null}} 会null +\"\" 变成\"null\"{{null}}Home Page正确的用法三元表达式与&&逻辑语句会转换为block标签，在快应用中，组件的根节点不能为block标签，因此需要包一层render() {    return { this.state.isOk ? Home Page: null }\n  }\n翻译出的XML体积还小这么多Home Page"
         },
         {
+          "title": "JSX中不能出现if、switch语句或do表达式",
+          "url": "/documents/jsx.html#jsx中不能出现if、switch语句或do表达式",
+          "content": "JSX中不能出现if、switch语句或do表达式错误的用法render() {    return if( this.state.isOk ) {\n      return Home Page\n    } else{\n      return \"\" //null会直接输出null,最好改成空字符串\n    }\n  }\ndo表达式也不允许// https://babeljs.io/docs/en/babel-plugin-proposal-do-expressionsconst Component = props =>\n  \n    {do {\n      if(color === 'blue') { ; }\n      else if(color === 'red') { ; }\n      else if(color === 'green') { ; }\n    }}\n  \n"
+        },
+        {
           "title": "事件绑定的使用",
           "url": "/documents/jsx.html#事件绑定的使用",
           "content": "事件绑定的使用错误的用法点我正确的用法， 事件必须直接以this开头，来源于实例点我"
