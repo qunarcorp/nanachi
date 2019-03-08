@@ -9,6 +9,7 @@
 - [使用 JSX 的注意事项](jsx.md)
 - [使用 CSS 的注意事项](style.md)
 - [px尺寸计算](size.md)
+- [微信和快应用盒子模型的区别](boxDifferent.md)
 - [事件系统](event.md)
 - [指定输出目录](publish.md)
 - [内置 UI 库](patchComponent.md)
