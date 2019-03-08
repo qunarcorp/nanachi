@@ -111,6 +111,11 @@ window.ydoc_plugin_search_json = {
           "content": "三元表达式的用法错误的用法render() {    return this.state.isOk ? null : Home Page;\n  }\n翻译出的XML会出现 null字样，因为{{null}} 会null +\"\" 变成\"null\"{{null}}Home Page正确的用法三元表达式与&&逻辑语句会转换为block标签，在快应用中，组件的根节点不能为block标签，因此需要包一层render() {    return { this.state.isOk ? Home Page: null }\n  }\n翻译出的XML体积还小这么多Home Page"
         },
         {
+          "title": "JSX中不能出现if、switch语句或do表达式",
+          "url": "/documents/jsx.html#jsx中不能出现if、switch语句或do表达式",
+          "content": "JSX中不能出现if、switch语句或do表达式错误的用法render() {    return if( this.state.isOk ) {\n      return Home Page\n    } else{\n      return \"\" //null会直接输出null,最好改成空字符串\n    }\n  }\ndo表达式也不允许// https://babeljs.io/docs/en/babel-plugin-proposal-do-expressionsconst Component = props =>\n  \n    {do {\n      if(color === 'blue') { ; }\n      else if(color === 'red') { ; }\n      else if(color === 'green') { ; }\n    }}\n  \n"
+        },
+        {
           "title": "事件绑定的使用",
           "url": "/documents/jsx.html#事件绑定的使用",
           "content": "事件绑定的使用错误的用法点我正确的用法， 事件必须直接以this开头，来源于实例点我"
@@ -217,6 +222,23 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
+      "title": "微信/快应用盒子模型的区别",
+      "content": "",
+      "url": "/documents/boxDifferent.html",
+      "children": [
+        {
+          "title": "box-sizing 的区别",
+          "url": "/documents/boxDifferent.html#box-sizing-的区别",
+          "content": "box-sizing 的区别在微信小程序中，盒子的 box-sizing 属性默认是 content-box\n在快应用中，盒子的 box-sizing 属性默认是 border-box\n很明显在快应用下：为元素设定的宽度和高度决定了元素的边框盒，元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制\n在微信小程序下：在宽度和高度之外绘制元素的内边距和边框，如有需要，在微信下可以手动加上 box-sizing: border-box; 让其和快应用表现一致\n"
+        },
+        {
+          "title": "margin-top 的区别",
+          "url": "/documents/boxDifferent.html#margin-top-的区别",
+          "content": "margin-top 的区别如图，在快应用下：.inner{margin-top:25px} 是如我们期望的方式呈现的\n在微信小程序里面：子层和父层贴边了，而父层和上部层却间隔 25px\n\n当两个容器嵌套时,如果外层容器和内层容器之间没有别的元素,编辑器会把内层元素的margin-top作用与父元素，也就是说因为子层是父层的第一个非空子元素，在微信里面使用margin-top会发生这个错误\n解决办法：可以给父层 加 padding-top\n\n\n"
+        }
+      ]
+    },
+    {
       "title": "事件系统",
       "content": "小程序有两种绑定事件的方式。bindtap 绑定一个会冒泡的 tap 事件\ncatchtap 绑定一个不会冒泡的 tap 事件\nnanachi 为了大家方便，还是换回大家熟悉的风格，但不能冒泡的限制还没有搞定，因此也是两种绑定风格。onTap 绑定一个会冒泡的 tap 事件\ncatchTap 绑定一个不会冒泡的 tap 事件\ntap 事件相当于 PC 端的 click 事件，因此建议大家用 onClick 代替 onTap, 娜娜奇会友好地帮你转换成 onTap.",
       "url": "/documents/event.html",
@@ -314,6 +336,18 @@ window.ydoc_plugin_search_json = {
           "title": "低版本兼容",
           "url": "/documents/subpackages.html#低版本兼容",
           "content": "低版本兼容由微信后台编译来处理旧版本客户端的兼容，后台会编译两份代码包，一份是分包后代码，另外一份是整包的兼容代码。 新客户端用分包，老客户端还是用的整包，完整包会把各个 subpackage 里面的路径放到 pages 中。"
+        }
+      ]
+    },
+    {
+      "title": "自定义项目配置",
+      "content": "用户可以自定义项目配置",
+      "url": "/documents/userProjectConfig.html",
+      "children": [
+        {
+          "title": "快应用",
+          "url": "/documents/userProjectConfig.html#快应用",
+          "content": "快应用快应用下需要在项目根目录里新建quickConfig.json配置文件。├── package.json├── quickConfig.json\n└── source\n配置文件内容参照快应用 manifest.json 配置文档。"
         }
       ]
     },
@@ -446,7 +480,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "微信小程序与快应用差异(更新中...)",
           "url": "/documents/diff.html#微信小程序与快应用差异更新中...",
-          "content": "微信小程序与快应用差异(更新中...)\n\n差异\n微信小程序\n快应用\n\n\n\n\n入口文件\napp.js, app.json\napp.ux, manifest.json\n\n\n结构，表现，行为组织方式\n分离：如 page.js, page.wxss, page.wxml\n聚合：类似 vue\n\n\n文件扩展名\n.js, .json, .wxml, .wxss\n.ux, .json\n\n\n路由注册\napp.json 中配置 pages 字段 例如\"pages\": [\"path1\", \"path2\"]\nmanifest.json 中配置 router 字段 详见文档\n\n\n路由跳转\n1.组件跳转[navigator 组件] 2.五种 js 跳转方式详见文档\n1. 组件跳转[a 组件] 2. router.push(OBJECT)\n\n\n获取应用实例\n调用函数：getApp()\n访问变量：this.$app\n\n\n模板逻辑渲染\n配置命名空间： 例如：wx:if/wx:elif/wx:else\n不需要 例如：if/elif/else\n\n\n钩子函数\nonLoad: 页面加载时触发\nonInit: 页面加载时触发\n\n\n\nonDestroy: 页面卸载\nonUnload: 页面卸载\n\n\n\nonBackPress：不支持\nonBackPress：支持\n\n\n\nonPageScroll：支持\nonPageScroll：不支持\n\n\n\nonPullDownRefresh： 支持\nonPullDownRefresh：不支持\n\n\n初始化状态(state)\ndata: {list: []}\nprivate: { list: [] }\n\n\n更新组件状态\nsetData 函数更新\n类 vue 语法\n\n\nUI 事件绑定方式\nbindEventName\n（on|@)EventName\n\n\nUI 事件自定义传参\n不支持\n支持\n\n\nAPI\n挂载在 wx 命名空间下：如 wx.showShareMenu(OBJECT)\n需引用相关模块：import share from '@system.share'\n\n\n组件机制Component 构造器可用于定义组件，调用 Component 构造器时可以指定组件的属性、数据、方法等。\n\n字段\n说明\n微信\n支付宝\n百度\n轻应用\n\n\n\n\nproperties\n接收的数据\n同名\n同名\n同名\nprops\n\n\ndata\n内部数据\n同名\n同名\n同名\nprivate\n\n\nmethods\n方法集合\n同名\n同名\n同名\n不存在\n\n\ncreated\n组件创建时\n同名\n同名\n同名\nonInit\n\n\nattached\n组件插入时\n同名\n同名\n同名\n不存在\n\n\nready\n组件完成布局后\n同名\n同名\n同名\nonReady\n\n\ndetached\n组件移除时\n同名\n同名\n同名\nonDestroy\n\n\n思路：properties 定义两个属性 {props: Object, context: Object}created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 props, state, context 给小程序实例"
+          "content": "微信小程序与快应用差异(更新中...)\n\n差异\n微信小程序\n快应用\n\n\n\n\n入口文件\napp.js, app.json\napp.ux, manifest.json\n\n\n结构，表现，行为组织方式\n分离：如 page.js, page.wxss, page.wxml\n聚合：类似 vue\n\n\n文件扩展名\n.js, .json, .wxml, .wxss\n.ux, .json\n\n\n路由注册\napp.json 中配置 pages 字段 例如\"pages\": [\"path1\", \"path2\"]\nmanifest.json 中配置 router 字段 详见文档\n\n\n路由跳转\n1.组件跳转[navigator 组件] 2.五种 js 跳转方式详见文档\n1. 组件跳转[a 组件] 2. router.push(OBJECT)\n\n\n获取应用实例\n调用函数：getApp()\n访问变量：this.$app\n\n\n模板逻辑渲染\n配置命名空间： 例如：wx:if/wx:elif/wx:else\n不需要 例如：if/elif/else\n\n\n钩子函数\nonLoad: 页面加载时触发\nonInit: 页面加载时触发\n\n\n\nonDestroy: 页面卸载\nonUnload: 页面卸载\n\n\n\nonBackPress：不支持\nonBackPress：支持\n\n\n\nonPageScroll：支持\nonPageScroll：不支持\n\n\n\nonPullDownRefresh： 支持\nonPullDownRefresh：不支持\n\n\n初始化状态(state)\ndata: {list: []}\nprivate: { list: [] }\n\n\n更新组件状态\nsetData 函数更新\n类 vue 语法\n\n\nUI 事件绑定方式\nbindEventName\n（on|@)EventName\n\n\nUI 事件自定义传参\n不支持\n支持\n\n\nAPI\n挂载在 wx 命名空间下：如 wx.showShareMenu(OBJECT)\n需引用相关模块：import share from '@system.share'\n\n\n盒子的box-sizing\n默认 content-box\n默认 border-box\n\n\n组件机制Component 构造器可用于定义组件，调用 Component 构造器时可以指定组件的属性、数据、方法等。\n\n字段\n说明\n微信\n支付宝\n百度\n轻应用\n\n\n\n\nproperties\n接收的数据\n同名\n同名\n同名\nprops\n\n\ndata\n内部数据\n同名\n同名\n同名\nprivate\n\n\nmethods\n方法集合\n同名\n同名\n同名\n不存在\n\n\ncreated\n组件创建时\n同名\n同名\n同名\nonInit\n\n\nattached\n组件插入时\n同名\n同名\n同名\n不存在\n\n\nready\n组件完成布局后\n同名\n同名\n同名\nonReady\n\n\ndetached\n组件移除时\n同名\n同名\n同名\nonDestroy\n\n\n思路：properties 定义两个属性 {props: Object, context: Object}created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 props, state, context 给小程序实例"
         },
         {
           "title": "各平台的组件差异",
