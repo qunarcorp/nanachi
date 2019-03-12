@@ -134,7 +134,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "使用CSS的注意事项",
-      "content": "因为快应用只支持flexbox，因此建议都使用flexbox布局，不要用绝对定位与相对定位与浮动\n",
+      "content": "因为快应用以flexbox布局为主，因此建议使用flexbox布局；不要用浮动定位；可以用绝对定位和相对定位（1040以上版本才支持的），但不支持z-index\n",
       "url": "/documents/style.html",
       "children": [
         {
