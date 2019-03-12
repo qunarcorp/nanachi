@@ -19,15 +19,16 @@ export function dispatchEvent(e) {
     if (!instance || !instance.$$eventCached) {
         return;
     }
-    const eventType = e.type;
+    const eventType = toLowerCase(e.type);
+    const app = _getApp();
     const target = e.currentTarget;
     const dataset = target.dataset || {};
-    const app = _getApp();
-    let eventUid = dataset[toLowerCase(e.type) + 'Uid'];
-    let key = dataset.key;
-    eventUid += key != null ? '-' + key : '';
-    let fiber = instance.$$eventCached[eventUid + 'Fiber'];
-    if ( /click|tap/.test(eventType) && app && app.onCollectLogs) {
+    const eventUid = dataset[eventType + 'Uid'];
+    const fiber = instance.$$eventCached[eventUid + 'Fiber'] || {
+        props: {},
+        type: 'unknown'
+    };
+    if (app && app.onCollectLogs && /click|tap/.test(eventType) ) {
         app.onCollectLogss(dataset, eventType, fiber && fiber.stateNode);
     }
    
