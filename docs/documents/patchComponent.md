@@ -8,8 +8,6 @@
 外部组件:
  [https://qunarcorp.github.io/schnee-ui/index.html](https://qunarcorp.github.io/schnee-ui/index.html)
 
-内部组件:
-[http://gitlab.corp.qunar.com/qunar_miniprogram/nnc_module_qunar_platform](http://gitlab.corp.qunar.com/qunar_miniprogram/nnc_module_qunar_platform/tree/master/source/components)
 
 ## 快应用 Demo（需要先扫码下载，然后在[快应用调试器](https://doc.quickapp.cn/tools/debugging-tools.html)里选择本地安装打开）
 
