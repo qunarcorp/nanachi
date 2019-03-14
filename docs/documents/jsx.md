@@ -7,7 +7,7 @@
 
 在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。
 
-有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例
+有关for循环，多重循环， if分支, 组件套组件 等用法，可以脚手架的 qunar 示例
 
 为了兼容所有平台，我们定下这些规则
 
@@ -104,6 +104,20 @@ const Component = props =>
       else if(color === 'red') { <RedComponent/>; }
       else if(color === 'green') { <GreenComponent/>; }
     }}
+  </div>
+```
+
+如果真的遇上这么复杂的分支判定，可以使用三元套三元
+
+```jsx
+// https://babeljs.io/docs/en/babel-plugin-proposal-do-expressions
+const Component = props =>
+  <div className='myComponent'>
+    {   color === 'blue' ？ <BlueComponent/> : (
+        color === 'red' ?  <RedComponent/> :  (
+        color === 'green' ? <GreenComponent/>: ""
+         ))
+    }
   </div>
 ```
 

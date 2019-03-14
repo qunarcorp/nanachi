@@ -6,7 +6,7 @@
 <p>小程序的 <code>wxml</code> 只支持 <code>view</code>、<code>text</code> 与它的那些内置组件标签，娜娜奇可以让你直接使用 <code>div</code>, <code>span</code>, <code>p</code>, <code>b</code>, <code>strong</code> 等 HTML 标签。块状元素会转换成 <code>view</code>, 内联元素会转换为 <code>text</code>。</p>
 <p>如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。</p>
 <p>在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。</p>
-<p>有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例</p>
+<p>有关for循环，多重循环， if分支, 组件套组件 等用法，可以脚手架的 qunar 示例</p>
 <p>为了兼容所有平台，我们定下这些规则</p>
 <ol>
 <li>原来打算使用view标签的地方，请使用div,h1这些块状元素代替</li>
@@ -76,6 +76,17 @@
       <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>color <span class="token operator">===</span> <span class="token string">'red'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>RedComponent</span><span class="token punctuation">/></span></span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
       <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>color <span class="token operator">===</span> <span class="token string">'green'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>GreenComponent</span><span class="token punctuation">/></span></span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>如果真的遇上这么复杂的分支判定，可以使用三元套三元</p>
+<pre><code class="language-jsx"><span class="token comment">// https://babeljs.io/docs/en/babel-plugin-proposal-do-expressions</span>
+<span class="token keyword">const</span> <span class="token function-variable function">Component</span> <span class="token operator">=</span> props <span class="token operator">=></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>myComponent<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token punctuation">{</span>   color <span class="token operator">===</span> <span class="token string">'blue'</span> ？ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>BlueComponent</span><span class="token punctuation">/></span></span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+        color <span class="token operator">===</span> <span class="token string">'red'</span> <span class="token operator">?</span>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>RedComponent</span><span class="token punctuation">/></span></span> <span class="token punctuation">:</span>  <span class="token punctuation">(</span>
+        color <span class="token operator">===</span> <span class="token string">'green'</span> <span class="token operator">?</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>GreenComponent</span><span class="token punctuation">/></span></span><span class="token punctuation">:</span> <span class="token string">""</span>
+         <span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token plain-text">
   </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 </code></pre>
 <h2 id="事件绑定的使用">事件绑定的使用</h2>

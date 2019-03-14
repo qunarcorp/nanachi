@@ -97,7 +97,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "使用JSX的注意事项",
-      "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关循环，if, 组件套组件，render props 等用法，可以脚手架的 qunar 示例为了兼容所有平台，我们定下这些规则原来打算使用view标签的地方，请使用div,h1这些块状元素代替\n文本必须包含在text, span, a, option, label这几种标签内\ntext标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签\njsx中不能出现 声明变量或函数的语句，不能出现switch语句\n不要在标签内部使用纯空白或通过两边的空白撑开空间，即  111 111xxx应该改成xxx，因为在快应用下span只能出现在text标签下，不能放在div下面。\n错误的用法\n  我是文本\n\n正确的用法   我是文本\n   我是文本\n\n",
+      "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关for循环，多重循环， if分支, 组件套组件 等用法，可以脚手架的 qunar 示例为了兼容所有平台，我们定下这些规则原来打算使用view标签的地方，请使用div,h1这些块状元素代替\n文本必须包含在text, span, a, option, label这几种标签内\ntext标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签\njsx中不能出现 声明变量或函数的语句，不能出现switch语句\n不要在标签内部使用纯空白或通过两边的空白撑开空间，即  111 111xxx应该改成xxx，因为在快应用下span只能出现在text标签下，不能放在div下面。\n错误的用法\n  我是文本\n\n正确的用法   我是文本\n   我是文本\n\n",
       "url": "/documents/jsx.html",
       "children": [
         {
@@ -113,7 +113,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "JSX中不能出现if、switch语句或do表达式",
           "url": "/documents/jsx.html#jsx中不能出现if、switch语句或do表达式",
-          "content": "JSX中不能出现if、switch语句或do表达式错误的用法render() {    return if( this.state.isOk ) {\n      return Home Page\n    } else{\n      return \"\" //null会直接输出null,最好改成空字符串\n    }\n  }\ndo表达式也不允许// https://babeljs.io/docs/en/babel-plugin-proposal-do-expressionsconst Component = props =>\n  \n    {do {\n      if(color === 'blue') { ; }\n      else if(color === 'red') { ; }\n      else if(color === 'green') { ; }\n    }}\n  \n"
+          "content": "JSX中不能出现if、switch语句或do表达式错误的用法render() {    return if( this.state.isOk ) {\n      return Home Page\n    } else{\n      return \"\" //null会直接输出null,最好改成空字符串\n    }\n  }\ndo表达式也不允许// https://babeljs.io/docs/en/babel-plugin-proposal-do-expressionsconst Component = props =>\n  \n    {do {\n      if(color === 'blue') { ; }\n      else if(color === 'red') { ; }\n      else if(color === 'green') { ; }\n    }}\n  \n如果真的遇上这么复杂的分支判定，可以使用三元套三元// https://babeljs.io/docs/en/babel-plugin-proposal-do-expressionsconst Component = props =>\n  \n    {   color === 'blue' ？  : (\n        color === 'red' ?   :  (\n        color === 'green' ? : \"\"\n         ))\n    }\n  \n"
         },
         {
           "title": "事件绑定的使用",

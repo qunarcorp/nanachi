@@ -10,10 +10,10 @@ $(function(){
 
   // 判断是否为空对象
   function realObj(obj) {
-    for (var i in obj) {
-      return true;
+    if (JSON.stringify(obj) === '{}') {
+      return false; // 如果为空,返回false
     }
-    return false;
+    return true;
   }
 
   // 防抖函数
@@ -42,9 +42,9 @@ $(function(){
   }
 
   // 隐藏搜索结果框
-  function hideSearchResult() {
-    $searchResult.hide();
-  }
+  // function hideSearchResult() {
+  //   $searchResult.hide();
+  // }
 
   // 监听输入的内容
   $searchInput.on('input', debounce(function(e) {
