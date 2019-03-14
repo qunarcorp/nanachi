@@ -359,7 +359,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "拆库开发",
           "url": "/documents/unpack.html#拆库开发",
-          "content": "拆库开发拆库开发亦称分仓库开发， 如果一个小程序非常大，比如说商场小程序，有许多频道，这涉及多条业务线，每条业务线开发一个频道，那么就需要此功能。我们允许每个频道都独立建一个github/gitlab仓库进行独立开发上线前，通过我们的拆包工具chaika， 将要上线的频道整合成一个要上线的小程序，集中用nanachi进行转译发布。注： chaika还没有发布，内部人士可以先行了解它 https://ued.qunar.com/micrapp/"
+          "content": "拆库开发拆库开发亦称分仓库开发， 如果一个小程序非常大，比如说商场小程序，有许多频道，这涉及多条业务线，每条业务线开发一个频道，那么就需要此功能。我们允许每个频道都独立建一个github/gitlab仓库进行独立开发上线前，通过我们的拆包工具chaika， 将要上线的频道整合成一个要上线的小程序，集中用nanachi进行转译发布。https://qunarcorp.github.io/chaika/"
         }
       ]
     },
@@ -426,6 +426,18 @@ window.ydoc_plugin_search_json = {
       "content": "很多场景下可能需要差异化打包不同平台的代码，娜娜奇提供环境变量process.env.ANU_ENV来识别不同平台。在编译前，ANU_ENV变量已静默配置。componentDidMount(){    let ANU_ENV = process.env.ANU_ENV;//wx ali bu quick\n    if(ANU_ENV === 'wx'){\n        //微信小程序业务逻辑\n    }else if(ANU_ENV === 'ali'){\n        //支付宝小程序业务逻辑\n    }else {\n        \n    }\n}\n有时候需要按平台引入相关模块，在写法上有所不同，必须通过注释节点来匹配相关的import引入。例如:// if process.env.ANU_ENV == 'wx';import wx from './wx.js';\n// if process.env.ANU_ENV == 'ali';\nimport ali from './ali.js';\n编译结果(ANU_ENV:wx):import wx from './wx.js';",
       "url": "/documents/import_js.html",
       "children": []
+    },
+    {
+      "title": "",
+      "content": "",
+      "url": "/documents/tabBar.html",
+      "children": [
+        {
+          "title": "据平台设置tabBar",
+          "url": "/documents/tabBar.html#据平台设置tabbar",
+          "content": "据平台设置tabBartabBar是小程序、快应用下面可能出现的按钮列表，用于快速回到首页或某一重要页面。默认是使用tabBar.list数组class Global extends React.Component {   config = {\n\t    window: {\n\t        backgroundTextStyle: 'light',\n\t        // navigationBarBackgroundColor: '#0088a4',\n\t        navigationBarTitleText: 'mpreact',\n\t        navigationBarTextStyle: '#fff'\n\t    },\n\t    tabBar: {\n\t        color: '#929292',\n\t        selectedColor: '#00bcd4',\n\t        borderStyle: 'black',\n\t        backgroundColor: '#ffffff',\n\t        list: [ /*略*/]\n        }\n   }\n   render(){\n       //略\n   }\n}\nexport default App(new Global());\n如果你想在快应用下，list的内容有点不一样，那么你可以添加一个quickList. 在转译阶段，会用quickList覆盖list, 并把quickList删掉。同理，你可以添加wxList, buList, ttList进行不同的设置。class Global extends React.Component {   config = {\n\t    window: {\n\t        backgroundTextStyle: 'light',\n\t        // navigationBarBackgroundColor: '#0088a4',\n\t        navigationBarTitleText: 'mpreact',\n\t        navigationBarTextStyle: '#fff'\n\t    },\n\t    tabBar: {\n\t        color: '#929292',\n\t        selectedColor: '#00bcd4',\n\t        borderStyle: 'black',\n\t        backgroundColor: '#ffffff',\n\t        list: [ /*略*/],\n            buList:  [ /*略*/],\n            quickList:  [ /*略*/],\n            aliList:  [ /*略*/]\n        }\n   }\n   render(){\n       //略\n   }\n}\nexport default App(new Global());\n"
+        }
+      ]
     },
     {
       "title": "快应用的scroll-view兼容",

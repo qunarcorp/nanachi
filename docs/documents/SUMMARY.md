@@ -24,6 +24,7 @@
 - [支持 npm 模块](npm.md)
 - [按平台引入 CSS 文件](import_css.md)
 - [按平台打包 JS 代码](import_js.md)
+- [据平台设置tabBar](tabBar.md)
 - [快应用的scroll-view兼容](quicklist.md)
 - [快应用的同步Storage API兼容](quickstorage.md)
 - [别名配置](alias.md)

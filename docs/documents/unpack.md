@@ -5,6 +5,6 @@
 我们允许每个频道都独立建一个github/gitlab仓库进行独立开发
 上线前，通过我们的拆包工具**chaika**， 将要上线的频道整合成一个要上线的小程序，集中用nanachi进行转译发布。
 
-注： chaika还没有发布，内部人士可以先行了解它 [https://ued.qunar.com/micrapp/](https://ued.qunar.com/micrapp/)
+ [https://qunarcorp.github.io/chaika/](https://qunarcorp.github.io/chaika/)
 
 
