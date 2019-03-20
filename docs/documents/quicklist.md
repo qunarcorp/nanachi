@@ -27,6 +27,7 @@
                         );
                     })
     }
+    <div>底部</div>
 </list>
 ```
 
@@ -52,7 +53,9 @@
                         </list-item>
                     );
                 })
+        
     }
+      <list-item type="bottom1134324">底部</list-item>
 </list>
 ```
 

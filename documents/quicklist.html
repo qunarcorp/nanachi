@@ -27,6 +27,7 @@
                         <span class="token punctuation">)</span><span class="token punctuation">;</span>
                     <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">底部</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list</span><span class="token punctuation">></span></span><span class="token plain-text">
 </span></code></pre>
 <p>改造如下：</p>
@@ -50,7 +51,9 @@
                         </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list-item</span><span class="token punctuation">></span></span>
                     <span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        
     <span class="token punctuation">}</span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list-item</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bottom1134324<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token plain-text">底部</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list-item</span><span class="token punctuation">></span></span><span class="token plain-text">
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list</span><span class="token punctuation">></span></span><span class="token plain-text">
 </span></code></pre>
 <p>然后我们在转换阶段，在快应用下，list-item标签不变，scroll-view标签转译成list标签，

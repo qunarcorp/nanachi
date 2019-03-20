@@ -4,21 +4,58 @@
 
 此功能已经被各种小程序支持了，这个能有效提升我们打开小程序的速度。
 
-## 使用
+## 小程序使用
 
-在app.js中config对象上
+微信上，在app.js目录下建立一个wxConfig.json
+
+
+```json
+{
+    "subpackages": [
+        {
+            "name": "hotel",
+            "resource": "pages/hotel"
+        },
+        {
+            "name": "ticket",
+            "resource": "pages/ticket"
+        },
+        {
+            "name": "train",
+            "resource": "pages/train"
+        },
+        {
+            "name": "vacation",
+            "resource": "pages/vacation"
+        }
+    ]
+}
+```
+会自动翻译成下面的内容放到app.json中
+
 ```json
 {
      "subpackages": [
     {
-      "root": "packageA",
-      "pages": ["pages/cat", "pages/dog"]
+      "root": "pages/hotel",
+      "name": "hotel",
+      "pages": ["index","aaa","bbb","ccc"]
     },
     {
-      "root": "packageB",
-      "name": "pack2",
-      "pages": ["pages/apple", "pages/banana"]
-    }
+      "root": "pages/ticket",
+      "name": "ticket",
+      "pages": ["index","aaa","bbb","ccc"]
+    },
+    {
+      "root": "pages/train",
+      "name": "train",
+      "pages": ["index","aaa","bbb","ccc"]
+    },
+    {
+      "root": "pages/vacation",
+      "name": "vacation",
+      "pages": ["index","aaa","bbb","ccc"]
+    },
   ]
 }
 ```
@@ -32,6 +69,35 @@ subpackages 中，每个分包的配置有以下几项：
 |name	  |String	 |分包别名，分包预下载时可以使用|
 |pages	|StringArray	|分包页面路径，相对与分包根目录|
 |independent|Boolean	|分包是否是独立分包|
+
+## 快应用的分包加载
+
+在app.js同一目录下，建一个quickConfig.json。里面内部为
+
+```json
+{
+    "subpackages": [
+        {
+            "name": "hotel",
+            "resource": "pages/hotel"
+        },
+        {
+            "name": "ticket",
+            "resource": "pages/ticket"
+        },
+        {
+            "name": "train",
+            "resource": "pages/train"
+        },
+        {
+            "name": "vacation",
+            "resource": "pages/vacation"
+        }
+    ]
+}
+```
+
+它们会自动加入manifest.json中
 
 ## 打包原则
 

@@ -5,19 +5,52 @@
     </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item active"><a class="href" href="intro.html">文档</a></li><li class="item "><a class="href" href="../apis/index.html">已兼容处理的API</a></li><li class="item "><a class="href" href="logo.html">谁在用nanachi</a></li><li class="item "><a class="href" href="about.html">关于</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>分包加载</h1>
 <p>某些情况下，开发者需要将小程序划分成不同的子包，在构建时打包成不同的分包，用户在使用时按需进行加载。</p>
 <p>此功能已经被各种小程序支持了，这个能有效提升我们打开小程序的速度。</p>
-<h2 id="使用">使用</h2>
-<p>在app.js中config对象上</p>
+<h2 id="小程序使用">小程序使用</h2>
+<p>微信上，在app.js目录下建立一个wxConfig.json</p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"subpackages"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"hotel"</span><span class="token punctuation">,</span>
+            <span class="token property">"resource"</span><span class="token operator">:</span> <span class="token string">"pages/hotel"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"ticket"</span><span class="token punctuation">,</span>
+            <span class="token property">"resource"</span><span class="token operator">:</span> <span class="token string">"pages/ticket"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"train"</span><span class="token punctuation">,</span>
+            <span class="token property">"resource"</span><span class="token operator">:</span> <span class="token string">"pages/train"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"vacation"</span><span class="token punctuation">,</span>
+            <span class="token property">"resource"</span><span class="token operator">:</span> <span class="token string">"pages/vacation"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>会自动翻译成下面的内容放到app.json中</p>
 <pre><code class="language-json"><span class="token punctuation">{</span>
      <span class="token property">"subpackages"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
     <span class="token punctuation">{</span>
-      <span class="token property">"root"</span><span class="token operator">:</span> <span class="token string">"packageA"</span><span class="token punctuation">,</span>
-      <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"pages/cat"</span><span class="token punctuation">,</span> <span class="token string">"pages/dog"</span><span class="token punctuation">]</span>
+      <span class="token property">"root"</span><span class="token operator">:</span> <span class="token string">"pages/hotel"</span><span class="token punctuation">,</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"hotel"</span><span class="token punctuation">,</span>
+      <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"index"</span><span class="token punctuation">,</span><span class="token string">"aaa"</span><span class="token punctuation">,</span><span class="token string">"bbb"</span><span class="token punctuation">,</span><span class="token string">"ccc"</span><span class="token punctuation">]</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
-      <span class="token property">"root"</span><span class="token operator">:</span> <span class="token string">"packageB"</span><span class="token punctuation">,</span>
-      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"pack2"</span><span class="token punctuation">,</span>
-      <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"pages/apple"</span><span class="token punctuation">,</span> <span class="token string">"pages/banana"</span><span class="token punctuation">]</span>
-    <span class="token punctuation">}</span>
+      <span class="token property">"root"</span><span class="token operator">:</span> <span class="token string">"pages/ticket"</span><span class="token punctuation">,</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"ticket"</span><span class="token punctuation">,</span>
+      <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"index"</span><span class="token punctuation">,</span><span class="token string">"aaa"</span><span class="token punctuation">,</span><span class="token string">"bbb"</span><span class="token punctuation">,</span><span class="token string">"ccc"</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"root"</span><span class="token operator">:</span> <span class="token string">"pages/train"</span><span class="token punctuation">,</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"train"</span><span class="token punctuation">,</span>
+      <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"index"</span><span class="token punctuation">,</span><span class="token string">"aaa"</span><span class="token punctuation">,</span><span class="token string">"bbb"</span><span class="token punctuation">,</span><span class="token string">"ccc"</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"root"</span><span class="token operator">:</span> <span class="token string">"pages/vacation"</span><span class="token punctuation">,</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"vacation"</span><span class="token punctuation">,</span>
+      <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"index"</span><span class="token punctuation">,</span><span class="token string">"aaa"</span><span class="token punctuation">,</span><span class="token string">"bbb"</span><span class="token punctuation">,</span><span class="token string">"ccc"</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -53,6 +86,30 @@
 </tr>
 </tbody>
 </table>
+<h2 id="快应用的分包加载">快应用的分包加载</h2>
+<p>在app.js同一目录下，建一个quickConfig.json。里面内部为</p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"subpackages"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"hotel"</span><span class="token punctuation">,</span>
+            <span class="token property">"resource"</span><span class="token operator">:</span> <span class="token string">"pages/hotel"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"ticket"</span><span class="token punctuation">,</span>
+            <span class="token property">"resource"</span><span class="token operator">:</span> <span class="token string">"pages/ticket"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"train"</span><span class="token punctuation">,</span>
+            <span class="token property">"resource"</span><span class="token operator">:</span> <span class="token string">"pages/train"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"vacation"</span><span class="token punctuation">,</span>
+            <span class="token property">"resource"</span><span class="token operator">:</span> <span class="token string">"pages/vacation"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>它们会自动加入manifest.json中</p>
 <h2 id="打包原则">打包原则</h2>
 <p>声明 subpackages 后，将按 subpackages 配置路径进行打包，subpackages 配置路径外的目录将被打包到 app（主包） 中
 app（主包）也可以有自己的 pages（即最外层的 pages 字段）
