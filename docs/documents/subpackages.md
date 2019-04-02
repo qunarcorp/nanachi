@@ -6,7 +6,7 @@
 
 ## 小程序使用
 
-微信上，在app.js目录下建立一个wxConfig.json
+微信上，在app.js目录下建立一个wxConfig.json或 buConfig.json...
 
 
 ```json
@@ -35,7 +35,7 @@
 
 ```json
 {
-     "subpackages": [
+     "subpackages": [ //百度下会编译为subPackages
     {
       "root": "pages/hotel",
       "name": "hotel",
@@ -113,4 +113,7 @@ packageA 无法 import packageB 的 template，但可以 require app、自己 pa
 packageA 无法使用 packageB 的资源，但可以使用 app、自己 package 内的资源
 
 ## 低版本兼容
+
 由微信后台编译来处理旧版本客户端的兼容，后台会编译两份代码包，一份是分包后代码，另外一份是整包的兼容代码。 新客户端用分包，老客户端还是用的整包，完整包会把各个 subpackage 里面的路径放到 pages 中。
+
+目前 支付宝与字节跳动小程序不支持分包

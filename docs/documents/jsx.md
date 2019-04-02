@@ -172,11 +172,10 @@ class A extends React.Component{
 ```jsx
 class A extends React.Component{
   render(){
-    return <div>
-    { 
-    [111,222,333].map(function(el){
-        return <p>{el}</p>
-    })
+    return <div>{ 
+       [111,222,333].map(function(el){
+          return <p>{el}</p>
+       })
     }</div>
   }
 }

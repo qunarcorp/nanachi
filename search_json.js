@@ -128,7 +128,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "render的使用",
           "url": "/documents/jsx.html#render的使用",
-          "content": "render的使用错误的用法class A extends React.Component{  render(){\n    var a = this.props\n    return {a.content}\n  }\n}\n正确的用法class A extends React.Component{  render(){\n    return {this.props.content}\n  }\n}\n在早期的百度小程序中s-for指令不支持数组字面量，1.14.13已经修复class A extends React.Component{  render(){\n    return \n    { \n    [111,222,333].map(function(el){\n        return {el}\n    })\n    }\n  }\n}\n"
+          "content": "render的使用错误的用法class A extends React.Component{  render(){\n    var a = this.props\n    return {a.content}\n  }\n}\n正确的用法class A extends React.Component{  render(){\n    return {this.props.content}\n  }\n}\n在早期的百度小程序中s-for指令不支持数组字面量，1.14.13已经修复class A extends React.Component{  render(){\n    return { \n       [111,222,333].map(function(el){\n          return {el}\n       })\n    }\n  }\n}\n"
         }
       ]
     },
@@ -303,7 +303,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "使用",
           "url": "/documents/webview.html#使用",
-          "content": "使用在对应频道的页面对象的config添加一个参数{    webview: {\n        quick: true,//将这个页面所在文件夹（频道）的所有页面及子页面都webview\n        ali: [\"pages/video/index\"]\n    }\n}\n频道就是 pages下面的某个文件夹的意思\n"
+          "content": "使用在对应频道的页面对象的 config 添加一个参数。其中 pages 字段可能存在两种类型值，数组和布尔值。当为数组时，数组中的各项为 webview 化的页面路径。nanachi 会将这些路径编译成 webview。当为布尔值，且值为 true 时，nanachi 将这个页面所在文件夹（频道）的所有页面及子页面都 webview 化。class Demo extends React.Component {    config = {\n        webview: {\n            quick: {\n                pages: true,  \n                showTitleBar: false, //是否隐藏快应用的 titlebar\n                allowthirdpartycookies: false,\n                trustedurl: []\n            }\n        }\n    }\n}\n频道就是 pages下面的某个文件夹的意思\n既然是智能 webview 化，之前页面跳转的路径也会自动变成访问 H5 的 URL。需要注意的是，要手动在package.json中配置有效H5_HOST字段。用于访问\b H5 页面对应的 URL。{    \"nanachi\" : {\n        \"H5_HOST\": \"https://www.qunar.com\"\n    }\n}\n如在应用中从pages/a/b/index路由跳转pages/c/d/index。其中pages/c/d/index会变成一个对应的 H5 访问地址（比如：https://www.qunar.com/pages/c/d/index）。运行nanachi watch:h5, 会将pages/c/d/index页面编译成一个H5, 并启动一个运行 H5 页面的 server 服务。注：智能 webview 化目前只支持快应用，其他平台正在陆续支持中。"
         },
         {
           "title": "webview标签的兼容",
@@ -320,7 +320,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "小程序使用",
           "url": "/documents/subpackages.html#小程序使用",
-          "content": "小程序使用微信上，在app.js目录下建立一个wxConfig.json{    \"subpackages\": [\n        {\n            \"name\": \"hotel\",\n            \"resource\": \"pages/hotel\"\n        },\n        {\n            \"name\": \"ticket\",\n            \"resource\": \"pages/ticket\"\n        },\n        {\n            \"name\": \"train\",\n            \"resource\": \"pages/train\"\n        },\n        {\n            \"name\": \"vacation\",\n            \"resource\": \"pages/vacation\"\n        }\n    ]\n}\n会自动翻译成下面的内容放到app.json中{     \"subpackages\": [\n    {\n      \"root\": \"pages/hotel\",\n      \"name\": \"hotel\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n    {\n      \"root\": \"pages/ticket\",\n      \"name\": \"ticket\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n    {\n      \"root\": \"pages/train\",\n      \"name\": \"train\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n    {\n      \"root\": \"pages/vacation\",\n      \"name\": \"vacation\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n  ]\n}\nsubpackages 中，每个分包的配置有以下几项：\n\n字段\n类型\n说明\n\n\n\n\nroot\nString\n分包根目录\n\n\nname\nString\n分包别名，分包预下载时可以使用\n\n\npages\nStringArray\n分包页面路径，相对与分包根目录\n\n\nindependent\nBoolean\n分包是否是独立分包\n\n\n"
+          "content": "小程序使用微信上，在app.js目录下建立一个wxConfig.json或 buConfig.json...{    \"subpackages\": [\n        {\n            \"name\": \"hotel\",\n            \"resource\": \"pages/hotel\"\n        },\n        {\n            \"name\": \"ticket\",\n            \"resource\": \"pages/ticket\"\n        },\n        {\n            \"name\": \"train\",\n            \"resource\": \"pages/train\"\n        },\n        {\n            \"name\": \"vacation\",\n            \"resource\": \"pages/vacation\"\n        }\n    ]\n}\n会自动翻译成下面的内容放到app.json中{     \"subpackages\": [ //百度下会编译为subPackages\n    {\n      \"root\": \"pages/hotel\",\n      \"name\": \"hotel\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n    {\n      \"root\": \"pages/ticket\",\n      \"name\": \"ticket\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n    {\n      \"root\": \"pages/train\",\n      \"name\": \"train\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n    {\n      \"root\": \"pages/vacation\",\n      \"name\": \"vacation\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n  ]\n}\nsubpackages 中，每个分包的配置有以下几项：\n\n字段\n类型\n说明\n\n\n\n\nroot\nString\n分包根目录\n\n\nname\nString\n分包别名，分包预下载时可以使用\n\n\npages\nStringArray\n分包页面路径，相对与分包根目录\n\n\nindependent\nBoolean\n分包是否是独立分包\n\n\n"
         },
         {
           "title": "快应用的分包加载",
@@ -340,7 +340,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "低版本兼容",
           "url": "/documents/subpackages.html#低版本兼容",
-          "content": "低版本兼容由微信后台编译来处理旧版本客户端的兼容，后台会编译两份代码包，一份是分包后代码，另外一份是整包的兼容代码。 新客户端用分包，老客户端还是用的整包，完整包会把各个 subpackage 里面的路径放到 pages 中。"
+          "content": "低版本兼容由微信后台编译来处理旧版本客户端的兼容，后台会编译两份代码包，一份是分包后代码，另外一份是整包的兼容代码。 新客户端用分包，老客户端还是用的整包，完整包会把各个 subpackage 里面的路径放到 pages 中。目前 支付宝与字节跳动小程序不支持分包"
         }
       ]
     },
