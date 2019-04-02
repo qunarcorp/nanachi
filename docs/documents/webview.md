@@ -10,18 +10,50 @@
 
 ## 使用
 
-在对应频道的页面对象的config添加一个参数
+在对应频道的页面对象的 config 添加一个参数。其中 pages 字段可能存在两种类型值，数组和布尔值。
 
-```json
-{
-    webview: {
-        quick: true,//将这个页面所在文件夹（频道）的所有页面及子页面都webview
-        ali: ["pages/video/index"]
+当为数组时，数组中的各项为 webview 化的页面路径。nanachi 会将这些路径编译成 webview。
+
+当为布尔值，且值为 true 时，nanachi 将这个页面所在文件夹（频道）的所有页面及子页面都 webview 化。
+
+
+```
+class Demo extends React.Component {
+    config = {
+        webview: {
+            quick: {
+                pages: true,  
+                showTitleBar: false, //是否隐藏快应用的 titlebar
+                allowthirdpartycookies: false,
+                trustedurl: []
+            }
+        }
     }
 }
 ```
 
 >  频道就是 pages下面的某个文件夹的意思
+
+
+既然是智能 webview 化，之前页面跳转的路径也会自动变成访问 H5 的 URL。
+
+
+需要注意的是，要手动在`package.json`中配置有效`H5_HOST`字段。用于访问 H5 页面对应的 URL。
+
+```
+{
+    "nanachi" : {
+        "H5_HOST": "https://www.qunar.com"
+    }
+}
+```
+
+如在应用中从`pages/a/b/index`路由跳转`pages/c/d/index`。其中`pages/c/d/index`会变成一个对应的 H5 访问地址（比如：`https://www.qunar.com/pages/c/d/index`）。
+
+运行`nanachi watch:h5`, 会将`pages/c/d/index`页面编译成一个H5, 并启动一个运行 H5 页面的 server 服务。
+
+注：智能 webview 化目前只支持快应用，其他平台正在陆续支持中。
+
 
 ## webview标签的兼容
 
