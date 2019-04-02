@@ -17,7 +17,7 @@
 当为布尔值，且值为 true 时，nanachi 将这个页面所在文件夹（频道）的所有页面及子页面都 webview 化。
 
 
-```json
+```
 class Demo extends React.Component {
     config = {
         webview: {
