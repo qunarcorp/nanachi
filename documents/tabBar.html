@@ -6,7 +6,7 @@
 <p>tabBar是小程序、快应用下面可能出现的按钮列表，用于快速回到首页或某一重要页面。</p>
 <p>默认是使用tabBar.list数组</p>
 <pre><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
-   config <span class="token operator">=</span> <span class="token punctuation">{</span>
+   <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
 	    window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
 	        backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
 	        <span class="token comment">// navigationBarBackgroundColor: '#0088a4',</span>
@@ -30,7 +30,7 @@
 <p>如果你想在快应用下，list的内容有点不一样，那么你可以添加一个quickList. 在转译阶段，会用quickList覆盖list, 并把quickList删掉。</p>
 <p>同理，你可以添加wxList, buList, ttList进行不同的设置。</p>
 <pre><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
-   config <span class="token operator">=</span> <span class="token punctuation">{</span>
+   <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
 	    window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
 	        backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
 	        <span class="token comment">// navigationBarBackgroundColor: '#0088a4',</span>

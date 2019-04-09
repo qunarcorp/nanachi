@@ -6,7 +6,7 @@ tabBar是小程序、快应用下面可能出现的按钮列表，用于快速�
 
 ```javascript
 class Global extends React.Component {
-   config = {
+   static config = {
 	    window: {
 	        backgroundTextStyle: 'light',
 	        // navigationBarBackgroundColor: '#0088a4',
@@ -35,7 +35,7 @@ export default App(new Global());
 
 ```javascript
 class Global extends React.Component {
-   config = {
+   static config = {
 	    window: {
 	        backgroundTextStyle: 'light',
 	        // navigationBarBackgroundColor: '#0088a4',

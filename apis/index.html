@@ -42,7 +42,7 @@
 <tr>
 <td>React.api</td>
 <td> </td>
-<td>相当于微信的 wx, 支付宝小程序的 my，百度小程的 swan,为了方便编译，请不要在业务代码中直接用 wx,要用 React.api</td>
+<td>相当于微信的 wx, 支付宝小程序的 my，百度小程的 swan, 字节跳动的tt, QQ小程序的qq, 为了方便编译，请不要在业务代码中直接用 wx,要用 React.api</td>
 </tr>
 <tr>
 <td>React.getApp</td>
@@ -63,11 +63,6 @@
 <td>React.getCurrentPage</td>
 <td></td>
 <td>得到当前页面的react实例， instance.props.query, instance.props.path为当前路径与参数对象</td>
-</tr>
-<tr>
-<td>React.toRenderProps</td>
-<td>内部 API</td>
-<td>用来代替 render 属性对应的函数</td>
 </tr>
 <tr>
 <td>React.toClass</td>
@@ -105,9 +100,9 @@
 <td>监听用户滑动页面事件</td>
 </tr>
 <tr>
-<td>onShareAppMessage</td>
+<td>onShareAppMessage/onShare</td>
 <td>页面组件的事件</td>
-<td>用于返回分享的内容</td>
+<td>用于返回分享的内容,建议改用onShare</td>
 </tr>
 <tr>
 <td>onReachBottom</td>
