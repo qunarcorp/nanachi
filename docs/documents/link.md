@@ -14,7 +14,8 @@
 -   [快应用升级日志](https://doc.quickapp.cn/changelog/1020.html)
 -   [百度小程序升级日志](https://smartprogram.baidu.com/docs/develop/tutorial/swanchangelog/)
 -   [支付宝小程序升级日志](https://docs.alipay.com/mini/developer/changelog)
--   [QQ轻应用文档](https://h5.qianbao.qq.com/wiki/articleH5?id=1237)
+-   [QQ小程序开发工具](https://q.qq.com/wiki/#_4-%E7%BC%96%E7%A0%81%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F)
+-   [QQ小程序文档](https://q.qq.com/wiki/)
 -   [头条小程序文档](https://developer.toutiao.com/)
 
 
