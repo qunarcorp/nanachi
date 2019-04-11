@@ -19,7 +19,7 @@
 
 ```
 class Demo extends React.Component {
-    config = {
+    static config = {
         webview: {
             quick: {
                 pages: true,  
