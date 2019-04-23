@@ -34,6 +34,7 @@
 <p>由于在快应用中元素组件默认使用横向 flex 布局，因此居中可以很方便的使用 <code>justify-content: center</code> 和 <code>align-items: center</code> 来实现主轴和交叉轴方向上的居中。</p>
 <h3 id="注意点-单位的转换问题">单位的转换问题</h3>
 <p>有的平台支持px与rpx，有的只支持px。但如果你不想转换px，你需要将px改成PX;</p>
+<p>text标签的line-height 不能写line-height: 1; 快应用会自动加px 只能写 line-height: 52px; 这样 最近小米快应用本体可能有更新 导致之前样式ok的会挂 大家注意改下</p>
 <h3 id="注意点-flex-元素的宽度问题">flex 元素的宽度问题</h3>
 <p>当 flex 元素为垂直方向时（ <code>flex-direction: column</code>），其宽度并不会默认占满父元素的宽度，有些情况下你需要设置 <code>width: 100%</code> 来然他满父元素的宽度：</p>
 <pre><code class="language-html"><span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span></span>

@@ -37,6 +37,7 @@ components目录下的样式也是如此，想共享一些已有的样式，也�
   </div>
 ````
 
+
 ### 标签选择器要谨慎避开小程序专有的标签
 
 为了兼容所有平台，尽量避免在CSS样式表中使用 只有小程序 才有的标签，如image, switch, scroller, scroll-div...
@@ -52,6 +53,8 @@ components目录下的样式也是如此，想共享一些已有的样式，也�
 
 有的平台支持px与rpx，有的只支持px。但如果你不想转换px，你需要将px改成PX;
 
+
+text标签的line-height 不能写line-height: 1; 快应用会自动加px 只能写 line-height: 52px; 这样 最近小米快应用本体可能有更新 导致之前样式ok的会挂 大家注意改下
 
 ### flex 元素的宽度问题
 

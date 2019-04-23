@@ -165,7 +165,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "单位的转换问题",
           "url": "/documents/style.html#注意点-单位的转换问题",
-          "content": "单位的转换问题有的平台支持px与rpx，有的只支持px。但如果你不想转换px，你需要将px改成PX;"
+          "content": "单位的转换问题有的平台支持px与rpx，有的只支持px。但如果你不想转换px，你需要将px改成PX;text标签的line-height 不能写line-height: 1; 快应用会自动加px 只能写 line-height: 52px; 这样 最近小米快应用本体可能有更新 导致之前样式ok的会挂 大家注意改下"
         },
         {
           "title": "flex 元素的宽度问题",
