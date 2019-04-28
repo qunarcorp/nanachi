@@ -2,24 +2,28 @@
 
 小程序寄生在大流量的App中，因此转发共享功能非常重要，能实现病毒性传播。
 
-小程序的页面顶部都有一个转发按钮，想激活它，需要在当前的页面实例添加一个onShareAppMessage方法，如果没有那么它就到app.js找全局的onGlobalShare方法。
+在原生的微信小程序有一个onShareAppMessage方法，它会返回一个对象。只要定义这个方法，那页面顶部就会自动出一个转发按钮，让用户进行转发。
+
+而快应用是没有这样的API，也没有这样的按钮，一切都需要手动实现。我们可以通过 React.api.showActionSheet创建一个右上角菜单，然后让某一栏为一个转发按钮，当用户点击它时实现这个功能。
+
+与onShow 一样，我们娜娜奇除了提供页面级别的分享钩子，也提供全局级别的分享钩子，分别称为onShare与onGlobalShare。
 
 ```javascript
 // pages/pagexx/index.js
 import React from '@react';
 class P extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             text: 'this is first line\nthis is second line'
         };
     }
 
-    onShareAppMessage() {
-            var navigateToUrl =  React.getCurrentPage().props.path;
+    onShare() {
+            var navigateToUrl = this.props.path;
             return {
                 title: '预订火车票 - 去哪儿旅行',
-                imageUrl: 'https://s.qunarzz.com/open_m_train/miniprogram/aliShare.jpg',
+               imageUrl: 'https://s.aaa.com/bbb/ccc.jpg',
                 path: navigateToUrl
             };
     }
@@ -28,7 +32,6 @@ class P extends React.Component {
         var textAry = this.state.text.split('\n');
         if (!textAry.length) return;
         textAry.pop();
-
         this.setState({
             text: textAry.join('\n')
         });
@@ -54,11 +57,12 @@ class P extends React.Component {
 export default P;
 ```
 
-app.js
+app.js中需要添加一个onShowMenu方法，专门给快应用生成右上角菜单。
 
 ```javascript
+
 class Demo extends React.Component {
-    config = {
+    static config = {
         window: {
             backgroundTextStyle: 'light',
             // navigationBarBackgroundColor: '#0088a4',
@@ -70,29 +74,7 @@ class Demo extends React.Component {
             'selectedColor': '#00bcd4',
             'borderStyle': 'black',
             'backgroundColor': '#ffffff',
-            'list': [
-                {
-                    'pagePath': 'pages/index/index',
-                    'iconPath': 'assets/image/homepage_normal.png',
-                    'selectedIconPath': 'assets/image/homepage_select.png',
-                    'text': '首页',
-                    'name': 'Home',
-                },
-                {
-                    'pagePath': 'pages/demo/question/index/index',
-                    'iconPath': 'assets/image/question_normal.png',
-                    'selectedIconPath': 'assets/image/question_select.png',
-                    'text': '问答社区',
-                    'name': 'questionAndAnswer'
-                },
-                {
-                    'pagePath': 'pages/demo/userCenter/index',
-                    'iconPath': 'assets/image/uc_normal.png',
-                    'selectedIconPath': 'assets/image/uc_select.png',
-                    'text': '我的',
-                    'name': 'My'
-                }
-            ]
+            'list': [/**/ ]
         }
     };
     globalData = {
@@ -102,7 +84,7 @@ class Demo extends React.Component {
         var navigateToUrl = '/pages/index/index';
         return {
             title: '预订火车票 - 去哪儿旅行',
-            imageUrl: 'https://s.qunarzz.com/open_m_train/miniprogram/aliShare.jpg',
+            imageUrl: 'https://s.aaa.com/bbb/ccc.jpg',
             path: navigateToUrl
         };
     };
@@ -119,7 +101,7 @@ class Demo extends React.Component {
                     success: function (ret) {
                         switch (ret.index) {
                             case 0: //分享转发
-                                var fn = pageInstance.onShareAppMessage || app.onGlobalShare;
+                                var fn = pageInstance.onShare || app.onGlobalShare;
                                 var obj = fn && fn();
                                 if (obj){
                                     obj.data = obj.data || obj.path;
@@ -150,7 +132,6 @@ class Demo extends React.Component {
                                 // 取消
                                 break;
                         }
-                
                     }
                });
             }
