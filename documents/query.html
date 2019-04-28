@@ -88,7 +88,8 @@ config<span class="token punctuation">.</span><span class="token function-variab
 <span class="token punctuation">}</span>
 
 
-<span class="token keyword">function</span> <span class="token function">getQuery</span> <span class="token punctuation">(</span>page<span class="token punctuation">,</span> _this<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">function</span> <span class="token function">getQuery</span> <span class="token punctuation">(</span>wx<span class="token punctuation">,</span> huaweiHack<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> page <span class="token operator">=</span> wx<span class="token punctuation">.</span>$page<span class="token punctuation">;</span>
   <span class="token keyword">if</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//小米快应用新规范，this.$page.query 返回页面启动时的参数数据；</span>
     <span class="token keyword">return</span> page<span class="token punctuation">.</span>query<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -101,9 +102,9 @@ config<span class="token punctuation">.</span><span class="token function-variab
      <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>  
   <span class="token comment">//华为快应用从protected中抽取</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>_this<span class="token punctuation">.</span><span class="token keyword">protected</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token keyword">in</span> _this<span class="token punctuation">.</span><span class="token keyword">protected</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        query<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> _this<span class="token punctuation">.</span><span class="token keyword">protected</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>huaweiHack<span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token keyword">in</span> huaweiHack<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        query<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> wx<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
      <span class="token punctuation">}</span>
      <span class="token keyword">return</span> query<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -118,7 +119,7 @@ config<span class="token punctuation">.</span><span class="token function-variab
        app <span class="token operator">=</span> <span class="token function">_getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
        param <span class="token operator">=</span> e
       <span class="token keyword">if</span> <span class="token punctuation">(</span>hook <span class="token operator">===</span> <span class="token string">'onShow'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        param <span class="token operator">=</span> instance<span class="token punctuation">.</span>props<span class="token punctuation">.</span>query <span class="token operator">=</span> <span class="token function">getQuery</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$page<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        param <span class="token operator">=</span> instance<span class="token punctuation">.</span>props<span class="token punctuation">.</span>query <span class="token operator">=</span><span class="token function">getQuery</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> PageClass<span class="token punctuation">.</span><span class="token keyword">protected</span><span class="token punctuation">)</span>
         app<span class="token punctuation">.</span>$$page <span class="token operator">=</span> instance<span class="token punctuation">.</span>wx<span class="token punctuation">;</span>
         app<span class="token punctuation">.</span>$$pagePath <span class="token operator">=</span> instance<span class="token punctuation">.</span>props<span class="token punctuation">.</span>path<span class="token punctuation">;</span>
       <span class="token punctuation">}</span>

@@ -95,7 +95,8 @@ var globalHooks = {
 }
 
 
-function getQuery (page, _this) {
+function getQuery (wx, huaweiHack) {
+  var page = wx.$page;
   if(page.query){//小米快应用新规范，this.$page.query 返回页面启动时的参数数据；
     return page.query;
   }
@@ -108,9 +109,9 @@ function getQuery (page, _this) {
      }
   }  
   //华为快应用从protected中抽取
-  if(Object.keys(_this.protected)){
-     for(var i in _this.protected){
-        query[i] = _this.protected[i]
+  if(Object.keys(huaweiHack).length){
+     for(var i in huaweiHack){
+        query[i] = wx[i];
      }
      return query;
   }
@@ -125,7 +126,7 @@ function getQuery (page, _this) {
        app = _getApp(),
        param = e
       if (hook === 'onShow') {
-        param = instance.props.query = getQuery(this.$page, this);
+        param = instance.props.query =getQuery(this, PageClass.protected)
         app.$$page = instance.wx;
         app.$$pagePath = instance.props.path;
       }
