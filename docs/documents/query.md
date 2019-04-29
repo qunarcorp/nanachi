@@ -1,6 +1,6 @@
 # 页面参数的获取
 
-在小程序中，想获取上一个页面跳转后带过来的参数是非常容易的。微信，字节跳动，支付宝，百度小程序直接利用onShow方法，就可以获取参数对象。
+在小程序中，想获取上一个页面跳转后带过来的参数是非常容易的。微信，字节跳动，支付宝，百度小程序直接利用onShow方法，就可以获取参数对象。或者在React生命周期钩子中访问this.props.query获取
 
 ```jsx
 import React from '@react';
@@ -9,7 +9,7 @@ import './index.scss';
 class P extends React.Component {
     componentDidMount() {
         // eslint-disable-next-line
-       console.log('page did mount!');
+       console.log('page did mount!', this.props.query);
     }
     onShow(queryObject){
         console.log(queryObject) // {a: 111, b: false}
@@ -63,7 +63,7 @@ import './index.scss';
 class P extends React.Component {
     componentDidMount() {
         // eslint-disable-next-line
-       console.log('page did mount!');
+       console.log('page did mount!', this.props.query);
     }
     static protected = process.env.ANU_ENV === 'quick' ? {param1: 0, param2: 0, param3: 0} : {}
     onShow(queryObject){
