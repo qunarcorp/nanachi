@@ -205,45 +205,6 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "尺寸样式说明",
-      "content": "",
-      "url": "/documents/size.html",
-      "children": [
-        {
-          "title": "小程序中",
-          "url": "/documents/size.html#小程序中",
-          "content": "小程序中小程序行内样式 会根据屏幕比例将 px 转换成rpx如果你希望部分 px 单位不被转换成 rpx ，最简单的做法就是在px单位中增加一个大写字母，例如 PX这样，则会被转换插件忽略。"
-        },
-        {
-          "title": "快应用中",
-          "url": "/documents/size.html#快应用中",
-          "content": "快应用中在快应用中 如果用户书写的是 1px 则会转译成  2px, 如果用户写的是rpx 则会转译成 px"
-        }
-      ]
-    },
-    {
-      "title": "事件系统",
-      "content": "小程序有两种绑定事件的方式。bindtap 绑定一个会冒泡的 tap 事件\ncatchtap 绑定一个不会冒泡的 tap 事件\nnanachi 为了大家方便，还是换回大家熟悉的风格，但不能冒泡的限制还没有搞定，因此也是两种绑定风格。onTap 绑定一个会冒泡的 tap 事件\ncatchTap 绑定一个不会冒泡的 tap 事件\ntap 事件相当于 PC 端的 click 事件，因此建议大家用 onClick 代替 onTap, 娜娜奇会友好地帮你转换成 onTap.",
-      "url": "/documents/event.html",
-      "children": [
-        {
-          "title": "事件对象",
-          "url": "/documents/event.html#事件对象",
-          "content": "事件对象由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有stopPropagation 与 preventDefault。但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 stopPropagation 与 preventDefault() 方法。注意 stopPropagation() 是没有效果的，你想并且冒泡还需要用 catchClick 的方式来绑定事件。如果 你想它转译成H5，那么catchXXX的回调内部需要大家执行 e.stopPropagation()。小程序事件对象的属性如下：{    target,//里面有dataset\n    pageX,\n    pageY,\n    value, //不一定有，但input, change事件有\n    timeStamp,\n    type,\n    stopPropagation,\n    preventDefault,\n    //还可能有其他属性，不同的事件类型会产生额外的属性\n}\n"
-        },
-        {
-          "title": "事件回调",
-          "url": "/documents/event.html#事件回调",
-          "content": "事件回调事件回调本身必须定义在类的原型里，不能在视图中使用 this.props.onClick ,只能this.onClick"
-        },
-        {
-          "title": "注意事项",
-          "url": "/documents/event.html#注意事项",
-          "content": "注意事项定义了事件的标签，可能会自动添加data-beacon-uid,  data-key, data-class-uid, data-instance-uid这些属性，注意不要与它们冲突2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积\ninput标签 统一使用onChange事件，不要用onInput\n"
-        }
-      ]
-    },
-    {
       "title": "开发目录结构与输出目录指定",
       "content": "在开始之前，提一下两种重要的概念。带JSX的页面组件与通用组件，它们分别放在pages与components目录下，它们具有巨大的转换成本（毕竟JSX会被提取出来转换成wxml, axml, swan或ux文件），还有一种不带JSX的纯JS文件，建议放在common目录,  当然还有一些通用的东西可以通过npm安装，但不要使用那些有JSX的第三方依赖。开发目录如下src   |--components\n   |    |--HotelDialog\n   |    |     └──index.js  //必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog\n   |    |--HotelXXX\n   |    |--FlightYYY\n   |    └── ...\n   |--pages\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--assets \n   |    |--style\n   |--common\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--app.js\n   |--wxConfig.json\n   |--qqConfig.json\n   |--quickConfig.json\n   |--aliConfig.json\n   |--buConfig.json\ncomponents目录下为了扁平化管理，以事业部做前端+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from \"@react\"`components目录下不要使用Fragments来命名子目录，这留给系统用。\npages目录下每个事业部各建一个目录，以事件部的名字命名，里面为index.js 及页面的目录，index.js要引入自己目录的所有页面，页面也以index.js命名，并且里面必须是有状态的React组件（转译器会转换成页面组件。）页面的index.js各种引入通用组件与common目录的依赖   |--pages   |    |--hotel\n            |--index\n            |    └──index.js //目录, import里面所有index.js\n            |--page1\n            |    |---index.js\n            |    └── index.scss\n            |--page2\n            |    |---index.js\n            |    └── index.scss\n            |--page3\n            |    |---index.js\n            |    └── index.scss\n            |--about\n            |    |---index.js\n            |    └── index.scss\ncommon目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用全部有效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中共享数据的处理， 大家都在globalData对象中放一些命名空间对象. globalData不能放函数。大家不要放在其他全局对象上，因此在快应用等个别小程序中，页面跳转时，会清空掉除globalData之外的数据与变量。qqConfig.json , wxConfig.json这些平台特有的配置项{    globalData: {\n        flight: {\n            xxx:111,222:444\n        },\n        hotel: {\n\n        }\n    }\n}\n",
       "url": "/documents/publish.html",
@@ -256,14 +217,20 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "内置UI库: Schnee UI",
-      "content": "不是所有小程序都照着微信的那一套抄的，并且微信小程序的个别组件是基于native，他们（支付宝，百度等）拿不到源码，因此实现有所差异或延迟，并且为了以后让娜娜奇也运行于H5端，我们也需要实现那些不是H5标签的组件，因此就 Schnee UISchnee UI包含了微信weui所有组件，不同之外是它是基于flexbox布局。用户可以自主引用，或在框架编译用户代码时，发现当前的目标编译平台（如快应用），不支持某种标签，就自动用Schnee UI的组件偷偷替换它。如快应用下的，nanachi会自动转换成, 并且自动引入XIcom组件的依赖。外部组件:https://qunarcorp.github.io/schnee-ui/index.html",
-      "url": "/documents/patchComponent.html",
+      "title": "按平台打包代码或样式",
+      "content": "很多场景下可能需要差异化打包不同平台的代码，娜娜奇提供环境变量process.env.ANU_ENV来识别不同平台。在编译前，ANU_ENV变量已静默配置。componentDidMount(){    let ANU_ENV = process.env.ANU_ENV;//wx ali bu quick\n    if(ANU_ENV === 'wx'){\n        //微信小程序业务逻辑\n    }else if(ANU_ENV === 'ali'){\n        //支付宝小程序业务逻辑\n    }else {\n        \n    }\n}\n有时候需要按平台引入相关模块，在写法上有所不同，必须通过注释节点来匹配相关的import引入。例如:// if process.env.ANU_ENV == 'wx';import wx from './wx.js';\n// if process.env.ANU_ENV == 'ali';\nimport ali from './ali.js';\n// if process.env.ANU_ENV == 'wx';\nimport 'wx_specific.css'\n编译结果(ANU_ENV:wx):import wx from './wx.js';",
+      "url": "/documents/import_js.html",
+      "children": []
+    },
+    {
+      "title": "",
+      "content": "",
+      "url": "/documents/tabBar.html",
       "children": [
         {
-          "title": "快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
-          "url": "/documents/patchComponent.html#快应用-demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
-          "content": "快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）"
+          "title": "据平台设置tabBar",
+          "url": "/documents/tabBar.html#据平台设置tabbar",
+          "content": "据平台设置tabBartabBar是小程序、快应用下面可能出现的按钮列表，用于快速回到首页或某一重要页面。默认是使用tabBar.list数组class Global extends React.Component {   static config = {\n\t    window: {\n\t        backgroundTextStyle: 'light',\n\t        // navigationBarBackgroundColor: '#0088a4',\n\t        navigationBarTitleText: 'mpreact',\n\t        navigationBarTextStyle: '#fff'\n\t    },\n\t    tabBar: {\n\t        color: '#929292',\n\t        selectedColor: '#00bcd4',\n\t        borderStyle: 'black',\n\t        backgroundColor: '#ffffff',\n\t        list: [ /*略*/]\n        }\n   }\n   render(){\n       //略\n   }\n}\nexport default App(new Global());\n如果你想在快应用下，list的内容有点不一样，那么你可以添加一个quickList. 在转译阶段，会用quickList覆盖list, 并把quickList删掉。同理，你可以添加wxList, buList, ttList进行不同的设置。class Global extends React.Component {   static config = {\n\t    window: {\n\t        backgroundTextStyle: 'light',\n\t        // navigationBarBackgroundColor: '#0088a4',\n\t        navigationBarTitleText: 'mpreact',\n\t        navigationBarTextStyle: '#fff'\n\t    },\n\t    tabBar: {\n\t        color: '#929292',\n\t        selectedColor: '#00bcd4',\n\t        borderStyle: 'black',\n\t        backgroundColor: '#ffffff',\n\t        list: [ /*略*/],\n            buList:  [ /*略*/],\n            quickList:  [ /*略*/],\n            aliList:  [ /*略*/]\n        }\n   }\n   render(){\n       //略\n   }\n}\nexport default App(new Global());\n"
         }
       ]
     },
@@ -340,6 +307,12 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
+      "title": "alias别名配置",
+      "content": "在项目package.json中，可配置别名， 减少引用的麻烦。假设我们有一个叫xxx的项目，用nanachi init xxx 创建后，大概是这个样子我们打开package.json在里面添加nanachi对象，nanachi下面再添加alias对象假设我们在assets目录下有一个global.scss，我们不想在pages在很深层次的目录中每次都要\n../../../assets/global.scss 地引用它。可以定义一个@assets别名，指向assets目录。\n由于当前执行命令在xxx目录下，assets又在source里，于是其路径为 source/assets{    \"license\": \"MIT\",\n    \"version\": \"1.0.0\",\n    \"name\": \"qunar\",\n    \"nanachi\": {\n        \"alias\":  {\n            \"@assets\":\"source/assets\"\n        }\n    },\n    \"dependencies\": {\n        \"regenerator-runtime\": \"^0.12.1\"\n    }\n}\n使用方式，我们在某一个页面(/pages/xxx/yyy/index.js)添加一个index.scss, 其位置为pages/xxx/yyy/index.scss//index.jsimport React from '@react';\nimport './index.scss';\nclass P extends React.Component {\n    //略\n}\nexport default P\n//-------------- 略\n\n//index.scss\n\n@import '@assets/global.scss'\n.aaa {//其他样式\n  color:red;\n}\n在默认情况下， 每个项目的package.json/ nanachi / alias对象会添加两个别名@components与@react。因此添加别名时不要与它们冲突。在业务开发中，我们把一些没有视图的业务逻辑放到common目录下，建议不同部门都有自己的XXXCommon.src   |--components\n   |    |--HotelDialog\n   |    |     └──index.js  //必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog\n   |    |--HotelXXX\n   |    |--FlightYYY\n   |    └── ...\n   |--pages\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--common\n   |    |--hotelCommon\n   |    |    └── ...\n   |    |--flightCommon\n   |    |--holidayCommon\n   |    |--strategyCommon\n   |    └── ...\n   |--app.js\n那么各部门可以这样定义自己的别名{    \"license\": \"MIT\",\n    \"version\": \"1.0.0\",\n    \"name\": \"qunar\",\n    \"nanachi\": {\n        \"alias\":  {\n            \"@assets\":\"source/assets\",\n            \"@hotel\" :\"source/common/hotelCommon\",\n            \"@train\" :\"source/common/trainCommon\",\n            \"@flight\" :\"source/common/flightCommon\"\n        }\n    },\n    \"dependencies\": {\n        \"regenerator-runtime\": \"^0.12.1\"\n    }\n}\n使用方式：import React from '@react'import trainPay from '@train/pay';\n//....其他代码\n\n",
+      "url": "/documents/alias.html",
+      "children": []
+    },
+    {
       "title": "日志收集与上传",
       "content": "出于运营的需要，我们需要将页面的流转信息，用户点击分布，错误，页面渲染情况发送到后端小程序编译阶段，会将所有事件转换为一个全局的dispatchEvent方法，因此我们可以这里做统一的日志的收集      震动\n \n如果我们发现这事件类型是click/tap/change/blur, 我们就会为这些元素添加一个data-beacon-uid, 值为default,(如果你已经写了，它就不会添加)，然后在dispatchEvent执行app.js的全局对象的onCollectLogs方法，让用户整理成一个对象，放到一个数组中, 并尝试使用onReportLogs自动发送；//dispatchEvent的源码export function dispatchEvent(e) {\n    const instance = this.reactInstance;\n    if (!instance || !instance.$$eventCached) {\n        return;\n    }\n    const eventType = toLowerCase(e.type);\n    const app = _getApp();\n    const target = e.currentTarget;\n    const dataset = target.dataset || {};\n    const eventUid = dataset[eventType + 'Uid'];\n    const fiber = instance.$$eventCached[eventUid + 'Fiber'] || {\n        props: {},\n        type: 'unknown'\n    };\n    if (app && app.onCollectLogs && /click|tap/.test(eventType) ) {\n        app.onCollectLogss(dataset, eventType, fiber && fiber.stateNode);\n    }\n   \n    //....略\n}\n当用户退出APP时，会进入onHide事件，这时我们就会上传剩余的所有日志因此用户只需要在app.js定义好这两个事件，框架帮你搞定日志上传。下面是示例：import React from '@react';import './pages/index/index';\nimport './pages/demo/base/index';\nimport './pages/demo/native/index/index';\nimport './app.scss';\nfunction computeXpath(node){ //通过xpath实现自动埋点\n    var xpath = [];\n    while (node.parentNode){\n        var index = node.parentNode.children.indexOf(node);\n        var tag = node.type == 'div' ? 'view': node.type;\n        xpath.unshift(tag+'['+index+']');\n        node = node.parentNode;\n    }\n    return  '/page/'+ xpath.join('/');\n}\nfunction computeCompressedXpath(node){ //压缩后的xpath\n    var xpath = [];\n    while (node.parentNode){\n        var index = node.parentNode.children.indexOf(node);\n        xpath.unshift(index);\n        node = node.parentNode;\n    }\n    return xpath.join('/');\n}\nclass Global extends React.Component {\n    static config = {\n        window: {\n            backgroundTextStyle: 'light',\n            navigationBarBackgroundColor: '#0088a4',\n            navigationBarTitleText: 'mpreact',\n            navigationBarTextStyle: '#fff'\n        }\n    };\n    // 全局数据\n    globalData = {\n        ufo: 'ufo'\n    };\n    onCollectLogs(dataset, eventType, node){ //这里会在框架的dispatchEvent自动调起，实现自动理点\n        var beaconId = dataset.beaconUid;\n        if( beaconId == 'default' && node ){\n            beaconId = computeCompressedXpath(node);\n        }\n        var otherData = dataset.xxx//data-xxxx\n        var otherData2 = dataset.xxx2;\n        var timeStamp = new Date - 0;\n        var path = React.getCurrentPage().props.path;//页面路径\n        var logs =  this.globalData.logs || (this.globalData.logs = [])\n        logs.push({\n            pid: beaconId,\n            path: path,\n            timeStamp: timeStamp\n            action: eventType\n        });\n        if(logs.length > 20){\n            var uploadLogs = logs.splice(0, 10);//截取前十条；\n            if(this.onReportLogs){\n                this.onReportLogs(uploadLogs)\n            }\n        }\n    };\n    onHide(){\n      this.onReportLogs(); //微信，支付宝，百度\n    };\n    onDistory(){\n      this.onReportLogs(); //快应用\n    };\n    onReportLogs(logs){ //自己实现\n        if(!logs){\n            if(!Array.isArray(this.globalData.logs) && this.globalData.logs.length == 0){\n               return\n            }\n           logs = this.globalData.logs;\n           this.globalData.logs = [];\n        }\n        if(!logs.length){\n            return\n        }\n        var buildType = this.globalData.buildType;// wx, bu, ali\n        var info = React.api.getSystemInfornSync();\n        var { brand, model, version, platform} = info ;//获取手机品牌，手机型号， 微信版本号, 客户端平台;\n        React.api.request({\n            url: \"/fdsfdsf/sdfds\",\n            type: 'GET',\n            data： {\n                logs,  //logData\n                buildType,//wx, bu, ali, quick, tt, qq\n                brand, //commonData\n                model, //commonData\n                version,//commonData\n                platform,//commonData\n             //other\n            } \n        })\n    }, \n    onLaunch() {\n        console.log('App launched');\n    }\n}\n\nexport default App(new Global());\n在common目录下import React from '@react'//此方法用于手动埋点\nfunction createLog(dataset, eventType){\n    var app =  React.getApp();\n    if(typeof app.onCollectLogs === 'function' ){\n        app.onCollectLogs(dataset, eventType, null)\n    }\n}\n",
       "url": "/documents/report.html",
@@ -352,9 +325,9 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "async/await",
-      "content": "nanachi可自由使用async/await语法import React from '@react';\nclass P extends React.Component {\n    constructor(){\n        super();\n        this.state = {\n            status: ''\n        };\n        this.tapHander = this.tapHander.bind(this);\n    }\n    say(){\n        return new Promise((resolve)=>{\n            setTimeout(()=>{\n                resolve('hello nanachi');\n            }, 2000);\n        });\n    }\n    async tapHander(){\n        this.setState({status: 'waiting...' });\n        let result = await this.say();\n        this.setState({\n            status: result\n        });\n    }\n    render() {\n        return (\n            \n                status: {this.state.status}\n                click me\n            \n        );\n    }\n}\n\nexport default P;\n",
-      "url": "/documents/async.html",
+      "title": "npm模块管理",
+      "content": "针对小程序无法友好管理npm第三方模块问题，nanachi给与了最大限度支持，当文件中引入第三方npm模块，nanachi监听到后会自动安装，并且最小量打包你所依赖的npm模块。例如import cookie from 'cookie';打包后dist/npm/└── cookie\n    └── index.js\n",
+      "url": "/documents/npm.html",
       "children": []
     },
     {
@@ -380,46 +353,73 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "npm模块管理",
-      "content": "针对小程序无法友好管理npm第三方模块问题，nanachi给与了最大限度支持，当文件中引入第三方npm模块，nanachi监听到后会自动安装，并且最小量打包你所依赖的npm模块。例如import cookie from 'cookie';打包后dist/npm/└── cookie\n    └── index.js\n",
-      "url": "/documents/npm.html",
+      "title": "async/await",
+      "content": "nanachi可自由使用async/await语法import React from '@react';\nclass P extends React.Component {\n    constructor(){\n        super();\n        this.state = {\n            status: ''\n        };\n        this.tapHander = this.tapHander.bind(this);\n    }\n    say(){\n        return new Promise((resolve)=>{\n            setTimeout(()=>{\n                resolve('hello nanachi');\n            }, 2000);\n        });\n    }\n    async tapHander(){\n        this.setState({status: 'waiting...' });\n        let result = await this.say();\n        this.setState({\n            status: result\n        });\n    }\n    render() {\n        return (\n            \n                status: {this.state.status}\n                click me\n            \n        );\n    }\n}\n\nexport default P;\n",
+      "url": "/documents/async.html",
       "children": []
     },
     {
-      "title": "按平台引入CSS文件",
+      "title": "Sass、Less、PostCSS支持",
       "content": "nanachi支持less, sass, postcss。默认情况下支持less。针对sass，由于sass环境安装比较麻烦，若用户工程目录没安装node-sass依赖，nanachi就会用过postcss来解析sass或者scss文件。各大样式预处理器对被依赖的@import资源内容打包到当前文件，在很多场景下，这种打包策略会造成应用体积臃肿，比如每个样式文件都引用了基础样式。nanachi对这种策略做了改进，实现了模块化打包。例如:\nSass:   //sass   @import './moduleA.scss';\n   @import './moduleB.scss';\n   .box {\n     color: #333;\n   }\n编译结果：   //sass   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\nLess:   //less   @import (reference) './moduleA.less';\n   @import (reference) './moduleB.less';\n   .box {\n     color: #333;\n   }\n编译结果：   //less   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\n注: postcss暂不支持该特性。",
-      "url": "/documents/import_css.html",
+      "url": "/documents/lesssass.html",
       "children": [
         {
           "title": "注意!!!",
-          "url": "/documents/import_css.html#注意!!!",
+          "url": "/documents/lesssass.html#注意!!!",
           "content": "注意!!!pages目录下需要引用公用样式，请将公用样式放入source/assets目录下。禁止pages目录下的文件以任何方式引入components目录下的任何样式表, components目录下的样式表也不能引用pages目录下的样式表。错误的用法1, pages下的JS文件引用components下的样式表//pages/xxx/index.jsimport '../../components/Dog/index.scss'\nimport React form '@react'\n\nclass P extends React.Component{\n错误的用法2，pages下的CSS文件（csss, wxss, acss）引用components下的样式表/*pages/xxx/index.scsss*/import '../../components/Dog/index.scss'\n.xxx{\n  border: 1px solid red\n}\n错误的用法3，component下的CSS文件引用pages目录下的样式表/*compoents/xxx/index.scsss*/import '../../pages/train/index.scss'\n.xxx{\n  border: 1px solid red\n}\n组件的样式必须在组件里面引用，禁止在pages页面样式文件中@import组件样式。"
         }
       ]
     },
     {
-      "title": "按平台打包JS代码",
-      "content": "很多场景下可能需要差异化打包不同平台的代码，娜娜奇提供环境变量process.env.ANU_ENV来识别不同平台。在编译前，ANU_ENV变量已静默配置。componentDidMount(){    let ANU_ENV = process.env.ANU_ENV;//wx ali bu quick\n    if(ANU_ENV === 'wx'){\n        //微信小程序业务逻辑\n    }else if(ANU_ENV === 'ali'){\n        //支付宝小程序业务逻辑\n    }else {\n        \n    }\n}\n有时候需要按平台引入相关模块，在写法上有所不同，必须通过注释节点来匹配相关的import引入。例如:// if process.env.ANU_ENV == 'wx';import wx from './wx.js';\n// if process.env.ANU_ENV == 'ali';\nimport ali from './ali.js';\n编译结果(ANU_ENV:wx):import wx from './wx.js';",
-      "url": "/documents/import_js.html",
-      "children": []
-    },
-    {
-      "title": "",
-      "content": "",
-      "url": "/documents/tabBar.html",
+      "title": "内置UI库: Schnee UI",
+      "content": "不是所有小程序都照着微信的那一套抄的，并且微信小程序的个别组件是基于native，他们（支付宝，百度等）拿不到源码，因此实现有所差异或延迟，并且为了以后让娜娜奇也运行于H5端，我们也需要实现那些不是H5标签的组件，因此就 Schnee UISchnee UI包含了微信weui所有组件，不同之外是它是基于flexbox布局。用户可以自主引用，或在框架编译用户代码时，发现当前的目标编译平台（如快应用），不支持某种标签，就自动用Schnee UI的组件偷偷替换它。如快应用下的，nanachi会自动转换成, 并且自动引入XIcom组件的依赖。外部组件:https://qunarcorp.github.io/schnee-ui/index.html",
+      "url": "/documents/patchComponent.html",
       "children": [
         {
-          "title": "据平台设置tabBar",
-          "url": "/documents/tabBar.html#据平台设置tabbar",
-          "content": "据平台设置tabBartabBar是小程序、快应用下面可能出现的按钮列表，用于快速回到首页或某一重要页面。默认是使用tabBar.list数组class Global extends React.Component {   static config = {\n\t    window: {\n\t        backgroundTextStyle: 'light',\n\t        // navigationBarBackgroundColor: '#0088a4',\n\t        navigationBarTitleText: 'mpreact',\n\t        navigationBarTextStyle: '#fff'\n\t    },\n\t    tabBar: {\n\t        color: '#929292',\n\t        selectedColor: '#00bcd4',\n\t        borderStyle: 'black',\n\t        backgroundColor: '#ffffff',\n\t        list: [ /*略*/]\n        }\n   }\n   render(){\n       //略\n   }\n}\nexport default App(new Global());\n如果你想在快应用下，list的内容有点不一样，那么你可以添加一个quickList. 在转译阶段，会用quickList覆盖list, 并把quickList删掉。同理，你可以添加wxList, buList, ttList进行不同的设置。class Global extends React.Component {   static config = {\n\t    window: {\n\t        backgroundTextStyle: 'light',\n\t        // navigationBarBackgroundColor: '#0088a4',\n\t        navigationBarTitleText: 'mpreact',\n\t        navigationBarTextStyle: '#fff'\n\t    },\n\t    tabBar: {\n\t        color: '#929292',\n\t        selectedColor: '#00bcd4',\n\t        borderStyle: 'black',\n\t        backgroundColor: '#ffffff',\n\t        list: [ /*略*/],\n            buList:  [ /*略*/],\n            quickList:  [ /*略*/],\n            aliList:  [ /*略*/]\n        }\n   }\n   render(){\n       //略\n   }\n}\nexport default App(new Global());\n"
+          "title": "快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
+          "url": "/documents/patchComponent.html#快应用-demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
+          "content": "快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）"
         }
       ]
     },
     {
-      "title": "alias别名配置",
-      "content": "在项目package.json中，可配置别名， 减少引用的麻烦。假设我们有一个叫xxx的项目，用nanachi init xxx 创建后，大概是这个样子我们打开package.json在里面添加nanachi对象，nanachi下面再添加alias对象假设我们在assets目录下有一个global.scss，我们不想在pages在很深层次的目录中每次都要\n../../../assets/global.scss 地引用它。可以定义一个@assets别名，指向assets目录。\n由于当前执行命令在xxx目录下，assets又在source里，于是其路径为 source/assets{    \"license\": \"MIT\",\n    \"version\": \"1.0.0\",\n    \"name\": \"qunar\",\n    \"nanachi\": {\n        \"alias\":  {\n            \"@assets\":\"source/assets\"\n        }\n    },\n    \"dependencies\": {\n        \"regenerator-runtime\": \"^0.12.1\"\n    }\n}\n使用方式，我们在某一个页面(/pages/xxx/yyy/index.js)添加一个index.scss, 其位置为pages/xxx/yyy/index.scss//index.jsimport React from '@react';\nimport './index.scss';\nclass P extends React.Component {\n    //略\n}\nexport default P\n//-------------- 略\n\n//index.scss\n\n@import '@assets/global.scss'\n.aaa {//其他样式\n  color:red;\n}\n在默认情况下， 每个项目的package.json/ nanachi / alias对象会添加两个别名@components与@react。因此添加别名时不要与它们冲突。在业务开发中，我们把一些没有视图的业务逻辑放到common目录下，建议不同部门都有自己的XXXCommon.src   |--components\n   |    |--HotelDialog\n   |    |     └──index.js  //必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog\n   |    |--HotelXXX\n   |    |--FlightYYY\n   |    └── ...\n   |--pages\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └── ...\n   |--common\n   |    |--hotelCommon\n   |    |    └── ...\n   |    |--flightCommon\n   |    |--holidayCommon\n   |    |--strategyCommon\n   |    └── ...\n   |--app.js\n那么各部门可以这样定义自己的别名{    \"license\": \"MIT\",\n    \"version\": \"1.0.0\",\n    \"name\": \"qunar\",\n    \"nanachi\": {\n        \"alias\":  {\n            \"@assets\":\"source/assets\",\n            \"@hotel\" :\"source/common/hotelCommon\",\n            \"@train\" :\"source/common/trainCommon\",\n            \"@flight\" :\"source/common/flightCommon\"\n        }\n    },\n    \"dependencies\": {\n        \"regenerator-runtime\": \"^0.12.1\"\n    }\n}\n使用方式：import React from '@react'import trainPay from '@train/pay';\n//....其他代码\n\n",
-      "url": "/documents/alias.html",
-      "children": []
+      "title": "尺寸样式说明",
+      "content": "",
+      "url": "/documents/size.html",
+      "children": [
+        {
+          "title": "小程序中",
+          "url": "/documents/size.html#小程序中",
+          "content": "小程序中小程序行内样式 会根据屏幕比例将 px 转换成rpx如果你希望部分 px 单位不被转换成 rpx ，最简单的做法就是在px单位中增加一个大写字母，例如 PX这样，则会被转换插件忽略。"
+        },
+        {
+          "title": "快应用中",
+          "url": "/documents/size.html#快应用中",
+          "content": "快应用中在快应用中 如果用户书写的是 1px 则会转译成  2px, 如果用户写的是rpx 则会转译成 px"
+        }
+      ]
+    },
+    {
+      "title": "事件系统",
+      "content": "小程序有两种绑定事件的方式。bindtap 绑定一个会冒泡的 tap 事件\ncatchtap 绑定一个不会冒泡的 tap 事件\nnanachi 为了大家方便，还是换回大家熟悉的风格，但不能冒泡的限制还没有搞定，因此也是两种绑定风格。onTap 绑定一个会冒泡的 tap 事件\ncatchTap 绑定一个不会冒泡的 tap 事件\ntap 事件相当于 PC 端的 click 事件，因此建议大家用 onClick 代替 onTap, 娜娜奇会友好地帮你转换成 onTap.",
+      "url": "/documents/event.html",
+      "children": [
+        {
+          "title": "事件对象",
+          "url": "/documents/event.html#事件对象",
+          "content": "事件对象由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有stopPropagation 与 preventDefault。但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 stopPropagation 与 preventDefault() 方法。注意 stopPropagation() 是没有效果的，你想并且冒泡还需要用 catchClick 的方式来绑定事件。如果 你想它转译成H5，那么catchXXX的回调内部需要大家执行 e.stopPropagation()。小程序事件对象的属性如下：{    target,//里面有dataset\n    pageX,\n    pageY,\n    value, //不一定有，但input, change事件有\n    timeStamp,\n    type,\n    stopPropagation,\n    preventDefault,\n    //还可能有其他属性，不同的事件类型会产生额外的属性\n}\n"
+        },
+        {
+          "title": "事件回调",
+          "url": "/documents/event.html#事件回调",
+          "content": "事件回调事件回调本身必须定义在类的原型里，不能在视图中使用 this.props.onClick ,只能this.onClick"
+        },
+        {
+          "title": "注意事项",
+          "url": "/documents/event.html#注意事项",
+          "content": "注意事项定义了事件的标签，可能会自动添加data-beacon-uid,  data-key, data-class-uid, data-instance-uid这些属性，注意不要与它们冲突2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积\ninput标签 统一使用onChange事件，不要用onInput\n"
+        }
+      ]
     },
     {
       "title": "快应用的scroll-view兼容",

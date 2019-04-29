@@ -1,4 +1,4 @@
-# 按平台引入CSS文件
+# Sass、Less、PostCSS支持
 
 nanachi支持less, sass, postcss。默认情况下支持less。针对sass，由于sass环境安装比较麻烦，若用户工程目录没安装node-sass依赖，nanachi就会用过postcss来解析sass或者scss文件。
 

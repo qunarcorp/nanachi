@@ -1,4 +1,4 @@
-# 按平台打包JS代码
+# 按平台打包代码或样式
 
 很多场景下可能需要差异化打包不同平台的代码，娜娜奇提供环境变量process.env.ANU_ENV来识别不同平台。在编译前，ANU_ENV变量已静默配置。
 
@@ -22,6 +22,8 @@ componentDidMount(){
 import wx from './wx.js';
 // if process.env.ANU_ENV == 'ali';
 import ali from './ali.js';
+// if process.env.ANU_ENV == 'wx';
+import 'wx_specific.css'
 ```
 
 编译结果(ANU_ENV:wx):
