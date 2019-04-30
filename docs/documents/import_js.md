@@ -15,6 +15,19 @@ componentDidMount(){
 }
 ```
 
+又如我们在微信小程序要获取用户信息， 需要这样实现
+
+```javascript
+ this.state = {
+     isWx: process.env.ANU_ENV == 'wx'
+ }
+```
+
+```jsx
+<div>{ this.state.isWx && <button open-type="getUserInfo"></button>}
+</div>
+```
+
 有时候需要按平台引入相关模块，在写法上有所不同，必须通过注释节点来匹配相关的import引入。
 例如:
 ```jsx
