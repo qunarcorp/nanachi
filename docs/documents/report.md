@@ -65,6 +65,7 @@ function computeCompressedXpath(node){ //压缩后的xpath
     }
     return xpath.join('/');
 }
+var openChange = false;
 class Global extends React.Component {
     static config = {
         window: {
@@ -83,12 +84,12 @@ class Global extends React.Component {
         if( beaconId == 'default' && node ){
             beaconId = computeCompressedXpath(node);
         }
-        if (eventType === 'input') {
+        if (eventType === 'input') {//input事件触发太频繁了，我们只想收集一次
             if (openChange) return;
             openChange = true;
             setTimeout(() => {
                 openChange = false;
-            }, 300);
+            }, 1000);
         }
 
         var otherData = dataset.xxx//data-xxxx
@@ -117,11 +118,12 @@ class Global extends React.Component {
     };
     onReportLogs(logs){ //自己实现
         if(!logs){
-            if(!Array.isArray(this.globalData.logs) && this.globalData.logs.length == 0){
+            var existLogs = this.globalData.logs
+            if(!Array.isArray(existLogs) || existLogs.length == 0){
                return
             }
-           logs = this.globalData.logs;
-           this.globalData.logs = [];
+            logs = existLogs;
+            this.globalData.logs = [];
         }
         if(!logs.length){
             return

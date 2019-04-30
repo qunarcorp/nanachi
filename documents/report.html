@@ -58,6 +58,7 @@
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> xpath<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+<span class="token keyword">var</span> openChange <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
 <span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
         window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -76,12 +77,12 @@
         <span class="token keyword">if</span><span class="token punctuation">(</span> beaconId <span class="token operator">==</span> <span class="token string">'default'</span> <span class="token operator">&amp;&amp;</span> node <span class="token punctuation">)</span><span class="token punctuation">{</span>
             beaconId <span class="token operator">=</span> <span class="token function">computeCompressedXpath</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>eventType <span class="token operator">===</span> <span class="token string">'input'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>eventType <span class="token operator">===</span> <span class="token string">'input'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//input事件触发太频繁了，我们只想收集一次</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>openChange<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
             openChange <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
             <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
                 openChange <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
 
         <span class="token keyword">var</span> otherData <span class="token operator">=</span> dataset<span class="token punctuation">.</span>xxx<span class="token comment">//data-xxxx</span>
@@ -110,11 +111,12 @@
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token function">onReportLogs</span><span class="token punctuation">(</span>logs<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//自己实现</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>logs<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">var</span> existLogs <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>existLogs<span class="token punctuation">)</span> <span class="token operator">||</span> existLogs<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
                <span class="token keyword">return</span>
             <span class="token punctuation">}</span>
-           logs <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs<span class="token punctuation">;</span>
-           <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            logs <span class="token operator">=</span> existLogs<span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>logs<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">return</span>
