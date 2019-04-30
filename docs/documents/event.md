@@ -45,6 +45,38 @@ tap 事件相当于 PC 端的 `click` 事件，因此建议大家用 `onClick` �
     //还可能有其他属性，不同的事件类型会产生额外的属性
 }
 ```
+在一些小程序平台中，事件对象有detail这个对象，但建议不要使用它，因为当你想跨平台到webview/H5/快应用时，是没有这个对象的。并且我们也会将这个detail的属性下放到event上。
+
+```javascript
+//创建事件对象
+function createEvent(e, target) {
+    let event = Object.assign({}, e);
+    if (e.detail) {
+        Object.assign(event, e.detail);
+    }
+    //需要重写的属性或方法
+    event.stopPropagation = function () {
+        // eslint-disable-next-line
+        console.warn("小程序不支持这方法，请使用catchXXX");
+    };
+    event.nativeEvent = e;
+    event.preventDefault = returnFalse;
+    event.target = target;
+    event.timeStamp = Date.now();
+    let touch = e.touches && e.touches[0];
+    if (touch) {
+        event.pageX = touch.pageX;
+        event.pageY = touch.pageY;
+    }
+    return event;
+}
+```
+比如说微信小程序的onGetUserInfo方法
+```javascript
+onGetUserInfo: function(e){
+   console.log(e.userInfo)
+}
+```
 
 ## 事件回调
 
@@ -52,7 +84,7 @@ tap 事件相当于 PC 端的 `click` 事件，因此建议大家用 `onClick` �
 
 ## 注意事项
 
-定义了事件的标签，可能会自动添加`data-beacon-uid`,  `data-key`, `data-class-uid`, `data-instance-uid`这些属性，注意不要与它们冲突
+定义了事件的标签，可能会自动添加`data-beacon-uid`, `data-instance-uid`这些属性，注意不要与它们冲突
 
 > 2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积   
 

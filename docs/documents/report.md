@@ -83,6 +83,14 @@ class Global extends React.Component {
         if( beaconId == 'default' && node ){
             beaconId = computeCompressedXpath(node);
         }
+        if (eventType === 'input') {
+            if (openChange) return;
+            openChange = true;
+            setTimeout(() => {
+                openChange = false;
+            }, 300);
+        }
+
         var otherData = dataset.xxx//data-xxxx
         var otherData2 = dataset.xxx2;
         var timeStamp = new Date - 0;
@@ -119,7 +127,7 @@ class Global extends React.Component {
             return
         }
         var buildType = this.globalData.buildType;// wx, bu, ali
-        var info = React.api.getSystemInfornSync();
+        var info =  this.globalData.systemInfo | React.api.getSystemInfornSync();
         var { brand, model, version, platform} = info ;//获取手机品牌，手机型号， 微信版本号, 客户端平台;
         React.api.request({
             url: "/fdsfdsf/sdfds",

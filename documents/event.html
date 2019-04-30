@@ -36,10 +36,39 @@
     <span class="token comment">//还可能有其他属性，不同的事件类型会产生额外的属性</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p>在一些小程序平台中，事件对象有detail这个对象，但建议不要使用它，因为当你想跨平台到webview/H5/快应用时，是没有这个对象的。并且我们也会将这个detail的属性下放到event上。</p>
+<pre><code class="language-javascript"><span class="token comment">//创建事件对象</span>
+<span class="token keyword">function</span> <span class="token function">createEvent</span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> event <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>detail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> e<span class="token punctuation">.</span>detail<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//需要重写的属性或方法</span>
+    event<span class="token punctuation">.</span><span class="token function-variable function">stopPropagation</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// eslint-disable-next-line</span>
+        console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">"小程序不支持这方法，请使用catchXXX"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    event<span class="token punctuation">.</span>nativeEvent <span class="token operator">=</span> e<span class="token punctuation">;</span>
+    event<span class="token punctuation">.</span>preventDefault <span class="token operator">=</span> returnFalse<span class="token punctuation">;</span>
+    event<span class="token punctuation">.</span>target <span class="token operator">=</span> target<span class="token punctuation">;</span>
+    event<span class="token punctuation">.</span>timeStamp <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> touch <span class="token operator">=</span> e<span class="token punctuation">.</span>touches <span class="token operator">&amp;&amp;</span> e<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>touch<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        event<span class="token punctuation">.</span>pageX <span class="token operator">=</span> touch<span class="token punctuation">.</span>pageX<span class="token punctuation">;</span>
+        event<span class="token punctuation">.</span>pageY <span class="token operator">=</span> touch<span class="token punctuation">.</span>pageY<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> event<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>比如说微信小程序的onGetUserInfo方法</p>
+<pre><code class="language-javascript">onGetUserInfo<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>userInfo<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h2 id="事件回调">事件回调</h2>
 <p>事件回调本身必须定义在类的原型里，不能在视图中使用 <code>this.props.onClick</code> ,只能<code>this.onClick</code></p>
 <h2 id="注意事项">注意事项</h2>
-<p>定义了事件的标签，可能会自动添加<code>data-beacon-uid</code>,  <code>data-key</code>, <code>data-class-uid</code>, <code>data-instance-uid</code>这些属性，注意不要与它们冲突</p>
+<p>定义了事件的标签，可能会自动添加<code>data-beacon-uid</code>, <code>data-instance-uid</code>这些属性，注意不要与它们冲突</p>
 <blockquote>
 <p>2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积</p>
 </blockquote>

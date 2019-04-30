@@ -76,6 +76,14 @@
         <span class="token keyword">if</span><span class="token punctuation">(</span> beaconId <span class="token operator">==</span> <span class="token string">'default'</span> <span class="token operator">&amp;&amp;</span> node <span class="token punctuation">)</span><span class="token punctuation">{</span>
             beaconId <span class="token operator">=</span> <span class="token function">computeCompressedXpath</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>eventType <span class="token operator">===</span> <span class="token string">'input'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>openChange<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+            openChange <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+                openChange <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
         <span class="token keyword">var</span> otherData <span class="token operator">=</span> dataset<span class="token punctuation">.</span>xxx<span class="token comment">//data-xxxx</span>
         <span class="token keyword">var</span> otherData2 <span class="token operator">=</span> dataset<span class="token punctuation">.</span>xxx2<span class="token punctuation">;</span>
         <span class="token keyword">var</span> timeStamp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span> <span class="token operator">-</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -112,7 +120,7 @@
             <span class="token keyword">return</span>
         <span class="token punctuation">}</span>
         <span class="token keyword">var</span> buildType <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>buildType<span class="token punctuation">;</span><span class="token comment">// wx, bu, ali</span>
-        <span class="token keyword">var</span> info <span class="token operator">=</span> React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getSystemInfornSync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> info <span class="token operator">=</span>  <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>systemInfo <span class="token operator">|</span> React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getSystemInfornSync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">var</span> <span class="token punctuation">{</span> brand<span class="token punctuation">,</span> model<span class="token punctuation">,</span> version<span class="token punctuation">,</span> platform<span class="token punctuation">}</span> <span class="token operator">=</span> info <span class="token punctuation">;</span><span class="token comment">//获取手机品牌，手机型号， 微信版本号, 客户端平台;</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
             url<span class="token punctuation">:</span> <span class="token string">"/fdsfdsf/sdfds"</span><span class="token punctuation">,</span>

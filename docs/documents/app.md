@@ -92,7 +92,86 @@ class Global extends React.Component {
 export default App(new Global());
 ```
 
-## 注意
+## globalData的设计
+
+在我们公司，globalData会将登录信息（微信的getUserInfo, 里面有openId什么），页面的参数， 场景值全部缓存起来，这样以后大家直接访问React.getApp().globalData就能拿到，建议用户们可以模仿。
+
+```javascript
+//app.js
+   globalData = {
+        systemInfo: {},
+        // 页面渲染时间
+        _timestamp: 0,
+        // 页面留存时间
+        _staytime: 0,
+        _startimestamp: 0,
+        location: {},
+        // 外链带入渠道
+        bd_origin: '',
+        // 小程序内部渠道，路由跳转会自动替换
+        hd_origin: '',
+        scene: '',
+        logs: [] //日志， 满10条就会自动发送后台
+    };
+    onLaunch(e) {
+        this.globalData.scene = e.scene
+        if(process.env.ANU_ENV === 'quick') {
+            this.onLaunchQuick(e);
+        }
+        this.onLaunchNormal(e);
+    }
+    onHide(){
+       this.globalData._staytime = Data.now - this.globalData._startimestamp
+    }
+    async onLaunchNormal(e) {
+        // 统计总体停留时长
+        this.globalData._startimestamp = +new Date();
+        // 这里要把系统信息放到全局 方便日志收集  业务线调用时要使用util下的getSystemInfo
+        React.api.getSystemInfo({
+            success: res => {
+                this.globalData.systemInfo = res;
+            }
+        });
+    }
+    onLaunchQuick(e) {
+        //针对快应用的全局getApp补丁
+        if (this.$data && typeof global === 'object') {
+            var ref = Object.getPrototypeOf(global) || global;
+            var _this = this;
+            this.globalData = this.$def.globalData || {};
+            ref.getApp = function() {
+                return _this;
+            };
+        }
+        // 统计总体停留时长
+        this.globalData._startimestamp = +new Date();
+        React.api.getSystemInfo({
+            success: res => {
+                this.globalData.systemInfo = res;
+            }
+        });
+        // 拿openId 更新token
+        user.appLanchInfos();
+        // 获取地理位置 埋点所需 百度账号未登录会报错
+        React.api.getLocation({
+            success: (res) => {
+                this.globalData.location = {
+                    lat: res.latitude,
+                    lgt: res.longitude
+                };
+            }
+        });
+        // 将bd_origin存到全局变量内
+        const scene = this.globalData.scene;
+        if (e.query) {
+            // 缓存初始的bdo
+            this.globalData.bd_origin = e.query.bd_origin || '';
+            this.globalData.hd_origin = e.query.hd_origin || '';
+        }
+    }
+```
+
+## React.getApp()的使用场合
 
  `React.getApp()`必须放在app.js 或页面组件或普通组件的生命周期钩子里面执行，不要放在全局作用域下执行
 
