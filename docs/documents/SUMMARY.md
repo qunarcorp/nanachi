@@ -16,6 +16,7 @@
 - [自定义项目配置](customConfig.md)
 - [拆库开发](unpack.md)
 - [别名配置](alias.md)
+- [vscode插件](vscode.md)
 - [日志收集与上传](report.md)
 - [npm支持](npm.md)
 - [iconfont 支持](iconfont.md)
