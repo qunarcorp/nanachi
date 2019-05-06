@@ -12,12 +12,25 @@
 </code></pre>
 <p>nanachi 为了大家方便，还是换回大家熟悉的风格，但不能冒泡的限制还没有搞定，因此也是两种绑定风格。</p>
 <ul>
-<li><code>onTap</code> 绑定一个会冒泡的 <code>tap</code> 事件</li>
-<li><code>catchTap</code> 绑定一个不会冒泡的 <code>tap</code> 事件</li>
+<li><code>onClick</code> 绑定一个会冒泡的 <code>click</code> 事件, 小程序上会自动转换成<code>tap</code> 事件</li>
+<li><code>catchClick</code> 绑定一个不会冒泡的 <code>click</code> 事件, 小程序上会自动转换成<code>tap</code> 事件</li>
 </ul>
 <pre><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>clickHandle<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token number">111</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
 </code></pre>
-<p>tap 事件相当于 PC 端的 <code>click</code> 事件，因此建议大家用 <code>onClick</code> 代替 <code>onTap</code>, 娜娜奇会友好地帮你转换成 <code>onTap</code>.</p>
+<p>我们的转译器会扫描所有on/catch开头的属性， 进行事件绑定，因此如果你直接用bindTap、bindChange的方式来编写，会导致错误。</p>
+<pre><code class="language-javascript"><span class="token comment">//转译器中的相关源码</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/^(?:on|catch)[A-Z]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>attrName<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span><span class="token operator">!</span><span class="token regex">/[A-Z]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>nodeName<span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//内置标签的nodeName都是小写的，如果它的某个属性以on/catch开头，我们会认为它可能是事件</span>
+    <span class="token keyword">var</span> prefix <span class="token operator">=</span> attrName<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'o'</span> <span class="token operator">?</span> <span class="token string">'on'</span> <span class="token punctuation">:</span> <span class="token string">'catch'</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> eventName <span class="token operator">=</span> attrName<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>prefix<span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> otherEventName <span class="token operator">=</span> utils<span class="token punctuation">.</span><span class="token function">getEventName</span><span class="token punctuation">(</span>
+        eventName<span class="token punctuation">,</span>
+        nodeName<span class="token punctuation">,</span>
+        buildType
+    ）
+    <span class="token comment">//....</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h2 id="事件对象">事件对象</h2>
 <p>由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有<code>stopPropagation</code> 与 <code>preventDefault</code>。</p>
 <p>但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 <code>stopPropagation</code> 与 <code>preventDefault()</code> 方法。</p>
@@ -70,10 +83,9 @@
 <h2 id="注意事项">注意事项</h2>
 <p>定义了事件的标签，可能会自动添加<code>data-beacon-uid</code>, <code>data-instance-uid</code>这些属性，注意不要与它们冲突</p>
 <blockquote>
-<p>2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积</p>
-</blockquote>
-<blockquote>
-<p>input标签 统一使用onChange事件，不要用onInput</p>
+<p>2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积
+input标签 统一使用onChange事件，不要用onInput
+div标签 统一使用onClick事件，不要用onTap</p>
 </blockquote>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="size.html" class="href"><span class="ui-font-ydoc"></span>px尺寸计算</a></div><div class="m-paging-next m-paging-item"><a href="quicklist.html" class="href">快应用的scroll-view兼容<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');

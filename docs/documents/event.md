@@ -11,14 +11,29 @@
 
 nanachi 为了大家方便，还是换回大家熟悉的风格，但不能冒泡的限制还没有搞定，因此也是两种绑定风格。
 
-- `onTap` 绑定一个会冒泡的 `tap` 事件
-- `catchTap` 绑定一个不会冒泡的 `tap` 事件
+- `onClick` 绑定一个会冒泡的 `click` 事件, 小程序上会自动转换成`tap` 事件
+- `catchClick` 绑定一个不会冒泡的 `click` 事件, 小程序上会自动转换成`tap` 事件
 
 ```jsx
 <div onClick={this.clickHandle.bind(this, 111)} />
 ```
 
-tap 事件相当于 PC 端的 `click` 事件，因此建议大家用 `onClick` 代替 `onTap`, 娜娜奇会友好地帮你转换成 `onTap`.
+我们的转译器会扫描所有on/catch开头的属性， 进行事件绑定，因此如果你直接用bindTap、bindChange的方式来编写，会导致错误。
+
+```javascript
+//转译器中的相关源码
+if (/^(?:on|catch)[A-Z]/.test(attrName) &&!/[A-Z]/.test(nodeName) ) {
+    //内置标签的nodeName都是小写的，如果它的某个属性以on/catch开头，我们会认为它可能是事件
+    var prefix = attrName.charAt(0) == 'o' ? 'on' : 'catch';
+    var eventName = attrName.replace(prefix, '');
+    var otherEventName = utils.getEventName(
+        eventName,
+        nodeName,
+        buildType
+    ）
+    //....
+}
+```
 
 ## 事件对象
 
@@ -72,6 +87,7 @@ function createEvent(e, target) {
 }
 ```
 比如说微信小程序的onGetUserInfo方法
+
 ```javascript
 onGetUserInfo: function(e){
    console.log(e.userInfo)
@@ -86,6 +102,6 @@ onGetUserInfo: function(e){
 
 定义了事件的标签，可能会自动添加`data-beacon-uid`, `data-instance-uid`这些属性，注意不要与它们冲突
 
-> 2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积   
-
+> 2018.11.14起 定义了事件的标签， 只会添加上data-beacon-uid属性，后面三者不再添加，从而减少视图的体积
 > input标签 统一使用onChange事件，不要用onInput
+> div标签 统一使用onClick事件，不要用onTap
