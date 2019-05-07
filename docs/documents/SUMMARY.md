@@ -5,6 +5,7 @@
 - [升级](update.md)
 - [全局对象](app.md)
 - [页面组件与生命周期](page.md)
+- [页面的各个功能讲解](page2.md)
 - [页面上的子组件使用](component.md)
 - [使用 JSX 的注意事项](jsx.md)
 - [使用 CSS 的注意事项](style.md)

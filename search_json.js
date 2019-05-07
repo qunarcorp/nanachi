@@ -89,6 +89,33 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
+      "title": "页面的各个功能讲解",
+      "content": "在娜娜奇中，页面的许多功能是由配置对象与钩子提供。从上到下，划分成几个功能区，标题栏（titleBar）, 右上角按钮（会弹出菜单，里面包含转发，创建快捷方式到桌面，关于等功能），内容区（这是由页面组件的JSX渲染出来的），切换栏(tabBar, 切换小程序、快应用的页面)， 系统导航栏（手机系统级别，放虚拟HOME键, 返回按钮, 切换抽屉）",
+      "url": "/documents/page2.html",
+      "children": [
+        {
+          "title": "标题栏",
+          "url": "/documents/page2.html#标题栏",
+          "content": "标题栏class P extends React.Component{    static config = {\n        navigationBarBackgroundColor: \"#a9ea00\",\n        navigationBarTextStyle: \"back\",\n        navigationBarTitleText: \"用户中心\"\n    }\n    render(){\n        return .....\n    }\n}\n如果页面没有配置标题栏，那么它就会使用app.js中的标题栏。如果想隐藏标题栏，可以在配置对象 navigationStyle:custom， 那么它就会自动消失。在快应用要隐藏某一个页面的titleBar, 需要manifest.json中配置。但放心，娜娜奇已经帮你屏蔽掉。 \"display\": {    \"backgroundColor\": \"#ffffff\", \n    \"fullScreen\": false,\n    \"menu\": true,                         //右上角菜单\n    \"titleBar\": true,                     //app级别\n    \"titleBarBackgroundColor\": \"#000000\", //app级别\n    \"titleBarTextColor\": \"#fffff\",        //app级别\n    \"pages\": {\n      \"Hello\": {  //对应某一个页面的ID\n        \"backgroundColor\": \"#eeeeee\",\n        \"fullScreen\": true,\n        \"titleBarBackgroundColor\": \"#0000ff\",   //page级别\n        \"titleBarText\": \"Hello\",                //page级别\n        \"orientation\": \"landscape\"              //page级别\n        //  \"titleBar\": true/false\n      }\n    }\n  },\n\n\n\n与标题栏相关的配置项\n类型\n默认值\n说明\n\n\n\n\nnavigationBarBackgroundColor\nHexColor\n#000000\n导航栏背景颜色，如 #000000\n\n\nnavigationBarTextStyle\nstring\twhite\t导航栏标题颜色，仅支持 black / white\n\n\n\n\nnavigationBarTitleText\nstring\n导航栏标题文字内容\n\n\n\nnavigationStyle\nstring\ndefault\n显示标题用default，隐藏用custom，这时只保留右上角按钮\n\n\n想动态设置页面的标题栏可以使用下面APIReact.api.setNavigationBarTitle({title})\nReact.api.setNavigationBarColor({frontColor, backgroundColor})\n微信客户端 6.7.2 版本开始，navigationStyle: custom 对  组件无效webview里面的相关操作//仅支持微信小程序document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {\n    // 通过下面这个API隐藏底部导航栏\n    WeixinJSBridge.call('hideToolbar');\n});\n            \ndocument.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {\n    // 通过下面这个API显示底部导航栏\n    WeixinJSBridge.call('showToolbar');\n}）\n"
+        },
+        {
+          "title": "右上角按钮",
+          "url": "/documents/page2.html#右上角按钮",
+          "content": "右上角按钮在原生微信小程序中，只要onShareAppMessage定义就会出现右上角菜单。在娜娜奇中，右上角菜单则总是存在， 并且这个钩子也改名，简化为更好记的onShare, 如果页面没有定义onShare钩子, 它就会使用app.js的全局钩子onGlobalShareclass P extends React.Component{    static config = {\n        navigationBarBackgroundColor: \"#a9ea00\",\n        navigationBarTextStyle: \"back\",\n        navigationBarTitleText: \"用户中心\"\n    }\n    onShare(){\n        return {\n            title: '预订火车票 - 去哪儿旅行',\n            imageUrl: 'https://s.aaa.com/bbb/ccc.jpg',\n            path: `xx/yy`\n        }\n    }\n    render(){\n        return .....\n    }\n}\n如果想兼容快应用， 还需要在app.js添加一个onShowMenu钩子， 详见转发分享想动态设置右上角按钮可以使用下面APIReact.api.showShareMenu() 快应用不支持\nReact.api.hideShareMenu() 快应用不支持\n隐藏微信网页右上角按钮document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {    // 通过下面这个API隐藏右上角按钮\n    WeixinJSBridge.call('hideOptionMenu');\n});\ndocument.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {\n    // 通过下面这个API显示右上角按钮\n    WeixinJSBridge.call('showOptionMenu');\n})\n"
+        },
+        {
+          "title": "切换栏",
+          "url": "/documents/page2.html#切换栏",
+          "content": "切换栏这是一个非常复杂的功能，涉及众多配置项，但我们要求遵循微信的配置名。如果当前页面config没有tabBar配置对象， 那么我们就使用app.js中的tabBar配置对象。//app.jsclass Global extends React.Component {\n\tstatic config = {\n\t    window: {\n\t        backgroundTextStyle: 'light',\n\t        navigationBarTitleText: 'mpreact',\n\t\t\tnavigationBarTextStyle: 'white'\n\t    },\n\t    tabBar: {\n\t        color: '#929292',\n\t        selectedColor: '#00bcd4',\n\t        borderStyle: 'black',\n\t        backgroundColor: '#ffffff',\n\t        list: [\n\t            {\n\t                pagePath: 'pages/index/index',\n\t                iconPath: '/assets/image/homepage_normal.png',\n\t                selectedIconPath: '/assets/image/homepage_select.png',\n\t                text: '首页'\n\t            },\n\t            {\n\t                pagePath: 'pages/demo/question/index/index',\n\t                iconPath: '/assets/image/question_normal.png',\n\t                selectedIconPath: '/assets/image/question_select.png',\n\t                text: '问答社区'\n\t            },\n\t            {\n\t                pagePath: 'pages/demo/userCenter/index',\n\t                iconPath: '/assets/image/uc_normal.png',\n\t                selectedIconPath: '/assets/image/uc_select.png',\n\t                text: '我的'\n\t            }\n\t        ]\n\t    }\n\t};\n    render(){\n       return null\n    }\n\n// pages/page1/index.js 由于存在tabBar配置对象，但是list的长度为零，不会显示 tabBar\nclass P1 extends React.Component {\n    static config = { \n\t    tabBar: {\n\t        color: '#929292',\n\t        selectedColor: '#00bcd4',\n\t        borderStyle: 'black',\n\t        backgroundColor: '#ffffff',\n\t        list: []\n        }\n    }\n     render(){\n       return page1\n    }\n}\n\n\n// pages/page2/index.js 由于没有tabBar配置对象，这时此页面有tabBar,为app.js所定义的那样\nclass P2 extends React.Component {\n    static config = { \n    }\n     render(){\n       return page2\n    }\n}\n想动态设置tabBar可以使用下面APIReact.api.showTabBar()  快应用不支持\nReact.api.hideTabBar()  快应用不支持\n"
+        },
+        {
+          "title": "系统导航栏",
+          "url": "/documents/page2.html#系统导航栏",
+          "content": "系统导航栏它只与快应用页面的onBackPress钩子有关。当用户点击返回实体按键、左上角返回菜单、调用返回API时触发该事件如果事件响应方法最后返回true表示不返回，自己处理业务逻辑（完毕后开发者自行调用 API 返回）；否则：不返回数据，或者返回其它数据：表示遵循系统逻辑：返回到上一页class P2 extends React.Component {    static config = { \n    }\n    onBackPress(){ \n         //让用户操作无效\n        return true\n    }\n    render(){\n       return page2\n    }\n}\n"
+        }
+      ]
+    },
+    {
       "title": "通用组件",
       "content": "通用组件必须定义在 components 目录中，里面建一个文件夹与组件名同名，下面 index.js 就是你编写组件的地方。",
       "url": "/documents/component.html",
