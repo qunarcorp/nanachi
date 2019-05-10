@@ -9,6 +9,7 @@
 - [页面上的子组件使用](component.md)
 - [使用 JSX 的注意事项](jsx.md)
 - [使用 CSS 的注意事项](style.md)
+- [React Hooks的支持](hooks.md)
 - [目录结构与输出目录](publish.md)
 - [按平台打包代码或样式](import_js.md)
 - [据平台设置tabBar](tabBar.md)
