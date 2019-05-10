@@ -16,6 +16,7 @@
 <p>目前就支持这6种，其他三种或与ref有关，或与渲染时期有关，对小程序没有什么意思就不支持了。</p>
 <p>在开始之前，我们还需要深入理解一下的无状态组件。 有的无状态组件是会返回text, div这些构建界面的标签，它们应该放到
 components目录下，有的无状态组件则直接返回另一个组件或props.children，那么应该放到common目录下，比如<code>&lt;React.Fragment /&gt;</code>或var ThemeContext = React.createContext(); <code>&lt;ThemeContext.Provider /&gt;</code></p>
+<p>注意：由于小程序的语法限制，无法实现props render, 因此也无法使用Context.Consumer，你只能用useContext或static contextType</p>
 <p>下面是一个简单的例子：</p>
 <p>我们用nanachi建立一个hello world模块（最后那个），改写pages/index/index.js</p>
 <pre><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span><span class="token punctuation">;</span>
@@ -60,10 +61,10 @@ components目录下，有的无状态组件则直接返回另一个组件或prop
     <span class="token keyword">return</span> <span class="token operator">&lt;</span>div<span class="token operator">></span> Foo <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>components/AnotherComponent/index</p>
+<p>components/Layout/index</p>
 <pre><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span>GlobalTheme<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@common/GlobalTheme/index'</span><span class="token punctuation">;</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">Layout</span> <span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">Layout</span> <span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> globalStyle <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">useContext</span><span class="token punctuation">(</span>GlobalTheme<span class="token punctuation">)</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Layout init"</span><span class="token punctuation">,</span>globalStyle <span class="token punctuation">)</span> <span class="token comment">//debug</span>
     <span class="token keyword">return</span> <span class="token operator">&lt;</span>div style<span class="token operator">=</span><span class="token punctuation">{</span>globalStyle<span class="token punctuation">}</span><span class="token operator">></span><span class="token punctuation">{</span>props<span class="token punctuation">.</span>children<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">;</span>
