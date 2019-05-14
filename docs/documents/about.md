@@ -277,6 +277,6 @@ position:absolute/relative
 写，我们自动转换为各个平台对应的名字，在快应用中，是没有tabBar, 我们直接让每个页面组件继承了一个父类，父类里面
 有tabBar, 令它长得与其他小程序一模一样
 
-![nanachi](1538220971726.jpeg)
+![nanachi2](./nanachi2.jpg)
 
 
