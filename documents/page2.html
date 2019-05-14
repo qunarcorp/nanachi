@@ -24,18 +24,18 @@
 <pre><code class="language-json"> <span class="token property">"display"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"backgroundColor"</span><span class="token operator">:</span> <span class="token string">"#ffffff"</span><span class="token punctuation">,</span> 
     <span class="token property">"fullScreen"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-    <span class="token property">"menu"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>                         //右上角菜单
-    <span class="token property">"titleBar"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>                     //app级别
-    <span class="token property">"titleBarBackgroundColor"</span><span class="token operator">:</span> <span class="token string">"#000000"</span><span class="token punctuation">,</span> //app级别
-    <span class="token property">"titleBarTextColor"</span><span class="token operator">:</span> <span class="token string">"#fffff"</span><span class="token punctuation">,</span>        //app级别
+    <span class="token property">"menu"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>                         <span class="token comment">//右上角菜单</span>
+    <span class="token property">"titleBar"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>                     <span class="token comment">//app级别</span>
+    <span class="token property">"titleBarBackgroundColor"</span><span class="token operator">:</span> <span class="token string">"#000000"</span><span class="token punctuation">,</span> <span class="token comment">//app级别</span>
+    <span class="token property">"titleBarTextColor"</span><span class="token operator">:</span> <span class="token string">"#fffff"</span><span class="token punctuation">,</span>        <span class="token comment">//app级别</span>
     <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"Hello"</span><span class="token operator">:</span> <span class="token punctuation">{</span>  //对应某一个页面的ID
+      <span class="token property">"Hello"</span><span class="token operator">:</span> <span class="token punctuation">{</span>  <span class="token comment">//对应某一个页面的ID</span>
         <span class="token property">"backgroundColor"</span><span class="token operator">:</span> <span class="token string">"#eeeeee"</span><span class="token punctuation">,</span>
         <span class="token property">"fullScreen"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-        <span class="token property">"titleBarBackgroundColor"</span><span class="token operator">:</span> <span class="token string">"#0000ff"</span><span class="token punctuation">,</span>   //page级别
-        <span class="token property">"titleBarText"</span><span class="token operator">:</span> <span class="token string">"Hello"</span><span class="token punctuation">,</span>                //page级别
-        <span class="token property">"orientation"</span><span class="token operator">:</span> <span class="token string">"landscape"</span>              //page级别
-        //  <span class="token property">"titleBar"</span><span class="token operator">:</span> <span class="token boolean">true</span>/<span class="token boolean">false</span>
+        <span class="token property">"titleBarBackgroundColor"</span><span class="token operator">:</span> <span class="token string">"#0000ff"</span><span class="token punctuation">,</span>   <span class="token comment">//page级别</span>
+        <span class="token property">"titleBarText"</span><span class="token operator">:</span> <span class="token string">"Hello"</span><span class="token punctuation">,</span>                <span class="token comment">//page级别</span>
+        <span class="token property">"orientation"</span><span class="token operator">:</span> <span class="token string">"landscape"</span>              <span class="token comment">//page级别</span>
+        <span class="token comment">//  "titleBar": true/false</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -87,12 +87,12 @@
 <pre><code class="language-javascript"><span class="token comment">//仅支持微信小程序</span>
 document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'WeixinJSBridgeReady'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">onBridgeReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">// 通过下面这个API隐藏底部导航栏</span>
-    WeixinJSBridge<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'hideToolbar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">WeixinJSBridge</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'hideToolbar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             
 document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'WeixinJSBridgeReady'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">onBridgeReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">// 通过下面这个API显示底部导航栏</span>
-    WeixinJSBridge<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'showToolbar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">WeixinJSBridge</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'showToolbar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>）
 </code></pre>
 <h2 id="右上角按钮">右上角按钮</h2>
@@ -124,11 +124,11 @@ document<span class="token punctuation">.</span><span class="token function">add
 <p>隐藏微信网页右上角按钮</p>
 <pre><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'WeixinJSBridgeReady'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">onBridgeReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">// 通过下面这个API隐藏右上角按钮</span>
-    WeixinJSBridge<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'hideOptionMenu'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">WeixinJSBridge</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'hideOptionMenu'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'WeixinJSBridgeReady'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">onBridgeReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">// 通过下面这个API显示右上角按钮</span>
-    WeixinJSBridge<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'showOptionMenu'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">WeixinJSBridge</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'showOptionMenu'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
 <h2 id="切换栏">切换栏</h2>

@@ -15,6 +15,8 @@
 在开始之前，我们还需要深入理解一下的无状态组件。 有的无状态组件是会返回text, div这些构建界面的标签，它们应该放到
 components目录下，有的无状态组件则直接返回另一个组件或props.children，那么应该放到common目录下，比如`<React.Fragment />`或var ThemeContext = React.createContext(); `<ThemeContext.Provider />`
 
+注意：由于小程序的语法限制，无法实现props render, 因此也无法使用Context.Consumer，你只能用useContext或static contextType
+
 下面是一个简单的例子：
 
 我们用nanachi建立一个hello world模块（最后那个），改写pages/index/index.js
@@ -69,7 +71,7 @@ export default function AnotherComponent(){//它要表示为一个组件，因�
   };
 ```
 
-components/AnotherComponent/index
+components/Layout/index
 
 ```javascript
 import React from '@react';
@@ -81,3 +83,4 @@ export default function Layout (props) {
 };
 
 ```
+
