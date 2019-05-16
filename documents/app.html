@@ -118,7 +118,7 @@
         scene<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
         logs<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment">//日志， 满10条就会自动发送后台</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token function">onLaunch</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">onLaunch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>scene <span class="token operator">=</span> e<span class="token punctuation">.</span>scene
         <span class="token keyword">if</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">ANU_ENV</span> <span class="token operator">===</span> <span class="token string">'quick'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onLaunchQuick</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -128,17 +128,17 @@
     <span class="token function">onHide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
        <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>_staytime <span class="token operator">=</span> Data<span class="token punctuation">.</span>now <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>_startimestamp
     <span class="token punctuation">}</span>
-    <span class="token keyword">async</span> <span class="token function">onLaunchNormal</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">async</span> <span class="token function">onLaunchNormal</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment">// 统计总体停留时长</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>_startimestamp <span class="token operator">=</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment">// 这里要把系统信息放到全局 方便日志收集  业务线调用时要使用util下的getSystemInfo</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getSystemInfo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token parameter">res</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            success<span class="token punctuation">:</span> res <span class="token operator">=></span> <span class="token punctuation">{</span>
                 <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>systemInfo <span class="token operator">=</span> res<span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token function">onLaunchQuick</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">onLaunchQuick</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment">//针对快应用的全局getApp补丁</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$data <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> global <span class="token operator">===</span> <span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">var</span> ref <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>global<span class="token punctuation">)</span> <span class="token operator">||</span> global<span class="token punctuation">;</span>
@@ -151,7 +151,7 @@
         <span class="token comment">// 统计总体停留时长</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>_startimestamp <span class="token operator">=</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getSystemInfo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token parameter">res</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            success<span class="token punctuation">:</span> res <span class="token operator">=></span> <span class="token punctuation">{</span>
                 <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>systemInfo <span class="token operator">=</span> res<span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -159,7 +159,7 @@
         user<span class="token punctuation">.</span><span class="token function">appLanchInfos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment">// 获取地理位置 埋点所需 百度账号未登录会报错</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getLocation</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            success<span class="token punctuation">:</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
                 <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>location <span class="token operator">=</span> <span class="token punctuation">{</span>
                     lat<span class="token punctuation">:</span> res<span class="token punctuation">.</span>latitude<span class="token punctuation">,</span>
                     lgt<span class="token punctuation">:</span> res<span class="token punctuation">.</span>longitude

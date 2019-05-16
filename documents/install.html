@@ -9,12 +9,13 @@
 <li>本地 <code>Node.js</code> 版本 <code>8.6.0</code> 以上</li>
 <li>开发过程中，对文件夹及文件的命名都有一定要求，见<a href="publish.html">发布打包一节</a></li>
 </ul>
+<p><img src="./tools.jpg" alt="各种小程序开发工具"></p>
 <h2 id="安装">安装</h2>
 <p>npm</p>
 <pre><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> nanachi-cli -g
 </code></pre>
 <p>yarn</p>
-<pre><code class="language-bash"><span class="token function">yarn</span> global <span class="token function">add</span> nanachi-cli
+<pre><code class="language-bash">yarn global add nanachi-cli
 </code></pre>
 <ol>
 <li>nanachi init <code>&lt;project-name&gt;</code> 创建工程<br></li>
@@ -50,7 +51,7 @@ nanachi -V <span class="token comment">#查看当前版本</span>
 </ol>
 <pre><code class="language-bash"><span class="token function">cd</span> anu/packages/cli <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> <span class="token function">link</span>
 <span class="token function">cd</span> <span class="token punctuation">..</span>/<span class="token punctuation">..</span>/ <span class="token operator">&amp;&amp;</span> nanachi init demo
-<span class="token function">cd</span> demo <span class="token operator">&amp;&amp;</span> <span class="token function">yarn</span>
+<span class="token function">cd</span> demo <span class="token operator">&amp;&amp;</span> yarn
 nanachi <span class="token function">watch</span>   //或 nanachi watch:wx 或 nanachi watch:bu 或 nanachi watch:ali 或 或 nanachi watch:tt
 </code></pre>
 <p><img src="./select_tmpl.png" alt="image">

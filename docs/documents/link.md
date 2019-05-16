@@ -16,6 +16,7 @@
 -   [支付宝小程序升级日志](https://docs.alipay.com/mini/developer/changelog)
 -   [QQ小程序开发工具](https://q.qq.com/wiki/#_4-%E7%BC%96%E7%A0%81%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F)
 -   [QQ小程序文档](https://q.qq.com/wiki/)
+-   [360小程序文档](https://mp.360.cn/#/)
 -   [头条小程序文档](https://developer.toutiao.com/)
 
 

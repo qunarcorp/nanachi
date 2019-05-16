@@ -128,7 +128,7 @@
   content<span class="token punctuation">:</span> <span class="token string">'您是否想查询快递单号:1234567890'</span><span class="token punctuation">,</span>
   confirmText<span class="token punctuation">:</span> <span class="token string">'马上查询'</span><span class="token punctuation">,</span>
   cancelText<span class="token punctuation">:</span> <span class="token string">'暂不需要'</span><span class="token punctuation">,</span>
-  <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token parameter">result</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  success<span class="token punctuation">:</span> result <span class="token operator">=></span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'result'</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -220,7 +220,7 @@
   icon<span class="token punctuation">:</span> <span class="token string">'success'</span><span class="token punctuation">,</span>
   title<span class="token punctuation">:</span> <span class="token string">'操作成功'</span><span class="token punctuation">,</span>
   duration<span class="token punctuation">:</span> <span class="token number">3000</span><span class="token punctuation">,</span>
-  <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  success<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="hidetoast">hideToast()</h2>
@@ -349,7 +349,7 @@
 <pre><code class="language-javascript">React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">showActionSheet</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   title<span class="token punctuation">:</span> <span class="token string">'支付宝-ActionSheet'</span><span class="token punctuation">,</span>
   itemList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'菜单一'</span><span class="token punctuation">,</span> <span class="token string">'菜单二'</span><span class="token punctuation">,</span> <span class="token string">'菜单三'</span><span class="token punctuation">,</span> <span class="token string">'菜单四'</span><span class="token punctuation">,</span> <span class="token string">'菜单五'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token parameter">res</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  success<span class="token punctuation">:</span> res <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> btn <span class="token operator">=</span> res<span class="token punctuation">.</span>index <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">?</span> <span class="token string">'取消'</span> <span class="token punctuation">:</span> <span class="token string">'第'</span> <span class="token operator">+</span> res<span class="token punctuation">.</span>index <span class="token operator">+</span> <span class="token string">'个'</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
