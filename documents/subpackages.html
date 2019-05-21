@@ -157,7 +157,7 @@ packageA 无法使用 packageB 的资源，但可以使用 app、自己 package 
    <span class="token operator">|</span>--aliConfig.json
    <span class="token operator">|</span>--buConfig.json
 </code></pre>
-<p>#$# 坑</p>
+<h2 id="坑">坑</h2>
 <p>小程序的打包机制仅仅是根据文件目录打包，分包内require/import的任何文件，只要不在同一个目录下面，都不会被打进分包，也就是说，类库及一些公共文件，只能放在主包里面，如果主包分包划分不好的话，主包的大小也很难降下来</p>
 <p>安卓系统进入分包页面时，会出现一个丑陋的系统级的loading层，这一定程度上影响了安卓的体验</p>
 <h2 id="低版本兼容">低版本兼容</h2>
