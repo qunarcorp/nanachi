@@ -7,7 +7,7 @@
 ```jsx
 src
    |--components
-   |    |--HotelDialog
+   |    |--HotelDialog     // 这里的组件是不打算分包，会全部打入主包中
    |    |     └──index.js  //必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog
    |    |--HotelXXX
    |    |--FlightYYY
@@ -43,7 +43,7 @@ pages目录下每个事业部各建一个目录，以事件部的名字命名，
    |    |--hotel
             |--index
             |    └──index.js //目录, import里面所有index.js
-            |--page1
+            |--page1         //page1目录下只能存在**2**个以index命名的文件，一个是js，一个是样式
             |    |---index.js
             |    └── index.scss
             |--page2
@@ -55,6 +55,12 @@ pages目录下每个事业部各建一个目录，以事件部的名字命名，
             |--about
             |    |---index.js
             |    └── index.scss
+            └──-components //这里的组件要分包，会全部打入hotel分包中
+                |--HotelDialog
+                |     └──index.js  
+                |--HotelXXX
+                |--HotelYYY
+                └── ...
 ```
 
 common目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。

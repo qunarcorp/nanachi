@@ -7,7 +7,7 @@
 <p>开发目录如下</p>
 <pre><code class="language-jsx">src
    <span class="token operator">|</span><span class="token operator">--</span>components
-   <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>HotelDialog
+   <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>HotelDialog     <span class="token comment">// 这里的组件是不打算分包，会全部打入主包中</span>
    <span class="token operator">|</span>    <span class="token operator">|</span>     └──index<span class="token punctuation">.</span>js  <span class="token comment">//必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog</span>
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>HotelXXX
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>FlightYYY
@@ -42,7 +42,7 @@
    <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span>hotel
             <span class="token operator">|</span><span class="token operator">--</span>index
             <span class="token operator">|</span>    └──index<span class="token punctuation">.</span>js <span class="token comment">//目录, import里面所有index.js</span>
-            <span class="token operator">|</span><span class="token operator">--</span>page1
+            <span class="token operator">|</span><span class="token operator">--</span>page1         <span class="token comment">//page1目录下只能存在**2**个以index命名的文件，一个是js，一个是样式</span>
             <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>js
             <span class="token operator">|</span>    └── index<span class="token punctuation">.</span>scss
             <span class="token operator">|</span><span class="token operator">--</span>page2
@@ -54,6 +54,12 @@
             <span class="token operator">|</span><span class="token operator">--</span>about
             <span class="token operator">|</span>    <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">-</span>index<span class="token punctuation">.</span>js
             <span class="token operator">|</span>    └── index<span class="token punctuation">.</span>scss
+            └──<span class="token operator">-</span>components <span class="token comment">//这里的组件要分包，会全部打入hotel分包中</span>
+                <span class="token operator">|</span><span class="token operator">--</span>HotelDialog
+                <span class="token operator">|</span>     └──index<span class="token punctuation">.</span>js  
+                <span class="token operator">|</span><span class="token operator">--</span>HotelXXX
+                <span class="token operator">|</span><span class="token operator">--</span>HotelYYY
+                └── <span class="token operator">...</span>
 </code></pre>
 <p>common目录下每个事业部各建一个目录，以事件部的名字命名，里面为各种JS文件，它们只是纯业务逻辑，没有JSX，只会经过es67的语法糖转换。</p>
 <p>app.js会引入pages每个事件的index.js, 只要稍微分析就得到整个应用全部有效的页面，放到app.json的pages数组中，或快应用的manifest.json的router对象的pages对象中</p>

@@ -6,7 +6,7 @@
 <p>某些情况下，开发者需要将小程序划分成不同的子包，在构建时打包成不同的分包，用户在使用时按需进行加载。</p>
 <p>此功能已经被各种小程序支持了，这个能有效提升我们打开小程序的速度。</p>
 <h2 id="小程序使用">小程序使用</h2>
-<p>微信上，在app.js目录下建立一个wxConfig.json或 buConfig.json...</p>
+<p>微信上，在source/app.js目录下建立一个wxConfig.json或 buConfig.json...</p>
 <pre><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">"subpackages"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
         <span class="token punctuation">{</span>
@@ -30,7 +30,7 @@
 </code></pre>
 <p>会自动翻译成下面的内容放到app.json中</p>
 <pre><code class="language-json"><span class="token punctuation">{</span>
-     <span class="token property">"subpackages"</span><span class="token operator">:</span> <span class="token punctuation">[</span> //百度下会编译为subPackages
+     <span class="token property">"subpackages"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token comment">//百度下会编译为subPackages</span>
     <span class="token punctuation">{</span>
       <span class="token property">"root"</span><span class="token operator">:</span> <span class="token string">"pages/hotel"</span><span class="token punctuation">,</span>
       <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"hotel"</span><span class="token punctuation">,</span>
@@ -118,7 +118,48 @@ tabBar 页面必须在 app（主包）内</p>
 <h2 id="引用原则">引用原则</h2>
 <p>packageA 无法 require packageB JS 文件，但可以 require app、自己 package 内的 JS 文件
 packageA 无法 import packageB 的 template，但可以 require app、自己 package 内的 template
-packageA 无法使用 packageB 的资源，但可以使用 app、自己 package 内的资源</p>
+packageA 无法使用 packageB 的资源，但可以使用 app、自己 package 内的资源
+主包会包含所有source/components中的所有组件， 为了减少主包的大小， 某些频道涉及的页面与组全应该放在pages下的某一目录下。详见<a href="./publish.html">这里</a></p>
+<pre><code class="language-shell">src
+   <span class="token operator">|</span>--components
+   <span class="token operator">|</span>    <span class="token operator">|</span>--HotelDialog     // 这里的组件会全部打入主包中
+   <span class="token operator">|</span>    <span class="token operator">|</span>--HotelUm
+   <span class="token operator">|</span>    <span class="token operator">|</span>--Flight2
+   <span class="token operator">|</span>    └── <span class="token punctuation">..</span>.
+   <span class="token operator">|</span>--pages
+   <span class="token operator">|</span>    <span class="token operator">|</span>--hotel
+   <span class="token operator">|</span>    <span class="token operator">|</span>   └── components
+   <span class="token operator">|</span>    <span class="token operator">|</span>         <span class="token operator">|</span>--HotelXX1     // 这里的组件会打到hotel分包中
+   <span class="token operator">|</span>    <span class="token operator">|</span>         <span class="token operator">|</span>--HotelXX2
+   <span class="token operator">|</span>    <span class="token operator">|</span>         <span class="token operator">|</span>--HotelXX3
+   <span class="token operator">|</span>    <span class="token operator">|</span>         └── <span class="token punctuation">..</span>.
+   <span class="token operator">|</span>    <span class="token operator">|</span>--flight
+   <span class="token operator">|</span>    <span class="token operator">|</span>   └── components
+   <span class="token operator">|</span>    <span class="token operator">|</span>         <span class="token operator">|</span>--FlightXX1     // 这里的组件会打到flight分包中
+   <span class="token operator">|</span>    <span class="token operator">|</span>         <span class="token operator">|</span>--FlightXX2
+   <span class="token operator">|</span>    <span class="token operator">|</span>         <span class="token operator">|</span>--FlightXX3
+   <span class="token operator">|</span>    <span class="token operator">|</span>         └── <span class="token punctuation">..</span>.
+   <span class="token operator">|</span>    <span class="token operator">|</span>--holiday
+   <span class="token operator">|</span>    <span class="token operator">|</span>--strategy
+   <span class="token operator">|</span>    └── <span class="token punctuation">..</span>.
+   <span class="token operator">|</span>--assets 
+   <span class="token operator">|</span>    <span class="token operator">|</span>--style
+   <span class="token operator">|</span>--common
+   <span class="token operator">|</span>    <span class="token operator">|</span>--hotel
+   <span class="token operator">|</span>    <span class="token operator">|</span>--flight
+   <span class="token operator">|</span>    <span class="token operator">|</span>--holiday
+   <span class="token operator">|</span>    <span class="token operator">|</span>--strategy
+   <span class="token operator">|</span>    └── <span class="token punctuation">..</span>.
+   <span class="token operator">|</span>--app.js
+   <span class="token operator">|</span>--wxConfig.json
+   <span class="token operator">|</span>--qqConfig.json
+   <span class="token operator">|</span>--quickConfig.json
+   <span class="token operator">|</span>--aliConfig.json
+   <span class="token operator">|</span>--buConfig.json
+</code></pre>
+<p>#$# 坑</p>
+<p>小程序的打包机制仅仅是根据文件目录打包，分包内require/import的任何文件，只要不在同一个目录下面，都不会被打进分包，也就是说，类库及一些公共文件，只能放在主包里面，如果主包分包划分不好的话，主包的大小也很难降下来</p>
+<p>安卓系统进入分包页面时，会出现一个丑陋的系统级的loading层，这一定程度上影响了安卓的体验</p>
 <h2 id="低版本兼容">低版本兼容</h2>
 <p>由微信后台编译来处理旧版本客户端的兼容，后台会编译两份代码包，一份是分包后代码，另外一份是整包的兼容代码。 新客户端用分包，老客户端还是用的整包，完整包会把各个 subpackage 里面的路径放到 pages 中。</p>
 <p>目前 支付宝与字节跳动小程序不支持分包</p>

@@ -7,4 +7,47 @@
 
  [https://qunarcorp.github.io/chaika/](https://qunarcorp.github.io/chaika/)
 
+```
+
+ src
+   |--components
+   |    |--HotelDialog     // 这里的组件是不打算分包，会全部打入主包中
+   |    |     └──index.js  //必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog
+   |    |--HotelXXX
+   |    |--FlightYYY
+   |    └── ...
+   |--pages
+   |    |--hotel
+   |    |--flight
+   |    |--holiday
+   |    |--strategy
+   |    └── ...
+   |--assets 
+   |    |--style
+   |--common
+   |    |--hotel
+   |    |--flight
+   |    |--holiday
+   |    |--strategy
+   |    └── ...
+   |--app.json 
+   |--wxConfig.json
+   |--qqConfig.json
+   |--quickConfig.json
+   |--aliConfig.json
+   |--buConfig.json
+```
+app.json里面有
+
+```json
+{
+    "pages": [],
+    "nanachi":{
+        "alias": {
+            "@hotel/common": "source/common/hotel"
+        }
+    }
+}
+```
+
 

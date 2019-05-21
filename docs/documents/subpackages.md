@@ -6,7 +6,7 @@
 
 ## 小程序使用
 
-微信上，在app.js目录下建立一个wxConfig.json或 buConfig.json...
+微信上，在source/app.js目录下建立一个wxConfig.json或 buConfig.json...
 
 
 ```json
@@ -63,12 +63,12 @@
 
 subpackages 中，每个分包的配置有以下几项：
 
-|字段	   |类型    |	  说明   |
-|:-----:|:------:|:-------:|
-|root  	|String	 |分包根目录 |
-|name	  |String	 |分包别名，分包预下载时可以使用|
-|pages	|StringArray	|分包页面路径，相对与分包根目录|
-|independent|Boolean	|分包是否是独立分包|
+|    字段     |    类型     |              说明              |
+|:-----------:|:-----------:|:------------------------------:|
+|    root     |   String    |           分包根目录           |
+|    name     |   String    | 分包别名，分包预下载时可以使用 |
+|    pages    | StringArray | 分包页面路径，相对与分包根目录 |
+| independent |   Boolean   |       分包是否是独立分包       |
 
 ## 快应用的分包加载
 
@@ -111,6 +111,53 @@ tabBar 页面必须在 app（主包）内
 packageA 无法 require packageB JS 文件，但可以 require app、自己 package 内的 JS 文件
 packageA 无法 import packageB 的 template，但可以 require app、自己 package 内的 template
 packageA 无法使用 packageB 的资源，但可以使用 app、自己 package 内的资源
+主包会包含所有source/components中的所有组件， 为了减少主包的大小， 某些频道涉及的页面与组全应该放在pages下的某一目录下。详见[这里](./publish.md)
+
+```shell
+src
+   |--components
+   |    |--HotelDialog     // 这里的组件会全部打入主包中
+   |    |--HotelUm
+   |    |--Flight2
+   |    └── ...
+   |--pages
+   |    |--hotel
+   |    |   └── components
+   |    |         |--HotelXX1     // 这里的组件会打到hotel分包中
+   |    |         |--HotelXX2
+   |    |         |--HotelXX3
+   |    |         └── ...
+   |    |--flight
+   |    |   └── components
+   |    |         |--FlightXX1     // 这里的组件会打到flight分包中
+   |    |         |--FlightXX2
+   |    |         |--FlightXX3
+   |    |         └── ...
+   |    |--holiday
+   |    |--strategy
+   |    └── ...
+   |--assets 
+   |    |--style
+   |--common
+   |    |--hotel
+   |    |--flight
+   |    |--holiday
+   |    |--strategy
+   |    └── ...
+   |--app.js
+   |--wxConfig.json
+   |--qqConfig.json
+   |--quickConfig.json
+   |--aliConfig.json
+   |--buConfig.json
+```
+
+#$# 坑
+
+小程序的打包机制仅仅是根据文件目录打包，分包内require/import的任何文件，只要不在同一个目录下面，都不会被打进分包，也就是说，类库及一些公共文件，只能放在主包里面，如果主包分包划分不好的话，主包的大小也很难降下来
+
+安卓系统进入分包页面时，会出现一个丑陋的系统级的loading层，这一定程度上影响了安卓的体验
+
 
 ## 低版本兼容
 

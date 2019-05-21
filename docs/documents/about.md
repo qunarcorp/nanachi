@@ -13,7 +13,9 @@
 <!--wxml-->
 <view class="container">
   <view class="userinfo" bindtap="eventCanBubble">
-    <button wx:if="{{!hasUserInfo && canIUse}}" catchtap="eventNoBubble"> 获取头像昵称 </button>
+    <block wx:if="{{!hasUserInfo && canIUse}}">
+      <button catchtap="eventNoBubble"> 获取头像昵称 </button>
+    </block>
     <block wx:else>
       <view wx:for="array" wx:for-item="el" wx:for-index="index"  wx:key="*this">
          {{el.title}}
@@ -25,7 +27,9 @@
 <!--axml-->
 <view class="container">
   <view class="userinfo" onTap="eventCanBubble">
-    <button a:if="{{!hasUserInfo && canIUse}}" catchTap="eventCanBubble"> 获取头像昵称 </button>
+   <block a:if="{{!hasUserInfo && canIUse}}">
+     <button catchTap="eventCanBubble"> 获取头像昵称 </button>
+    </block>
     <block a:else>
       <view a:for="array" a:for-item="el" a:for-index="index"  key="title" >
          {{el.title}}
@@ -37,7 +41,9 @@
 <!--swan-->
 <view class="container">
   <view class="userinfo" bind:tap="eventCanBubble">
-    <button s-if="{{!hasUserInfo && canIUse}}" catch:tap="eventCanBubble"> 获取头像昵称 </button>
+    <block s-if="{{!hasUserInfo && canIUse}}">
+      <button catch:tap="eventCanBubble"> 获取头像昵称 </button>
+    </block>
     <block s-else>
       <view s-for="(index, el) in array" s-key="title" >
          {{el.title}}
@@ -48,22 +54,27 @@
 
 <!--快应用ux-->
 <template>
-  <view class="container">
-    <view class="userinfo" onClick="eventCanBubble">
-      <button if="{{!hasUserInfo && canIUse}}" onClick="eventCanBubble"><text> 获取头像昵称</text> </button>
-      <block else>
-        <view for="(index, el) in array" tid="title" >
-          <text>{{el.title}}</text>
-        </view>
+  <div class="container">
+    <div class="userinfo" onClick="eventCanBubble">
+     <block if="{{!hasUserInfo && canIUse}}">
+       <button onClick="eventCanBubble">
+         <text> 获取头像昵称</text>
+       </button>
       </block>
-    </view>
-  </view>
+      <block else>
+        <div for="(index, el) in array" tid="title" >
+          <text>{{el.title}}</text>
+        </div>
+      </block>
+    </div>
+  </div>
 </template>
 
 <!--头条小程序-->
 <view class="container">
   <view class="userinfo" bindtap="eventCanBubble">
-    <button tt:if="{{!hasUserInfo && canIUse}}" catchtap="eventCanBubble"> 获取头像昵称 </button>
+    <block tt:if="{{!hasUserInfo && canIUse}}">
+      <button catchtap="eventCanBubble"> 获取头像昵称 </button>
     <block tt:else>
       <view tt:for="array" tt:for-item="el" tt:for-index="index"  tt:key="*this">
          {{el.title}}
