@@ -1,4 +1,4 @@
-## 拆库开发
+# 拆库开发
 
 拆库开发亦称分仓库开发， 如果一个小程序非常大，比如说商场小程序，有许多频道，这涉及多条业务线，每条业务线开发一个频道，那么就需要此功能。
 
@@ -7,36 +7,28 @@
 
  [https://qunarcorp.github.io/chaika/](https://qunarcorp.github.io/chaika/)
 
+
+ 下面是某一个子频道的目录结构， 由于它不是主包，因此没有app.js, 改成包含合并指令的app.json
+
+ 强烈建议看一下[别名机制](./alias.md)
+
+```
+ src
+   |--components //合并到主包的组件
+   |--assets     //合并到主包的静态资源
+   |--common     //合并到主包的公用方法
+   |--pages
+   |    |--commponents
+   |    |--assets
+   |    |--common
+   |    |--page1
+   |    |--page2
+   |    |--page3
+   |    |--page4
+   |    └── ...
+   |--app.json (不存在app.js , wxConfig.json, quickConfig.json)
 ```
 
- src
-   |--components
-   |    |--HotelDialog     // 这里的组件是不打算分包，会全部打入主包中
-   |    |     └──index.js  //必须以index.js命名，里面的类名 必须 与文件夹名一样, 如HotelDialog
-   |    |--HotelXXX
-   |    |--FlightYYY
-   |    └── ...
-   |--pages
-   |    |--hotel
-   |    |--flight
-   |    |--holiday
-   |    |--strategy
-   |    └── ...
-   |--assets 
-   |    |--style
-   |--common
-   |    |--hotel
-   |    |--flight
-   |    |--holiday
-   |    |--strategy
-   |    └── ...
-   |--app.json 
-   |--wxConfig.json
-   |--qqConfig.json
-   |--quickConfig.json
-   |--aliConfig.json
-   |--buConfig.json
-```
 app.json里面有
 
 ```json
@@ -49,5 +41,6 @@ app.json里面有
     }
 }
 ```
+![json](./chaika.png)
 
 

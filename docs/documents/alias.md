@@ -11,6 +11,14 @@
 `../../../assets/global.scss` 地引用它。可以定义一个@assets别名，指向assets目录。
 由于当前执行命令在xxx目录下，assets又在source里，于是其路径为 `source/assets`
 
+所有向上跨级的路径都强烈要求使用别名机制, 它们应该都以source/assets, source/pages开头
+
+默认已经存在 
+- @react（视平台它会替换为ReactWX,ReaxtAli, ReactQuick, ReactBu）,
+- @components (主包的组件)
+- @assets (主包的静态资源)
+- @common（主包的共公方法）
+
 ```json
 {
     "license": "MIT",
@@ -18,7 +26,10 @@
     "name": "qunar",
     "nanachi": {
         "alias":  {
-            "@assets":"source/assets"
+            "@assets":"source/assets", //主包的静态资源
+            "@common":"source/common", //主包的公共方法，注意这里的JS文件不能出现 JSX
+            "@hotelStyle":"source/pages/hotel/assets/style",//hotel分包的样式
+            "@hotelCommon":"source/pages/hotel/common",//hotel分包的公共方法
         }
     },
     "dependencies": {

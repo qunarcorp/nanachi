@@ -16,7 +16,7 @@
 - [智能 webview 化](webview.md)
 - [分包加载](subpackages.md)
 - [自定义项目配置](customConfig.md)
-- [拆库开发](unpack.md)
+- [拆库开发](chaika.md)
 - [别名配置](alias.md)
 - [vscode插件](vscode.md)
 - [日志收集与上传](report.md)
