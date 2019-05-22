@@ -47,7 +47,7 @@ common, assets, index目录，及其他页面的目录。
    |--pages
    |    |--hotel
             |--index
-            |    └──index.js //目录, import里面所有index.js
+            |    └──index.js //当前频道的首页, 最好统一叫index
             |--page1         //page1目录下只能存在**2**个以index命名的文件，一个是js，一个是样式
             |    |---index.js
             |    └── index.scss
