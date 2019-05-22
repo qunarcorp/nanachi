@@ -344,7 +344,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "拆库开发",
-      "content": "拆库开发亦称分仓库开发， 如果一个小程序非常大，比如说商场小程序，有许多频道，这涉及多条业务线，每条业务线开发一个频道，那么就需要此功能。我们允许每个频道都独立建一个github/gitlab仓库进行独立开发上线前，通过我们的拆包工具chaika， 将要上线的频道整合成一个要上线的小程序，集中用nanachi进行转译发布。https://qunarcorp.github.io/chaika/下面是某一个子频道的目录结构， 由于它不是主包，因此没有app.js, 改成包含合并指令的app.json强烈建议看一下别名机制 src   |--components //合并到主包的组件\n   |--assets     //合并到主包的静态资源\n   |--common     //合并到主包的公用方法\n   |--pages\n   |    |--commponents\n   |    |--assets\n   |    |--common\n   |    |--page1\n   |    |--page2\n   |    |--page3\n   |    |--page4\n   |    └── ...\n   |--app.json (不存在app.js , wxConfig.json, quickConfig.json)\napp.json里面有{    \"pages\": [],\n    \"nanachi\":{\n        \"alias\": {\n            \"@hotel/common\": \"source/common/hotel\"\n        }\n    }\n}\n",
+      "content": "拆库开发亦称分仓库开发， 如果一个小程序非常大，比如说商场小程序，有许多频道，这涉及多条业务线，每条业务线开发一个频道，那么就需要此功能。我们允许每个频道都独立建一个github/gitlab仓库进行独立开发上线前，通过我们的拆包工具chaika， 将要上线的频道整合成一个要上线的小程序，集中用nanachi进行转译发布。https://qunarcorp.github.io/chaika/下面是某一个子频道的目录结构， 由于它不是主包，因此没有app.js, 改成包含合并指令的app.json强烈建议看一下别名机制 src   |--components //合并到主包的组件\n   |--assets     //合并到主包的静态资源\n   |--common     //合并到主包的公用方法\n   |--pages\n   |    |--commponents //留在分包的组件\n   |    |--assets      //留在分包的静态资源\n   |    |--common      //留在分包的组件\n   |    |--page1\n   |    |--page2\n   |    |--page3\n   |    |--page4\n   |    └── ...\n   |--app.json (不存在app.js , wxConfig.json, quickConfig.json)\napp.json里面有{    \"pages\": [],\n    \"nanachi\":{\n        \"alias\": {\n            \"@hotel/common\": \"source/common/hotel\"\n        }\n    }\n}\n",
       "url": "/documents/chaika.html",
       "children": []
     },

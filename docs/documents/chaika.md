@@ -18,9 +18,9 @@
    |--assets     //合并到主包的静态资源
    |--common     //合并到主包的公用方法
    |--pages
-   |    |--commponents
-   |    |--assets
-   |    |--common
+   |    |--commponents //留在分包的组件
+   |    |--assets      //留在分包的静态资源
+   |    |--common      //留在分包的组件
    |    |--page1
    |    |--page2
    |    |--page3
