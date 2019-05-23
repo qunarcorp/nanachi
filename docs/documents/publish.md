@@ -34,12 +34,16 @@ src
    |--buConfig.json
 ```
 
-components目录下为了扁平化管理，以事业部做前端+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from "@react"`
+components目录下为了扁平化管理，以事业部为前缀+组件名的方式定义组子目录，目录下面就是index.js, index.scss或index.less。index.js里面必须是React组件，需要显式引入｀import React from "@react"`
+
+
 
 >components目录下不要使用Fragments来命名子目录，这留给系统用。
 
-pages目录下每个事业部各建一个目录，以事件部的名字命名，里面结构为了分包需要，也包含自己的components,
+pages目录下每个事业部各建一个目录，以事业部的名字命名，里面结构为了分包需要，也包含自己的components,
 common, assets, index目录，及其他页面的目录。
+
+![publish](./publish.png)
 
 页面目录应该只包含index.js与index.css(也可以改成index.less, index.scss). 注意，必须用index命名，并且里面必须是有状态的React组件（转译器会转换成页面组件。）页面的index.js各种引入通用组件与common目录的依赖
 
