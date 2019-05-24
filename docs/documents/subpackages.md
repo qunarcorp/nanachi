@@ -8,6 +8,56 @@
 
 微信上，在source/app.js目录下建立一个wxConfig.json或 buConfig.json...
 
+假设我们的目录结构是这样：
+
+
+```shell
+src
+   |--components
+   |    |--HotelDialog     // 这里的组件会全部打入主包中
+   |    |--HotelUm
+   |    |--Flight2
+   |    └── ...
+   |--pages
+   |    |--hotel
+   |    |   └── components
+   |    |         |--HotelXX1     // 这里的组件会打到hotel分包中
+   |    |         |--HotelXX2
+   |    |         |--HotelXX3
+   |    |         └── ...
+   |    |--flight
+   |    |   └── components
+   |    |         |--FlightXX1     // 这里的组件会打到flight分包中
+   |    |         |--FlightXX2
+   |    |         |--FlightXX3
+   |    |         └── ...
+   |    |--holiday
+   |    |--strategy
+   |    └──platform
+   |         |--index
+   |         |--page1
+   |         └── ...
+   |--assets 
+   |    |--style
+   |--common
+   |    |--hotel
+   |    |--flight
+   |    |--holiday
+   |    |--strategy
+   |    └──platform
+   |--app.js
+   |--wxConfig.json
+   |--qqConfig.json
+   |--quickConfig.json
+   |--aliConfig.json
+   |--buConfig.json
+```
+
+我们将pages/platform目录当成主包，那应该包含首页，tabBar list里面指向几个页面， 收银台，订单中心，会员中心，
+卡包等重要功能。主包也会包含src下面的components， common，assets 的所有功能。
+
+而其他子包， 则只能在pages的直接目录，hotel，ticket， holiday，strategy各自成包。wxConfig.json中的
+subpackages数组只用定义这几个目录就行了。
 
 ```json
 {
@@ -39,12 +89,12 @@
     {
       "root": "pages/hotel",
       "name": "hotel",
-      "pages": ["index","aaa","bbb","ccc"]
+      "pages": ["index","page1","page2","page3","page4"]
     },
     {
       "root": "pages/ticket",
       "name": "ticket",
-      "pages": ["index","aaa","bbb","ccc"]
+      "pages": ["index","list","coupon/coupon", "detail" ]
     },
     {
       "root": "pages/train",
@@ -99,6 +149,8 @@ subpackages 中，每个分包的配置有以下几项：
 
 它们会自动加入manifest.json中
 
+> 没错，我们的wxConfig.json, buConfig.json, quickConfig.json里面的分包配置就是根据快应用的设计过来的，然后我们再转译成各个平台要求的样式。
+
 ## 打包原则
 
 声明 subpackages 后，将按 subpackages 配置路径进行打包，subpackages 配置路径外的目录将被打包到 app（主包） 中
@@ -113,44 +165,10 @@ packageA 无法 import packageB 的 template，但可以 require app、自己 pa
 packageA 无法使用 packageB 的资源，但可以使用 app、自己 package 内的资源
 主包会包含所有source/components中的所有组件， 为了减少主包的大小， 某些频道涉及的页面与组全应该放在pages下的某一目录下。详见[这里](./publish.md)
 
-```shell
-src
-   |--components
-   |    |--HotelDialog     // 这里的组件会全部打入主包中
-   |    |--HotelUm
-   |    |--Flight2
-   |    └── ...
-   |--pages
-   |    |--hotel
-   |    |   └── components
-   |    |         |--HotelXX1     // 这里的组件会打到hotel分包中
-   |    |         |--HotelXX2
-   |    |         |--HotelXX3
-   |    |         └── ...
-   |    |--flight
-   |    |   └── components
-   |    |         |--FlightXX1     // 这里的组件会打到flight分包中
-   |    |         |--FlightXX2
-   |    |         |--FlightXX3
-   |    |         └── ...
-   |    |--holiday
-   |    |--strategy
-   |    └── ...
-   |--assets 
-   |    |--style
-   |--common
-   |    |--hotel
-   |    |--flight
-   |    |--holiday
-   |    |--strategy
-   |    └── ...
-   |--app.js
-   |--wxConfig.json
-   |--qqConfig.json
-   |--quickConfig.json
-   |--aliConfig.json
-   |--buConfig.json
-```
+
+![xxx](./subpackages.jpg)
+
+> 快应用分包体积过大时的警告
 
 ## 坑
 

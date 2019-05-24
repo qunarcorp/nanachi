@@ -27,6 +27,7 @@
 - [内置 UI 库](patchComponent.md)
 - [px尺寸计算](size.md)
 - [事件系统](event.md)
+- [发布时体积大小查看](rpksize.md)
 
 - [快应用相关](.)
 

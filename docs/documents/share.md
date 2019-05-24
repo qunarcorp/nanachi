@@ -2,7 +2,8 @@
 
 小程序寄生在大流量的App中，因此转发共享功能非常重要，能实现病毒性传播。
 
-在原生的微信小程序有一个onShareAppMessage方法，它会返回一个对象。只要定义这个方法，那页面顶部就会自动出一个转发按钮，让用户进行转发。
+在原生的微信小程序有一个onShareAppMessage方法，它会返回一个对象。
+只要定义这个方法，那页面顶部就会自动出一个转发按钮，让用户进行转发。
 
 而快应用是没有这样的API，也没有这样的按钮，一切都需要手动实现。我们可以通过 React.api.showActionSheet创建一个右上角菜单，然后让某一栏为一个转发按钮，当用户点击它时实现这个功能。
 
@@ -23,7 +24,7 @@ class P extends React.Component {
             var navigateToUrl = this.props.path;
             return {
                 title: '预订火车票 - 去哪儿旅行',
-               imageUrl: 'https://s.aaa.com/bbb/ccc.jpg',
+                imageUrl: 'https://s.aaa.com/bbb/ccc.jpg',
                 path: navigateToUrl
             };
     }
