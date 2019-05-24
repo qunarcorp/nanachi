@@ -45,11 +45,16 @@ class Global extends React.Component {
             navigationBarTitleText: 'mpreact',
             navigationBarTextStyle: '#fff'
         }
+        needRedirectPages: {
+            "pages/bargain/helper/helper":  "pages/ticket/bargain/helper/index",
+            "pages/bargain/ticket/index":  "pages/ticket/bargain/list/index",
+            "pages/bargain/award/index":  "pages/ticket/bargain/award/index"
+        }
     };
     // 全局数据
     globalData = {
         ufo: 'nanachi',//only test
-        __storage: {}  //快应用的storage在这里保存一份副本
+        __storage: {}  //快应用的storage在这里保存一份副本,
     };
     onGlobalReady(){}  //全局的页面钩子
     onGlobalUnload(){} //全局的页面钩子
@@ -66,8 +71,22 @@ class Global extends React.Component {
     onGlobalShare(){   //全局的小程序分享钩子， 如果页面没有定义onShare, 或onShare没有返回对象，就会触发它
         return {};
     }
+    onPageNotFound(e){
+        //这里专门迁移之前的业务，比如一些广告，二维图已经印出来，贴在各大广场上，不可能再改这些二维码
+        //而二维码对应一些旧页面，现在用nanachi重写，并根据nanachi的规范，只能以index结尾
+        //随着业务的拆分，它们分到新部门（门票），为了方便分包，它们的目录结构也要改动
+        //我们可以在config中添加needRedirectPages映射
+        var [path, query] = e;
+        var newPath = Global.config.needRedirectPages[path] || "pages/platform/404/index";
+        var queryString = Object.keys(query).map(function(k){
+          return `${k}=${query[k]}`
+        }).join("&");
+        React.api.redirectTo({
+            url:path + (queryString? '?'+ queryString: '')
+        });
+    }
     onShowMenu(pageInstance, app){} //供快应用实现右上角菜单与转发分享（onShare, onGlobalShare都在这里）
-    onCollectLogs(){}  //全局的用户行为日志收集钩子， 当所有事件内部都会调用它
+    onCollectLogs(){}  //全局的用户行为日志收集钩子
     onHide(){          //全局的app钩子, 当app切换后台时触发
           var app = React.getApp()
           console.log(app == this)//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例
