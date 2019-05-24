@@ -40,12 +40,22 @@
       text<span class="token punctuation">:</span> textAry<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-  <span class="token function">componentWillMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'base componentWillMount'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'base componentDidMount'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
+  <span class="token keyword">static</span> <span class="token function">getDerivedStateFromProps</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">//React 16新钩子</span>
+  <span class="token function">componentWillMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>      <span class="token comment">//React 16 声明废弃的钩子</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>        <span class="token comment">//React 5  的钩子</span>
+  <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">//React 16 声明废弃的钩子</span>
+  <span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>     <span class="token comment">//React 5  的钩子</span>
+  <span class="token function">componentWillUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>       <span class="token comment">//React 16 声明废弃的钩子</span>
+  <span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>        <span class="token comment">//React 5  的钩子</span>
+  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>      <span class="token comment">//React 5  的钩子</span>
+  <span class="token function">onShow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>                  <span class="token comment">//小程序页面的钩子 路由</span>
+  <span class="token function">onHide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>                  <span class="token comment">//小程序页面的钩子 路由</span>
+  <span class="token function">onResize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>                <span class="token comment">//小程序页面的钩子 页面大小变动</span>
+  <span class="token function">onShare</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>                 <span class="token comment">//小程序页面的钩子 转发</span>
+  <span class="token function">onPullDownRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>       <span class="token comment">//小程序页面的钩子 滚动</span>
+  <span class="token function">onReachBottom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>           <span class="token comment">//小程序页面的钩子 滚动</span>
+  <span class="token function">onPageScroll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>            <span class="token comment">//小程序页面的钩子 滚动</span>
+  <span class="token function">onTabItemTap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>            <span class="token comment">//小程序页面的钩子 TAB点击</span>
   <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">(</span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token plain-text">
@@ -117,23 +127,21 @@
 <h2 id="页面组件的生命周期">页面组件的生命周期</h2>
 <p>由于页面组件也是一个React有状态组件, 因此它拥有React15/16的所有钩子。</p>
 <p>当我们打开一个页面，页面组件会依次触发如下生命周期钩子</p>
-<pre><code class="language-shell">componentWillMount或getDerivedStateFromProps -<span class="token operator">></span> 
-onGlobalLoad -<span class="token operator">></span> onShow -<span class="token operator">></span> onGlobalShow -<span class="token operator">></span>
-componentDidMount -<span class="token operator">></span> onGlobalReady 
-<span class="token comment"># 只有页面组件才有onShow, onHide钩子，普通组件没有这两个钩子</span>
-</code></pre>
+<p><img src="./lifetimes1.png" alt="lifetimes1"></p>
 <p>如果对页面组件进行setState,会依次触发如下生命周期钩子</p>
-<pre><code class="language-shell">shouldComponentUpdate<span class="token punctuation">(</span>如果return false, 后面的不会触发<span class="token punctuation">)</span> -<span class="token operator">></span>
-componentWillUpdate或getDerivedStateFromProps -<span class="token operator">></span> 
-componentDidUpdate
-<span class="token comment"># componentWillMount/Update/ReceiveProps这三个钩子是 React15的旧钩子，如果定义了它们</span>
-<span class="token comment"># 就不会触发React 16的新钩子getDerivedStateFromProps</span>
-</code></pre>
-<p>如果用户从A页面跳转到B页面，是不会触页面组件的componentWillUnmount(即onUnload),而是触发页面的onHide钩子与
-app.js上的onGlobalHide钩子。然后再依次触发B的componentWillMount，onGlobalLoad，onShow。。。</p>
-<p><img src="./pagelife.jpg" alt></p>
+<p><img src="./lifetimes2.png" alt="lifteimes2"></p>
+<blockquote>
+<p>componentWillMount/Update/ReceiveProps这三个钩子是 React15的旧钩子，如果定义了它们
+就不会触发React 16的新钩子getDerivedStateFromProps</p>
+</blockquote>
+<p>如果用户从页面1跳转到页面2，是不会触页面组件的componentWillUnmount(即onUnload),而是触发页面的onHide钩子与
+app.js上的onGlobalHide钩子。然后再依次触发页面2的componentWillMount，onGlobalLoad，onShow。。。</p>
+<p><img src="./lifetimes3.png" alt="lifetimes3"></p>
+<p>页面销毁时，会先触发所有子组件的componentWillUnmount，再到页面的componentWillUnmount，最后是app.js的
+onGlobalUnload钩子</p>
+<p><img src="./lifetimes4.png" alt="lifetimes4"></p>
 <p>当然，除了页面的生命周期及页面上所有子组件的生命周期，应用本身还有生命周期，实际上我们看到的生命周期触发顺序是这样的。</p>
-<p><img src="./pagelife2.jpg" alt></p>
+<p><img src="./lifetimes5.jpg" alt="lifetimes5"></p>
 <p>注： 页面组件必须使用 es6 风格来引入依赖与导出自己。</p>
 <p>它的静态属性 config 会抽取出来生成对应的 JSON 配置对象，有关配置项可以看<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE" target="_blank">这里</a></p>
 <h2 id="页面事件">页面事件</h2>
@@ -149,9 +157,9 @@ app.js上的onGlobalHide钩子。然后再依次触发B的componentWillMount，o
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">onShow</td>
-<td style="text-align:left">onGlobalShow</td>
-<td>没有参数</td>
+<td style="text-align:left">onShow(query)</td>
+<td style="text-align:left">onGlobalShow(query)</td>
+<td>query对象</td>
 <td>总是触发全局事件</td>
 </tr>
 <tr>

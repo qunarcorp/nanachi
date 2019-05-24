@@ -79,6 +79,11 @@ created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 pr
 
 ![size](./size.jpg)
 
+## 快应用的大小查看
+
+> npm run release
+查看rpk的大小
+
 
 ## 页面组件在快应用的模拟
 

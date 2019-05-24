@@ -2,8 +2,6 @@
 
 一个应用是由许多页面组成，这些页面的文件名都是index.js, 它们都必须放在pages/xxx目录中。xxx为一个文件夹，里面通常有index.js, index.scss或index.less.
 
-
-
 其次， 页面组件必须是一个有状态的 React 组件， 第一行必须为`import React from '@react'`。
 
 再次， 页面组件必须有render方法， 并且JSX只能出现在render方法中，不能出现在其他方法里面。JSX也不能用`React.createElement()`代替。因此render方法的JSX会被抽取出来，编译成`wxml`, `axml`, `swan`等文件。有关 JSX 的注意事项可以看[这里](jsx.md)。
@@ -44,12 +42,22 @@ class P extends React.Component {
       text: textAry.join('\n')
     });
   }
-  componentWillMount() {
-    console.log('base componentWillMount');
-  }
-  componentDidMount() {
-    console.log('base componentDidMount');
-  }
+  static getDerivedStateFromProps(){} //React 16新钩子
+  componentWillMount() { }      //React 16 声明废弃的钩子
+  componentDidMount() {}        //React 5  的钩子
+  componentWillReceiveProps(){} //React 16 声明废弃的钩子
+  shouldComponentUpdate(){}     //React 5  的钩子
+  componentWillUpdate(){}       //React 16 声明废弃的钩子
+  componentDidUpdate(){}        //React 5  的钩子
+  componentWillUnmount(){}      //React 5  的钩子
+  onShow(){}                  //小程序页面的钩子 路由
+  onHide(){}                  //小程序页面的钩子 路由
+  onResize(){}                //小程序页面的钩子 页面大小变动
+  onShare(){}                 //小程序页面的钩子 转发
+  onPullDownRefresh(){}       //小程序页面的钩子 滚动
+  onReachBottom(){}           //小程序页面的钩子 滚动
+  onPageScroll(){}            //小程序页面的钩子 滚动
+  onTabItemTap(){}            //小程序页面的钩子 TAB点击
   render() {
     return (
       <div class="container">
@@ -88,31 +96,30 @@ export default P;
 
 当我们打开一个页面，页面组件会依次触发如下生命周期钩子
 
-```shell
-componentWillMount或getDerivedStateFromProps -> 
-onGlobalLoad -> onShow -> onGlobalShow ->
-componentDidMount -> onGlobalReady 
-# 只有页面组件才有onShow, onHide钩子，普通组件没有这两个钩子
-```
+![lifetimes1](./lifetimes1.png)
 
 如果对页面组件进行setState,会依次触发如下生命周期钩子
 
-```shell
-shouldComponentUpdate(如果return false, 后面的不会触发) ->
-componentWillUpdate或getDerivedStateFromProps -> 
-componentDidUpdate
-# componentWillMount/Update/ReceiveProps这三个钩子是 React15的旧钩子，如果定义了它们
-# 就不会触发React 16的新钩子getDerivedStateFromProps
-```
+![lifteimes2](./lifetimes2.png)
 
-如果用户从A页面跳转到B页面，是不会触页面组件的componentWillUnmount(即onUnload),而是触发页面的onHide钩子与
-app.js上的onGlobalHide钩子。然后再依次触发B的componentWillMount，onGlobalLoad，onShow。。。
+>componentWillMount/Update/ReceiveProps这三个钩子是 React15的旧钩子，如果定义了它们
+> 就不会触发React 16的新钩子getDerivedStateFromProps
 
-![](./pagelife.jpg)
+如果用户从页面1跳转到页面2，是不会触页面组件的componentWillUnmount(即onUnload),而是触发页面的onHide钩子与
+app.js上的onGlobalHide钩子。然后再依次触发页面2的componentWillMount，onGlobalLoad，onShow。。。
+
+![lifetimes3](./lifetimes3.png)
+
+页面销毁时，会先触发所有子组件的componentWillUnmount，再到页面的componentWillUnmount，最后是app.js的
+onGlobalUnload钩子
+
+![lifetimes4](./lifetimes4.png)
+
 
 当然，除了页面的生命周期及页面上所有子组件的生命周期，应用本身还有生命周期，实际上我们看到的生命周期触发顺序是这样的。
 
-![](./pagelife2.jpg)
+![lifetimes5](./lifetimes5.jpg)
+
 
 注： 页面组件必须使用 es6 风格来引入依赖与导出自己。
 
@@ -126,7 +133,7 @@ app.js上的onGlobalHide钩子。然后再依次触发B的componentWillMount，o
 
 |页面事件名	  |全局事件名    |	  说明   |  关系 |
 |:---------|:-------------|-------|-------|
-|onShow   	|onGlobalShow	   |没有参数 |总是触发全局事件    |
+|onShow(query)   	|onGlobalShow(query)	   |query对象 |总是触发全局事件    |
 |onHide   	|onGlobalHide	   |没有参数 |总是触发全局事件    |
 |页面初次被打开   |onGlobalLoad	   |没有参数 |总是触发全局事件    |
 |页面初次渲染完   |onGlobalReady	 |没有参数 |总是触发全局事件    |

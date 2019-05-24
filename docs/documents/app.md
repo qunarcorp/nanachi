@@ -38,7 +38,7 @@ import './app.less';
 
 class Global extends React.Component {
     //全局配置
-     config = {
+    static config = {
         window: {
             backgroundTextStyle: 'light',
             navigationBarBackgroundColor: '#0088a4',
@@ -51,31 +51,29 @@ class Global extends React.Component {
         ufo: 'nanachi',//only test
         __storage: {}  //快应用的storage在这里保存一份副本
     };
-    onGlobalLoad(){}
-    onGlobalReady(){}
-    onGlobalUnload(){}
-    onGlobalShow(){}
-    onGlobalHide(){}
-    onGlobalShare(){ 
-        return {};
-    }
-    onCollectLogs(){}
-    onHide(){
-          var app = React.getApp()
-          console.log(app == this)//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例
-    }
-    onGlobalLoad(){
+    onGlobalReady(){}  //全局的页面钩子
+    onGlobalUnload(){} //全局的页面钩子
+    onGlobalShow(){}   //全局的页面钩子
+    onGlobalHide(){}   //全局的页面钩子
+    onGlobalLoad(){    //全局的页面钩子
         //快应用需要在每个页面打开的瞬间初始化同步storage API
         //即getStorageSync, setStorageSync, removeStorageSync, clearStorageSync
-        let ANU_ENV = process.env.ANU_ENV;
-        if ( ANU_ENV === 'quick' ) { 
+        if ( process.env.ANU_ENV === 'quick' ) {
            React.api.initStorageSync &&
            React.api.initStorageSync(this.globalData.__storage)
         }
     }
-    onLaunch() {
-        let ANU_ENV = process.env.ANU_ENV;
-        if ( ANU_ENV === 'quick' ) { //非快应用的平台在编译阶段会被干掉
+    onGlobalShare(){   //全局的小程序分享钩子， 如果页面没有定义onShare, 或onShare没有返回对象，就会触发它
+        return {};
+    }
+    onShowMenu(pageInstance, app){} //供快应用实现右上角菜单与转发分享（onShare, onGlobalShare都在这里）
+    onCollectLogs(){}  //全局的用户行为日志收集钩子， 当所有事件内部都会调用它
+    onHide(){          //全局的app钩子, 当app切换后台时触发
+          var app = React.getApp()
+          console.log(app == this)//由于平台的差异性，React.getApp(）得到的对象不定是new App的实例
+    }
+    onLaunch() {     //全局的app钩子 （快应用会自动转译成onCreate）
+        if ( process.env.ANU_ENV === 'quick' ) { //非快应用的平台在编译阶段会被干掉
             if ( this.$data && typeof global === 'object') {  //针对快应用的全局getApp补丁
                 var ref = Object.getPrototypeOf(global) || global;
                 var _this = this;
