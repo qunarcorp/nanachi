@@ -38,6 +38,7 @@
   - [快应用与小程序转发分享](share.md)
   - [快应用onblur](onblur.md)
   - [场景值的兼容](onblur.md)
+  - [movable-area与movable-view的模拟](movable.md)
 
 - [各种小程序的比较](diff.md)
 - [各种小程序的官网](link.md)

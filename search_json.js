@@ -554,6 +554,12 @@ window.ydoc_plugin_search_json = {
       "children": []
     },
     {
+      "title": "快应用如何模拟movable-area与movalbe-view",
+      "content": "下面例子由小米官方(王操大神)提供  \n  \n    \n      \n        movable-area\n      \n      \n        movable-view\n      \n    \n  \n\n\n\n  import router from \"@system.router\";\n\n  export default {\n    // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖\n    private: {\n      title: \"示例页面\",\n      initx: 100,\n      inity: 100,\n      delayx: 0,\n      delayy: 0,\n      touchx: 0,\n      touchy: 0,\n      boxwidth: 200,\n      boxheight: 200\n    },\n    touch (env) {\n      this.touchx = env.touches[0].pageX\n      this.touchy = env.touches[0].pageY\n      this.delayx = this.initx\n      this.delayy = this.inity\n    },\n    touchend (env) {\n      this.canmove = false\n      this.delayx = this.initx\n      this.delayy = this.inity\n\n    },\n    move(env) { \n      this.initx = this.delayx + env.touches[0].pageX- this.touchx\n      this.inity = this.delayy + env.touches[0].pageY- this.touchy    \n    }\n  };\n\n\n\n  .bk {\n    width: 100%;\n    height: 100%;\n    background-color: #aaa;\n  }\n  .box {\n    width: 200px;\n    height: 200px;\n    background-color: #ffffff;\n  }\n\n\n",
+      "url": "/documents/movable.html",
+      "children": []
+    },
+    {
       "title": "各种小程序的差异点",
       "content": "\n\n项目\n微信小程序\n百度小程序\n支付小程序\n快应用\n\n\n\n\n命名空间\nwx\nswan\nmy\n无,需要 require 它提供的所有接口按 wx 形式封装\n\n\nif 指令\nwx:if\ns-if\na:if\nif\n\n\nfor 指令\nwx:for wx:for-index wx:for-item\n将wx:改成s-\n将wx:改成a:\nfor=\"(personIndex, personItem) in list\"\n\n\nkey 指令\nwx:key\ns-key\nkey\ntid\n\n\n容器标签\n存在\n存在\n存在\n存在\n\n\n事件绑定\nbind/catch[事件名全小写]=\"回调名\"\nbind/catch[事件名全小写]=\"回调名\"\non/catch[事件名驼峰]=\"回调名\"\non[事件名全小写]=\"回调名/回调(arguments)\"\n\n\n{{}}插值是否支持函数\n不支持\n不支持\n不支持\n支持\n\n\n模块中使用脚本\n\n\n\n\n\n\n模板文件后缀\nwxml\nswan\naxml\n没有独立的文件 放 template 中\n\n\n样式文件后缀\nwxss\ncss\nacss\n没有独立的文件 放 style 中，不需要处理 less,sass\n\n\ntemplate 包含 template\n支持\n不支持循环中使用 template\n支持\n未知\n\n\ntemplate 的 data 是否支持...\n{{...aaa}}\n{{{...aaa}}} 三个括号\n{{...aaa}}\n只能一个个数据分开写\n\n\n缺省的组件(视图容器)\nmovable-view、cover-view\n\nmovable-view、cover-view\n未知\n\n\n缺省的组件(基础内容)\nrich-text\n\n\n未知\n\n\n缺省的组件(导航)\nfunctional-page-navigator\n\n\n未知\n\n\n缺省的组件(媒体组件)\naudio、video、camera、live-player、live-pusher\n\n\n未知\n\n\nopen-data\n\n\n不支持\n未知\n\n\n样式单位 rpx 支持情况\n支持\n不支持（用 rem，最新的基础库版本已经支持）\n支持\n不支持\n\n\n大小限制\n4M\n4M(分包 8M)\n2M\n1M（可以独单与厂商谈）\n\n\nAPIs 的这么多方法都不一样，可能以后针对不同的平台打包不同的 api.js 来屏蔽差异性",
       "url": "/documents/diff.html",
