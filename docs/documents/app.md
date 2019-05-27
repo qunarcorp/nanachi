@@ -197,3 +197,8 @@ export default App(new Global());
 其他配置项统一放在config对象中，详细配置列表参见[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE)
 
 ![nanachi](app.jpg)
+
+
+
+
+

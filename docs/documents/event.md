@@ -18,6 +18,10 @@ nanachi 为了大家方便，还是换回大家熟悉的风格，但不能冒泡
 <div onClick={this.clickHandle.bind(this, 111)} />
 ```
 
+```jsx
+<div onClick={this.clickHandle.bind(this, 111)} />
+```
+
 我们的转译器会扫描所有on/catch开头的属性， 进行事件绑定，因此如果你直接用bindTap、bindChange的方式来编写，会导致错误。
 
 ```javascript
