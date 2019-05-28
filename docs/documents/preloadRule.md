@@ -42,16 +42,16 @@
   "preloadRule": {
     "pages/index": { //首页
       "network": "all",
-      "packages": ["flight", "train","hotel"] //一级分包
+      "packages": ["flight", "train","hotel"] //一级分包或随机加载一级分包
     },
     "flight/index": { 
-      "packages": ["strategy","boat", "taxi"] //二级分包
+      "packages": ["strategy","boat", "taxi"] //二级分包或随机加载二级分包
     },
     "train/index": {
-      "packages":  ["strategy","boat", "taxi"] //二级分包
+      "packages":  ["strategy","boat", "taxi"] //二级分包或随机加载二级分包
     },
     "hotel/index": {
-      "packages":  ["strategy","boat", "taxi"] //二级分包
+      "packages":  ["strategy","boat", "taxi"] //二级分包或随机加载二级分包
     },
      "strategy/index": {
       "packages":  [ "boat", "taxi"] //二级分包中除自己的包
