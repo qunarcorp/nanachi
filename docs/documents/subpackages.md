@@ -166,7 +166,7 @@ packageA 无法使用 packageB 的资源，但可以使用 app、自己 package 
 主包会包含所有source/components中的所有组件， 为了减少主包的大小， 某些频道涉及的页面与组全应该放在pages下的某一目录下。详见[这里](./publish.md)
 
 
-![xxx](./subpackages.jpg)
+![subpackages](./subpackages.jpg)
 
 > 快应用分包体积过大时的警告
 

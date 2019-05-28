@@ -14,7 +14,6 @@
 - [按平台打包代码或样式](import_js.md)
 - [据平台设置tabBar](tabBar.md)
 - [智能 webview 化](webview.md)
-- [分包加载](subpackages.md)
 - [自定义项目配置](customConfig.md)
 - [拆库开发](chaika.md)
 - [别名配置](alias.md)
@@ -28,6 +27,9 @@
 - [px尺寸计算](size.md)
 - [事件系统](event.md)
 - [包大小限制](rpksize.md)
+- [分包加载](subpackages.md)
+- [分包预加载](preloadRule.md)
+
 
 - [快应用相关](.)
 

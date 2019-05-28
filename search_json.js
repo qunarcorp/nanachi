@@ -300,43 +300,6 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "分包加载",
-      "content": "某些情况下，开发者需要将小程序划分成不同的子包，在构建时打包成不同的分包，用户在使用时按需进行加载。此功能已经被各种小程序支持了，这个能有效提升我们打开小程序的速度。",
-      "url": "/documents/subpackages.html",
-      "children": [
-        {
-          "title": "小程序使用",
-          "url": "/documents/subpackages.html#小程序使用",
-          "content": "小程序使用微信上，在source/app.js目录下建立一个wxConfig.json或 buConfig.json...假设我们的目录结构是这样：src   |--components\n   |    |--HotelDialog     // 这里的组件会全部打入主包中\n   |    |--HotelUm\n   |    |--Flight2\n   |    └── ...\n   |--pages\n   |    |--hotel\n   |    |   └── components\n   |    |         |--HotelXX1     // 这里的组件会打到hotel分包中\n   |    |         |--HotelXX2\n   |    |         |--HotelXX3\n   |    |         └── ...\n   |    |--flight\n   |    |   └── components\n   |    |         |--FlightXX1     // 这里的组件会打到flight分包中\n   |    |         |--FlightXX2\n   |    |         |--FlightXX3\n   |    |         └── ...\n   |    |--holiday\n   |    |--strategy\n   |    └──platform\n   |         |--index\n   |         |--page1\n   |         └── ...\n   |--assets \n   |    |--style\n   |--common\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └──platform\n   |--app.js\n   |--wxConfig.json\n   |--qqConfig.json\n   |--quickConfig.json\n   |--aliConfig.json\n   |--buConfig.json\n我们将pages/platform目录当成主包，那应该包含首页，tabBar list里面指向几个页面， 收银台，订单中心，会员中心，卡包等重要功能。主包也会包含src下面的components， common，assets 的所有功能。而其他子包， 则只能在pages的直接目录，hotel，ticket， holiday，strategy各自成包。wxConfig.json中的subpackages数组只用定义这几个目录就行了。{    \"subpackages\": [\n        {\n            \"name\": \"hotel\",\n            \"resource\": \"pages/hotel\"\n        },\n        {\n            \"name\": \"ticket\",\n            \"resource\": \"pages/ticket\"\n        },\n        {\n            \"name\": \"train\",\n            \"resource\": \"pages/train\"\n        },\n        {\n            \"name\": \"vacation\",\n            \"resource\": \"pages/vacation\"\n        }\n    ]\n}\n会自动翻译成下面的内容放到app.json中{     \"subpackages\": [ //百度下会编译为subPackages\n    {\n      \"root\": \"pages/hotel\",\n      \"name\": \"hotel\",\n      \"pages\": [\"index\",\"page1\",\"page2\",\"page3\",\"page4\"]\n    },\n    {\n      \"root\": \"pages/ticket\",\n      \"name\": \"ticket\",\n      \"pages\": [\"index\",\"list\",\"coupon/coupon\", \"detail\" ]\n    },\n    {\n      \"root\": \"pages/train\",\n      \"name\": \"train\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n    {\n      \"root\": \"pages/vacation\",\n      \"name\": \"vacation\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n  ]\n}\nsubpackages 中，每个分包的配置有以下几项：\n\n字段\n类型\n说明\n\n\n\n\nroot\nString\n分包根目录\n\n\nname\nString\n分包别名，分包预下载时可以使用\n\n\npages\nStringArray\n分包页面路径，相对与分包根目录\n\n\nindependent\nBoolean\n分包是否是独立分包\n\n\n"
-        },
-        {
-          "title": "快应用的分包加载",
-          "url": "/documents/subpackages.html#快应用的分包加载",
-          "content": "快应用的分包加载在app.js同一目录下，建一个quickConfig.json。里面内部为{    \"subpackages\": [\n        {\n            \"name\": \"hotel\",\n            \"resource\": \"pages/hotel\"\n        },\n        {\n            \"name\": \"ticket\",\n            \"resource\": \"pages/ticket\"\n        },\n        {\n            \"name\": \"train\",\n            \"resource\": \"pages/train\"\n        },\n        {\n            \"name\": \"vacation\",\n            \"resource\": \"pages/vacation\"\n        }\n    ]\n}\n它们会自动加入manifest.json中没错，我们的wxConfig.json, buConfig.json, quickConfig.json里面的分包配置就是根据快应用的设计过来的，然后我们再转译成各个平台要求的样式。\n"
-        },
-        {
-          "title": "打包原则",
-          "url": "/documents/subpackages.html#打包原则",
-          "content": "打包原则声明 subpackages 后，将按 subpackages 配置路径进行打包，subpackages 配置路径外的目录将被打包到 app（主包） 中app（主包）也可以有自己的 pages（即最外层的 pages 字段）\nsubpackage 的根目录不能是另外一个 subpackage 内的子目录\ntabBar 页面必须在 app（主包）内"
-        },
-        {
-          "title": "引用原则",
-          "url": "/documents/subpackages.html#引用原则",
-          "content": "引用原则packageA 无法 require packageB JS 文件，但可以 require app、自己 package 内的 JS 文件packageA 无法 import packageB 的 template，但可以 require app、自己 package 内的 template\npackageA 无法使用 packageB 的资源，但可以使用 app、自己 package 内的资源\n主包会包含所有source/components中的所有组件， 为了减少主包的大小， 某些频道涉及的页面与组全应该放在pages下的某一目录下。详见这里快应用分包体积过大时的警告\n"
-        },
-        {
-          "title": "坑",
-          "url": "/documents/subpackages.html#坑",
-          "content": "坑小程序的打包机制仅仅是根据文件目录打包，分包内require/import的任何文件，只要不在同一个目录下面，都不会被打进分包，也就是说，类库及一些公共文件，只能放在主包里面，如果主包分包划分不好的话，主包的大小也很难降下来安卓系统进入分包页面时，会出现一个丑陋的系统级的loading层，这一定程度上影响了安卓的体验"
-        },
-        {
-          "title": "低版本兼容",
-          "url": "/documents/subpackages.html#低版本兼容",
-          "content": "低版本兼容由微信后台编译来处理旧版本客户端的兼容，后台会编译两份代码包，一份是分包后代码，另外一份是整包的兼容代码。 新客户端用分包，老客户端还是用的整包，完整包会把各个 subpackage 里面的路径放到 pages 中。目前 字节跳动小程序不支持分包"
-        }
-      ]
-    },
-    {
       "title": "自定义项目配置",
       "content": "用户可以自定义项目配置需要在项目根目录里新建类似quickConfig.json,wxConfig这样独立的配置文件。├── package.json├── quickConfig.json\n└── source\n比如 quickConfig.json，需要指定快应用引擎，微信支付，分包配置文件内容参照快应用 manifest.json 配置文档。{    \"package\": \"com.qunar.quick\",\n    \"name\": \"去哪儿旅行\",\n    \"versionName\": \"3.0.7\",\n    \"versionCode\": 57,\n    \"minPlatformVersion\": 1030,\n    \"icon\": \"/assets/image/qlog.png\",\n    \"features\": [\n        {\n            \"name\": \"service.wxpay\",\n            \"params\": {\n                \"url\": \"https://xxx.yyy.com/touch/wechatTransition\"\n            }\n        }\n    ],\n    \"subpackages\": [\n        {\n            \"name\": \"hotel\",\n            \"resource\": \"pages/hotel\"\n        },\n        {\n            \"name\": \"ticket\",\n            \"resource\": \"pages/ticket\"\n        },\n        {\n            \"name\": \"train\",\n            \"resource\": \"pages/train\"\n        },\n        {\n            \"name\": \"vacation\",\n            \"resource\": \"pages/vacation\"\n        }\n    ]\n}\n又如 wxConfig.json需要处理权限参见https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html{    \"permission\": {\n    \"scope.userLocation\": {\n      \"desc\": \"你的位置信息将用于小程序位置接口的效果展示\"\n    }\n  }\n}\n",
       "url": "/documents/customConfig.html",
@@ -482,7 +445,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "支付宝小程序的大小查看",
           "url": "/documents/rpksize.html#支付宝小程序的大小查看",
-          "content": "支付宝小程序的大小查看https://docs.alipay.com/mini/framework/subpackages降级的整包产物大小限制为 4M，每个分包的大小限制为 2M体积检测下面是旧的内容（可能已经无效）–单个资源：页面单个资源控制在50k以下，最大不超过100k–页面总大小：页面完全加载前，资源累计必须小于200K\n–离线包：amr压缩包总大小小于2M\n–网络总请求数——页面完全加载前，请求总数必须小于20个离线包的文件大小就是你项目的压缩包大小。C:\\Users\\计算机用户名\\AppData\\Local\\Temp.alipay-tiny\\项目名\\pack-production\\dist.amr 上传小程序包的大小可以在beta版IDE右上角“详情”中查看“上次上传”的文件大"
+          "content": "支付宝小程序的大小查看https://docs.alipay.com/mini/framework/subpackages降级的整包产物大小限制为 4M，每个分包的大小限制为 2M体积检测"
         },
         {
           "title": "百度智能小程序",
@@ -505,6 +468,49 @@ window.ydoc_plugin_search_json = {
           "content": "字节跳动小程序的大小查看代码不能超过4M，不支持分包开发完成后可从开发者工具中点击发布上传代码包， 上传失败或上传完输出大小"
         }
       ]
+    },
+    {
+      "title": "分包加载",
+      "content": "某些情况下，开发者需要将小程序划分成不同的子包，在构建时打包成不同的分包，用户在使用时按需进行加载。此功能已经被各种小程序支持了，这个能有效提升我们打开小程序的速度。",
+      "url": "/documents/subpackages.html",
+      "children": [
+        {
+          "title": "小程序使用",
+          "url": "/documents/subpackages.html#小程序使用",
+          "content": "小程序使用微信上，在source/app.js目录下建立一个wxConfig.json或 buConfig.json...假设我们的目录结构是这样：src   |--components\n   |    |--HotelDialog     // 这里的组件会全部打入主包中\n   |    |--HotelUm\n   |    |--Flight2\n   |    └── ...\n   |--pages\n   |    |--hotel\n   |    |   └── components\n   |    |         |--HotelXX1     // 这里的组件会打到hotel分包中\n   |    |         |--HotelXX2\n   |    |         |--HotelXX3\n   |    |         └── ...\n   |    |--flight\n   |    |   └── components\n   |    |         |--FlightXX1     // 这里的组件会打到flight分包中\n   |    |         |--FlightXX2\n   |    |         |--FlightXX3\n   |    |         └── ...\n   |    |--holiday\n   |    |--strategy\n   |    └──platform\n   |         |--index\n   |         |--page1\n   |         └── ...\n   |--assets \n   |    |--style\n   |--common\n   |    |--hotel\n   |    |--flight\n   |    |--holiday\n   |    |--strategy\n   |    └──platform\n   |--app.js\n   |--wxConfig.json\n   |--qqConfig.json\n   |--quickConfig.json\n   |--aliConfig.json\n   |--buConfig.json\n我们将pages/platform目录当成主包，那应该包含首页，tabBar list里面指向几个页面， 收银台，订单中心，会员中心，卡包等重要功能。主包也会包含src下面的components， common，assets 的所有功能。而其他子包， 则只能在pages的直接目录，hotel，ticket， holiday，strategy各自成包。wxConfig.json中的subpackages数组只用定义这几个目录就行了。{    \"subpackages\": [\n        {\n            \"name\": \"hotel\",\n            \"resource\": \"pages/hotel\"\n        },\n        {\n            \"name\": \"ticket\",\n            \"resource\": \"pages/ticket\"\n        },\n        {\n            \"name\": \"train\",\n            \"resource\": \"pages/train\"\n        },\n        {\n            \"name\": \"vacation\",\n            \"resource\": \"pages/vacation\"\n        }\n    ]\n}\n会自动翻译成下面的内容放到app.json中{     \"subpackages\": [ //百度下会编译为subPackages\n    {\n      \"root\": \"pages/hotel\",\n      \"name\": \"hotel\",\n      \"pages\": [\"index\",\"page1\",\"page2\",\"page3\",\"page4\"]\n    },\n    {\n      \"root\": \"pages/ticket\",\n      \"name\": \"ticket\",\n      \"pages\": [\"index\",\"list\",\"coupon/coupon\", \"detail\" ]\n    },\n    {\n      \"root\": \"pages/train\",\n      \"name\": \"train\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n    {\n      \"root\": \"pages/vacation\",\n      \"name\": \"vacation\",\n      \"pages\": [\"index\",\"aaa\",\"bbb\",\"ccc\"]\n    },\n  ]\n}\nsubpackages 中，每个分包的配置有以下几项：\n\n字段\n类型\n说明\n\n\n\n\nroot\nString\n分包根目录\n\n\nname\nString\n分包别名，分包预下载时可以使用\n\n\npages\nStringArray\n分包页面路径，相对与分包根目录\n\n\nindependent\nBoolean\n分包是否是独立分包\n\n\n"
+        },
+        {
+          "title": "快应用的分包加载",
+          "url": "/documents/subpackages.html#快应用的分包加载",
+          "content": "快应用的分包加载在app.js同一目录下，建一个quickConfig.json。里面内部为{    \"subpackages\": [\n        {\n            \"name\": \"hotel\",\n            \"resource\": \"pages/hotel\"\n        },\n        {\n            \"name\": \"ticket\",\n            \"resource\": \"pages/ticket\"\n        },\n        {\n            \"name\": \"train\",\n            \"resource\": \"pages/train\"\n        },\n        {\n            \"name\": \"vacation\",\n            \"resource\": \"pages/vacation\"\n        }\n    ]\n}\n它们会自动加入manifest.json中没错，我们的wxConfig.json, buConfig.json, quickConfig.json里面的分包配置就是根据快应用的设计过来的，然后我们再转译成各个平台要求的样式。\n"
+        },
+        {
+          "title": "打包原则",
+          "url": "/documents/subpackages.html#打包原则",
+          "content": "打包原则声明 subpackages 后，将按 subpackages 配置路径进行打包，subpackages 配置路径外的目录将被打包到 app（主包） 中app（主包）也可以有自己的 pages（即最外层的 pages 字段）\nsubpackage 的根目录不能是另外一个 subpackage 内的子目录\ntabBar 页面必须在 app（主包）内"
+        },
+        {
+          "title": "引用原则",
+          "url": "/documents/subpackages.html#引用原则",
+          "content": "引用原则packageA 无法 require packageB JS 文件，但可以 require app、自己 package 内的 JS 文件packageA 无法 import packageB 的 template，但可以 require app、自己 package 内的 template\npackageA 无法使用 packageB 的资源，但可以使用 app、自己 package 内的资源\n主包会包含所有source/components中的所有组件， 为了减少主包的大小， 某些频道涉及的页面与组全应该放在pages下的某一目录下。详见这里快应用分包体积过大时的警告\n"
+        },
+        {
+          "title": "坑",
+          "url": "/documents/subpackages.html#坑",
+          "content": "坑小程序的打包机制仅仅是根据文件目录打包，分包内require/import的任何文件，只要不在同一个目录下面，都不会被打进分包，也就是说，类库及一些公共文件，只能放在主包里面，如果主包分包划分不好的话，主包的大小也很难降下来安卓系统进入分包页面时，会出现一个丑陋的系统级的loading层，这一定程度上影响了安卓的体验"
+        },
+        {
+          "title": "低版本兼容",
+          "url": "/documents/subpackages.html#低版本兼容",
+          "content": "低版本兼容由微信后台编译来处理旧版本客户端的兼容，后台会编译两份代码包，一份是分包后代码，另外一份是整包的兼容代码。 新客户端用分包，老客户端还是用的整包，完整包会把各个 subpackage 里面的路径放到 pages 中。目前 字节跳动小程序不支持分包"
+        }
+      ]
+    },
+    {
+      "title": "分包预加载",
+      "content": "开发者可以通过配置，在进入小程序某个页面时，由框架自动预下载可能需要的分包，提升进入后续分包页面时的启动速度。对于独立分包，也可以预下载主包。分包预加载有只支持通过配置方式使用，暂不支持通过调用API完成。vConsole 里有preloadSubpackages开头的日志信息，可以用来验证预下载的情况。\n{  \"pages\": [\"pages/index\"],\n  \"subpackages\": [\n    {\n      \"root\": \"flight\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"root\": \"train\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"name\": \"hotel\",\n      \"root\": \"index\",\n      \"pages\": [\"index\"]\n    },\n    {\n      \"root\": \"strategy\",\n      \"pages\": [\"index\"]\n    },\n     {\n      \"root\": \"boat\",\n      \"pages\": [\"index\"]\n     },\n      {\n      \"root\": \"taxi\",\n      \"pages\": [\"index\"]\n     },\n  ],\n  \"preloadRule\": {\n    \"pages/index\": { //首页\n      \"network\": \"all\",\n      \"packages\": [\"flight\", \"train\",\"hotel\"] //一级分包\n    },\n    \"flight/index\": { \n      \"packages\": [\"strategy\",\"boat\", \"taxi\"] //二级分包\n    },\n    \"train/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包\n    },\n    \"hotel/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包\n    },\n     \"strategy/index\": {\n      \"packages\":  [ \"boat\", \"taxi\"] //二级分包中除自己的包\n    },\n     \"boat/index\": {\n      \"packages\":  [\"strategy\", \"taxi\"] //二级分包中除自己的包\n    },\n     \"taxi/index\": {\n      \"packages\":  [\"strategy\", \"boat\"] //二级分包中除自己的包\n    }\n  }\n}\npreloadRule 中，key 是页面路径，value 是进入此页面的预下载配置，每个配置有以下几项：\n\n字段\n类型\n必填\n默认值\n说明\n\n\n\n\npackages\nStringArray\n是\n无\n进入页面后预下载分包的 root 或 name。APP 表示主包。\n\n\nnetwork\nString\n否\nwifi\n在指定网络下预下载，可选值为：\n\n\nall: 不限网络wifi: 仅wifi下预下载",
+      "url": "/documents/preloadRule.html",
+      "children": []
     },
     {
       "title": "快应用的scroll-view兼容",
