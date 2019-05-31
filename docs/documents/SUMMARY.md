@@ -21,7 +21,7 @@
 - [vscode插件](vscode.md)
 - [日志收集与上传](report.md)
 - [npm支持](npm.md)
-- [微信插件支持](npm.md)
+- [微信插件支持](wxplugin.md)
 - [iconfont 支持](iconfont.md)
 - [async/await 支持](async.md)
 - [Sass、Less、PostCSS支持](lesssass.md)
