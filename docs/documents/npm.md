@@ -12,4 +12,7 @@ dist/npm/
     └── index.js
 ```
 
+> 微信小程序或快应用的JS环境 与浏览器的JS环境是不一样，不支持许多全局方法，比如fetch, requestAnimationFrame, location, 因此需要自行检测一下
+第三方库的可用性。
+
 

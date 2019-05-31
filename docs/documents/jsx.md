@@ -135,7 +135,10 @@ const Component = props =>
 
 ```jsx
 <div>{this.state.getOrderList()}</div>
+<input value={this.state.value.trim()}>
+
 ```
+
 
 ## 事件绑定的使用
 

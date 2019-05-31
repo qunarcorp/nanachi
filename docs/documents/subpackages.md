@@ -78,7 +78,19 @@ subpackages数组只用定义这几个目录就行了。
             "name": "vacation",
             "resource": "pages/vacation"
         }
-    ]
+    ],
+    "preloadRule": {
+        "pages/platform/index": {
+          "network": "all",
+          "packages": ["hotel", "ticket"]
+        },
+        "hotel/index": {
+          "packages": ["train"]
+        },
+        "ticket/index": {
+            "packages": ["vacation"]
+        }
+    }
 }
 ```
 会自动翻译成下面的内容放到app.json中

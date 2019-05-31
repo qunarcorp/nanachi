@@ -11,7 +11,7 @@
 `../../../assets/global.scss` 地引用它。可以定义一个@assets别名，指向assets目录。
 由于当前执行命令在xxx目录下，assets又在source里，于是其路径为 `source/assets`
 
-所有向上跨级的路径都强烈要求使用别名机制, 它们应该都以source/assets, source/pages开头
+所有向上跨级的路径（出现`../开头的路径`）都强烈要求使用别名机制, 它们应该都以source/assets, source/pages开头
 
 默认已经存在 
 - @react（视平台它会替换为ReactWX,ReaxtAli, ReactQuick, ReactBu）,
