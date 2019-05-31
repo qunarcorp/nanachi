@@ -11,7 +11,9 @@
 
 ```json
 {
-  "pages": ["pages/index"],
+  "pages": ["pages/platform/index/index",
+       "pages/platform/pay/index",
+       "pages/platform/about/index"],
   "subpackages": [
     {
       "root": "flight",
@@ -40,30 +42,51 @@
      },
   ],
   "preloadRule": {
-    "pages/index": { //首页
+    "pages/platform/index/index": { //首页
       "network": "all",
       "packages": ["flight", "train","hotel"] //一级分包或随机加载一级分包
     },
-    "flight/index": { 
+    "flight/index/index": { 
       "packages": ["strategy","boat", "taxi"] //二级分包或随机加载二级分包
     },
-    "train/index": {
+    "train/index/index": {
       "packages":  ["strategy","boat", "taxi"] //二级分包或随机加载二级分包
     },
-    "hotel/index": {
+    "hotel/index/index": {
       "packages":  ["strategy","boat", "taxi"] //二级分包或随机加载二级分包
     },
-     "strategy/index": {
+     "strategy/index/index": {
       "packages":  [ "boat", "taxi"] //二级分包中除自己的包
     },
-     "boat/index": {
+     "boat/index/index": {
       "packages":  ["strategy", "taxi"] //二级分包中除自己的包
     },
-     "taxi/index": {
+     "taxi/index/index": {
       "packages":  ["strategy", "boat"] //二级分包中除自己的包
     }
   }
 }
+```
+
+preloadRule中，主包的首页要加载其他包，其key要以pages开始，以首页的.js文件结束；
+其他分包则以包名开始，以它们的首页的.js文件结束
+
+```shell
+
+|--pages
+     |--platform //这里我们将platform当作主包
+     |   |--index //index目录总是对应某个业务线的主页
+     |   |    └──index.js //当前频道的首页, 最好统一叫index
+     |   |--about
+     |   |    |---index.js
+     |   |    └── index.scss
+     |   └──pay
+     |        |---index.js
+     |        └── index.scss
+     |--train 
+     |--hotel  
+     |--taxi  
+
 ```
 
 preloadRule 中，key 是页面路径，value 是进入此页面的预下载配置，每个配置有以下几项：
