@@ -88,6 +88,8 @@ preloadRule中，主包的首页要加载其他包，其key要以pages开始，�
      |--taxi  
 
 ```
+![preload](./preload.jpg)
+
 
 preloadRule 中，key 是页面路径，value 是进入此页面的预下载配置，每个配置有以下几项：
 
