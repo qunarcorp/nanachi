@@ -22,6 +22,11 @@ class Animal extends React.Component { //组件名必须大写开头，与目录
     name: 'animal'
   };
 
+  static options = {
+    styleIsolation:"apply-shared" //微信，QQ support
+    addGlobalClass: true, //微信，QQ，百度 support
+  };
+
   changeAge() {
     this.setState({
       age: ~~(Math.random() * 10)
@@ -52,6 +57,12 @@ class Animal extends React.Component { //组件名必须大写开头，与目录
 
 export default Animal;
 ```
+
+options.styleIsolation 被微信，QQ这几个小程序所支持。
+
+- isolated 表示启用样式隔离，在自定义组件内外，使用 class 指定的样式将不会相互影响（一般情况下的默认值）；
+- apply-shared 表示页面 wxss 样式将影响到自定义组件，但自定义组件 wxss 中指定的样式不会影响页面；
+- shared 表示页面 wxss 样式将影响到自定义组件，自定义组件 wxss 中指定的样式也会影响页面和其他设置了 apply-shared 或 shared 的自定义组件。（这个选项在插件中不可用。）
 
 由于目录可能比较深，因此 nanachi 比较贴心地提供了两个默认的别名，`@react` 与 `@components`, `@react` 指向专门为小程序优化的 React, `@components` 指向开发目录下的 `components` 目录。
 

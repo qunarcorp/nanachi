@@ -22,6 +22,11 @@
     name<span class="token punctuation">:</span> <span class="token string">'animal'</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
+  <span class="token keyword">static</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+    styleIsolation<span class="token punctuation">:</span><span class="token string">"apply-shared"</span> <span class="token comment">//微信，QQ support</span>
+    addGlobalClass<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">//微信，QQ，百度 support</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
   <span class="token function">changeAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       age<span class="token punctuation">:</span> <span class="token operator">~</span><span class="token operator">~</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span>
@@ -52,6 +57,12 @@
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> Animal<span class="token punctuation">;</span>
 </code></pre>
+<p>options.styleIsolation 被微信，QQ这几个小程序所支持。</p>
+<ul>
+<li>isolated 表示启用样式隔离，在自定义组件内外，使用 class 指定的样式将不会相互影响（一般情况下的默认值）；</li>
+<li>apply-shared 表示页面 wxss 样式将影响到自定义组件，但自定义组件 wxss 中指定的样式不会影响页面；</li>
+<li>shared 表示页面 wxss 样式将影响到自定义组件，自定义组件 wxss 中指定的样式也会影响页面和其他设置了 apply-shared 或 shared 的自定义组件。（这个选项在插件中不可用。）</li>
+</ul>
 <p>由于目录可能比较深，因此 nanachi 比较贴心地提供了两个默认的别名，<code>@react</code> 与 <code>@components</code>, <code>@react</code> 指向专门为小程序优化的 React, <code>@components</code> 指向开发目录下的 <code>components</code> 目录。</p>
 <p>JSX 只能出现在 <code>render()</code> 方法或无状态组件的函数体中。</p>
 <p>JSX 的所有填充数据必须带 <code>this.props</code>, <code>this.state</code>, <code>this.context</code> 前缀。</p>
