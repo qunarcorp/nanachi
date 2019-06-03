@@ -67,7 +67,66 @@
   }
 }
 ```
+比较新的版本，preloadRule的分包可以支持以包名开头，即
 
+```json
+{
+  "pages": ["pages/platform/index/index",
+       "pages/platform/pay/index",
+       "pages/platform/about/index"],
+  "subpackages": [
+    {
+      "root": "flight",
+      "pages": ["index"],
+    },
+    {
+      "root": "train",
+      "pages": ["index"],
+    },
+    {
+      "name": "hotel",
+      "root": "index",
+      "pages": ["index"]
+    },
+    {
+      "root": "strategy",
+      "pages": ["index"]
+    },
+     {
+      "root": "boat",
+      "pages": ["index"]
+     },
+      {
+      "root": "taxi",
+      "pages": ["index"]
+     },
+  ],
+  "preloadRule": {
+    "pages/platform/index/index": { //首页
+      "network": "all",
+      "packages": ["flight", "train","hotel"] //一级分包或随机加载一级分包
+    },
+    "flight/index/index": { 
+      "packages": ["strategy","boat", "taxi"] //二级分包或随机加载二级分包
+    },
+    "train/index/index": {
+      "packages":  ["strategy","boat", "taxi"] //二级分包或随机加载二级分包
+    },
+    "hotel/index/index": {
+      "packages":  ["strategy","boat", "taxi"] //二级分包或随机加载二级分包
+    },
+     "strategy/index/index": {
+      "packages":  [ "boat", "taxi"] //二级分包中除自己的包
+    },
+     "boat/index/index": {
+      "packages":  ["strategy", "taxi"] //二级分包中除自己的包
+    },
+    "taxi/index/index": {
+      "packages":  ["strategy", "boat"] //二级分包中除自己的包
+    }
+  }
+}
+```
 
 ```shell
 
