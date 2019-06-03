@@ -32,9 +32,13 @@ plugin:{
 
 后面的值的计算公式为 `plugin://${pluginName}/{tagName}`
 
+
+
 ```html
 <div>
 { this.state.ANU_ENV == 'wx'  && 
   <div style="margin: 4px 0px"><share-button product={this.state.product} /></div> }
 </div>
 ```
+
+> 微信小程序的插件需要在后台中配置使用，可以用`wx799d4d93a341b368` 这个appid进行测试

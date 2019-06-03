@@ -30,8 +30,7 @@
 - [事件系统](event.md)
 - [包大小限制](rpksize.md)
 - [分包加载](subpackages.md)
-- [分包预加载](preloadRule.md)
-
+- [分包预加载](preload.md)
 
 - [快应用相关](.)
 
