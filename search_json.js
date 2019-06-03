@@ -1505,6 +1505,11 @@ window.ydoc_plugin_search_json = {
           "content": "快应用（需要使用安卓手机 扫码打开）"
         },
         {
+          "title": "QQ小程序（需要使用安卓QQ 扫码打开）",
+          "url": "/documents/logo.html#qq小程序（需要使用安卓qq-扫码打开）",
+          "content": "QQ小程序（需要使用安卓QQ 扫码打开）"
+        },
+        {
           "title": "补丁组件快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
           "url": "/documents/logo.html#补丁组件快应用-demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）",
           "content": "补丁组件快应用 Demo（需要先扫码下载，然后在快应用调试器里选择本地安装打开）"
