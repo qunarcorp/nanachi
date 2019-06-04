@@ -129,9 +129,19 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "使用JSX的注意事项",
-      "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。你不需要管支付宝小程序支持了哪些标签，快应用支持了哪些标签，你就默认为所有平台都用微信小程序的那一套标签，我们会通过\n补丁组件等方式抹平各种小程序的差异。\n如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关for循环，多重循环， if分支, 组件套组件 等用法，可以脚手架的 qunar 示例为了兼容所有平台，我们定下这些规则原来打算使用view标签的地方，请使用div,h1这些块状元素代替。\n文本必须包含在text, span, a, option, label这几种标签内\ntext标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签\njsx中不能出现 声明变量语句，不能出现switch语句\njsx中除了onClick这些事件外， 不能出现除map方法外的方法调用\n不要在标签内部使用纯空白或通过两边的空白撑开空间，即  111 111xxx应该改成xxx，因为在快应用下span只能出现在text标签下，不能放在div下面。\n错误的用法\n  我是文本\n\n正确的用法   我是文本\n   我是文本\n\n",
+      "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。你不需要管支付宝小程序支持了哪些标签，快应用支持了哪些标签，你就默认为所有平台都用微信小程序的那一套标签，我们会通过\n补丁组件等方式抹平各种小程序的差异。\n如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关for循环，多重循环， if分支, 组件套组件 等用法，可以脚手架的 qunar 示例为了兼容所有平台，我们定下这些规则原来打算使用view标签的地方，请使用div,h1这些块状元素代替。\n文本必须包含在text, span, a, option, label这几种标签内\ntext标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签\njsx中不能出现 声明变量语句，不能出现switch语句\njsx中除了onClick这些事件外， 不能出现除map方法外的方法调用\n不要在标签内部使用纯空白或通过两边的空白撑开空间，即  111 111xxx应该改成xxx，因为在快应用下span只能出现在text标签下，不能放在div下面。\n",
       "url": "/documents/jsx.html",
       "children": [
+        {
+          "title": "循环中key的定义",
+          "url": "/documents/jsx.html#循环中key的定义",
+          "content": "循环中key的定义在react中为了提高性能，会用key复用已有节点。但微信小程序的实现不太清楚，它对于要循环的元素都不一样的情况下，使用*this值，但显然这不是符合react的使用方式。因此我们建议，如果元素是一个对象，那么你就这样使用 (title为一个字符串或\n数值字段，都不一样)，否则就不要定义key    {this.state.toolData.map(function(item) {\n        return (\n            \n                \n                {item.title}\n            \n        );\n    })}\n\n\n转译成    \n        \n            {{item.title}}\n    \n\n"
+        },
+        {
+          "title": "文本的使用",
+          "url": "/documents/jsx.html#文本的使用",
+          "content": "文本的使用在要兼容快应用的情况，文本不能直接放在块状元素之下。错误的用法  我是文本\n\n正确的用法   我是文本\n   我是文本\n\n"
+        },
         {
           "title": "数据填充的使用",
           "url": "/documents/jsx.html#数据填充的使用",

@@ -21,6 +21,41 @@
 5. jsx中除了onClick这些事件外， 不能出现除map方法外的方法调用
 6. 不要在标签内部使用纯空白或通过两边的空白撑开空间，即`<div>  </div`与`<div>  111  </div`,它们会变成 `<div></div`与`<div>111</div`
 7. 如果要支持快应用，类似`<div><span>xxx</span></div>`应该改成`<div><text>xxx</text></div>`，因为在快应用下span只能出现在text标签下，不能放在div下面。
+
+
+## 循环中key的定义
+
+在react中为了提高性能，会用key复用已有节点。但微信小程序的实现不太清楚，它对于要循环的元素都不一样的情况下，使用*this值，
+但显然这不是符合react的使用方式。因此我们建议，如果元素是一个对象，那么你就这样使用`<div key={el.title}> </div>`(title为一个字符串或
+数值字段，都不一样)，否则就不要定义key
+
+```jsx
+<div class="tool-wrapper">
+    {this.state.toolData.map(function(item) {
+        return (
+            <div onTap={this.showTip} class="tool-item" key={item.title} >
+                <image class="image" src={item.url} />
+                <text class="text">{item.title}</text>
+            </div>
+        );
+    })}
+</div>
+
+```
+转译成
+```html
+<view class="tool-wrapper">
+    <block wx:for="{{state.toolData}}" wx:for-item="item" wx:for-index="i7391" wx:key="title">
+        <view bindtap="dispatchEvent" class="tool-item" data-tap-uid="{{'e204_31_' + i7391}}" data-beacon-uid="default">
+            <image class="image" src="{{item.url}}" /><text class="text">{{item.title}}</text></view>
+    </block>
+</view>
+```
+
+## 文本的使用
+
+在要兼容快应用的情况，文本不能直接放在块状元素之下。
+
 错误的用法
 
 ```jsx
@@ -38,6 +73,7 @@
 
 
 ## 数据填充的使用
+
 错误的用法
 ```jsx
 <div aaa={this.title}>{this.data.content}</div>
