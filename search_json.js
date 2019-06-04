@@ -360,7 +360,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "使用",
           "url": "/documents/wxplugin.html#使用",
-          "content": "使用在wxConfig.json添加{    \"plugins\": {\n        \"goodsSharePlugin\": {\n          \"version\": \"2.1.4\",\n          \"tagName\": \"share-button\",\n          \"provider\": \"wx56c8f077de74b07c\"\n        }\n     }\n}\n我们在内部就转换成一个对象plugin:{  \"share-button\": \"plugin://goodsSharePlugin/share-button\"\n}\n后面的值的计算公式为 plugin://${pluginName}/{tagName}{ this.state.ANU_ENV == 'wx'  && \n   }\n\n微信小程序的插件需要在后台中配置使用，可以用wx799d4d93a341b368 这个appid进行测试\n"
+          "content": "使用在wxConfig.json添加{    \"plugins\": {\n        \"goodsSharePlugin\": {\n          \"version\": \"2.1.4\",\n          \"name\": \"share-button\",\n          \"provider\": \"wx56c8f077de74b07c\"\n        }\n     }\n}\n我们在内部就转换成一个对象plugin:{  \"share-button\": \"plugin://goodsSharePlugin/share-button\"\n}\n后面的值的计算公式为 plugin://${pluginName}/{tagName}{ this.state.ANU_ENV == 'wx'  && \n   }\n\n微信小程序的插件需要在后台中配置使用，可以用wx799d4d93a341b368 这个appid进行测试\n"
         }
       ]
     },
@@ -417,19 +417,19 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
-      "title": "尺寸样式说明",
+      "title": "rpx &lt;--&gt;px互转",
       "content": "",
-      "url": "/documents/size.html",
+      "url": "/documents/units.html",
       "children": [
         {
           "title": "小程序中",
-          "url": "/documents/size.html#小程序中",
+          "url": "/documents/units.html#小程序中",
           "content": "小程序中小程序行内样式 会根据屏幕比例将 px 转换成rpx如果你希望部分 px 单位不被转换成 rpx ，最简单的做法就是在px单位中增加一个大写字母，例如 PX这样，则会被转换插件忽略。"
         },
         {
           "title": "快应用中",
-          "url": "/documents/size.html#快应用中",
-          "content": "快应用中在快应用中 如果用户书写的是 1px 则会转译成  2px, 如果用户写的是rpx 则会转译成 px"
+          "url": "/documents/units.html#快应用中",
+          "content": "快应用中如果用户书写的是 1px，  则会转译成  2px， 如果用户写的是rpx， 则会转译成 px 。"
         }
       ]
     },
@@ -458,36 +458,36 @@ window.ydoc_plugin_search_json = {
     {
       "title": "包大小限制",
       "content": "",
-      "url": "/documents/rpksize.html",
+      "url": "/documents/size.html",
       "children": [
         {
           "title": "微信小程序",
-          "url": "/documents/rpksize.html#微信小程序",
+          "url": "/documents/size.html#微信小程序",
           "content": "微信小程序整个小程序所有分包大小不能超过8M； 单个分包、主包大小不能超过2M开发完成后可从开发者工具中点击发布上传代码包， 上传失败或上传完输出大小"
         },
         {
           "title": "支付宝小程序的大小查看",
-          "url": "/documents/rpksize.html#支付宝小程序的大小查看",
+          "url": "/documents/size.html#支付宝小程序的大小查看",
           "content": "支付宝小程序的大小查看https://docs.alipay.com/mini/framework/subpackages降级的整包产物大小限制为 4M，每个分包的大小限制为 2M体积检测"
         },
         {
           "title": "百度智能小程序",
-          "url": "/documents/rpksize.html#百度智能小程序",
+          "url": "/documents/size.html#百度智能小程序",
           "content": "百度智能小程序整个小程序所有分包大小不超过 8M，单个分包/主包大小不能超过 2M。https://smartprogram.baidu.com/docs/develop/framework/subpackages/开发完成后可从开发者工具中点击发布上传代码包， 上传失败或上传完输出大小"
         },
         {
           "title": "QQ小程序",
-          "url": "/documents/rpksize.html#qq小程序",
+          "url": "/documents/size.html#qq小程序",
           "content": "QQ小程序整个小程序所有分包大小不能超过24M； 单个分包、主包大小不能超过2M开发完成后可从开发者工具中点击发布上传代码包， 上传失败或上传完输出大小"
         },
         {
           "title": "快应用的大小查看",
-          "url": "/documents/rpksize.html#快应用的大小查看",
+          "url": "/documents/size.html#快应用的大小查看",
           "content": "快应用的大小查看https://doc.quickapp.cn/framework/subpackage.html整个快应用的所有分包大小不超过 4M单个分包/基础包大小不能超过 1M如果项目中没有配置subpackages，那么打包最终仅生成rpk后缀的文件，称为整包，拥有全部的页面与资源(即没有启用分包功能)。如果项目中正确配置了subpackages，并且该版本的编译工具支持分包功能，那么打包最终会生成rpks后缀的文件，文件内部包含一个整包，以及所有的分包。分包文件后缀名为srpk。为了做到开发时兼容老版本调试平台，生成rpks文件的同时，也会生成rpk整包文件。快应用还有专门的发布命令npm run release\n查看rpk的大小"
         },
         {
           "title": "字节跳动小程序的大小查看",
-          "url": "/documents/rpksize.html#字节跳动小程序的大小查看",
+          "url": "/documents/size.html#字节跳动小程序的大小查看",
           "content": "字节跳动小程序的大小查看代码不能超过4M，不支持分包开发完成后可从开发者工具中点击发布上传代码包， 上传失败或上传完输出大小"
         }
       ]
@@ -531,7 +531,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "分包预加载",
-      "content": "开发者可以通过配置，在进入小程序某个页面时，由框架自动预下载可能需要的分包，提升进入后续分包页面时的启动速度。对于独立分包，也可以预下载主包。分包预加载有只支持通过配置方式使用，暂不支持通过调用API完成。vConsole 里有preloadSubpackages开头的日志信息，可以用来验证预下载的情况。\n{  \"pages\": [\"pages/platform/index/index\",\n       \"pages/platform/pay/index\",\n       \"pages/platform/about/index\"],\n  \"subpackages\": [\n    {\n      \"root\": \"flight\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"root\": \"train\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"name\": \"hotel\",\n      \"root\": \"index\",\n      \"pages\": [\"index\"]\n    },\n    {\n      \"root\": \"strategy\",\n      \"pages\": [\"index\"]\n    },\n     {\n      \"root\": \"boat\",\n      \"pages\": [\"index\"]\n     },\n      {\n      \"root\": \"taxi\",\n      \"pages\": [\"index\"]\n     },\n  ],\n  \"preloadRule\": {\n    \"pages/platform/index/index\": { //首页\n      \"network\": \"all\",\n      \"packages\": [\"flight\", \"train\",\"hotel\"] //一级分包或随机加载一级分包\n    },\n    \"pages/flight/index/index\": { \n      \"packages\": [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n    \"pages/train/index/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n    \"pages/hotel/index/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n     \"pages/strategy/index/index\": {\n      \"packages\":  [ \"boat\", \"taxi\"] //二级分包中除自己的包\n    },\n     \"pages/boat/index/index\": {\n      \"packages\":  [\"strategy\", \"taxi\"] //二级分包中除自己的包\n    },\n     \"pages/taxi/index/index\": {\n      \"packages\":  [\"strategy\", \"boat\"] //二级分包中除自己的包\n    }\n  }\n}\n比较新的支付宝，百度的开发者工具，preloadRule的分包可以简略成以包名开头，即{  \"pages\": [\"pages/platform/index/index\",\n       \"pages/platform/pay/index\",\n       \"pages/platform/about/index\"],\n  \"subpackages\": [\n    {\n      \"root\": \"flight\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"root\": \"train\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"name\": \"hotel\",\n      \"root\": \"index\",\n      \"pages\": [\"index\"]\n    },\n    {\n      \"root\": \"strategy\",\n      \"pages\": [\"index\"]\n    },\n     {\n      \"root\": \"boat\",\n      \"pages\": [\"index\"]\n     },\n      {\n      \"root\": \"taxi\",\n      \"pages\": [\"index\"]\n     },\n  ],\n  \"preloadRule\": {\n    \"pages/platform/index/index\": { //首页\n      \"network\": \"all\",\n      \"packages\": [\"flight\", \"train\",\"hotel\"] //一级分包或随机加载一级分包\n    },\n    \"flight/index/index\": { \n      \"packages\": [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n    \"train/index/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n    \"hotel/index/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n     \"strategy/index/index\": {\n      \"packages\":  [ \"boat\", \"taxi\"] //二级分包中除自己的包\n    },\n     \"boat/index/index\": {\n      \"packages\":  [\"strategy\", \"taxi\"] //二级分包中除自己的包\n    },\n    \"taxi/index/index\": {\n      \"packages\":  [\"strategy\", \"boat\"] //二级分包中除自己的包\n    }\n  }\n}\n|--pages\n     |--platform //这里我们将platform当作主包\n     |   |--index //index目录总是对应某个业务线的主页\n     |   |    └──index.js //当前频道的首页, 最好统一叫index\n     |   |--about\n     |   |    |---index.js\n     |   |    └── index.scss\n     |   └──pay\n     |        |---index.js\n     |        └── index.scss\n     |--train \n     |--hotel  \n     |--taxi  \n\npreloadRule 中，key 是页面路径，value 是进入此页面的预下载配置，每个配置有以下几项：\n\n字段\n类型\n必填\n默认值\n说明\n\n\n\n\npackages\nStringArray\n是\n无\n进入页面后预下载分包的 root 或 name。APP 表示主包。\n\n\nnetwork\nString\n否\nwifi\n在指定网络下预下载，可选值为：all: 不限网络 wifi: 仅wifi下预下载\n\n\n支付宝的分包与分包预加载都是支持得比较晚，支付宝客户端 10.1.60+ 或 小程序开发者工具 0.40+才开始支持。到2019.6.3，才升级到10.1.65，\n因此不建议对支付宝小程序进行分包。\n",
+      "content": "开发者可以通过配置，在进入小程序某个页面时，由框架自动预下载可能需要的分包，提升进入后续分包页面时的启动速度。对于独立分包，也可以预下载主包。分包预加载有只支持通过配置方式使用，暂不支持通过调用API完成。vConsole 里有preloadSubpackages开头的日志信息，可以用来验证预下载的情况。\n{  \"pages\": [\"pages/platform/index/index\",\n       \"pages/platform/pay/index\",\n       \"pages/platform/about/index\"],\n  \"subpackages\": [\n    {\n      \"root\": \"flight\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"root\": \"train\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"name\": \"hotel\",\n      \"root\": \"index\",\n      \"pages\": [\"index\"]\n    },\n    {\n      \"root\": \"strategy\",\n      \"pages\": [\"index\"]\n    },\n     {\n      \"root\": \"boat\",\n      \"pages\": [\"index\"]\n     },\n      {\n      \"root\": \"taxi\",\n      \"pages\": [\"index\"]\n     },\n  ],\n  \"preloadRule\": {\n    \"pages/platform/index/index\": { //首页\n      \"network\": \"all\",\n      \"packages\": [\"flight\", \"train\",\"hotel\"] //一级分包或随机加载一级分包\n    },\n    \"pages/flight/index/index\": { \n      \"packages\": [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n    \"pages/train/index/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n    \"pages/hotel/index/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n     \"pages/strategy/index/index\": {\n      \"packages\":  [ \"boat\", \"taxi\"] //二级分包中除自己的包\n    },\n     \"pages/boat/index/index\": {\n      \"packages\":  [\"strategy\", \"taxi\"] //二级分包中除自己的包\n    },\n     \"pages/taxi/index/index\": {\n      \"packages\":  [\"strategy\", \"boat\"] //二级分包中除自己的包\n    }\n  }\n}\n比较新的支付宝，百度的开发者工具，preloadRule的分包可以简略成以包名开头，即{  \"pages\": [\"pages/platform/index/index\",\n       \"pages/platform/pay/index\",\n       \"pages/platform/about/index\"],\n  \"subpackages\": [\n    {\n      \"root\": \"flight\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"root\": \"train\",\n      \"pages\": [\"index\"],\n    },\n    {\n      \"name\": \"hotel\",\n      \"root\": \"index\",\n      \"pages\": [\"index\"]\n    },\n    {\n      \"root\": \"strategy\",\n      \"pages\": [\"index\"]\n    },\n     {\n      \"root\": \"boat\",\n      \"pages\": [\"index\"]\n     },\n      {\n      \"root\": \"taxi\",\n      \"pages\": [\"index\"]\n     },\n  ],\n  \"preloadRule\": {\n    \"pages/platform/index/index\": { //首页\n      \"network\": \"all\",\n      \"packages\": [\"flight\", \"train\",\"hotel\"] //一级分包或随机加载一级分包\n    },\n    \"flight/index/index\": { \n      \"packages\": [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n    \"train/index/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n    \"hotel/index/index\": {\n      \"packages\":  [\"strategy\",\"boat\", \"taxi\"] //二级分包或随机加载二级分包\n    },\n     \"strategy/index/index\": {\n      \"packages\":  [ \"boat\", \"taxi\"] //二级分包中除自己的包\n    },\n     \"boat/index/index\": {\n      \"packages\":  [\"strategy\", \"taxi\"] //二级分包中除自己的包\n    },\n    \"taxi/index/index\": {\n      \"packages\":  [\"strategy\", \"boat\"] //二级分包中除自己的包\n    }\n  }\n}\n|--pages\n     |--platform //这里我们将platform当作主包\n     |   |--index //index目录总是对应某个业务线的主页\n     |   |    └──index.js //当前频道的首页, 最好统一叫index\n     |   |--about\n     |   |    |---index.js\n     |   |    └── index.scss\n     |   └──pay\n     |        |---index.js\n     |        └── index.scss\n     |--train \n     |--hotel  \n     |--taxi  \n\npreloadRule 中，key 是页面路径，value 是进入此页面的预下载配置，每个配置有以下几项：\n\n字段\n类型\n必填\n默认值\n说明\n\n\n\n\npackages\nStringArray\n是\n无\n进入页面后预下载分包的 root 或 name。APP 表示主包。\n\n\nnetwork\nString\n否\nwifi\n在指定网络下预下载，可选值为：all: 不限网络 wifi: 仅wifi下预下载\n\n\n支付宝的分包与分包预加载都是支持得比较晚，支付宝客户端 10.1.60+ 或 小程序开发者工具 0.40+才开始支持。到2019.6.3，才升级到10.1.65，\n因此不建议对支付宝小程序进行分包。\n大家可以建一个去哪儿模板来体验一下nanachi init aaa选中qunar\ncd aaa && npm i\nnanachi watch\n",
       "url": "/documents/preload.html",
       "children": []
     },

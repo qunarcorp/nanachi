@@ -26,9 +26,9 @@
 - [async/await 支持](async.md)
 - [Sass、Less、PostCSS支持](lesssass.md)
 - [内置 UI 库](patchComponent.md)
-- [px尺寸计算](size.md)
+- [rpx<-->px互转](units.md)
 - [事件系统](event.md)
-- [包大小限制](rpksize.md)
+- [包大小限制](size.md)
 - [分包加载](subpackages.md)
 - [分包预加载](preload.md)
 

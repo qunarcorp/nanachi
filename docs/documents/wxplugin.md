@@ -16,7 +16,7 @@ https://mp.weixin.qq.com/wxopen/plugindevdoc?appid=wx56c8f077de74b07c&token=1011
     "plugins": {
         "goodsSharePlugin": {
           "version": "2.1.4",
-          "tagName": "share-button",
+          "name": "share-button",
           "provider": "wx56c8f077de74b07c"
         }
      }
