@@ -1,4 +1,6 @@
-# 导航
+# 路由跳转
+
+> 在小程序中，我们建议使用React.api.navigateTo/redirectTo 来代替`<a>`标签
 
 ## navigateTo(OBJECT)
 
@@ -16,7 +18,7 @@
 代码示例
 ```javascript
 React.api.navigateTo({
-    url: '/example/xxx?key=value'
+    url: '/pages/xxx/index?key=value'
 });
 ```
 
@@ -48,7 +50,7 @@ Page({
 
 ```javascript
 React.api.redirectTo({
-  url: 'test?id=1'
+  url: 'pages/test/index?id=1'
 });
 ```
 
@@ -69,7 +71,7 @@ React.api.redirectTo({
 
 ```javascript
   React.api.reLaunch({
-    url: 'test?key=value'
+    url: 'pages/test/index?id=1'
   });
 ```
 
@@ -99,12 +101,12 @@ Page({
 
 // 此处是A页面
 React.api.navigateTo({
-  url: 'B?id=1'
+  url:'pages/B/index?id=1'
 });
 
 // 此处是B页面
 React.api.navigateTo({
-  url: 'C?id=1'
+  url: 'pages/C/index?id=1'
 });
 
 // 在C页面内 navigateBack，将返回A页面
@@ -113,3 +115,4 @@ React.api.navigateBack({
 });
 ```
 
+> 微信小程序的switchTab存在兼容问题，不能用于快应用
