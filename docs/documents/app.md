@@ -77,6 +77,8 @@ class Global extends React.Component {
         //随着业务的拆分，它们分到新部门（门票），为了方便分包，它们的目录结构也要改动
         //我们可以在config中添加needRedirectPages映射
         var [path, query] = e;
+        //在微信小程序中path不以"/"开头，但不保证其他小程序是以"./", "/"开头
+        path = path.replace(/^\/,""/)
         var newPath = Global.config.needRedirectPages[path] || "pages/platform/404/index";
         var queryString = Object.keys(query).map(function(k){
           return `${k}=${query[k]}`
