@@ -352,7 +352,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "各种日志的处理",
           "url": "/documents/report.html#各种日志的处理",
-          "content": "各种日志的处理订单 等这样重要的行为， 要业务中进行手动埋点，使用上面的createLog方法\n点击，输入这样的事件，使用自动埋点，框架会在内部的dispatchEvent方法中自行调用全局的\nonCollectLogs方法\n页面流转情况， 建议对React.api.redirectTo等四个方法进行再包装，里面封入onCollectLogs方法，\n页面渲染时间，通过全局的onGlobalLoad, onGlobalReady等到某一页的渲染时间\n页面停留时间，通过全局的onGlobalShow onGlobalHide等到某一页的停留时间\n"
+          "content": "各种日志的处理订单 等这样重要的行为， 要业务中进行手动埋点，使用上面的createLog方法\n点击，输入这样的事件，使用自动埋点，框架会在内部的dispatchEvent方法中自行调用全局的\nonCollectLogs方法\n页面流转情况， 建议对React.api.redirectTo等四个方法进行再包装，里面封入onCollectLogs方法，\n页面渲染时间，通过全局的onGlobalLoad, onGlobalReady等到某一页的渲染时间\n页面停留时间，通过全局的onGlobalShow onGlobalHide等到某一页的停留时间\n如果一些页面没有使用nanachi,可以通过下面的方法调用app.js的全局钩子：\n    var appHook = {        onLoad: \"onGlobalLoad\",\n        onReady: \"onGlobalReady\",\n        onShow: \"onGlobalShow\",\n        onHide: \"onGlobalHide\"\n     }\n     function addGlobalHooks(obj){\n         \"onLoad,onReady,onShow,onHide\".replace(/\\w+/g,function(method){\n             var fn = obj[method] || Number\n             obj[method] = function(param){\n                fn.call(obj, param);\n                var app = getApp();\n                var hook = appHook[method];\n                if(typeof app[hook] === 'function'){\n                    app[hook](param)\n                }\n             }\n         })\n     }\n     Page(addGlobalHooks({\n         \n     }))\n"
         }
       ]
     },

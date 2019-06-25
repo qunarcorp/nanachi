@@ -174,3 +174,30 @@ onCollectLogs方法
 3. 页面流转情况， 建议对React.api.redirectTo等四个方法进行再包装，里面封入onCollectLogs方法，
 4. 页面渲染时间，通过全局的onGlobalLoad, onGlobalReady等到某一页的渲染时间
 5. 页面停留时间，通过全局的onGlobalShow onGlobalHide等到某一页的停留时间
+
+> 如果一些页面没有使用nanachi,可以通过下面的方法调用app.js的全局钩子：
+
+```javascript
+    var appHook = {
+        onLoad: "onGlobalLoad",
+        onReady: "onGlobalReady",
+        onShow: "onGlobalShow",
+        onHide: "onGlobalHide"
+     }
+     function addGlobalHooks(obj){
+         "onLoad,onReady,onShow,onHide".replace(/\w+/g,function(method){
+             var fn = obj[method] || Number
+             obj[method] = function(param){
+                fn.call(obj, param);
+                var app = getApp();
+                var hook = appHook[method];
+                if(typeof app[hook] === 'function'){
+                    app[hook](param)
+                }
+             }
+         })
+     }
+     Page(addGlobalHooks({
+         
+     }))
+```

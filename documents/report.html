@@ -164,6 +164,32 @@ onCollectLogs方法</li>
 <li>页面渲染时间，通过全局的onGlobalLoad, onGlobalReady等到某一页的渲染时间</li>
 <li>页面停留时间，通过全局的onGlobalShow onGlobalHide等到某一页的停留时间</li>
 </ol>
+<blockquote>
+<p>如果一些页面没有使用nanachi,可以通过下面的方法调用app.js的全局钩子：</p>
+</blockquote>
+<pre><code class="language-javascript">    <span class="token keyword">var</span> appHook <span class="token operator">=</span> <span class="token punctuation">{</span>
+        onLoad<span class="token punctuation">:</span> <span class="token string">"onGlobalLoad"</span><span class="token punctuation">,</span>
+        onReady<span class="token punctuation">:</span> <span class="token string">"onGlobalReady"</span><span class="token punctuation">,</span>
+        onShow<span class="token punctuation">:</span> <span class="token string">"onGlobalShow"</span><span class="token punctuation">,</span>
+        onHide<span class="token punctuation">:</span> <span class="token string">"onGlobalHide"</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">function</span> <span class="token function">addGlobalHooks</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
+         <span class="token string">"onLoad,onReady,onShow,onHide"</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\w+/g</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>method<span class="token punctuation">)</span><span class="token punctuation">{</span>
+             <span class="token keyword">var</span> fn <span class="token operator">=</span> obj<span class="token punctuation">[</span>method<span class="token punctuation">]</span> <span class="token operator">||</span> Number
+             obj<span class="token punctuation">[</span>method<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>param<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                fn<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> param<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">var</span> app <span class="token operator">=</span> <span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">var</span> hook <span class="token operator">=</span> appHook<span class="token punctuation">[</span>method<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> app<span class="token punctuation">[</span>hook<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    app<span class="token punctuation">[</span>hook<span class="token punctuation">]</span><span class="token punctuation">(</span>param<span class="token punctuation">)</span>
+                <span class="token punctuation">}</span>
+             <span class="token punctuation">}</span>
+         <span class="token punctuation">}</span><span class="token punctuation">)</span>
+     <span class="token punctuation">}</span>
+     <span class="token function">Page</span><span class="token punctuation">(</span><span class="token function">addGlobalHooks</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+         
+     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="vscode.html" class="href"><span class="ui-font-ydoc"></span>vscode插件</a></div><div class="m-paging-next m-paging-item"><a href="npm.html" class="href">npm支持<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));
