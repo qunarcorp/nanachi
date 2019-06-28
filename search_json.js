@@ -593,6 +593,53 @@ window.ydoc_plugin_search_json = {
       "children": []
     },
     {
+      "title": "卡片",
+      "content": "卡片就是一个阉割版的快应用，许多功能与标签都不支持，体积还特别少，放在负一屏中",
+      "url": "/documents/card.html",
+      "children": [
+        {
+          "title": "VIVO负一屏卡片",
+          "url": "/documents/card.html#vivo负一屏卡片",
+          "content": "VIVO负一屏卡片卡片使用的是vivo的打包工具 vivo-hap-toolkit\n手机端需要安装卡片调试器、卡片引擎\n卡片开发是单独一个项目，不要和原有的快应用项目混在一起\n"
+        },
+        {
+          "title": "努比亚卡片",
+          "url": "/documents/card.html#努比亚卡片",
+          "content": "努比亚卡片卡片调试需要安装：1、 Nubia最新快应用引擎nubiaHybridxxx.apk 1.0.3.1以上版本\n2、 快应用调试器QuickCardTest.apk具体调试步骤如下：1.在手机的sd目录下新建一个文件夹 名称为：quickcard2.将需要验证的rpk文件拷贝到上面目录下3.打开QuickCardTest应用加载卡片查看运行效果4.若rpk有修改调试仅重复步骤2,并最近任务中kill QuickCardTest重新打开即可注：quickcard下同时只能有一个rpk文件"
+        },
+        {
+          "title": "OPPO卡片",
+          "url": "/documents/card.html#oppo卡片",
+          "content": "OPPO卡片OPPO 官方指南OPPO 调试指南\nOPPO 卡片规范1.从官方指南中(第一个链接）下载快应用引擎和卡片运行环境安装包到手机上，并分别安装；2.在手机根目录，创建名称为 rpks 的文件夹；\n3.把包含卡片的快应用 rpk 包复制到 rpks 文件夹中；\n4.在桌面上找到名为「快应用」的 App 并打开，选择「快应用卡片」，点击相应的卡片（秒开）即可看到卡片；\n5.打开卡片后，快应用首页、卡片设置页面（如有）、帐号绑定页面（如有）等，可以在卡片预览页面的最右上角打开。"
+        },
+        {
+          "title": "华为搜索卡片",
+          "url": "/documents/card.html#华为搜索卡片",
+          "content": "华为搜索卡片此项目可独立于快应用运行。使用华为快应用 IDE 打开当前目录，连接华为手机，点击 IDE 上方的预览按钮，即可进行调试。调试工具每次只会显示一张卡片，在 IDE 上方的入口中可以选择需要调试的卡片。所有卡片都在目录 huaweiCard/ 中。华为卡片应和快应用主程序一同发布，发布时需要将将卡片合并进主程序中："
+        },
+        {
+          "title": "卡片的配置参数",
+          "url": "/documents/card.html#卡片的配置参数",
+          "content": "卡片的配置参数\n\n属性\n类型\n必填\n描述\n\n\n\n\nname\nString\n是\n卡片名称\n\n\ndescription\nString\n否\n卡片描述\n\n\ncomponent\nString\n是\n卡片对应的组件名，与 ux 文件名保持一致，例如'hello' 对应'hello.ux'\n\n\npath\nString\n是\n卡片对应的唯一标识，例如“/user”，不填则默认为/。path 必须唯一，不能和其他 page/widget 的 path 相同。\n\n\nfeatures\nArray\n否\n本卡片使用的接口列表，卡片的接口列表单独定义，在某些场景下可以做提前申请（例如负一屏）\n\n\nminPlatformVersion\nInteger\n否\n支撑的最小平台版本号，不提供则同 rpk 的版本号\n\n\n"
+        },
+        {
+          "title": "VIVO/努比亚卡片manifest.json配置",
+          "url": "/documents/card.html#vivo努比亚卡片manifest.json配置",
+          "content": "VIVO/努比亚卡片manifest.json配置{    \"router\": {\n        \"widgets\": {\n            \"Card\": {\n                \"name\": \"nanachi\",\n                \"description\": \"nanachi快应用，聪明你的旅行\",\n                \"component\": \"index\",\n                \"path\": \"/Card\",\n                \"features\": [{\n                    \"name\": \"system.router\"\n                }, {\n                    \"name\": \"system.fetch\"\n                }],\n                \"params\": {\n                    \"title\": \"noTitle\",\n                    \"height\": \"53.333%\",\n                    \"enableFold\": \"false\"\n                },\n                \"minPlatformVersion\": \"1032\",\n                \"targetManufactorys\": [\n                    \"vivo\"\n                ]\n            }\n        }\n    },\n    \"display\": {}\n}\n"
+        },
+        {
+          "title": "OPPO卡片manifest.json配置",
+          "url": "/documents/card.html#oppo卡片manifest.json配置",
+          "content": "OPPO卡片manifest.json配置{    \"router\": {\n        \"widgets\": {\n            \"Card\": {\n                \"name\": \"nanachi\",\n                \"description\": \"nanachi快应用，聪明你的旅行\",\n                \"component\": \"index\",\n                \"path\": \"/oppoCard\",\n                \"features\": [{\n                    \"name\": \"system.router\"\n                }, {\n                    \"name\": \"system.fetch\"\n                }],\n                \"params\": {\n                    \"title\": \"noTitle\",\n                    \"height\": \"53.333%\",\n                    \"enableFold\": \"false\"\n                },\n                \"minPlatformVersion\": \"1032\",\n                \"targetManufactorys\": [\n                    \"oppo\"\n                ]\n            }\n        }\n    },\n    \"display\": {}\n}\n"
+        },
+        {
+          "title": "华为卡片manifest.json配置",
+          "url": "/documents/card.html#华为卡片manifest.json配置",
+          "content": "华为卡片manifest.json配置{  \"package\": \"com.tujia.quick\",\n  \"name\": \"nanachi\",\n  \"versionName\": \"1.0.1\",\n  \"versionCode\": 2,\n  \"icon\": \"/assets/image/qlog.png\",\n  \"config\": {},\n  \"router\": {\n    \"pages\": {\n      \"huaweiCard/hotel\": {\n        \"component\": \"index\",\n        \"path\": \"/huaweiCard/hotel\"\n      },\n      \"huaweiCard/flight\": {\n        \"component\": \"index\",\n        \"path\": \"/huaweiCard/flight\"\n      },\n      \"huaweiCard/travel\": {\n        \"component\": \"index\",\n        \"path\": \"/huaweiCard/travel\"\n      },\n      \"huaweiCard/ticket\": {\n        \"component\": \"index\",\n        \"path\": \"/huaweiCard/ticket\"\n      },\n      \"huaweiCard/train\": {\n        \"component\": \"index\",\n        \"path\": \"/huaweiCard/train\"\n      },\n      \"huaweiCard/vacation\": {\n        \"component\": \"index\",\n        \"path\": \"/huaweiCard/vacation\"\n      }\n    }\n  },\n  \"widgets\": [\n    {\n      \"name\": \"tujiaHotel\",\n      \"id\": \"tujiaHotel\",\n      \"path\": \"/huaweiCard/hotel\",\n      \"component\": \"index\",\n      \"targetManufactorys\": [\n        \"huawei\"\n      ],\n      \"params\": [],\n      \"uses-permission\": [],\n      \"minPlatformVersion\": 1020\n    },\n    {\n      \"name\": \"tujiaFlight\",\n      \"id\": \"tujiaFlight\",\n      \"path\": \"/huaweiCard/flight\",\n      \"component\": \"index\",\n      \"targetManufactorys\": [\n        \"huawei\"\n      ],\n      \"params\": [],\n      \"uses-permission\": [],\n      \"minPlatformVersion\": 1020\n    },\n    {\n      \"name\": \"tujiaTravel\",\n      \"id\": \"tujiaTravel\",\n      \"path\": \"/huaweiCard/travel\",\n      \"component\": \"index\",\n      \"targetManufactorys\": [\n        \"huawei\"\n      ],\n      \"params\": [],\n      \"uses-permission\": [],\n      \"minPlatformVersion\": 1020\n    },\n    {\n      \"name\": \"tujiaTicket\",\n      \"id\": \"tujiaTicket\",\n      \"path\": \"/huaweiCard/ticket\",\n      \"component\": \"index\",\n      \"targetManufactorys\": [\n        \"huawei\"\n      ],\n      \"params\": [],\n      \"uses-permission\": [],\n      \"minPlatformVersion\": 1020\n    },\n    {\n      \"name\": \"tujiaTrain\",\n      \"id\": \"tujiaTrain\",\n      \"path\": \"/huaweiCard/train\",\n      \"component\": \"index\",\n      \"targetManufactorys\": [\n        \"huawei\"\n      ],\n      \"params\": [],\n      \"uses-permission\": [],\n      \"minPlatformVersion\": 1020\n    },\n    {\n      \"name\": \"tujiaVacation\",\n      \"id\": \"tujiaVacation\",\n      \"path\": \"/huaweiCard/vacation\",\n      \"component\": \"index\",\n      \"targetManufactorys\": [\n        \"huawei\"\n      ],\n      \"params\": [],\n      \"uses-permission\": [],\n      \"minPlatformVersion\": 1020\n    }\n  ],\n  \"minPlatformVersion\": 1040,\n  \"display\": {\n    \"backgroundColor\": \"#f2f2f2\",\n    \"titleBarBackgroundColor\": \"#f2f2f2\"\n  },\n  \"features\": [\n    {\n      \"name\": \"system.router\"\n    },\n    {\n      \"name\": \"system.fetch\"\n    }\n  ]\n}\n"
+        }
+      ]
+    },
+    {
       "title": "快应用如何模拟movable-area与movalbe-view",
       "content": "下面例子由小米官方(王操大神)提供  \n  \n    \n      \n        movable-area\n      \n      \n        movable-view\n      \n    \n  \n\n\n\n  import router from \"@system.router\";\n\n  export default {\n    // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖\n    private: {\n      title: \"示例页面\",\n      initx: 100,\n      inity: 100,\n      delayx: 0,\n      delayy: 0,\n      touchx: 0,\n      touchy: 0,\n      boxwidth: 200,\n      boxheight: 200\n    },\n    touch (env) {\n      this.touchx = env.touches[0].pageX\n      this.touchy = env.touches[0].pageY\n      this.delayx = this.initx\n      this.delayy = this.inity\n    },\n    touchend (env) {\n      this.canmove = false\n      this.delayx = this.initx\n      this.delayy = this.inity\n\n    },\n    move(env) { \n      this.initx = this.delayx + env.touches[0].pageX- this.touchx\n      this.inity = this.delayy + env.touches[0].pageY- this.touchy    \n    }\n  };\n\n\n\n  .bk {\n    width: 100%;\n    height: 100%;\n    background-color: #aaa;\n  }\n  .box {\n    width: 200px;\n    height: 200px;\n    background-color: #ffffff;\n  }\n\n\n",
       "url": "/documents/movable.html",
