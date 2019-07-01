@@ -143,3 +143,12 @@ class Demo extends React.Component {
 // eslint-disable-next-line
 export default App(new Demo());
 ```
+
+## 快应用的分享
+
+1、界面交互 → 分享   import share from '@system.share'    这个分享主要用于不同APP之间的数据传递，因此归到“界面交互”中，可以传递文本数据或文件数据
+
+2、第三方服务 →  第三方分享  import share from '@service.share' 
+这个分享主要用于将快应用中的信息通过社交工具（微信、QQ、新浪微博等）分享出去，可以以图文、纯文字、纯图文、音乐、视频等形式进行分享，分享前需要在manifest.json 的 features 中对service.share进行appSign、wxkey、qqkey、sinakey等参数参数的设置，否则分享出去的内容都将以纯文字方式进行展示。
+
+（微信分享时的appSign和wxkey设置可以参照关于[微信分享的实现](https://bbs.quickapp.cn/forum.php?mod=viewthread&tid=481)，亲测可用）
