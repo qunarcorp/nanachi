@@ -17,10 +17,11 @@
 1. 原来打算使用view标签的地方，请使用div,h1这些块状元素代替。
 2. 文本必须包含在text, span, a, option, label这几种标签内
 3. text标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签
-4. jsx中不能出现 声明变量语句，不能出现switch语句
-5. jsx中除了onClick这些事件外， 不能出现除map方法外的方法调用
-6. 不要在标签内部使用纯空白或通过两边的空白撑开空间，即`<div>  </div`与`<div>  111  </div`,它们会变成 `<div></div`与`<div>111</div`
-7. 如果要支持快应用，类似`<div><span>xxx</span></div>`应该改成`<div><text>xxx</text></div>`，因为在快应用下span只能出现在text标签下，不能放在div下面。
+4. jsx的属性值里面不能出现反斜扛，不能出现模板字符串
+5. jsx中不能出现 声明变量语句，不能出现switch语句
+6. jsx中除了onClick这些事件外， 不能出现除map方法外的方法调用
+7. 不要在标签内部使用纯空白或通过两边的空白撑开空间，即`<div>  </div`与`<div>  111  </div`,它们会变成 `<div></div`与`<div>111</div`
+8. 如果要支持快应用，类似`<div><span>xxx</span></div>`应该改成`<div><text>xxx</text></div>`，因为在快应用下span只能出现在text标签下，不能放在div下面。
 
 
 ## 循环中key的定义
@@ -87,6 +88,59 @@
 function AA(props, context){
    return <div aaa={props.title}>{context.content}</div>
 }
+```
+
+## 属性值在转译后出现反斜扛的问题
+
+第一个div的类名同时出现双引号与单引号， 修正办法，都用单引号
+```jsx
+<div class={"recruitment-icon "+ this.state.type+'_bgc'}>
+    <div class={"g-q-iconfont icon " + this.state.type}></div>
+</div>
+```
+
+span的类名同时出现模块字符串与单引号， 修正办法，去掉模板字符串
+```jsx
+<span
+      className={`g-q-iconfont seat-icon ${this.props.hasSelectedSeatsObject[(index + 1) + seat.name] ? 'active' : ''}`}
+  >&#xe02d;</span>
+```
+
+swiper的duration属性出现非常复杂的字符串拼接，建议在JS里面接好，放到this.state.duration变量中
+```jsx
+<swiper
+    className='banner'
+    indicator-dots={this.state.showIndicatorDots}
+    indicator-color={this.state.indicatorColor}
+    indicator-active-color={this.state.indicatorActiveColor}
+    autoplay={this.state.autoplay}
+    current={this.state.current}
+    interval={this.state.interval}
+    duration={
+        '"' +
+        this.props.duration +
+        '\n        circular="' +
+        this.props.circular +
+        '"\n        vertical="' +
+        this.props.vertical +›
+        '"\n        previous-margin="' +
+        this.props.previousMargin
+    }
+    next-margin='nextMargin'
+    display-multiple-items={1}
+    onChange={this.displayIndexChange}
+    onAnimationfinish={this.displayAnimationFinish}
+>
+    <block>
+        {this.state.imageUrls.map(function(item, index) {
+            return (
+                <swiper-item>
+                    <image className='banner image' mode='aspectFill' src={item} onTap={this.onTapImage} data-index={index} />
+                </swiper-item>
+            );
+        }, this)}
+    </block>
+</swiper>
 ```
 
 ## 三元表达式的用法
