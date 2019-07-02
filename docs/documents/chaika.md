@@ -92,6 +92,43 @@
 
 相比之前的普通模式开发，其实就多了步骤2。
 
+## 自定义 install 拆库工程
+
+nanachi默认只支持install git 工程（nanachi install xx@yyy.git --branch yourBranch)。
+
+但 nanachi 支持用户可以自定义安装方式，比如 install 压缩包。
+
+命令行：`nanachi install tarName@version`
+
+但需要一些额外配置。在你的项目工程跟目录中新建一个 `nanachi.config.js` 配置文件。
+```
+module.exports = {
+    chaikaConfig: {
+        onInstallTarball: function(tarName, version){
+            let preUrl = 'http://xxx/yyy';
+            let tarUrl = `${preUrl}/${version}/${version}/${tarName}-${version}.zip`;
+            return tarUrl;
+        }
+    }
+}
+```
+在该配置中生命周期 `onInstallTarball` 有两个参数。分别代表压缩包名，已经压缩包版本。该函数返回值就是压缩包的远程地址。
+
+当执行命令`nanachi install tarName@version`时候，配置中的  `onInstallTarball`函数会劫持命令行中 `tarName` 和 `version`, 并作为函数的参数。你只需要在该函数中返回一个压缩包的远程地址，nanachi 就会帮你下载。
+
+## 批量 install 拆库工程。
+此功能需在你当前项目的package.json中配置`modules`字段
+```
+{
+   "modules": {
+    "git@xxx.git": "yourBranchName",
+    "tarName": "yourVersion"
+  }
+}
+```
+然后命令行执行 `nanachi install`, 则会批量安装`modules`字段里面配置的所有拆卡工程。
+
+
 ## 注意事项
 1. 配置文件，如wxConfig.json，aliConfig.json, ..., app.json需要放在拆库工程的**source**目录下, project.config.json, package.json等需要放在拆库工程**根目录下**。
 2. nanachi拆卡模式对各配置文件合并时，nanachi会将冲突暴露。如果遇到配置冲突，需用户自行解决冲突。
