@@ -3,38 +3,83 @@
       <input type="text" class="input js-input" placeholder="搜索" />
       <div class="m-search-result js-search-result"></div>
     </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item active"><a class="href" href="intro.html">文档</a></li><li class="item "><a class="href" href="../apis/index.html">已兼容处理的API</a></li><li class="item "><a class="href" href="logo.html">谁在用nanachi</a></li><li class="item "><a class="href" href="about.html">关于</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>拆库开发</h1>
-<p>拆库开发亦称分仓库开发， 如果一个小程序非常大，比如说商场小程序，有许多频道，这涉及多条业务线，每条业务线开发一个频道，那么就需要此功能。</p>
-<p>我们允许每个频道都独立建一个github/gitlab仓库进行独立开发
-上线前，通过我们的拆包工具<strong>chaika</strong>， 将要上线的频道整合成一个要上线的小程序，集中用nanachi进行转译发布。</p>
-<p><a href="https://qunarcorp.github.io/chaika/" target="_blank">https://qunarcorp.github.io/chaika/</a></p>
-<p>下面是某一个子频道的目录结构， 由于它不是主包，因此没有app.js, 改成包含合并指令的app.json</p>
+<p>拆库开发亦称分仓库开发。</p>
+<h2 id="拆库开发能解决哪些问题？">拆库开发能解决哪些问题？</h2>
+<p>想象一下，如果一个小程序非常大，比如说商场小程序，有许多频道，这涉及多条业务线，每条业务线有自己的开发一个频道。</p>
+<p>如果没有拆库功能，本地开发时，需要将整个工程全量 clone 到本地然后进行开发。</p>
+<p>一旦项目体量大起来（业务线多起来），上面这种方式很容易不小心误触别业务线的代码，并且全量编译的时间更长，效率低。</p>
+<p>在开发时：</p>
+<ol>
+<li>如何能让自己业务线代码保持独立，只专注于本业务线代码？</li>
+<li>如何自由安装在开发中所依赖的其他业务线代码呢？
+<br></li>
+</ol>
+<p>这，就是 nanachi 拆库开发所要解决的问题。</p>
+<h2 id="如何对代码进行拆库？">如何对代码进行拆库？</h2>
+<p>我们允许每个业务线都独立建一个github/gitlab仓库进行独立开发，<strong>每个仓库需要保持 nanachi 工程所必须的目录结构（这是必须的）</strong>。</p>
+<p>下面是某一个业务线的 source 目录结构, 由于它不是主包，因此没有app.js, 改成包含合并指令的app.json</p>
 <p>强烈建议看一下<a href="./alias.html">别名机制</a></p>
-<pre><code> src
-   |--components //&#x5408;&#x5E76;&#x5230;&#x4E3B;&#x5305;&#x7684;&#x7EC4;&#x4EF6;
-   |--assets     //&#x5408;&#x5E76;&#x5230;&#x4E3B;&#x5305;&#x7684;&#x9759;&#x6001;&#x8D44;&#x6E90;
-   |--common     //&#x5408;&#x5E76;&#x5230;&#x4E3B;&#x5305;&#x7684;&#x516C;&#x7528;&#x65B9;&#x6CD5;
-   |--pages
-   |    |--commponents //&#x7559;&#x5728;&#x5206;&#x5305;&#x7684;&#x7EC4;&#x4EF6;
-   |    |--assets      //&#x7559;&#x5728;&#x5206;&#x5305;&#x7684;&#x9759;&#x6001;&#x8D44;&#x6E90;
-   |    |--common      //&#x7559;&#x5728;&#x5206;&#x5305;&#x7684;&#x7EC4;&#x4EF6;
-   |    |--page1
-   |    |--page2
-   |    |--page3
-   |    |--page4
-   |    &#x2514;&#x2500;&#x2500; ...
-   |--app.json (&#x4E0D;&#x5B58;&#x5728;app.js , wxConfig.json, quickConfig.json)
+<pre><code>  source
+    |--components //&#x5408;&#x5E76;&#x5230;&#x4E3B;&#x5305;&#x7684;&#x7EC4;&#x4EF6;
+    |--assets     //&#x5408;&#x5E76;&#x5230;&#x4E3B;&#x5305;&#x7684;&#x9759;&#x6001;&#x8D44;&#x6E90;
+    |--common     //&#x5408;&#x5E76;&#x5230;&#x4E3B;&#x5305;&#x7684;&#x516C;&#x7528;&#x65B9;&#x6CD5;
+    |--pages
+    |    |--commponents //&#x7559;&#x5728;&#x5206;&#x5305;&#x7684;&#x7EC4;&#x4EF6;
+    |    |--assets      //&#x7559;&#x5728;&#x5206;&#x5305;&#x7684;&#x9759;&#x6001;&#x8D44;&#x6E90;
+    |    |--common      //&#x7559;&#x5728;&#x5206;&#x5305;&#x7684;&#x7EC4;&#x4EF6;
+    |    |--page1
+    |    |--page2
+    |    |--page3
+    |    |--page4
+    |    &#x2514;&#x2500;&#x2500; ...
+    |--app.json (&#x4E0D;&#x5B58;&#x5728;app.js)
+  package.json
+
 </code></pre>
-<p>app.json里面有</p>
+<p>业务线的 package.json 需要进行简单配置</p>
 <pre><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"nanachi"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"chaika_mode"</span><span class="token operator">:</span> <span class="token boolean">true</span> //这是告诉 nanachi，当前快发模式为“拆库”模式。
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>app.json 里面有</p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"pages"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"pages/plat/pageA/index"</span><span class="token punctuation">,</span>
+        <span class="token string">"pages/plat/pageB/index"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
     <span class="token property">"nanachi"</span><span class="token operator">:</span><span class="token punctuation">{</span>
         <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
             <span class="token property">"@hotel/common"</span><span class="token operator">:</span> <span class="token string">"source/common/hotel"</span>
         <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"order"</span><span class="token operator">:</span> <span class="token number">100</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p><img src="./chaika.png" alt="json"></p>
+<ul>
+<li>pages 字段为数组，pages 里面的路由将会被注入到 app.js 中，用以被 nanachi 编译。</li>
+<li>nanachi 字段即为 package.json 中的 nanachi 的配置，会被合并到 package.json 中。</li>
+<li>order 字段为路由排序标识，order值越大，最后打包到app.json中的这些路由排序越靠前。</li>
+</ul>
+<h2 id="如何使用-nanachi-拆库">如何使用 nanachi 拆库</h2>
+<ol>
+<li>
+<p>clone 你自己的业务线代码: <code>git clone git@xxx.git</code></p>
+</li>
+<li>
+<p>如果需要安装其他业务线(跟git clone一回事): <code>nanachi install git@otherProject.git -b branchName</code></p>
+</li>
+<li>
+<p>nanachi watch</p>
+</li>
+</ol>
+<h2 id="注意事项">注意事项</h2>
+<ol>
+<li>配置文件，如wxConfig.json，aliConfig.json, ..., app.json需要放在拆库工程的<strong>source</strong>目录下, project.config.json, package.json等需要放在拆库工程<strong>根目录下</strong>。</li>
+<li>nanachi拆卡模式对各配置文件合并时，nanachi会将冲突暴露。如果遇到配置冲突，需用户自行解决冲突。
+<img src="./chaka_confict.jpg" alt="json"></li>
+</ol>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="customConfig.html" class="href"><span class="ui-font-ydoc"></span>自定义项目配置</a></div><div class="m-paging-next m-paging-item"><a href="alias.html" class="href">别名配置<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));
