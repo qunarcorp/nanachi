@@ -1,7 +1,7 @@
 # 华为快应用获取页面参数
 
-华为快应用是无法获取页面参数，我们需要给页面添加一个protected对象。但我们又不可能每个页面都添加这个对象，
-因此我们提供下面的方式给用户添加参数。
+华为快应用是无法获取页面参数，我们需要给页面添加一个protected对象与public对象。但我们又不可能每个页面都添加这两个对象，
+因此我们提供下面的方式给用户获取参数。
 
 在app.js添加两个静态对象innerQuery与outerQuery, innerQuery是用来接受页面间的跳转参数，outerQuery是用来接收外面跳进快应用的参数
 （比如H5跳快应用，卡片快应用跳快应用）。这两个参数对象的里面键名不能出现重复，比如innerQuery有a,b, outerQuery只能是c与d,不能加a.
@@ -69,4 +69,34 @@ class P extends React.Component {
 }
 
 export default P;
+```
+
+public, protected, innerQuery, outerQuery的关系详见源码
+
+```javascript
+export function registerPage(PageClass, path) {
+    var def = _getApp().$def
+    var appInner = def.innerQuery;
+    var appOuter = def.outerQuery;
+    var pageInner = PageClass.innerQuery;
+    var pageOuter = PageClass.outerQuery;
+    
+    var innerQuery = pageInner ?  Object.assign({}, appInner, pageInner ): appInner;
+    var outerQuery = pageOuter ?  Object.assign({}, appOuter, pageOuter ): appOuter;
+    let config = {
+        private: {
+            props: Object,
+            context: Object,
+            state: Object
+        },
+        //华为快应用拿不到页面参数，在$page.uri拿不到，manifest.json加了filter也不行
+        protected: innerQuery, //页面间的参数
+        public: outerQuery,    //外面传过来的参数
+        dispatchEvent,
+        onInit() { },
+        onReady: onReady,
+        onDestroy: onUnload
+    }
+    return config
+}
 ```

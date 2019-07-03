@@ -3,8 +3,8 @@
       <input type="text" class="input js-input" placeholder="搜索" />
       <div class="m-search-result js-search-result"></div>
     </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item active"><a class="href" href="intro.html">文档</a></li><li class="item "><a class="href" href="../apis/index.html">已兼容处理的API</a></li><li class="item "><a class="href" href="logo.html">谁在用nanachi</a></li><li class="item "><a class="href" href="about.html">关于</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>华为快应用获取页面参数</h1>
-<p>华为快应用是无法获取页面参数，我们需要给页面添加一个protected对象。但我们又不可能每个页面都添加这个对象，
-因此我们提供下面的方式给用户添加参数。</p>
+<p>华为快应用是无法获取页面参数，我们需要给页面添加一个protected对象与public对象。但我们又不可能每个页面都添加这两个对象，
+因此我们提供下面的方式给用户获取参数。</p>
 <p>在app.js添加两个静态对象innerQuery与outerQuery, innerQuery是用来接受页面间的跳转参数，outerQuery是用来接收外面跳进快应用的参数
 （比如H5跳快应用，卡片快应用跳快应用）。这两个参数对象的里面键名不能出现重复，比如innerQuery有a,b, outerQuery只能是c与d,不能加a.</p>
 <p>在app.js添加两个静态对象是对所有页面都生效。</p>
@@ -65,6 +65,33 @@
 <span class="token punctuation">}</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token constant">P</span><span class="token punctuation">;</span>
+</code></pre>
+<p>public, protected, innerQuery, outerQuery的关系详见源码</p>
+<pre><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">registerPage</span><span class="token punctuation">(</span>PageClass<span class="token punctuation">,</span> path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> def <span class="token operator">=</span> <span class="token function">_getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>$def
+    <span class="token keyword">var</span> appInner <span class="token operator">=</span> def<span class="token punctuation">.</span>innerQuery<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> appOuter <span class="token operator">=</span> def<span class="token punctuation">.</span>outerQuery<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> pageInner <span class="token operator">=</span> PageClass<span class="token punctuation">.</span>innerQuery<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> pageOuter <span class="token operator">=</span> PageClass<span class="token punctuation">.</span>outerQuery<span class="token punctuation">;</span>
+    
+    <span class="token keyword">var</span> innerQuery <span class="token operator">=</span> pageInner <span class="token operator">?</span>  Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> appInner<span class="token punctuation">,</span> pageInner <span class="token punctuation">)</span><span class="token punctuation">:</span> appInner<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> outerQuery <span class="token operator">=</span> pageOuter <span class="token operator">?</span>  Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> appOuter<span class="token punctuation">,</span> pageOuter <span class="token punctuation">)</span><span class="token punctuation">:</span> appOuter<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token keyword">private</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            props<span class="token punctuation">:</span> Object<span class="token punctuation">,</span>
+            context<span class="token punctuation">:</span> Object<span class="token punctuation">,</span>
+            state<span class="token punctuation">:</span> Object
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token comment">//华为快应用拿不到页面参数，在$page.uri拿不到，manifest.json加了filter也不行</span>
+        <span class="token keyword">protected</span><span class="token punctuation">:</span> innerQuery<span class="token punctuation">,</span> <span class="token comment">//页面间的参数</span>
+        <span class="token keyword">public</span><span class="token punctuation">:</span> outerQuery<span class="token punctuation">,</span>    <span class="token comment">//外面传过来的参数</span>
+        dispatchEvent<span class="token punctuation">,</span>
+        <span class="token function">onInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        onReady<span class="token punctuation">:</span> onReady<span class="token punctuation">,</span>
+        onDestroy<span class="token punctuation">:</span> onUnload
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> config
+<span class="token punctuation">}</span>
 </code></pre>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="query.html" class="href"><span class="ui-font-ydoc"></span>小米快应用获取页面参数</a></div><div class="m-paging-next m-paging-item"><a href="share.html" class="href">快应用与小程序转发分享<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
