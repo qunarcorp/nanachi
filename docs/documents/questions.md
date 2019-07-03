@@ -8,8 +8,6 @@
 - 静态资源统一放到 `src` 目录下的 `assets` 目录下
 - `wxml` 模板部分，如果使用了箭头函数，那么它里面不能出现 `this` 关键字
 - 不要在 `props`, `state`, `context` 里面放 JSX，因为 JSX 的结构容易出现环引用，导到微信小程序内部的 JSON.stringify 出错
-- `slot` 机制与 render props 是有代价，它们会在 `components/Fragments` 目下添加许多当作桥梁用的碎片文件，不要滥用
-- render props 机制只能用于有狀态组件，并且只应用于 `render()` 属性，只能传一个参数，参数只能是 `this.state` 或 `this.props`, 目前不支持快应用
 - input组件 统一使用onChange事件，因为有的平台支持onInput, 有的平台支持onChange, 转译器会翻译相应支持的事件
 - 业务有涉及拿globalData.systemInfo里面高度的，改为React.api.getSystemInfoSync()。第一次进入页面有底bar的话 高度会拿错，导致业务液面高度计算错误，下面空一块。
 - `React.getCurrentPage()` 能得到当前页面的react实例， instance.props.query, instance.props.path为当前路径与参数对象
