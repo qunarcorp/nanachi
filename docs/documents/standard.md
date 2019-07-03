@@ -30,15 +30,51 @@ nanachi完成兼容之后，需周知业务线在半个月之内做对应的更�
 * 如果你的组件不包含JSX中，只是普通的工具方法，并且打包到分包中，那么它应该在pages/xxxx/common中
 
 
-
 ## 组件编写规范
 
-组件本身如果是用nanachi来写，请必须引入@react  及以React方式编写（因为@react可能编译成ReactWX.js, ReactQuick.js, ReactBu.js, ReactAli.js）。下面是一个经典的组件
+组件本身如果是用nanachi来写，请必须引入`@react`  及以React方式编写（因为@react可能编译成ReactWX.js, ReactQuick.js, ReactBu.js, ReactAli.js）。下面是一个经典的组件
 
+```jsx
+import React from '@react';
+import './index.scss';
+
+class TrainOrderFillRobFooterView extends React.Component {
+    constructor() {
+        super();
+    }
+
+    static defaultProps = {
+        footerData: {}
+    };
+
+    render() {
+        return (
+            <div>
+                <div class="footer-container-iphoneX">
+                    <div className="footer-content-container-iphoneX">
+                        {this.props.footerData.priceDetailModalData && !this.props.footerData.priceDetailModalData.priceDetailAnimation && <div class="separator__line"/>}
+                        <div style="display: flex; height: 50px;">
+                            <div className="total-price-container">
+                                <div class="rate-success-rate-container">
+                                    <text class="rate-success-rate-title">抢票成功率</text>
+                                    <text class="rate-success-rate-text">{this.props.footerData.robSuccessRate ? this.props.footerData.robSuccessRate : '- -'}</text>
+                                </div>
+                            </div>
+                            <div className="commit-order-btn-iphoneX" onTap={this.props.goToRobOrderFillConfirm}>下一步</div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        );
+    }
+}
+
+export default TrainOrderFillRobFooterView;
+```
 
 如果以非nanachi编写，希望在命名上符合其他规则。
 
-1. 有关组件的编写请见[这里](./component.md)  https://rubylouvre.github.io/nanachi/documents/component.html
+1. 有关组件的编写请见[这里](./component.md)  
 
 2. 有关JSX的注意事项请见[这里](./jsx.md)
 
