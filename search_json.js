@@ -128,6 +128,48 @@ window.ydoc_plugin_search_json = {
       ]
     },
     {
+      "title": "小程序组件规范",
+      "content": "",
+      "url": "/documents/standard.html",
+      "children": [
+        {
+          "title": "兼容性",
+          "url": "/documents/standard.html#兼容性",
+          "content": "兼容性微信小程序: 6.7.2 及以上能支持分包的版本\nQQ小程序: 能支持分包的版本\n支付宝小程序： 10.1.60 能支持分包的版本\n百度小程序： 2.2.3 能支持分包的版本\n快应用：小米等厂商1030， 华为1040\n字节跳动小程序：1.6(目前它不支持分包)\n针对小程序的Size限制，挑选各小程序的客户端版本时，以最先支持分包的版本为基准线。"
+        },
+        {
+          "title": "升级",
+          "url": "/documents/standard.html#升级",
+          "content": "升级如果小程序平台出现新的规范，经TC/业务线TL商议确认，对其中必须的功能，nanachi-cli需要在半个月内完成兼容。nanachi完成兼容之后，需周知业务线在半个月之内做对应的更新调整。\n需要特殊周期的业务线，需提前与所有相关团队达成一致。根据目前小程序的现状，最长不应该超过一个月。如果有紧急bug，nanachi需一天之内进行修复，并周知业务线。相关业务线需配合上线。日常升级，根据目前的情况，最短一个月升级一个版本。"
+        },
+        {
+          "title": "目录规则",
+          "url": "/documents/standard.html#目录规则",
+          "content": "目录规则如果你的组件想打包到主包中，那么它应该在pages目录的同级文件夹components中\n如果你的组件想打包到分包中，那么它应该放在pages/xxxx/components中，xxxx为业务线的名字，如hotel, flight, vacation\n如果你的组件不包含JSX中，只是普通的工具方法，并且打包到主包中，那么它应该在pages目录的同级文件夹common中\n如果你的组件不包含JSX中，只是普通的工具方法，并且打包到分包中，那么它应该在pages/xxxx/common中\n"
+        },
+        {
+          "title": "组件编写规范",
+          "url": "/documents/standard.html#组件编写规范",
+          "content": "组件编写规范组件本身如果是用nanachi来写，请必须引入@react  及以React方式编写（因为@react可能编译成ReactWX.js, ReactQuick.js, ReactBu.js, ReactAli.js）。下面是一个经典的组件如果以非nanachi编写，希望在命名上符合其他规则。\n有关组件的编写请见这里  https://rubylouvre.github.io/nanachi/documents/component.html\n\n\n有关JSX的注意事项请见这里\n\n为了确保组件不应该混杂其他小程序的专有代码，我们提供了 process.env.ANU_ENV  变量用于编译时打包平台相关的逻辑。这个变量只能用于JS，不能用于JSX。详见这里"
+        },
+        {
+          "title": "样式规范",
+          "url": "/documents/standard.html#样式规范",
+          "content": "样式规范为了良好地兼容快应用，小程序都必须使用flexbox布局，不要使用绝对定位与浮动。所有不支持的样式写法都会在nanachi 编译时发出警告。详见这里"
+        },
+        {
+          "title": "文件引用规范",
+          "url": "/documents/standard.html#文件引用规范",
+          "content": "文件引用规范页面不能超级引用组件的样式文件。组件也产能超级引用页面的样式文件。"
+        },
+        {
+          "title": "代码规范",
+          "url": "/documents/standard.html#代码规范",
+          "content": "代码规范使用驼峰命名规范\n业务线带上标识自己业务线的前缀\n符合eslint规范\n编译0 error\n"
+        }
+      ]
+    },
+    {
       "title": "使用JSX的注意事项",
       "content": "小程序的 wxml 只支持 view、text 与它的那些内置组件标签，娜娜奇可以让你直接使用 div, span, p, b, strong 等 HTML 标签。块状元素会转换成 view, 内联元素会转换为 text。你不需要管支付宝小程序支持了哪些标签，快应用支持了哪些标签，你就默认为所有平台都用微信小程序的那一套标签，我们会通过\n补丁组件等方式抹平各种小程序的差异。\n如果你使用 React 方式定义组件，那么对应的标签名必须以大写开头。在小程序中，组件不支持包含其他标签，但我们的 React 组件可以充许包含其他标签或组件。有关for循环，多重循环， if分支, 组件套组件 等用法，可以脚手架的 qunar 示例为了兼容所有平台，我们定下这些规则原来打算使用view标签的地方，请使用div,h1这些块状元素代替。\n文本必须包含在text, span, a, option, label这几种标签内\ntext标签下面不能出现text标签或span标签，span标签下面不能出现text标签或span标签\njsx的属性值里面不能出现反斜扛，不能出现模板字符串\njsx中不能出现 声明变量语句，不能出现switch语句\njsx中除了onClick这些事件外， 不能出现除map方法外的方法调用\n不要在标签内部使用纯空白或通过两边的空白撑开空间，即  111 111xxx应该改成xxx，因为在快应用下span只能出现在text标签下，不能放在div下面。\n",
       "url": "/documents/jsx.html",
