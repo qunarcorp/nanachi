@@ -6,54 +6,54 @@
 <p>华为快应用是无法获取页面参数，我们需要给页面添加一个protected对象。但我们又不可能每个页面都添加这个对象，
 因此我们提供下面的方式给用户添加参数。</p>
 <p>在app.js添加一个静态对象globalQuery, 表示对每个页面都尝试参加它里面的key</p>
-<pre><code>class Global extends React.Component {
-    globalData = {}
-    static config = {
-        window: {
-            navigationBarBackgroundColor: &#x27;#00afc7&#x27;,
-            backgroundTextStyle: &#x27;light&#x27;,
-            navigationBarTitleText: &#x27;nanachi&#x27;,
-            navigationBarTextStyle: &#x27;white&#x27;
-        }
-    };
-    static globalQuery = { //&#x8FD9;&#x91CC;&#x7684;&#x503C;&#x662F;&#x968F;&#x610F;&#x7684;
-      a: 1, 
-      b: 1
-    }
-}
+<pre><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+    globalData <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
+        window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            navigationBarBackgroundColor<span class="token punctuation">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
+            backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
+            navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'nanachi'</span><span class="token punctuation">,</span>
+            navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'white'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> globalQuery <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment">//这里的值是随意的</span>
+      a<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> 
+      b<span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>在某个添加一个静态对象pageQuery, 表示对此页面都尝试参加它里面的key</p>
-<pre><code>import React from &#x27;@react&#x27;;
-import { GlobalTheme } from &#x27;@common/GlobalTheme/index&#x27;; //@common &#x522B;&#x540D;&#x5728;package.json&#x4E2D;&#x914D;&#x7F6E;
-import Layout from &#x27;@components/Layout/index&#x27;;
-import AnotherComponent from &#x27;@components/AnotherComponent/index&#x27;;
-import &#x27;./index.scss&#x27;;
-class P extends React.Component {
-    state = {
-        anyVar: { color: &#x27;red&#x27; }
-    };
-    static pageQuery = {
-       c: 1
-    }
-    componentDidMount() {
-        // eslint-disable-next-line
-        console.log(&#x27;page did mount!&#x27;, this.props.query);
-        //&#x7531;&#x4E8E;&#x6211;&#x4EEC;&#x5728;app.js&#x6307;&#x5B9A;&#x4E86;&#x8981;&#x83B7;&#x53D6;a,b&#x53C2;&#x6570;&#xFF0C;&#x5728;&#x9875;&#x9762;&#x53C8;&#x6307;&#x5B9A;&#x83B7;&#x53D6;c&#x53C2;&#x6570;&#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x5BF9;&#x8C61;&#x91CC;&#x9762;&#x6709;a,b,c&#x4E09;&#x4E2A;key
-    }
-    render() {
-        console.log(this.state.anyVar, &#x27;!!&#x27;)
-        return (&#x3C;div class=&#x22;page&#x22; &#x3E;
-            &#x3C;GlobalTheme.Provider value={this.state.anyVar} &#x3E;
-                &#x3C;Layout&#x3E;
-                    &#x3C;AnotherComponent /&#x3E;
-                &#x3C;/Layout&#x3E;
-            &#x3C;/GlobalTheme.Provider&#x3E;
-        &#x3C;/div&#x3E;
-        );
-    }
-}
+<pre><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> GlobalTheme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@common/GlobalTheme/index'</span><span class="token punctuation">;</span> <span class="token comment">//@common 别名在package.json中配置</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">'@components/Layout/index'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> AnotherComponent <span class="token keyword">from</span> <span class="token string">'@components/AnotherComponent/index'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./index.scss'</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">P</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+    state <span class="token operator">=</span> <span class="token punctuation">{</span>
+        anyVar<span class="token punctuation">:</span> <span class="token punctuation">{</span> color<span class="token punctuation">:</span> <span class="token string">'red'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> pageQuery <span class="token operator">=</span> <span class="token punctuation">{</span>
+       c<span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// eslint-disable-next-line</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'page did mount!'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//由于我们在app.js指定了要获取a,b参数，在页面又指定获取c参数，因此这对象里面有a,b,c三个key</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>anyVar<span class="token punctuation">,</span> <span class="token string">'!!'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>page<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>GlobalTheme.Provider</span> <span class="token attr-name">value</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>anyVar<span class="token punctuation">}</span></span> <span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Layout</span><span class="token punctuation">></span></span><span class="token plain-text">
+                    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AnotherComponent</span> <span class="token punctuation">/></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Layout</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>GlobalTheme.Provider</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-export default P;
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token constant">P</span><span class="token punctuation">;</span>
 </code></pre>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="query.html" class="href"><span class="ui-font-ydoc"></span>小米快应用获取页面参数</a></div><div class="m-paging-next m-paging-item"><a href="share.html" class="href">快应用与小程序转发分享<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');

@@ -4,7 +4,8 @@
 因此我们提供下面的方式给用户添加参数。
 
 在app.js添加一个静态对象globalQuery, 表示对每个页面都尝试参加它里面的key
-```
+
+```jsx
 class Global extends React.Component {
     globalData = {}
     static config = {
@@ -23,7 +24,8 @@ class Global extends React.Component {
 ```
 
 在某个添加一个静态对象pageQuery, 表示对此页面都尝试参加它里面的key
-```
+
+```jsx
 import React from '@react';
 import { GlobalTheme } from '@common/GlobalTheme/index'; //@common 别名在package.json中配置
 import Layout from '@components/Layout/index';
