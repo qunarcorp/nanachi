@@ -708,6 +708,12 @@ window.ydoc_plugin_search_json = {
       "children": []
     },
     {
+      "title": "场景值的兼容",
+      "content": "场景值用来描述用户进入小程序的路径。完整场景值的含义请查看场景值列表。由于Android系统限制，目前还无法获取到按 Home 键退出到桌面，然后从桌面再次进小程序的场景值，对于这种情况，会保留上一次的场景值。获取场景值开发者可以通过下列方式获取场景值：对于小程序，可以在 App 的 onLaunch 和 onShow，或wx.getLaunchOptionsSync 中获取上述场景值。// app.jsonShow(e){\n   console.log(e.scene)\n}\n\n\n场景值\n场景\nappId含义\n\n\n\n\n1020\n公众号 profile 页相关小程序列表\n来源公众号\n\n\n1035\n公众号自定义菜单\n来源公众号\n\n\n1036\nApp 分享消息卡片\n来源App\n\n\n1037\n小程序打开小程序\n来源小程序\n\n\n1038\n从另一个小程序返回\n来源小程序\n\n\n1043\n公众号模板消息\n来源公众号\n\n\n快应用比较相似的API就是app.getInfoapp.getInfo({   success(a){\n     console.log(a.type) \n     //来源类型，二级来源，值为 shortcut、push、url、barcode、nfc、bluetooth、other\n   }\n})\n\n\n场景值\n场景\n\n\n\n\nshortcut\n快捷方式\n\n\npush\n手机弹出的广告\n\n\nurl\n浏览器\n\n\nbarcode\n条形码、二维码？\n\n\nnfc\nNFC\n\n\nbluetooth\n蓝牙\n\n\nhttps://doc.quickapp.cn/features/system/app.html?h=getInfo",
+      "url": "/documents/scene.html",
+      "children": []
+    },
+    {
       "title": "卡片",
       "content": "卡片就是一个阉割版的快应用，许多功能与标签都不支持，体积还特别少，放在负一屏中",
       "url": "/documents/card.html",
