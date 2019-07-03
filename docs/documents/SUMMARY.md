@@ -39,6 +39,7 @@
   - [快应用的同步Storage API兼容](quickstorage.md)
   - [快应用与小程序盒子模型的区别](boxDifferent.md)
   - [快应用获取页面参数](query.md)
+  - [华为快应用获取页面参数](huaweiQuery.md)
   - [快应用与小程序转发分享](share.md)
   - [快应用onblur](onblur.md)
   - [场景值的兼容](onblur.md)
