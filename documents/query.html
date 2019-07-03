@@ -3,14 +3,22 @@
       <input type="text" class="input js-input" placeholder="搜索" />
       <div class="m-search-result js-search-result"></div>
     </div></div><nav class="m-header-nav js-nav"><ul class="m-header-items"><li class="item active"><a class="href" href="intro.html">文档</a></li><li class="item "><a class="href" href="../apis/index.html">已兼容处理的API</a></li><li class="item "><a class="href" href="logo.html">谁在用nanachi</a></li><li class="item "><a class="href" href="about.html">关于</a></li></ul></nav><div id="js-nav-btn" class="m-header-btn ui-font-ydoc"></div></header><div class="m-content" id="js-content"><div id="markdown-body" class="m-content-container markdown-body"><h1>页面参数的获取</h1>
-<p>在小程序中，想获取上一个页面跳转后带过来的参数是非常容易的。微信，字节跳动，支付宝，百度小程序直接利用onShow方法，就可以获取参数对象。或者在React生命周期钩子中访问this.props.query获取</p>
+<p>小程序与快应用没有location对象，想获取上一个页面跳转后带过来的参数有以下两种方式：</p>
+<ol>
+<li>onShow(queryObject)</li>
+<li>在React的各种生命周期钩子中访问this.props.query</li>
+</ol>
 <pre><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'@react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Welcome <span class="token keyword">from</span> <span class="token string">'@components/Welcome/index'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token string">'./index.scss'</span><span class="token punctuation">;</span>
 <span class="token keyword">class</span> <span class="token class-name">P</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> innerQuery <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment">// 针对华为快应用的hack</span>
+        a<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        b<span class="token punctuation">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
     <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment">// eslint-disable-next-line</span>
-       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'page did mount!'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'page did mount!'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//{a:111, b: false}</span>
     <span class="token punctuation">}</span>
     <span class="token function">onShow</span><span class="token punctuation">(</span>queryObject<span class="token punctuation">)</span><span class="token punctuation">{</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>queryObject<span class="token punctuation">)</span> <span class="token comment">// {a: 111, b: false}</span>
@@ -26,7 +34,35 @@
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token constant">P</span><span class="token punctuation">;</span>
 </code></pre>
-<p>注意：华为快应用比较特别，是不能直接拿到页面参数，需要我们在app.js与页面上做一些配置，详见<a href="./huaweiQuery.html">这里</a></p>
+<blockquote>
+<p>快应用分别两大派系， 小米快应用与华为快应用，小米与oppo, vivo, 魅族等公司进行技术共享，华为则自成一派，有自己单独的IDE。</p>
+</blockquote>
+<p>华为快应用是不能直接拿到页面参数，需要我们在app.js与页面上做一些配置，才能拿到参数，详见<a href="./huaweiQuery.html">这里</a></p>
+<p>nanachi内部获取参数的方式</p>
+<pre><code class="language-javascript">
+<span class="token keyword">function</span> <span class="token function">getQuery</span><span class="token punctuation">(</span>wx<span class="token punctuation">,</span> huaweiHack<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> page <span class="token operator">=</span> wx<span class="token punctuation">.</span>$page<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>page<span class="token punctuation">.</span>query<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//小米 1050</span>
+        <span class="token keyword">return</span> page<span class="token punctuation">.</span>query<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> query <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>page<span class="token punctuation">.</span>uri<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//小米 1040</span>
+        <span class="token function">getQueryFromUri</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span>uri<span class="token punctuation">,</span> query<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token keyword">in</span> query<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> query<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>huaweiHack <span class="token operator">&amp;&amp;</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>huaweiHack<span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> _i <span class="token keyword">in</span> huaweiHack<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            query<span class="token punctuation">[</span>_i<span class="token punctuation">]</span> <span class="token operator">=</span> wx<span class="token punctuation">[</span>_i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> query<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token function">_getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>globalData<span class="token punctuation">;</span> <span class="token comment">//路由跳转前把参数保存在globalData中，跳转后重新拿出来</span>
+    <span class="token keyword">return</span> data <span class="token operator">&amp;&amp;</span> data<span class="token punctuation">.</span>__quickQuery <span class="token operator">&amp;&amp;</span> data<span class="token punctuation">.</span>__quickQuery<span class="token punctuation">[</span>page<span class="token punctuation">.</span>path<span class="token punctuation">]</span> <span class="token operator">||</span> query<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="boxDifferent.html" class="href"><span class="ui-font-ydoc"></span>快应用与小程序盒子模型的区别</a></div><div class="m-paging-next m-paging-item"><a href="huaweiQuery.html" class="href">华为快应用获取页面参数<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));

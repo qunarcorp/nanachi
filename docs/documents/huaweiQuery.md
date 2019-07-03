@@ -3,7 +3,15 @@
 华为快应用是无法获取页面参数，我们需要给页面添加一个protected对象。但我们又不可能每个页面都添加这个对象，
 因此我们提供下面的方式给用户添加参数。
 
-在app.js添加一个静态对象globalQuery, 表示对每个页面都尝试参加它里面的key
+在app.js添加两个静态对象innerQuery与outerQuery, innerQuery是用来接受页面间的跳转参数，outerQuery是用来接收外面跳进快应用的参数
+（比如H5跳快应用，卡片快应用跳快应用）。这两个参数对象的里面键名不能出现重复，比如innerQuery有a,b, outerQuery只能是c与d,不能加a.
+
+在app.js添加两个静态对象是对所有页面都生效。
+
+内外参数的设置详见[快应用文档](https://doc.quickapp.cn/tutorial/framework/switching-pages-and-passing-parameters.html)
+
+>protected 内定义的属性，允许被应用内部页面请求传递的数据覆盖，不允许被应用外部请求传递的数据覆盖
+>若希望参数允许被应用外部请求传递的数据覆盖，请在页面的 ViewModel 的public属性中声明使用的属性
 
 ```jsx
 class Global extends React.Component {
@@ -16,14 +24,18 @@ class Global extends React.Component {
             navigationBarTextStyle: 'white'
         }
     };
-    static globalQuery = { //这里的值是随意的
+    static innerQuery = { //这里的值是随意的
+      a: 1, 
+      b: 1
+    }
+    static outerQuery = { //这里的值是随意的
       a: 1, 
       b: 1
     }
 }
 ```
 
-在某个添加一个静态对象pageQuery, 表示对此页面都尝试参加它里面的key
+在某个需要获取参数的页面中也可以添加静态对象innerQuery与outerQuery， 它们是对app.js的同名参数对象的一些补充。
 
 ```jsx
 import React from '@react';
@@ -35,7 +47,7 @@ class P extends React.Component {
     state = {
         anyVar: { color: 'red' }
     };
-    static pageQuery = {
+    static innerQuery = {
        c: 1
     }
     componentDidMount() {
