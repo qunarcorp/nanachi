@@ -25,12 +25,12 @@ class Global extends React.Component {
         }
     };
     static innerQuery = { //这里的值是随意的
-      a: 1, 
+      a: 1,
       b: 1
     }
     static outerQuery = { //这里的值是随意的
-      a: 1, 
-      b: 1
+      c: 1,
+      d: 1
     }
 }
 ```
@@ -48,7 +48,7 @@ class P extends React.Component {
         anyVar: { color: 'red' }
     };
     static innerQuery = {
-       c: 1
+       k: 1
     }
     componentDidMount() {
         // eslint-disable-next-line
