@@ -333,9 +333,65 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "拆库开发",
-      "content": "拆库开发亦称分仓库开发， 如果一个小程序非常大，比如说商场小程序，有许多频道，这涉及多条业务线，每条业务线开发一个频道，那么就需要此功能。我们允许每个频道都独立建一个github/gitlab仓库进行独立开发上线前，通过我们的拆包工具chaika， 将要上线的频道整合成一个要上线的小程序，集中用nanachi进行转译发布。https://qunarcorp.github.io/chaika/下面是某一个子频道的目录结构， 由于它不是主包，因此没有app.js, 改成包含合并指令的app.json强烈建议看一下别名机制 src   |--components //合并到主包的组件\n   |--assets     //合并到主包的静态资源\n   |--common     //合并到主包的公用方法\n   |--pages\n   |    |--commponents //留在分包的组件\n   |    |--assets      //留在分包的静态资源\n   |    |--common      //留在分包的组件\n   |    |--page1\n   |    |--page2\n   |    |--page3\n   |    |--page4\n   |    └── ...\n   |--app.json (不存在app.js , wxConfig.json, quickConfig.json)\napp.json里面有{    \"pages\": [],\n    \"nanachi\":{\n        \"alias\": {\n            \"@hotel/common\": \"source/common/hotel\"\n        }\n    }\n}\n",
+      "content": "拆库开发亦称分仓库开发。",
       "url": "/documents/chaika.html",
-      "children": []
+      "children": [
+        {
+          "title": "拆库开发能解决哪些问题？",
+          "url": "/documents/chaika.html#拆库开发能解决哪些问题？",
+          "content": "拆库开发能解决哪些问题？想象一下，如果一个小程序非常大，涉及多条业务线，每条业务线有自己的开发一个频道。 如果没有拆库功能，本地开发时，需要将整个工程全量 clone 到本地然后进行开发。一旦项目体量大起来（业务线多起来），上面这种方式很容易不小心误触别业务线的代码，并且全量编译的时间更长，效率低。在开发时：如何能让自己业务线代码保持独立，只专注于本业务线代码？\n如何自由安装在开发中所依赖的其他业务线代码呢？\n\n这，就是 nanachi 拆库开发所要解决的问题。"
+        },
+        {
+          "title": "如何对代码进行拆库？",
+          "url": "/documents/chaika.html#如何对代码进行拆库？",
+          "content": "如何对代码进行拆库？要使用 nanachi 拆库功能，首先要把各业务线拆分成“拆库工程”。我们允许每个业务线都独立建一个github/gitlab仓库进行独立开发，每个仓库需要保持 nanachi 工程所必须的目录结构（这是必须的）。建立自己业务线的 git 工程。\n将自己的业务线代码抽成符合 nanachi 规范的目录结构。\n注意事项：应该拆库出一个“主包拆库工程”，主包中必须含有app.js。这是开发依赖，当用户开发自己的项目时，必须先要安装含有app.js的主包\n举个栗子：比如我们 qunar 有的火车票业务线和酒店业务线，如何针对这两个业务线进行拆库呢？"
+        },
+        {
+          "title": "一：拆库主包工程（包含app.js）",
+          "url": "/documents/chaika.html#如何对代码进行拆库？-一：拆库主包工程（包含app.js）",
+          "content": "一：拆库主包工程（包含app.js）工程地址：yourAddress/nanachi_app_home.git\n工程结构：\n\n"
+        },
+        {
+          "title": "二：酒店业务线拆库工程",
+          "url": "/documents/chaika.html#如何对代码进行拆库？-二：酒店业务线拆库工程",
+          "content": "二：酒店业务线拆库工程工程地址：yourAddress/nanachi_app_hotel.git\n工程结构：\n\n"
+        },
+        {
+          "title": "三：火车票业务线拆库工程",
+          "url": "/documents/chaika.html#如何对代码进行拆库？-三：火车票业务线拆库工程",
+          "content": "三：火车票业务线拆库工程工程地址：yourAddress/nanachi_app_train.git\n工程结构：\n\n"
+        },
+        {
+          "title": "四：在业务线的 package.json 需要进行简单配置",
+          "url": "/documents/chaika.html#如何对代码进行拆库？-四：在业务线的-package.json-需要进行简单配置",
+          "content": "四：在业务线的 package.json 需要进行简单配置{  \"nanachi\": {\n    \"chaika_mode\": true //这是告诉 nanachi，当前快发模式为“拆库”模式。\n  }\n}\n"
+        },
+        {
+          "title": "拆库关键文件说明",
+          "url": "/documents/chaika.html#拆库关键文件说明",
+          "content": "拆库关键文件说明app.json：注意上面的拆库目录结构都有一个app.json，内容为：{    \"pages\": [\n        \"pages/plat/pageA/index\",\n        \"pages/plat/pageB/index\"\n    ],\n    \"nanachi\":{\n        \"alias\": {\n            \"@hotel/common\": \"source/common/hotel\"\n        }\n    },\n    \"order\": 100\n}\npages 字段为数组，pages 里面的路由将会被注入到 app.js 中，用以被 nanachi 编译。\nnanachi 字段即为 package.json 中的 nanachi 的配置，会被合并到 package.json 中。\norder 字段为路由排序标识，order值越大，最后打包到app.json中的这些路由排序越靠前。\n"
+        },
+        {
+          "title": "如何使用 nanachi 拆库",
+          "url": "/documents/chaika.html#如何使用-nanachi-拆库",
+          "content": "如何使用 nanachi 拆库\nclone 你自己的业务线代码: git clone git@xxx.git.\n\n\n安装你的项目依赖的其他业务线拆卡工程：nanachi install git@otherProject.git -b branchName（跟git   clone一回事）。\n注意：首先要安装“拆库主包工程”，即包含 app.js 的拆卡工程，这是所有业务线的开发，运行依赖。再根据实际场景决定是否需要安装其他拆卡工程。\n\n\nnanachi watch\n\n相比之前的普通模式开发，其实就多了步骤2。"
+        },
+        {
+          "title": "自定义 install 拆库工程",
+          "url": "/documents/chaika.html#自定义-install-拆库工程",
+          "content": "自定义 install 拆库工程nanachi默认只支持install git 工程（nanachi install xx@yyy.git --branch yourBranch)。但 nanachi 支持用户可以自定义安装方式，比如 install 压缩包。命令行：nanachi install tarName@version但需要一些额外配置。在你的项目工程跟目录中新建一个 nanachi.config.js 配置文件。module.exports = {    chaikaConfig: {\n        onInstallTarball: function(tarName, version){\n            let preUrl = 'http://xxx/yyy';\n            let tarUrl = `${preUrl}/${version}/${version}/${tarName}-${version}.zip`;\n            return tarUrl;\n        }\n    }\n}\n在该配置中生命周期 onInstallTarball 有两个参数。分别代表压缩包名，已经压缩包版本。该函数返回值就是压缩包的远程地址。当执行命令nanachi install tarName@version时候，配置中的  onInstallTarball函数会劫持命令行中 tarName 和 version, 并作为函数的参数。你只需要在该函数中返回一个压缩包的远程地址，nanachi 就会帮你下载。"
+        },
+        {
+          "title": "批量 install 拆库工程。",
+          "url": "/documents/chaika.html#批量-install-拆库工程。",
+          "content": "批量 install 拆库工程。此功能需在你当前项目的package.json中配置modules字段{   \"modules\": {\n    \"git@xxx.git\": \"yourBranchName\",\n    \"tarName\": \"yourVersion\"\n  }\n}\n然后命令行执行 nanachi install, 则会批量安装modules字段里面配置的所有拆卡工程。"
+        },
+        {
+          "title": "注意事项",
+          "url": "/documents/chaika.html#注意事项",
+          "content": "注意事项配置文件，如wxConfig.json，aliConfig.json, ..., app.json需要放在拆库工程的source目录下, project.config.json, package.json等需要放在拆库工程根目录下。\nnanachi拆卡模式对各配置文件合并时，\bnanachi会将冲突暴露。如果遇到配置冲突，需用户自行解决冲突。\n\n"
+        }
+      ]
     },
     {
       "title": "alias别名配置",
