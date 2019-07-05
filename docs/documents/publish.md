@@ -27,6 +27,7 @@ src
    |    |--strategy
    |    └── ...
    |--app.js
+   |--sign 
    |--wxConfig.json
    |--qqConfig.json
    |--quickConfig.json
@@ -44,6 +45,8 @@ pages目录下每个事业部各建一个目录，以事业部的名字命名，
 common, assets, index目录，及其他页面的目录。
 
 ![publish](./publish.png)
+
+source中的sign目录是快应用的签名目录，在发布时拷贝到外面
 
 页面目录应该只包含index.js与index.css(也可以改成index.less, index.scss). 注意，必须用index命名，并且里面必须是有状态的React组件（转译器会转换成页面组件。）页面的index.js各种引入通用组件与common目录的依赖
 

@@ -23,7 +23,7 @@ class P extends React.Component {
     onShare() {
             var navigateToUrl = this.props.path;
             return {
-                title: '预订火车票 - 去哪儿旅行',
+                title: '预订火车票 - 携程',
                 imageUrl: 'https://s.aaa.com/bbb/ccc.jpg',
                 path: navigateToUrl
             };
@@ -82,13 +82,44 @@ class Demo extends React.Component {
         ufo: 'ufo'
     };
     onGlobalShare() {
-        var navigateToUrl = '/pages/index/index';
-        return {
-            title: '预订火车票 - 去哪儿旅行',
-            imageUrl: 'https://s.aaa.com/bbb/ccc.jpg',
-            path: navigateToUrl
-        };
-    };
+        if (process.env.ANU_ENV === 'wx') {
+                return null; //微信直接使用默认的分享，没有写onShare也有
+          }
+          // 快应用的分享比较特殊
+          if (process.env.ANU_ENV === 'quick') {
+                        return {
+                            shareType: 0,
+                            title: '携程',
+                            summary: '携程，总有你要的低价',
+                            imagePath: '/assets/image/qlog.png',
+                            targetUrl: 'https://miniapp.tujia.com/quickShare?%2Fpages%2Fplatform%2Findex%3Fbd_origin%3Dfrom-quick-share',
+                            platforms: ['WEIXIN'],
+                            success: function(data) {
+                                        console.log('handling success')
+                            },
+                            fail: function(data, code) {
+                                        console.log(`handling fail, code = ${code}`)
+                            }
+                        };
+            }
+            const reactInstance = React.getCurrentPage();
+            let path = reactInstance && reactInstance.props && reactInstance.props.path;
+            let query = reactInstance && reactInstance.props && reactInstance.props.query;
+            return {
+                        title: '携程',
+                        content: '携程，总有你要的低价',
+                        path: 'pages/platform/indexWx/index',
+                        success: res => {
+                            Log({
+                                        name: 'share',
+                                        channel: res.channelName,
+                                        page: path,
+                                        query: JSON.stringify(query || {}),
+                                        to: 'pages/platform/indexWx/index',
+                            });
+                        },
+            };
+    }
     onLaunch() {
         // eslint-disable-next-line
         console.log('App launched');
@@ -105,13 +136,6 @@ class Demo extends React.Component {
                                 var fn = pageInstance.onShare || app.onGlobalShare;
                                 var obj = fn && fn();
                                 if (obj){
-                                    obj.data = obj.data || obj.path;
-                                    obj.success = obj.success || function(a){
-                                        console.log(a, '分享成功')
-                                    }
-                                    obj.fail = obj.fail || function(a){
-                                        console.log(a, '分享失败')
-                                    }
                                     api.share(obj);
                                 }
                                 break;
