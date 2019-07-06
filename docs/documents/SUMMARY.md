@@ -49,5 +49,6 @@
 - [各种小程序的比较](diff.md)
 - [各种小程序的官网](link.md)
 - [反馈收集](feedback.md)
+    - [微信小程序的双线程架构](two-threaded.md)
 - [常见问题](questions.md)
 - [关于](about.md)
