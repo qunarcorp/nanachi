@@ -48,6 +48,7 @@ Object object
 | success  | function |        | 否       | 接口调用成功的回调函数                                              |
 | fail     | function |        | 否       | 接口调用失败的回调函数                                              |
 | complete | function |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行）                    |
+| getRawResult | function  |   | 否       | 用于获取原始的uploadTask对象，上面可以添加进度回调 |
 
 **object.success 回调函数**
 
@@ -75,6 +76,7 @@ Object object
 | success  | function |        | 否       | 接口调用成功的回调函数                           |
 | fail     | function |        | 否       | 接口调用失败的回调函数                           |
 | complete | function |        | 否       | 接口调用结束的回调函数（调用成功、失败都会执行） |
+| getRawResult | function  |   | 否       | 用于获取原始的uploadTask对象，上面可以添加进度回调 |
 
 **object.success 回调函数**
 

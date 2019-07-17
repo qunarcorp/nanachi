@@ -20,13 +20,13 @@
         <span class="token comment">// eslint-disable-next-line</span>
        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'page did mount!'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//{a:111, b: false}</span>
     <span class="token punctuation">}</span>
-    <span class="token function">onShow</span><span class="token punctuation">(</span><span class="token parameter">queryObject</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">onShow</span><span class="token punctuation">(</span>queryObject<span class="token punctuation">)</span><span class="token punctuation">{</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>queryObject<span class="token punctuation">)</span> <span class="token comment">// {a: 111, b: false}</span>
     <span class="token punctuation">}</span>
     <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token punctuation">(</span>
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>page<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token plain-text">
-                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Welcome</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>nanachi<span class="token punctuation">'</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Welcome</span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>nanachi<span class="token punctuation">'</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
             </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
         <span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -40,7 +40,7 @@
 <p>华为快应用是不能直接拿到页面参数，需要我们在app.js与页面上做一些配置，才能拿到参数，详见<a href="./huaweiQuery.html">这里</a></p>
 <p>nanachi内部获取参数的方式</p>
 <pre><code class="language-javascript">
-<span class="token keyword">function</span> <span class="token function">getQuery</span><span class="token punctuation">(</span><span class="token parameter">wx<span class="token punctuation">,</span> huaweiHack</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">function</span> <span class="token function">getQuery</span><span class="token punctuation">(</span>wx<span class="token punctuation">,</span> huaweiHack<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> page <span class="token operator">=</span> wx<span class="token punctuation">.</span>$page<span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>page<span class="token punctuation">.</span>query<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//小米 1050</span>
         <span class="token keyword">return</span> page<span class="token punctuation">.</span>query<span class="token punctuation">;</span>

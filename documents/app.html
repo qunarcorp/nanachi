@@ -58,6 +58,16 @@
             <span class="token string">"pages/bargain/helper/helper"</span><span class="token punctuation">:</span>  <span class="token string">"pages/ticket/bargain/helper/index"</span><span class="token punctuation">,</span>
             <span class="token string">"pages/bargain/ticket/index"</span><span class="token punctuation">:</span>  <span class="token string">"pages/ticket/bargain/list/index"</span><span class="token punctuation">,</span>
             <span class="token string">"pages/bargain/award/index"</span><span class="token punctuation">:</span>  <span class="token string">"pages/ticket/bargain/award/index"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        tabBar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            backgroundColor<span class="token punctuation">:</span> <span class="token string">'#0077c7'</span><span class="token punctuation">,</span>
+            list<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+              pagePath<span class="token punctuation">:</span> <span class="token string">"pages/platform/index/index"</span><span class="token punctuation">,</span>
+              text<span class="token punctuation">:</span> <span class="token string">"首页"</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+              pagePath<span class="token punctuation">:</span> <span class="token string">"pages/service/index/index"</span><span class="token punctuation">,</span>
+              text<span class="token punctuation">:</span> <span class="token string">"客服"</span>
+            <span class="token punctuation">}</span><span class="token punctuation">]</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token comment">// 全局数据</span>
@@ -80,7 +90,7 @@
     <span class="token function">onGlobalShare</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>   <span class="token comment">//全局的小程序分享钩子， 如果页面没有定义onShare, 或onShare没有返回对象，就会触发它</span>
         <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token function">onPageNotFound</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">onPageNotFound</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token comment">//这里专门迁移之前的业务，比如一些广告，二维图已经印出来，贴在各大广场上，不可能再改这些二维码</span>
         <span class="token comment">//而二维码对应一些旧页面，现在用nanachi重写，并根据nanachi的规范，只能以index结尾</span>
         <span class="token comment">//随着业务的拆分，它们分到新部门（门票），为了方便分包，它们的目录结构也要改动</span>
@@ -89,14 +99,14 @@
         <span class="token comment">//在微信小程序中path不以"/"开头，但不保证其他小程序是以"./", "/"开头</span>
         path <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/^\/,""/</span><span class="token punctuation">)</span>
         <span class="token keyword">var</span> newPath <span class="token operator">=</span> Global<span class="token punctuation">.</span>config<span class="token punctuation">.</span>needRedirectPages<span class="token punctuation">[</span>path<span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token string">"pages/platform/404/index"</span><span class="token punctuation">;</span>
-        <span class="token keyword">var</span> queryString <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>query<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">k</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> queryString <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>query<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">{</span>
           <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>k<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>query<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"&amp;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">redirectTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
             url<span class="token punctuation">:</span>path <span class="token operator">+</span> <span class="token punctuation">(</span>queryString<span class="token operator">?</span> <span class="token string">'?'</span><span class="token operator">+</span> queryString<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">)</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token function">onShowMenu</span><span class="token punctuation">(</span><span class="token parameter">pageInstance<span class="token punctuation">,</span> app</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">//供快应用实现右上角菜单与转发分享（onShare, onGlobalShare都在这里）</span>
+    <span class="token function">onShowMenu</span><span class="token punctuation">(</span>pageInstance<span class="token punctuation">,</span> app<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">//供快应用实现右上角菜单与转发分享（onShare, onGlobalShare都在这里）</span>
     <span class="token function">onCollectLogs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>  <span class="token comment">//全局的用户行为日志收集钩子</span>
     <span class="token function">onHide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>          <span class="token comment">//全局的app钩子, 当app切换后台时触发</span>
           <span class="token keyword">var</span> app <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -137,7 +147,7 @@
         scene<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
         logs<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment">//日志， 满10条就会自动发送后台</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token function">onLaunch</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">onLaunch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>scene <span class="token operator">=</span> e<span class="token punctuation">.</span>scene
         <span class="token keyword">if</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">ANU_ENV</span> <span class="token operator">===</span> <span class="token string">'quick'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onLaunchQuick</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -147,17 +157,17 @@
     <span class="token function">onHide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
        <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>_staytime <span class="token operator">=</span> Data<span class="token punctuation">.</span>now <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>_startimestamp
     <span class="token punctuation">}</span>
-    <span class="token keyword">async</span> <span class="token function">onLaunchNormal</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">async</span> <span class="token function">onLaunchNormal</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment">// 统计总体停留时长</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>_startimestamp <span class="token operator">=</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment">// 这里要把系统信息放到全局 方便日志收集  业务线调用时要使用util下的getSystemInfo</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getSystemInfo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token parameter">res</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            success<span class="token punctuation">:</span> res <span class="token operator">=></span> <span class="token punctuation">{</span>
                 <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>systemInfo <span class="token operator">=</span> res<span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token function">onLaunchQuick</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">onLaunchQuick</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment">//针对快应用的全局getApp补丁</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$data <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> global <span class="token operator">===</span> <span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">var</span> ref <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>global<span class="token punctuation">)</span> <span class="token operator">||</span> global<span class="token punctuation">;</span>
@@ -170,7 +180,7 @@
         <span class="token comment">// 统计总体停留时长</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>_startimestamp <span class="token operator">=</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getSystemInfo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token parameter">res</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            success<span class="token punctuation">:</span> res <span class="token operator">=></span> <span class="token punctuation">{</span>
                 <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>systemInfo <span class="token operator">=</span> res<span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -178,7 +188,7 @@
         user<span class="token punctuation">.</span><span class="token function">appLanchInfos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment">// 获取地理位置 埋点所需 百度账号未登录会报错</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getLocation</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            success<span class="token punctuation">:</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
                 <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>location <span class="token operator">=</span> <span class="token punctuation">{</span>
                     lat<span class="token punctuation">:</span> res<span class="token punctuation">.</span>latitude<span class="token punctuation">,</span>
                     lgt<span class="token punctuation">:</span> res<span class="token punctuation">.</span>longitude
@@ -194,6 +204,75 @@
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 </code></pre>
+<h2 id="tabbar-的使用">tabBar 的使用</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>HexColor</td>
+<td>是</td>
+<td> </td>
+<td>tab 上的文字默认颜色，仅支持十六进制颜色</td>
+</tr>
+<tr>
+<td>selectedColor</td>
+<td>HexColor</td>
+<td>是</td>
+<td> </td>
+<td>tab 上的文字选中时的颜色，仅支持十六进制颜色</td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td>HexColor</td>
+<td>是</td>
+<td> </td>
+<td>tab 的背景色，仅支持十六进制颜色</td>
+</tr>
+<tr>
+<td>borderStyle</td>
+<td>string</td>
+<td>否</td>
+<td>black</td>
+<td>tabbar 上边框的颜色， 仅支持 black / white</td>
+</tr>
+<tr>
+<td>list</td>
+<td>Array</td>
+<td>是</td>
+<td> </td>
+<td>tab 的列表，详见 list 属性说明，最少 2 个、最多 5 个 tab</td>
+</tr>
+<tr>
+<td>position</td>
+<td>string</td>
+<td>否</td>
+<td>bottom</td>
+<td>tabBar 的位置，仅支持 bottom / top</td>
+</tr>
+<tr>
+<td>custom</td>
+<td>boolean</td>
+<td>否</td>
+<td>false</td>
+<td>自定义 tabBar，见详情</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>快应用不支持 position， tabBar总是在下面</p>
+</blockquote>
+<blockquote>
+<p>tabBar下的list也可以根据平台设置，详见<a href="./tabBar.html">这里</a></p>
+</blockquote>
 <h2 id="react.getapp的使用场合">React.getApp()的使用场合</h2>
 <p><code>React.getApp()</code>必须放在app.js 或页面组件或普通组件的生命周期钩子里面执行，不要放在全局作用域下执行</p>
 <p>快应用可以这样设置跨页面的全局数据 <code>this.$app.$data = {a:1}</code></p>

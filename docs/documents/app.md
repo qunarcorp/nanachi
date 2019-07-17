@@ -49,6 +49,16 @@ class Global extends React.Component {
             "pages/bargain/helper/helper":  "pages/ticket/bargain/helper/index",
             "pages/bargain/ticket/index":  "pages/ticket/bargain/list/index",
             "pages/bargain/award/index":  "pages/ticket/bargain/award/index"
+        },
+        tabBar: {
+            backgroundColor: '#0077c7',
+            list: [{
+              pagePath: "pages/platform/index/index",
+              text: "首页"
+            }, {
+              pagePath: "pages/service/index/index",
+              text: "客服"
+            }]
         }
     };
     // 全局数据
@@ -189,6 +199,22 @@ export default App(new Global());
         }
     }
 ```
+
+## tabBar 的使用
+
+| 属性             | 类型      | 必填   | 默认值 | 描述            |
+|-----------------|----------|------|---------|--------------------------------------------|
+| color           | HexColor | 是   |&nbsp; |tab 上的文字默认颜色，仅支持十六进制颜色                 |                                            |
+| selectedColor   | HexColor | 是   |&nbsp;|tab 上的文字选中时的颜色，仅支持十六进制颜色             |                                            |
+| backgroundColor | HexColor | 是   |&nbsp;| tab 的背景色，仅支持十六进制颜色    |                                            |
+| borderStyle     | string   | 否   | black  | tabbar 上边框的颜色， 仅支持 black / white |
+| list            | Array    | 是   | &nbsp;|tab 的列表，详见 list 属性说明，最少 2 个、最多 5 个 tab |
+| position        | string   | 否   | bottom     | tabBar 的位置，仅支持 bottom / top         |
+| custom          | boolean  | 否   | false      | 自定义 tabBar，见详情                      |
+
+> 快应用不支持 position， tabBar总是在下面
+
+> tabBar下的list也可以根据平台设置，详见[这里](./tabBar.md)
 
 ## React.getApp()的使用场合
 
