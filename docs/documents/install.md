@@ -33,7 +33,7 @@ yarn global add nanachi-cli
 
 注意：快应用下构建结束后，需要执行以下三步骤
 ```shell
-npm install    #  需要开另一个窗口, 安装快应用的hap编译器， 只需安装一次 
+npm install    #  需要开另一个窗口, 安装快应用的hap编译器， 只需安装一次
 npm run build  # 与上面同一窗口, 生成dist目录
 npm run server # 需要第三个窗口, 运行node环境，这时会出一个二维码与一个链接，保证PC的WIFI与手机的WIFI是同一个，然后用手机上的快应用调试器 扫描，就能看到效果。也可以将链接贴到chrome中，这时二维码会出现页面上，也是手机扫描，可以同时在手机与网页上看到效果，此这种方式用于调式。
 ```
@@ -63,7 +63,7 @@ nanachi -V #查看当前版本
 7. 用微信开发工具打开当中的dist目录，自己在source目录中进行开发<br />
 
 ```bash
-cd anu/packages/cli && npm link
+cd anu/packages/cli && npm i && npm link
 cd ../../ && nanachi init demo
 cd demo && yarn
 nanachi watch   //或 nanachi watch:wx 或 nanachi watch:bu 或 nanachi watch:ali 或 或 nanachi watch:tt
