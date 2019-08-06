@@ -32,6 +32,11 @@ window.ydoc_plugin_search_json = {
           "content": "第二种安装此方式下适用于去哪儿网内部用户，在参与开发nanachi框架的技术人员git clone git@github.com:RubyLouvre/anu.git 或git clone https://github.com/RubyLouvre/anu.git\n命令行定位到packages/cli目录下，执行npm link 如果之前装过要先npm unlink\n然后定位到外面的目录，不要在cli目录中建工程。 使用 cd ../../ && nanachi init demo 创建工程\n定位到 demo 目录下安装依赖npm i或yarn\nnanachi build 全量编译代码，build后面可跟参数， 如nanachi build:ali\nnanachi watch 增量编译代码并监听文件变化，watch后面可跟参数\n用微信开发工具打开当中的dist目录，自己在source目录中进行开发\ncd anu/packages/cli && npm i && npm linkcd ../../ && nanachi init demo\ncd demo && yarn\nnanachi watch   //或 nanachi watch:wx 或 nanachi watch:bu 或 nanachi watch:ali 或 或 nanachi watch:tt\n\n\n\n\n有远程请求的页面，需要打开右上角 “>>” 详情，  不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书 打上勾"
         },
         {
+          "title": "用nanachi开发的应用的性能",
+          "url": "/documents/install.html#用nanachi开发的应用的性能",
+          "content": "用nanachi开发的应用的性能"
+        },
+        {
           "title": "快应用的安装流程",
           "url": "/documents/install.html#快应用的安装流程",
           "content": "快应用的安装流程执行以下命令：npm install -g hap-toolkit //安装快应用的hap编译器， 只需安装一次nanachi init xxx     // 初始化工程\ncd xxx && npm i      // npm i可以改成yarn， 安装nanachi的依赖\nnanachi watch:quick  // 编译代码\nnpm i                // 这是安装快应用的编译器hap的依赖，\nnpm run build        // 这是hap 的构建命令\nnpm run server  -- --watch  //或hap server --watch 这是hap 的打开远程服务，生成二维码让你用手机扫码查看编译后的app\n。快应用还没有像微信， 支付宝， 百度那样提供好用的开发者工具，想查看结果需要手机装 快应用调试器。快应用只能用于安卓。快应用调试器快应用预览版快应用的目标代码分别在src（ux文件）与dist（二进制）在编译二进制过程，可能有许多警告，因为快应用的标签不支持 data-*属性及许多HTML样式，但这不会影响结果。\n\n\n"
@@ -461,6 +466,11 @@ window.ydoc_plugin_search_json = {
           "title": "各种日志的处理",
           "url": "/documents/report.html#各种日志的处理",
           "content": "各种日志的处理订单 等这样重要的行为， 要业务中进行手动埋点，使用上面的createLog方法\n点击，输入这样的事件，使用自动埋点，框架会在内部的dispatchEvent方法中自行调用全局的\nonCollectLogs方法\n页面流转情况， 建议对React.api.redirectTo等四个方法进行再包装，里面封入onCollectLogs方法，\n页面渲染时间，通过全局的onGlobalLoad, onGlobalReady等到某一页的渲染时间\n页面停留时间，通过全局的onGlobalShow onGlobalHide等到某一页的停留时间\n如果一些页面没有使用nanachi,可以通过下面的方法调用app.js的全局钩子：\n    var appHook = {        onLoad: \"onGlobalLoad\",\n        onReady: \"onGlobalReady\",\n        onShow: \"onGlobalShow\",\n        onHide: \"onGlobalHide\"\n     }\n     function addGlobalHooks(obj){\n         \"onLoad,onReady,onShow,onHide\".replace(/\\w+/g,function(method){\n             var fn = obj[method] || Number\n             obj[method] = function(param){\n                fn.call(obj, param);\n                var app = getApp();\n                var hook = appHook[method];\n                if(typeof app[hook] === 'function'){\n                    app[hook](param)\n                }\n             }\n         })\n     }\n     Page(addGlobalHooks({\n         \n     }))\n"
+        },
+        {
+          "title": "快应用的UUID",
+          "url": "/documents/report.html#快应用的uuid",
+          "content": "快应用的UUID咱们的uv统计 以及未登录下单就是用的这玩意 andid就是ime号"
         }
       ]
     },

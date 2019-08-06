@@ -201,3 +201,8 @@ onCollectLogs方法
          
      }))
 ```
+
+
+## 快应用的UUID
+
+咱们的uv统计 以及未登录下单就是用的这玩意 andid就是ime号

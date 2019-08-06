@@ -81,7 +81,9 @@ nanachi watch   //或 nanachi watch:wx 或 nanachi watch:bu 或 nanachi watch:al
 
 ![image](https://user-images.githubusercontent.com/190846/45038189-53f44a80-b093-11e8-9ecb-a4080f21b262.png)
 
+## 用nanachi开发的应用的性能
 
+![image](./pref.jpg)
 
 ## 快应用的安装流程
 
