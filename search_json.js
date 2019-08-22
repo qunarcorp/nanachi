@@ -356,6 +356,43 @@ window.ydoc_plugin_search_json = {
       "children": []
     },
     {
+      "title": "Redux与Mobx的支持",
+      "content": "想使用Redux与Mobx，我们需要对app.js添加render方法，返回Provider组件就行了。这样全局就可以共用一个store。其他想用store数据的页面，则需要通过装修器或connect方法，将原来的页面类或组件类包裹成高阶组件export 出来。具体可通过nanachi init命令初始化相应模板，查看Redux、Mobx示例代码",
+      "url": "/documents/redux.html",
+      "children": [
+        {
+          "title": "Redux",
+          "url": "/documents/redux.html#redux",
+          "content": "Redux"
+        },
+        {
+          "title": "App组件处理",
+          "url": "/documents/redux.html#redux-app组件处理",
+          "content": "App组件处理app.js由于不支持jsx语法，我们需要用React.createElement来创建对应的组件import React from '@react';import { Provider } from 'react-redux';\nimport { createStore } from 'redux';\n\n//--------[begin]------------\n//这部分代码可以独立到一个store.js\nconst reducer = function (state, action) {\n    switch(action.type) {\n        case 'ADD': \n            return {\n                ...state,\n                value: state.value + 1\n            };\n        case 'MINUS': \n            return {\n                ...state,\n                value: state.value - 1\n            };\n        case 'CHANGE': \n            return {\n                ...state,\n                inputVal: action.payload\n            };\n        default:\n            return state;\n    }\n}\n\nconst initState = {\n    value: 12,\n    inputVal: 100\n}\nconst store = new createStore(reducer, initState);\n//------------[end]--------------\nclass Global extends React.Component {\n    globalData = {}\n    static config = {\n        window: {\n            navigationBarBackgroundColor: '#00afc7',\n            backgroundTextStyle: 'light',\n            backgroundColor: '#00afc7',\n            navigationBarTitleText: 'nanachi',\n            navigationBarTextStyle: 'white'\n        }\n    };\n    onLaunch() {\n        //针对快应用的全局getApp补丁\n        if (this.$data && typeof global === 'object') {\n            var ref = Object.getPrototypeOf(global) || global;\n            var _this = this;\n            this.globalData = this.$def.globalData;\n            ref.getApp = function() {\n                return _this;\n            };\n        }\n        console.log('App launched');//eslint-disable-line\n    }\n    // 正常nanachi项目app中不需要render，如需使用状态库Provider，需要添加render方法\n    render() {\n        return React.createElement(Provider, {store: store}, this.props.children )\n    }\n}\n\nexport default App(new Global());\n"
+        },
+        {
+          "title": "Pages/Components组件处理",
+          "url": "/documents/redux.html#redux-pagescomponents组件处理",
+          "content": "Pages/Components组件处理页面、组件的写法与原生redux基本一致，需要注意不要将connect语句写到export default中，而是要在export default之前调用。import React, {Component} from '@react';import { connect } from 'react-redux';\n\nconst mapStateToProps = function (state) {\n    return {\n        value: state.value\n    }\n}\n\nconst mapDispatchToProps = function (dispatch) {\n    return {\n        add: function() {\n            dispatch({\n                type: 'ADD'\n            });\n        },\n        minus: function() {\n            dispatch({\n                type: 'MINUS'\n            });\n        }\n    }\n}\n\nclass P extends Component {\n    render() {\n        return (\n                {this.props.value}\n                 {this.props.add()}}>+\n                 {this.props.minus()}}>-\n        \n        );\n    }\n}\n\n// connect需要写到export default语句前包裹页面。\nP = connect(mapStateToProps, mapDispatchToProps)(P);\n\nexport default P;\n"
+        },
+        {
+          "title": "Mobx",
+          "url": "/documents/redux.html#mobx",
+          "content": "Mobx"
+        },
+        {
+          "title": "App组件处理",
+          "url": "/documents/redux.html#mobx-app组件处理",
+          "content": "App组件处理与redux处理方式相同import React from '@react';import { Provider } from 'mobx-react';\nimport Store from './store/index';\nimport './pages/index/index';\n\nconst store = new Store();\n\nclass Global extends React.Component {\n    globalData = {}\n    static config = {\n        window: {\n            navigationBarBackgroundColor: '#00afc7',\n            backgroundTextStyle: 'light',\n            backgroundColor: '#00afc7',\n            navigationBarTitleText: 'nanachi',\n            navigationBarTextStyle: 'white'\n        }\n    };\n    onLaunch() {\n        //针对快应用的全局getApp补丁\n        if (this.$data && typeof global === 'object') {\n            var ref = Object.getPrototypeOf(global) || global;\n            var _this = this;\n            this.globalData = this.$def.globalData;\n            ref.getApp = function() {\n                return _this;\n            };\n        }\n        console.log('App launched');//eslint-disable-line\n    }\n    render() {\n        return React.createElement(Provider, {store: store}, this.props.children )\n    }\n}\n// eslint-disable-next-line\nexport default App(new Global());\n\n"
+        },
+        {
+          "title": "Pages/Components组件处理",
+          "url": "/documents/redux.html#mobx-pagescomponents组件处理",
+          "content": "Pages/Components组件处理与传统mobx装饰器写法一致注意必须使用inject方法\nimport React, {Component} from '@react';import { observer, inject } from 'mobx-react';\n\n@inject(\n    state => ({\n        num: state.store.num,\n        add: state.store.add,\n        minus: state.store.minus\n    })\n)\n@observer\nclass P extends Component {\n    render() {\n        return (\n                {this.props.num}\n                 {this.props.add()}}>+\n                 {this.props.minus()}}>-\n        \n        );\n    }\n}\n\nexport default P;\n"
+        }
+      ]
+    },
+    {
       "title": "智能webview化",
       "content": "有一些场合，我们不得不使用webview. 虽说webview有很多缺点，比如它都是远程加载的，没有直接停驻于被寄生的APP上，导致页面加载慢，一些高级的APP特性用不了，需要跳转到小程序才能支付云云。但webview也有一个重要的不可忽视的优势，开发简单——就是我们熟悉的HTML开发。",
       "url": "/documents/webview.html",
@@ -799,7 +836,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "页面组件在快应用的模拟",
           "url": "/documents/diff.html#页面组件在快应用的模拟",
-          "content": "页面组件在快应用的模拟\nonShow onHide （大家都有）\n\n\n切换卡的支持，\n\n快应用需要外包 tabs 组件  这样唤起 onTabItemTap\nnavigationBarBackgroundColor\nnavigationBarTextStyle\nnavigationBarTitleText\n\n\n\n滚动下拉刷新相关的事件唤起\n\nonPullDownRefresh onReachBottom onPageScroll\nenablePullDownRefresh disableScroll\ntab-content 里面包含 list 组件与 refresh 组件\nlist.scroll--> onPageScroll\nlist.scrollbottom --> onReachBottom\nrefresh.refresh --> onPullDownRefresh\n\n\n\n转发按钮事件的唤起 onShareAppMessage\n\n如果用户定义了 onShareAppMessage，那么我们就添加 onMenuPress，这样右上角就会出现分享按钮\n或在编译期扫描　对其 onTap 事件加上 onShareAppMessage 钩子\n详见这里\n与 这里\n\n\n"
+          "content": "页面组件在快应用的模拟\nonShow onHide （大家都有）\n\n\n切换卡的支持，\n\n快应用需要外包 tabs 组件  这样唤起 onTabItemTap\nnavigationBarBackgroundColor\nnavigationBarTextStyle\nnavigationBarTitleText\n\n\n\n滚动下拉刷新相关的事件唤起\n\nonPullDownRefresh onReachBottom onPageScroll\nenablePullDownRefresh disableScroll\ntab-content 里面包含 list 组件与 refresh 组件\nlist.scroll--> onPageScroll\nlist.scrollbottom --> onReachBottom\nrefresh.refresh --> onPullDownRefresh\n\n\n\n转发按钮事件的唤起 onShareAppMessage\n\n如果用户定义了 onShareAppMessage，那么我们就添加 onMenuPress，这样右上角就会出现分享按钮\n或在编译期扫描　对其 onTap 事件加上 onShareAppMessage 钩子\n详见这里\n与 这里\n\n\n\n支付宝小程序 button 兼容\n\n微信，百度小程序获取用户信息，  通过 open-type 和  onGetuserinfo  来获取 用户的小程序信息        立即领取\n \n支付宝小程序  中 open-type = \"getAuthorize\"  触发事件 onGetAuthorize={this.onGetAuthorize}， scope='userInfo'完整的获取用户信息的button参数是        立即领取\n \n文档： https://docs.alipay.com/mini/api/ch8chhhttps://docs.alipay.com/mini/component/button"
         }
       ]
     },

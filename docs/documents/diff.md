@@ -93,3 +93,38 @@ created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 pr
     > 详见[这里](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%A2%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0)
     > 与 [这里](https://doc.quickapp.cn/features/system/share.html)
 
+5. 支付宝小程序 button 兼容
+
+微信，百度小程序获取用户信息，  通过 open-type 和  onGetuserinfo  来获取 用户的小程序信息
+
+
+```html
+<button open-type="getUserInfo"
+        hover-class="none"
+        className='continue-btn g-text-center rewrite-btn'
+        onGetUserInfo={this.getUserInfo.bind(this)}>
+        <div className='qgift__btn'>立即领取</div>
+ </button>
+```
+
+支付宝小程序  中 open-type = "getAuthorize"  触发事件 onGetAuthorize={this.onGetAuthorize}， scope='userInfo'
+
+完整的获取用户信息的button参数是
+
+
+```html
+<button open-type="getAuthorize"
+        hover-class="none"
+        scope='userInfo'
+        className='continue-btn g-text-center rewrite-btn'
+        onGetAuthorize={this.getUserInfo.bind(this)}>
+        <div className='qgift__btn'>立即领取</div>
+ </button>
+```
+
+
+
+文档： https://docs.alipay.com/mini/api/ch8chh
+
+https://docs.alipay.com/mini/component/button
+
