@@ -476,6 +476,11 @@ window.ydoc_plugin_search_json = {
           "content": "批量 install 拆库工程。此功能需在你当前项目的package.json中配置modules字段{   \"modules\": {\n    \"git@xxx.git\": \"yourBranchName\",\n    \"tarName\": \"yourVersion\"\n  }\n}\n然后命令行执行 nanachi install, 则会批量安装modules字段里面配置的所有拆卡工程。"
         },
         {
+          "title": "之前使用 \"chaika\" 工具的同学如何迁移？",
+          "url": "/documents/chaika.html#之前使用-\"chaika\"-工具的同学如何迁移？",
+          "content": "之前使用 \"chaika\" 工具的同学如何迁移？安装依赖拆库工程的方式变为：nanachi install ...\n在自己业务线拆库工程package.json中配置字段。   {\n     \"nanachi\": {\n       \"chaika_mode\": true //这是告诉 nanachi，当前快发模式为“拆库”模式。\n     }\n   }\n\n\n"
+        },
+        {
           "title": "注意事项",
           "url": "/documents/chaika.html#注意事项",
           "content": "注意事项配置文件，如wxConfig.json，aliConfig.json, ..., app.json需要放在拆库工程的source目录下, project.config.json, package.json等需要放在拆库工程根目录下。\nnanachi拆卡模式对各配置文件合并时，\bnanachi会将冲突暴露。如果遇到配置冲突，需用户自行解决冲突。\n\n"

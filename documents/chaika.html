@@ -111,6 +111,17 @@
 }
 </code></pre>
 <p>然后命令行执行 <code>nanachi install</code>, 则会批量安装<code>modules</code>字段里面配置的所有拆卡工程。</p>
+<h2 id="之前使用-&quot;chaika&quot;-工具的同学如何迁移？">之前使用 &quot;chaika&quot; 工具的同学如何迁移？</h2>
+<ol>
+<li>安装依赖拆库工程的方式变为：<code>nanachi install ...</code></li>
+<li>在自己业务线拆库工程<code>package.json</code>中配置字段。<pre><code class="language-json">   <span class="token punctuation">{</span>
+     <span class="token property">"nanachi"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+       <span class="token property">"chaika_mode"</span><span class="token operator">:</span> <span class="token boolean">true</span> //这是告诉 nanachi，当前快发模式为“拆库”模式。
+     <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+</code></pre>
+</li>
+</ol>
 <h2 id="注意事项">注意事项</h2>
 <ol>
 <li>配置文件，如wxConfig.json，aliConfig.json, ..., app.json需要放在拆库工程的<strong>source</strong>目录下, project.config.json, package.json等需要放在拆库工程<strong>根目录下</strong>。</li>
