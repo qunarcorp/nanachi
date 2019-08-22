@@ -129,6 +129,17 @@ module.exports = {
 然后命令行执行 `nanachi install`, 则会批量安装`modules`字段里面配置的所有拆卡工程。
 
 
+## 之前使用 "chaika" 工具的同学如何迁移？
+1. 安装依赖拆库工程的方式变为：`nanachi install ...`
+2. 在自己业务线拆库工程`package.json`中配置字段。
+   ```json
+      {
+        "nanachi": {
+          "chaika_mode": true //这是告诉 nanachi，当前快发模式为“拆库”模式。
+        }
+      }
+   ```
+
 ## 注意事项
 1. 配置文件，如wxConfig.json，aliConfig.json, ..., app.json需要放在拆库工程的**source**目录下, project.config.json, package.json等需要放在拆库工程**根目录下**。
 2. nanachi拆卡模式对各配置文件合并时，nanachi会将冲突暴露。如果遇到配置冲突，需用户自行解决冲突。
