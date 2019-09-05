@@ -421,6 +421,28 @@ window.ydoc_plugin_search_json = {
       "children": []
     },
     {
+      "title": "自定义打包配置",
+      "content": "我们提供了node api供用户调用。",
+      "url": "/documents/customBuildConfig.html",
+      "children": [
+        {
+          "title": "nanachi api",
+          "url": "/documents/customBuildConfig.html#nanachi-api",
+          "content": "nanachi apiconst nanachi = require('nanachi-cli');nanachi({\n    /**\n     * @Boolean\n     * 是否使用watch模式，默认值：false\n     */\n    watch,\n    /**\n     * @Enum ['wx', 'ali', 'bu', 'tt', 'quick']\n     * 平台，默认值：wx\n     */\n    platform,\n    /**\n     * @Boolean\n     * 是否使用线上beta核心库，默认值：false\n     */\n    beta,\n    /**\n     * @Boolean\n     * 是否使用最新schnee-ui，默认值：false\n     */\n    betaUi,\n    /**\n     * @Boolean\n     * 是否使用压缩模式，默认值：false\n     */\n    compress,\n    /**\n     * @Object\n     * 压缩图片参数（压缩率等）\n     */\n    compressOption,\n    /**\n     * @Boolean\n     * 是否是huawei平台，默认值：false\n     */\n    huawei,\n    /**\n     * @Array\n     * 自定义预处理loaders(同时作用于Js、css)，默认值：[]\n     */\n    prevLoaders,\n    /**\n     * @Array\n     * 自定义后处理loaders(同时作用于Js、css)，默认值：[]\n     */\n    postloaders,\n    /**\n     * @Array\n     * 自定义Js预处理loaders，默认值：[]\n     */\n    prevJsLoaders,\n    /**\n     * @Array\n     * 自定义Js后处理loaders，默认值：[]\n     */\n    postJsloaders,\n    /**\n     * @Array\n     * 自定义样式预处理loaders，默认值：[]\n     */\n    prevCssLoaders,\n    /**\n     * @Array\n     * 自定义样式后处理loaders，默认值：[]\n     */\n    postCssloaders,\n    /**\n     * @Array\n     * 自定义添加webpack module.rules规则，默认值：[]\n     */\n    rules,\n    /**\n     * @Array\n     * 自定义webpack插件，默认值：[]\n     */\n    plugins,\n    /**\n     * @function complete\n     * 解析完成回调\n     * (err, result) => { }\n     * err: 错误\n     * result: webpack打包信息\n     */ \n    complete\n});\n/**\n * compressOption:\n * {\n *  jpg: {} // 具体参考 https://github.com/imagemin/imagemin-mozjpeg/blob/master/readme.md\n *  png: {} // 具体参考 https://github.com/imagemin/imagemin-optipng/blob/master/readme.md\n *  gif: {} // 具体参考 https://github.com/imagemin/imagemin-gifsicle/blob/master/readme.md\n *  svg: {} // 具体参考 https://github.com/imagemin/imagemin-svgo/blob/master/readme.md\n * }\n */\n"
+        },
+        {
+          "title": "自定义loader",
+          "url": "/documents/customBuildConfig.html#自定义loader",
+          "content": "自定义loader用户可以使用nanachi api编译nanachi应用，同时支持自定义预处理loader和后处理loader。compress压缩模式就是使用后处理loader实现的，链接：https://www.npmjs.com/package/nanachi-compress-loader我们规定了loader的输入和输出格式{    queues: // 需要生成的文件数组，如nanachi中的js文件在微信转义中会同时生成wxml和js文件还有可能生成json文件\n        [{\n            code, // 生成文件内容\n            type, // 生成文件类型\n            path // 生成文件相对路径\n        }],\n    exportCode // 标准js代码，包含了文件的依赖信息，用于webpack解析文件依赖\n}\n"
+        },
+        {
+          "title": "nanachi config",
+          "url": "/documents/customBuildConfig.html#nanachi-config",
+          "content": "nanachi config自定义loader应用到项目中，有两种方式供选择：在项目根目录下创建nanachi配置文件，nanachi.config.js\n// nanachi.config.jsmodule.exports = {\n    postLoaders: ['nanachi-compress-loader']\n}\n正常运行nanachi命令，即可将自定义配置应用到项目中npm install nanachi-compress-loader --save-devnanachi build\n使用nanachi api，自定义编译脚本\n// build.jsconst nanachi = require('nanachi-cli');\n\nnanachi({\n    platform: 'ali',\n    postLoaders: ['nanachi-compress-loader']\n});\nnode build.js"
+        }
+      ]
+    },
+    {
       "title": "拆库开发",
       "content": "拆库开发亦称分仓库开发。",
       "url": "/documents/chaika.html",
