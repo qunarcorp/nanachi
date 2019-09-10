@@ -586,7 +586,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "Sass、Less、PostCSS支持",
-      "content": "nanachi支持less, sass, postcss。默认情况下支持less。针对sass，由于sass环境安装比较麻烦，若用户工程目录没安装node-sass依赖，nanachi就会用过postcss来解析sass或者scss文件。各大样式预处理器对被依赖的@import资源内容打包到当前文件，在很多场景下，这种打包策略会造成应用体积臃肿，比如每个样式文件都引用了基础样式。nanachi对这种策略做了改进，实现了模块化打包。例如:\nSass:   //sass   @import './moduleA.scss';\n   @import './moduleB.scss';\n   .box {\n     color: #333;\n   }\n编译结果：   //sass   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\nLess:   //less   @import (reference) './moduleA.less';\n   @import (reference) './moduleB.less';\n   .box {\n     color: #333;\n   }\n编译结果：   //less   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\n注: postcss暂不支持该特性。",
+      "content": "nanachi支持less, sass。对于sass解析，我们内置sass的新一代解析器dart-sass解析sass语法。dart-sass: https://github.com/sass/dart-sass\n各大样式预处理器对被依赖的@import资源内容打包到当前文件，在很多场景下，这种打包策略会造成应用体积臃肿，比如每个样式文件都引用了基础样式。nanachi对这种策略做了改进，实现了模块化打包。例如:\nSass:   //sass   @import './moduleA.scss';\n   @import './moduleB.scss';\n   .box {\n     color: #333;\n   }\n编译结果：   //sass   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\nLess:   //less   @import (reference) './moduleA.less';\n   @import (reference) './moduleB.less';\n   .box {\n     color: #333;\n   }\n编译结果：   //less   @import './moduleA.wxss';\n   @import './moduleB.wxss';\n   .box {\n     color: #333;\n   }\n注: postcss暂不支持该特性。",
       "url": "/documents/lesssass.html",
       "children": [
         {
