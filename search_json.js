@@ -631,6 +631,11 @@ window.ydoc_plugin_search_json = {
       "url": "/documents/event.html",
       "children": [
         {
+          "title": "映射事件名",
+          "url": "/documents/event.html#映射事件名",
+          "content": "映射事件名有的小程序的原生组件的事件非常坑，你绑定的事件与它触发时的事件对象的type并一致，比如说微信的小程序的map组件https://developers.weixin.qq.com/miniprogram/dev/component/map.html它有一个bindregionchange事件，你使用时是这样的{ console.log(e)}} />其实它是不会触发onRegionChange事件，而是触发两种事件，分别为begin与end, 因此我们需要使用data-xxx-alias来映射一下, 为它添加两个属性{ console.log(e)}} data-begin-alias=\"regionchange\" data-end-alias=\"regionchange\" />"
+        },
+        {
           "title": "事件对象",
           "url": "/documents/event.html#事件对象",
           "content": "事件对象由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有stopPropagation 与 preventDefault。但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 stopPropagation 与 preventDefault() 方法。注意 stopPropagation() 是没有效果的，你想并且冒泡还需要用 catchClick 的方式来绑定事件。如果 你想它转译成H5，那么catchXXX的回调内部需要大家执行 e.stopPropagation()。小程序事件对象的属性如下：{    target,//里面有dataset\n    pageX,\n    pageY,\n    value, //不一定有，但input, change事件有\n    timeStamp,\n    type,\n    stopPropagation,\n    preventDefault,\n    //还可能有其他属性，不同的事件类型会产生额外的属性\n}\n在一些小程序平台中，事件对象有detail这个对象，但建议不要使用它，因为当你想跨平台到webview/H5/快应用时，是没有这个对象的。并且我们也会将这个detail的属性下放到event上。//创建事件对象function createEvent(e, target) {\n    let event = Object.assign({}, e);\n    if (e.detail) {\n        Object.assign(event, e.detail);\n    }\n    //需要重写的属性或方法\n    event.stopPropagation = function () {\n        // eslint-disable-next-line\n        console.warn(\"小程序不支持这方法，请使用catchXXX\");\n    };\n    event.nativeEvent = e;\n    event.preventDefault = returnFalse;\n    event.target = target;\n    event.timeStamp = Date.now();\n    let touch = e.touches && e.touches[0];\n    if (touch) {\n        event.pageX = touch.pageX;\n        event.pageY = touch.pageY;\n    }\n    return event;\n}\n比如说微信小程序的onGetUserInfo方法onGetUserInfo: function(e){   console.log(e.userInfo)\n}\n"

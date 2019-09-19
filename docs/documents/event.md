@@ -39,6 +39,18 @@ if (/^(?:on|catch)[A-Z]/.test(attrName) &&!/[A-Z]/.test(nodeName) ) {
 }
 ```
 
+## 映射事件名
+
+有的小程序的原生组件的事件非常坑，你绑定的事件与它触发时的事件对象的type并一致，比如说微信的小程序的map组件
+
+https://developers.weixin.qq.com/miniprogram/dev/component/map.html
+
+它有一个bindregionchange事件，你使用时是这样的`<map onRegionChange={()=>{ console.log(e)}} />`
+其实它是不会触发onRegionChange事件，而是触发两种事件，分别为begin与end, 因此我们需要使用data-xxx-alias来映射一下, 为它添加两个属性
+
+`<map onRegionChange={()=>{ console.log(e)}} data-begin-alias="regionchange" data-end-alias="regionchange" />`
+
+
 ## 事件对象
 
 由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有`stopPropagation` 与 `preventDefault`。

@@ -33,6 +33,12 @@
     <span class="token comment">//....</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h2 id="映射事件名">映射事件名</h2>
+<p>有的小程序的原生组件的事件非常坑，你绑定的事件与它触发时的事件对象的type并一致，比如说微信的小程序的map组件</p>
+<p>https://developers.weixin.qq.com/miniprogram/dev/component/map.html</p>
+<p>它有一个bindregionchange事件，你使用时是这样的<code>&lt;map onRegionChange={()=&gt;{ console.log(e)}} /&gt;</code>
+其实它是不会触发onRegionChange事件，而是触发两种事件，分别为begin与end, 因此我们需要使用data-xxx-alias来映射一下, 为它添加两个属性</p>
+<p><code>&lt;map onRegionChange={()=&gt;{ console.log(e)}} data-begin-alias=&quot;regionchange&quot; data-end-alias=&quot;regionchange&quot; /&gt;</code></p>
 <h2 id="事件对象">事件对象</h2>
 <p>由于小程序存在千差万别的差别，它的事件对象没有像PC有那么多属性与方法，最大的区别是没有<code>stopPropagation</code> 与 <code>preventDefault</code>。</p>
 <p>但娜娜奇会帮你抹平了 PC 与小程序的差异， 为它添加上伪装的 <code>stopPropagation</code> 与 <code>preventDefault()</code> 方法。</p>
