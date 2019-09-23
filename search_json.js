@@ -24,7 +24,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "更多便捷的命令",
           "url": "/documents/install.html#更多便捷的命令",
-          "content": "更多便捷的命令nanachi page aaa # 在pages目录下创建aaa/index.js模板nanachi component Dog # 在components目录下创建Dog/index.js模板\nnanachi build:[wx|ali|bu|quick|tt] --beta #同步最新的 React lib\nnanachi build:[wx|ali|bu|quick|tt] --beta-ui #同步最新的补丁组件\nnanachi -V #查看当前版本\n"
+          "content": "更多便捷的命令nanachi page aaa # 在pages目录下创建aaa/index.js模板nanachi component Dog # 在components目录下创建Dog/index.js模板\nnanachi build:[wx|ali|bu|quick|tt|h5|360] --beta #同步最新的 React lib\nnanachi build:[wx|ali|bu|quick|tt|h5|360] --beta-ui #同步最新的补丁组件\nnanachi -V #查看当前版本\n"
         },
         {
           "title": "第二种安装",
@@ -338,7 +338,7 @@ window.ydoc_plugin_search_json = {
     },
     {
       "title": "按平台打包代码或样式",
-      "content": "很多场景下可能需要差异化打包不同平台的代码，娜娜奇提供环境变量process.env.ANU_ENV来识别不同平台。在编译前，ANU_ENV变量已静默配置。componentDidMount(){    let ANU_ENV = process.env.ANU_ENV;//wx ali bu quick\n    if(ANU_ENV === 'wx'){\n        //微信小程序业务逻辑\n    }else if(ANU_ENV === 'ali'){\n        //支付宝小程序业务逻辑\n    }else {\n        \n    }\n}\n又如我们在微信小程序要获取用户信息， 需要这样实现 this.state = {     isWx: process.env.ANU_ENV == 'wx'\n }\n{ this.state.isWx && }\n有时候需要按平台引入相关模块，在写法上有所不同，必须通过注释节点来匹配相关的import引入。例如:// if process.env.ANU_ENV == 'wx';import wx from './wx.js';\n// if process.env.ANU_ENV == 'ali';\nimport ali from './ali.js';\n// if process.env.ANU_ENV == 'wx';\nimport 'wx_specific.css'\n编译结果(ANU_ENV:wx):import wx from './wx.js';",
+      "content": "很多场景下可能需要差异化打包不同平台的代码，娜娜奇提供环境变量process.env.ANU_ENV来识别不同平台。在编译前，ANU_ENV变量已静默配置。componentDidMount(){    let ANU_ENV = process.env.ANU_ENV;//wx ali bu quick h5 360\n    if(ANU_ENV === 'wx'){\n        //微信小程序业务逻辑\n    }else if(ANU_ENV === 'ali'){\n        //支付宝小程序业务逻辑\n    }else {\n        \n    }\n}\n又如我们在微信小程序要获取用户信息， 需要这样实现 this.state = {     isWx: process.env.ANU_ENV == 'wx'\n }\n{ this.state.isWx && }\n有时候需要按平台引入相关模块，在写法上有所不同，必须通过注释节点来匹配相关的import引入。例如:// if process.env.ANU_ENV == 'wx';import wx from './wx.js';\n// if process.env.ANU_ENV == 'ali';\nimport ali from './ali.js';\n// if process.env.ANU_ENV == 'wx';\nimport 'wx_specific.css'\n编译结果(ANU_ENV:wx):import wx from './wx.js';",
       "url": "/documents/import_js.html",
       "children": []
     },

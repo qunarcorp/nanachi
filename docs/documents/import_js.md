@@ -4,7 +4,7 @@
 
 ```jsx
 componentDidMount(){
-    let ANU_ENV = process.env.ANU_ENV;//wx ali bu quick
+    let ANU_ENV = process.env.ANU_ENV;//wx ali bu quick h5 360
     if(ANU_ENV === 'wx'){
         //微信小程序业务逻辑
     }else if(ANU_ENV === 'ali'){
