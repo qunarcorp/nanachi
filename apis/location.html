@@ -164,11 +164,11 @@
 <p>代码示例</p>
 <pre><code class="language-javascript">React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getLocation</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   type<span class="token punctuation">:</span> <span class="token string">'gcj02'</span><span class="token punctuation">,</span>
-  success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'纬度：'</span> <span class="token operator">+</span> res<span class="token punctuation">.</span>latitude<span class="token punctuation">)</span><span class="token punctuation">;</span>
      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'经度：'</span> <span class="token operator">+</span> res<span class="token punctuation">.</span>longitude<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  fail<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">fail</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'错误码：'</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>errCode<span class="token punctuation">)</span><span class="token punctuation">;</span>
      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'错误信息：'</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>errMsg<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -250,14 +250,14 @@
 <p>代码示例</p>
 <pre><code class="language-javascript">React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getLocation</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   type<span class="token punctuation">:</span> <span class="token string">'gcj02'</span><span class="token punctuation">,</span>
-  success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">openLocation</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       latitude<span class="token punctuation">:</span> res<span class="token punctuation">.</span>latitude<span class="token punctuation">,</span>
       longitude<span class="token punctuation">:</span> res<span class="token punctuation">.</span>longitude<span class="token punctuation">,</span>
       scale<span class="token punctuation">:</span> <span class="token number">18</span>
      <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  fail<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">fail</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'错误码：'</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>errCode<span class="token punctuation">)</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'错误信息：'</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>errMsg<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>

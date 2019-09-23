@@ -40,6 +40,11 @@ window.ydoc_plugin_search_json = {
           "title": "快应用的安装流程",
           "url": "/documents/install.html#快应用的安装流程",
           "content": "快应用的安装流程执行以下命令：npm install -g hap-toolkit //安装快应用的hap编译器， 只需安装一次nanachi init xxx     // 初始化工程\ncd xxx && npm i      // npm i可以改成yarn， 安装nanachi的依赖\nnanachi watch:quick  // 编译代码\nnpm i                // 这是安装快应用的编译器hap的依赖，\nnpm run build        // 这是hap 的构建命令\nnpm run server  -- --watch  //或hap server --watch 这是hap 的打开远程服务，生成二维码让你用手机扫码查看编译后的app\n。快应用还没有像微信， 支付宝， 百度那样提供好用的开发者工具，想查看结果需要手机装 快应用调试器。快应用只能用于安卓。快应用调试器快应用预览版快应用的目标代码分别在src（ux文件）与dist（二进制）在编译二进制过程，可能有许多警告，因为快应用的标签不支持 data-*属性及许多HTML样式，但这不会影响结果。\n\n\n"
+        },
+        {
+          "title": "360编译",
+          "url": "/documents/install.html#360编译",
+          "content": "360编译nanachi build:360 # 360编译暂不支持watch模式cd src\nnpm install && npm run serve\n打开360浏览器的小程序开发模式，新建项目，项目目录选择src目录，然后点击调试即可。"
         }
       ]
     },

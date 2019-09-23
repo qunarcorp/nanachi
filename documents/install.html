@@ -15,7 +15,7 @@
 <pre><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> nanachi-cli -g
 </code></pre>
 <p>yarn</p>
-<pre><code class="language-bash">yarn global add nanachi-cli
+<pre><code class="language-bash"><span class="token function">yarn</span> global <span class="token function">add</span> nanachi-cli
 </code></pre>
 <ol>
 <li>nanachi init <code>&lt;project-name&gt;</code> 创建工程<br></li>
@@ -49,9 +49,9 @@ nanachi -V <span class="token comment">#查看当前版本</span>
 <li><code>nanachi watch</code> 增量编译代码并监听文件变化，watch后面可跟参数<br></li>
 <li>用微信开发工具打开当中的dist目录，自己在source目录中进行开发<br></li>
 </ol>
-<pre><code class="language-bash"><span class="token function">cd</span> anu/packages/cli <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> i <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> <span class="token function">link</span>
-<span class="token function">cd</span> <span class="token punctuation">..</span>/<span class="token punctuation">..</span>/ <span class="token operator">&amp;&amp;</span> nanachi init demo
-<span class="token function">cd</span> demo <span class="token operator">&amp;&amp;</span> yarn
+<pre><code class="language-bash"><span class="token builtin class-name">cd</span> anu/packages/cli <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> i <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> <span class="token function">link</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>/<span class="token punctuation">..</span>/ <span class="token operator">&amp;&amp;</span> nanachi init demo
+<span class="token builtin class-name">cd</span> demo <span class="token operator">&amp;&amp;</span> <span class="token function">yarn</span>
 nanachi <span class="token function">watch</span>   //或 nanachi watch:wx 或 nanachi watch:bu 或 nanachi watch:ali 或 或 nanachi watch:tt
 </code></pre>
 <p><img src="./select_tmpl.png" alt="image">
@@ -68,7 +68,7 @@ nanachi <span class="token function">watch</span>   //或 nanachi watch:wx 或 n
 <p>执行以下命令：</p>
 <pre><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g hap-toolkit //安装快应用的hap编译器， 只需安装一次
 nanachi init xxx     // 初始化工程
-<span class="token function">cd</span> xxx <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> i      // <span class="token function">npm</span> i可以改成yarn， 安装nanachi的依赖
+<span class="token builtin class-name">cd</span> xxx <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> i      // <span class="token function">npm</span> i可以改成yarn， 安装nanachi的依赖
 nanachi watch:quick  // 编译代码
 <span class="token function">npm</span> i                // 这是安装快应用的编译器hap的依赖，
 <span class="token function">npm</span> run build        // 这是hap 的构建命令
@@ -83,6 +83,12 @@ nanachi watch:quick  // 编译代码
 <img src="./quick2ma.jpg" alt="image">
 <img src="./quickdebugger.jpg" alt="image">
 <img src="./watch_quick.jpg" alt="image"></p>
+<h2 id="360编译">360编译</h2>
+<pre><code class="language-sh">nanachi build:360 # 360&#x7F16;&#x8BD1;&#x6682;&#x4E0D;&#x652F;&#x6301;watch&#x6A21;&#x5F0F;
+cd src
+npm install &#x26;&#x26; npm run serve
+</code></pre>
+<p>打开360浏览器的小程序开发模式，新建项目，项目目录选择src目录，然后点击调试即可。</p>
 </div><div class="m-content-container m-paging"><div class="m-paging-prev m-paging-item"><a href="intro.html" class="href"><span class="ui-font-ydoc"></span>文档</a></div><div class="m-paging-next m-paging-item"><a href="update.html" class="href">升级<span class="ui-font-ydoc"></span></a></div></div></div></div></div><div></div><script>
     var $content = document.getElementById('js-content');
     var $summaryItems = Array.prototype.slice.call(document.querySelectorAll('#js-menu .href'));

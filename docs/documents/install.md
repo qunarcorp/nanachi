@@ -110,3 +110,13 @@ npm run server  -- --watch  //或hap server --watch 这是hap 的打开远程服
 ![image](./quick2ma.jpg)
 ![image](./quickdebugger.jpg)
 ![image](./watch_quick.jpg)
+
+## 360编译
+
+```sh
+nanachi build:360 # 360编译暂不支持watch模式
+cd src
+npm install && npm run serve
+```
+
+打开360浏览器的小程序开发模式，新建项目，项目目录选择src目录，然后点击调试即可。
