@@ -8,47 +8,47 @@
 <pre><code class="language-javascript"><span class="token keyword">const</span> storage <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@system.storage'</span><span class="token punctuation">)</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> noop <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-core/util'</span>
 
-<span class="token keyword">function</span> <span class="token function">saveParse</span> <span class="token punctuation">(</span><span class="token parameter">str</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">function</span> <span class="token function">saveParse</span> <span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">try</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span>
-  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">// eslint-disable-line</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> str
 <span class="token punctuation">}</span>
 
-<span class="token keyword">function</span> <span class="token function">setStorage</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> key<span class="token punctuation">,</span> data<span class="token punctuation">,</span> success<span class="token punctuation">,</span> fail <span class="token operator">=</span> noop<span class="token punctuation">,</span> complete <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">function</span> <span class="token function">setStorage</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> key<span class="token punctuation">,</span> data<span class="token punctuation">,</span> success<span class="token punctuation">,</span> fail <span class="token operator">=</span> noop<span class="token punctuation">,</span> complete <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">let</span> value <span class="token operator">=</span> data
   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">try</span> <span class="token punctuation">{</span>
       value <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">return</span> <span class="token function">fail</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 
-  storage<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">{</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> success<span class="token punctuation">,</span> fail<span class="token punctuation">,</span> complete<span class="token punctuation">}</span><span class="token punctuation">)</span>
+  storage<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token punctuation">{</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> success<span class="token punctuation">,</span> fail<span class="token punctuation">,</span> complete<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">function</span> <span class="token function">getStorage</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> key<span class="token punctuation">,</span> success<span class="token punctuation">,</span> fail<span class="token punctuation">,</span> complete <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">function</span> <span class="token function">dataObj</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">function</span> <span class="token function">getStorage</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> key<span class="token punctuation">,</span> success<span class="token punctuation">,</span> fail<span class="token punctuation">,</span> complete <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">dataObj</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       data<span class="token punctuation">:</span> <span class="token function">saveParse</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-  storage<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span> key<span class="token punctuation">,</span> success<span class="token punctuation">:</span> dataObj<span class="token punctuation">,</span> fail<span class="token punctuation">,</span> complete<span class="token punctuation">}</span><span class="token punctuation">)</span>
+  storage<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span> key<span class="token punctuation">,</span> success<span class="token punctuation">:</span> dataObj<span class="token punctuation">,</span> fail<span class="token punctuation">,</span> complete<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">function</span> <span class="token function">removeStorage</span> <span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  storage<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
+<span class="token keyword">function</span> <span class="token function">removeStorage</span> <span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  storage<span class="token punctuation">.</span><span class="token keyword">delete</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">function</span> <span class="token function">clearStorage</span> <span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">function</span> <span class="token function">clearStorage</span> <span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   storage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">var</span> initStorage <span class="token operator">=</span> <span class="token boolean">false</span>
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initStorageSync</span> <span class="token punctuation">(</span><span class="token parameter">storageCache</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initStorageSync</span> <span class="token punctuation">(</span>storageCache<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> ReactQuick <span class="token operator">!==</span> <span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span>
   <span class="token punctuation">}</span>
@@ -58,10 +58,10 @@
   <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     storage<span class="token punctuation">.</span><span class="token function">key</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       index<span class="token punctuation">:</span> i<span class="token punctuation">,</span>
-      <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        storage<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        storage<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
           key<span class="token punctuation">:</span> key<span class="token punctuation">,</span>
-          <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             storageCache<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value
             <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">++</span>j <span class="token operator">==</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
               console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'init storage success'</span><span class="token punctuation">)</span>
@@ -71,7 +71,7 @@
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-  apis<span class="token punctuation">.</span><span class="token function-variable function">setStorageSync</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  apis<span class="token punctuation">.</span><span class="token function-variable function">setStorageSync</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token function">setStorage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       key<span class="token punctuation">:</span> key<span class="token punctuation">,</span>
       data<span class="token punctuation">:</span> value
@@ -79,11 +79,11 @@
     <span class="token keyword">return</span> storageCache<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value
   <span class="token punctuation">}</span>
 
-  apis<span class="token punctuation">.</span><span class="token function-variable function">getStorageSync</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  apis<span class="token punctuation">.</span><span class="token function-variable function">getStorageSync</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token function">saveParse</span><span class="token punctuation">(</span>storageCache<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 
-  apis<span class="token punctuation">.</span><span class="token function-variable function">removeStorageSync</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  apis<span class="token punctuation">.</span><span class="token function-variable function">removeStorageSync</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">delete</span> storageCache<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
     <span class="token function">removeStorage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>key<span class="token punctuation">:</span> key<span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>

@@ -871,6 +871,11 @@ window.ydoc_plugin_search_json = {
           "content": "各平台的组件差异点我查看"
         },
         {
+          "title": "快应用",
+          "url": "/documents/diff.html#快应用",
+          "content": "快应用禁止使用top: 50%这样的写法，华为会跳出编译；\nborder: solid 1px red 只能按这个顺序写，写反会跳出编译\nbackground-image: url(\"bgimage.gif\"); 小括号里面的 url 不加引号会跳出编译\nborder-radius: 要用rpx, 不能使用百分比\n"
+        },
+        {
           "title": "页面组件在快应用的模拟",
           "url": "/documents/diff.html#页面组件在快应用的模拟",
           "content": "页面组件在快应用的模拟\nonShow onHide （大家都有）\n\n\n切换卡的支持，\n\n快应用需要外包 tabs 组件  这样唤起 onTabItemTap\nnavigationBarBackgroundColor\nnavigationBarTextStyle\nnavigationBarTitleText\n\n\n\n滚动下拉刷新相关的事件唤起\n\nonPullDownRefresh onReachBottom onPageScroll\nenablePullDownRefresh disableScroll\ntab-content 里面包含 list 组件与 refresh 组件\nlist.scroll--> onPageScroll\nlist.scrollbottom --> onReachBottom\nrefresh.refresh --> onPullDownRefresh\n\n\n\n转发按钮事件的唤起 onShareAppMessage\n\n如果用户定义了 onShareAppMessage，那么我们就添加 onMenuPress，这样右上角就会出现分享按钮\n或在编译期扫描　对其 onTap 事件加上 onShareAppMessage 钩子\n详见这里\n与 这里\n\n\n\n支付宝小程序 button 兼容\n\n微信，百度小程序获取用户信息，  通过 open-type 和  onGetuserinfo  来获取 用户的小程序信息        立即领取\n \n支付宝小程序  中 open-type = \"getAuthorize\"  触发事件 onGetAuthorize={this.onGetAuthorize}， scope='userInfo'完整的获取用户信息的button参数是        立即领取\n \n文档： https://docs.alipay.com/mini/api/ch8chhhttps://docs.alipay.com/mini/component/button"

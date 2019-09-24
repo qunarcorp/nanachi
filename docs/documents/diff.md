@@ -65,8 +65,15 @@ created 或 onInit 时，抓取小程序实例与对应的 react 实例，将 pr
 
 ## 各平台的组件差异
 
+
 [点我查看](./component/index.md)
 
+## 快应用
+
+* 禁止使用top: 50%这样的写法，华为会跳出编译；
+* border: solid 1px red 只能按这个顺序写，写反会跳出编译
+* background-image: url("bgimage.gif"); 小括号里面的 url 不加引号会跳出编译
+* border-radius: 要用rpx, 不能使用百分比
 
 ## 页面组件在快应用的模拟
 
