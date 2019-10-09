@@ -1,7 +1,7 @@
 # Summary
 
 - [介绍](intro.md#)
-- [安装](install.md)
+- [安装与使用cli各种命令](install.md)
 - [升级](update.md)
 - [全局对象](app.md)
 - [页面组件与生命周期](lifetimes.md)
@@ -34,6 +34,7 @@
 - [包大小限制](size.md)
 - [分包加载](subpackages.md)
 - [分包预加载](preload.md)
+- [真机调试](debug.md)
 
 - [快应用相关](.)
 
