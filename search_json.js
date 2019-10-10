@@ -393,7 +393,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "Pages/Components组件处理",
           "url": "/documents/redux.html#mobx-pagescomponents组件处理",
-          "content": "Pages/Components组件处理与传统mobx装饰器写法一致注意必须使用inject方法\nimport React, {Component} from '@react';import { observer, inject } from 'mobx-react';\n\n@inject(\n    state => ({\n        num: state.store.num,\n        add: state.store.add,\n        minus: state.store.minus\n    })\n)\n@observer\nclass P extends Component {\n    render() {\n        return (\n                {this.props.num}\n                 {this.props.add()}}>+\n                 {this.props.minus()}}>-\n        \n        );\n    }\n}\n\nexport default P;\n"
+          "content": "Pages/Components组件处理与传统mobx装饰器写法一致注意必须使用inject方法\nimport React, {Component} from '@react';import { observer, inject } from 'mobx-react';\n\n@inject(\n    state => ({\n        num: state.store.num,\n        add: state.store.add,\n        minus: state.store.minus\n    })\n)\n@observer\nclass P extends Component {\n    render() {\n        return (\n                {this.props.num}\n                 {this.props.add()}}>+\n                 {this.props.minus()}}>-\n        \n        );\n    }\n}\n\nexport default P;\n在百度小程序中，如果你使用mobx可能会报一堆错误,说找不到react, react-dom，\n那么我们需要在工程的node_modules下建立一个react, react-dom目录，里面只有index.js，内容为ReactBu的代码\n![./redux.png]"
         }
       ]
     },

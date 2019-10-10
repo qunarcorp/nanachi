@@ -200,3 +200,8 @@ class P extends Component {
 
 export default P;
 ```
+
+>在百度小程序中，如果你使用mobx可能会报一堆错误,说找不到react, react-dom，
+那么我们需要在工程的node_modules下建立一个react, react-dom目录，里面只有index.js，内容为ReactBu的代码
+
+![./redux.png]
