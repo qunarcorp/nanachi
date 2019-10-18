@@ -35,7 +35,7 @@
 - [分包加载](subpackages.md)
 - [分包预加载](preload.md)
 - [真机调试](debug.md)
-
+- [百度小程序环境判定](bu.md)
 - [快应用相关](.)
 
   - [快应用的scroll-view兼容](quicklist.md) 

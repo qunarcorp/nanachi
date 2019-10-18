@@ -744,6 +744,18 @@ window.ydoc_plugin_search_json = {
       "children": []
     },
     {
+      "title": "",
+      "content": "",
+      "url": "/documents/bu.html",
+      "children": [
+        {
+          "title": "百度小程序环境判定",
+          "url": "/documents/bu.html#百度小程序环境判定",
+          "content": "百度小程序环境判定百度小程序userAgent 会有 swan， swan-baiduboxapp。这俩个其中的一个有可以稳定判断百度小程序环境的么。 baiduboxapp，在百度客户端，小程序都会有，我马上发截图"
+        }
+      ]
+    },
+    {
       "title": "快应用的scroll-view兼容",
       "content": "快应用没有scroll-view，它是通过refresh, list, list-item这三种标签实现的比如像下面复杂的代码，list里面有复杂的分支，而当前list-item是不请允许存在if, for语句。唯一能绕开的方法是能list-item添加上type属性，并且type的值都不一样。 {        this.state.orders.map(function (item, index) {\n            return (\n          \n            {item.businessType == 'hotel_hour' || item.businessType == 'hotel' || item.businessType == 'hotel_group_w' || item.businessType == 'new_apartment' ?\n                 : item.businessType == 'flight' ?\n                     : item.businessType == 'train' ?\n                             : item.businessType == 'bus' && item.orderType !== 5002002 ?\n                                 : item.businessType == 'carcar' ?\n                                         : item.businessType == 'bus' && item.orderType == 5002002 ?\n                                             : item.businessType == 'sight' || item.businessType == 'hotel_sight' ?\n                                                 : item.businessType == 'vacation' ?\n                                                     : ''\n                                }\n                            \n                        );\n                    })\n    }\n    底部\n\n改造如下： {        this.state.orders.map(function (item, index) {\n            return (\n          \n            {item.businessType == 'hotel_hour' || item.businessType == 'hotel' || item.businessType == 'hotel_group_w' || item.businessType == 'new_apartment' ?\n                 : item.businessType == 'flight' ?\n                     : item.businessType == 'train' ?\n                         : item.businessType == 'bus' && item.orderType !== 5002002 ?\n                             : item.businessType == 'carcar' ?\n                                     : item.businessType == 'bus' && item.orderType == 5002002 ?\n                                         : item.businessType == 'sight' || item.businessType == 'hotel_sight' ?\n                                             : item.businessType == 'vacation' ?\n                                                 : ''\n                            }\n                        \n                    );\n                })\n        \n    }\n      底部\n\n然后我们在转换阶段，在快应用下，list-item标签不变，scroll-view标签转译成list标签，onScrollToUpper转译成onScrollTop,\nonScrollToLower转译成onScrollBottom。在其他小程序下， list-item标签变div，scroll-view标签不变， 事件名不变如果想要refresh的功能， 即页面onPullDownRefresh功能，那你在scroll-view包一个refresh标签，这个在其他小程序会变成div。",
       "url": "/documents/quicklist.html",
