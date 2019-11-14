@@ -15,7 +15,7 @@
 - [按平台打包代码或样式](import_js.md)
 - [据平台设置tabBar](tabBar.md)
 - [隐藏标题栏](titleBar.md)
-- [redux/mobx的使用](redux.md)
+- [Redux/Mobx的使用](redux.md)
 - [智能 webview 化](webview.md)
 - [自定义项目配置](customConfig.md)
 - [自定义打包配置](customBuildConfig.md)
