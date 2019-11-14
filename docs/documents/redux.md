@@ -46,7 +46,9 @@ const initState = {
 const store = new createStore(reducer, initState);
 //------------[end]--------------
 class Global extends React.Component {
-    globalData = {}
+    globalData = {
+        _GlobalApp: typeof Provider === 'function' ? Global: null //重点, 
+    }
     static config = {
         window: {
             navigationBarBackgroundColor: '#00afc7',
@@ -68,14 +70,68 @@ class Global extends React.Component {
         }
         console.log('App launched');//eslint-disable-line
     }
-    // 正常nanachi项目app中不需要render，如需使用状态库Provider，需要添加render方法
-    render() {
+
+}
+if(typeof Provider === 'function'){
+    // 正常nanachi项目app中不需要render，如需使用状态库Provider，需要添加render方法 
+    Global.prototype.render = function() {
+      //  var {store} = React.getApp().globalData
         return React.createElement(Provider, {store: store}, this.props.children )
     }
 }
 
 export default App(new Global());
 ```
+
+`globalData._GlobalApp`非常重要，它对应的ReactWX里面的源码
+
+```javascript
+   let GlobalApp;
+   function _getGlobalApp(app) {
+       return GlobalApp || app.globalData._GlobalApp;
+    }
+    let GlobalApp = _getGlobalApp(app);
+    app.$$pageIsReady = false; //pageIsReadyg与delayMounts是专门给快应用
+    app.$$page = this;
+    app.$$pagePath = path;
+    var dom = PageClass.container;
+    var pageInstance;
+    if (typeof GlobalApp === "function") {//拿到app.js的Global类，目的是注入store
+        this.needReRender = true;
+        render(
+            createElement(
+                GlobalApp,
+                {},
+                createElement(PageClass, {
+                    path: path,
+                    key: path,
+                    query: query,
+                    isPageComponent: true
+                })
+            ),
+            dom,
+            function() {
+                var fiber = get(this).child;
+                while (!fiber.stateNode.classUid) {
+                    fiber = fiber.child;
+                }
+                pageInstance = fiber.stateNode;
+            }
+        );
+    } else {
+        pageInstance = render(
+            //生成页面的React对象
+            createElement(PageClass, {
+                path: path,
+                query: query,
+                isPageComponent: true
+            }),
+            dom
+        );
+    }
+    
+```
+
 
 ### Pages/Components组件处理
 
@@ -203,5 +259,7 @@ export default P;
 
 >在百度小程序中，如果你使用mobx可能会报一堆错误,说找不到react, react-dom，
 那么我们需要在工程的node_modules下建立一个react, react-dom目录，里面只有index.js，内容为ReactBu的代码
+或者使用以下方式： https://zhuanlan.zhihu.com/p/90015927
 
 ![./redux.png]
+
