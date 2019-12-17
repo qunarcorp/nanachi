@@ -19,6 +19,7 @@
 - [智能 webview 化](webview.md)
 - [自定义项目配置](customConfig.md)
 - [自定义打包配置](customBuildConfig.md)
+- [不转译某些标签名](nativeComponents.md)
 - [拆库开发](chaika.md)
 - [别名配置](alias.md)
 - [vscode插件](vscode.md)

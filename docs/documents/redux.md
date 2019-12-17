@@ -263,3 +263,6 @@ export default P;
 
 ![./redux.png]
 
+
+
+

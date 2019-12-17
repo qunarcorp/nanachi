@@ -19,12 +19,12 @@ window.ydoc_plugin_search_json = {
         {
           "title": "安装",
           "url": "/documents/install.html#安装",
-          "content": "安装npmnpm install nanachi-cli -gyarnyarn global add nanachi-clinanachi init  创建工程\ncd  && npm i 安装依赖\nnanachi watch:[wx|bu|ali|quick] 监听构建小程序\n用对应的小程序开发工具打开当中的dist目录，自己在source目录中进行开发\nnanachi watch:wx默认是从npm拉对应的ReactWx, ReactAli...的稳定版，一星期发布一次。如果出BUG，急紧修复，着急要最新版本，可以使用nanachi watch:wx --beta命令。\n注意：快应用下构建结束后，需要执行以下三步骤npm install    #  需要开另一个窗口, 安装快应用的hap编译器， 只需安装一次npm run build  # 与上面同一窗口, 生成dist目录\nnpm run server # 需要第三个窗口, 运行node环境，这时会出一个二维码与一个链接，保证PC的WIFI与手机的WIFI是同一个，然后用手机上的快应用调试器 扫描，就能看到效果。也可以将链接贴到chrome中，这时二维码会出现页面上，也是手机扫描，可以同时在手机与网页上看到效果，此这种方式用于调式。\n"
+          "content": "安装npmnpm install nanachi-cli -gyarnyarn global add nanachi-clinanachi init  创建工程\ncd  && npm i 安装依赖\nnanachi watch:[wx|bu|ali|quick|h5] 监听构建小程序\n用对应的小程序开发工具打开当中的dist目录，自己在source目录中进行开发\nnanachi watch:wx默认是从npm拉对应的ReactWx, ReactAli...的稳定版，一星期发布一次。如果出BUG，急紧修复，着急要最新版本，可以使用nanachi watch:wx --beta命令。\n注意：快应用下构建结束后，需要执行以下三步骤npm install    #  需要开另一个窗口, 安装快应用的hap编译器， 只需安装一次npm run build  # 与上面同一窗口, 生成dist目录\nnpm run server # 需要第三个窗口, 运行node环境，这时会出一个二维码与一个链接，保证PC的WIFI与手机的WIFI是同一个，然后用手机上的快应用调试器 扫描，就能看到效果。也可以将链接贴到chrome中，这时二维码会出现页面上，也是手机扫描，可以同时在手机与网页上看到效果，此这种方式用于调式。\n"
         },
         {
           "title": "更多便捷的命令",
           "url": "/documents/install.html#更多便捷的命令",
-          "content": "更多便捷的命令nanachi page aaa # 在pages目录下创建aaa/index.js模板nanachi component Dog # 在components目录下创建Dog/index.js模板\nnanachi build:[wx|ali|bu|quick|tt|h5|360] --beta #同步最新的 React lib\nnanachi build:[wx|ali|bu|quick|tt|h5|360] --beta-ui #同步最新的补丁组件\nnanachi -V #查看当前版本\n"
+          "content": "更多便捷的命令nanachi page aaa # 在pages目录下创建aaa/index.js模板nanachi component Dog # 在components目录下创建Dog/index.js模板\nnanachi build:[wx|ali|bu|quick|tt|h5|360] --beta #同步最新的 React lib\nnanachi watch:[wx|ali|bu|quick|tt|h5] --beta-ui #同步最新的补丁组件\nnanachi -V #查看当前版本\n"
         },
         {
           "title": "第二种安装",
@@ -444,6 +444,18 @@ window.ydoc_plugin_search_json = {
           "title": "nanachi config",
           "url": "/documents/customBuildConfig.html#nanachi-config",
           "content": "nanachi config自定义loader应用到项目中，有两种方式供选择：在项目根目录下创建nanachi配置文件，nanachi.config.js\n// nanachi.config.jsmodule.exports = {\n    postLoaders: ['nanachi-compress-loader']\n}\n正常运行nanachi命令，即可将自定义配置应用到项目中npm install nanachi-compress-loader --save-devnanachi build\n使用nanachi api，自定义编译脚本\n// build.jsconst nanachi = require('nanachi-cli');\n\nnanachi({\n    platform: 'ali',\n    postLoaders: ['nanachi-compress-loader']\n});\nnode build.js"
+        }
+      ]
+    },
+    {
+      "title": "",
+      "content": "",
+      "url": "/documents/nativeComponents.html",
+      "children": [
+        {
+          "title": "不转译某些标签名",
+          "url": "/documents/nativeComponents.html#不转译某些标签名",
+          "content": "不转译某些标签名像微信，支付宝，它们总是不断推出新的标签，如live-player,live-pusher...对于这些原生组件签标，nanachi是不做转译，因此我们有一个列表来放置这些标签，告诉转译器不做处理，否则都转换成view但是我们可能盯得没有这么紧，当厂商推出一个新标签时，我们还没有新版本时，用户怎么办，不能干等吧。因此我们推出一个新配置，在wxConfig.json, aliConfig.json, buConfig.json, quickConfig.json, 360Config.json ...叫做nativeComponents，它对应一个字符串数组，里面是你不想转译的标签名{    \"package\": \"com.qunar.quick\",\n    \"name\": \"去哪儿旅行\",\n    \"versionName\": \"3.0.7\",\n    \"versionCode\": 57,\n    \"minPlatformVersion\": 1030,\n    \"icon\": \"/assets/image/qlog.png\",\n     \"nativeComponents\": [\"life-follow\",\"xxxx\"],\n    \"features\": [\n        {\n            \"name\": \"service.wxpay\",\n            \"params\": {\n                \"url\": \"https://xxx.yyy.com/touch/wechatTransition\"\n            }\n        }\n    ],\n}\n"
         }
       ]
     },

@@ -25,7 +25,7 @@ yarn global add nanachi-cli
 
 1. nanachi init `<project-name> ` 创建工程<br />
 2. `cd <project-name> && npm i ` 安装依赖<br />
-3. `nanachi watch:[wx|bu|ali|quick]` 监听构建小程序<br />
+3. `nanachi watch:[wx|bu|ali|quick|h5]` 监听构建小程序<br />
 4. 用对应的小程序开发工具打开当中的dist目录，自己在source目录中进行开发<br />
 
 
@@ -44,7 +44,7 @@ npm run server # 需要第三个窗口, 运行node环境，这时会出一个二
 nanachi page aaa # 在pages目录下创建aaa/index.js模板
 nanachi component Dog # 在components目录下创建Dog/index.js模板
 nanachi build:[wx|ali|bu|quick|tt|h5|360] --beta #同步最新的 React lib
-nanachi build:[wx|ali|bu|quick|tt|h5|360] --beta-ui #同步最新的补丁组件
+nanachi watch:[wx|ali|bu|quick|tt|h5] --beta-ui #同步最新的补丁组件
 nanachi -V #查看当前版本
 ```
 
