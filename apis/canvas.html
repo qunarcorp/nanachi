@@ -1414,14 +1414,14 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>在 draw 回调里调用该方法才能保证图片导出成功。</p>
 <p>示例代码：</p>
 <pre><code class="language-javascript">  React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">canvasToTempFilePath</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-    x<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-    y<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
-    width<span class="token punctuation">:</span> <span class="token number">50</span><span class="token punctuation">,</span>
-    height<span class="token punctuation">:</span> <span class="token number">50</span><span class="token punctuation">,</span>
-    destWidth<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-    destHeight<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-    canvasId<span class="token punctuation">:</span> <span class="token string">'myCanvas'</span><span class="token punctuation">,</span>
-    <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    x<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    y<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">50</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">50</span><span class="token punctuation">,</span>
+    destWidth<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    destHeight<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    canvasId<span class="token operator">:</span> <span class="token string">'myCanvas'</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>tempFilePath<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

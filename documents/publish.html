@@ -71,11 +71,11 @@ common, assets, index目录，及其他页面的目录。</p>
 <p>共享数据的处理， 大家都在globalData对象中放一些命名空间对象. globalData不能放函数。大家不要放在其他全局对象上，因此在快应用等个别小程序中，页面跳转时，会清空掉除globalData之外的数据与变量。</p>
 <p>qqConfig.json , wxConfig.json这些平台特有的配置项</p>
 <pre><code class="language-javascript"><span class="token punctuation">{</span>
-    globalData<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-        flight<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            xxx<span class="token punctuation">:</span><span class="token number">111</span><span class="token punctuation">,</span><span class="token number">222</span><span class="token punctuation">:</span><span class="token number">444</span>
+    globalData<span class="token operator">:</span> <span class="token punctuation">{</span>
+        flight<span class="token operator">:</span> <span class="token punctuation">{</span>
+            xxx<span class="token operator">:</span><span class="token number">111</span><span class="token punctuation">,</span><span class="token number">222</span><span class="token operator">:</span><span class="token number">444</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        hotel<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        hotel<span class="token operator">:</span> <span class="token punctuation">{</span>
 
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
@@ -84,11 +84,11 @@ common, assets, index目录，及其他页面的目录。</p>
 <h2 id="自定义输出目录">自定义输出目录</h2>
 <p>nanachi 默认打包目录是dist, 可以在package.json中自定义配置 buildDir 来定义打包目录。</p>
 <pre><code class="language-javascript"><span class="token punctuation">{</span>
-    <span class="token string">"nanachi"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
-        <span class="token string">"alias"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            <span class="token string">"@style"</span><span class="token punctuation">:</span> <span class="token string">"source/assets/style"</span>
+    <span class="token string">"nanachi"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"alias"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"@style"</span><span class="token operator">:</span> <span class="token string">"source/assets/style"</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        <span class="token string">"buildDir"</span><span class="token punctuation">:</span> <span class="token string">"yourDir"</span>
+        <span class="token string">"buildDir"</span><span class="token operator">:</span> <span class="token string">"yourDir"</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>

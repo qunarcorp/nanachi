@@ -106,7 +106,7 @@
 <p>compress压缩模式就是使用后处理loader实现的，链接：https://www.npmjs.com/package/nanachi-compress-loader</p>
 <p>我们规定了loader的输入和输出格式</p>
 <pre><code class="language-javascript"><span class="token punctuation">{</span>
-    queues<span class="token punctuation">:</span> <span class="token comment">// 需要生成的文件数组，如nanachi中的js文件在微信转义中会同时生成wxml和js文件还有可能生成json文件</span>
+    queues<span class="token operator">:</span> <span class="token comment">// 需要生成的文件数组，如nanachi中的js文件在微信转义中会同时生成wxml和js文件还有可能生成json文件</span>
         <span class="token punctuation">[</span><span class="token punctuation">{</span>
             code<span class="token punctuation">,</span> <span class="token comment">// 生成文件内容</span>
             type<span class="token punctuation">,</span> <span class="token comment">// 生成文件类型</span>
@@ -122,7 +122,7 @@
 </ol>
 <pre><code class="language-javascript"><span class="token comment">// nanachi.config.js</span>
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-    postLoaders<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'nanachi-compress-loader'</span><span class="token punctuation">]</span>
+    postLoaders<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'nanachi-compress-loader'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>正常运行nanachi命令，即可将自定义配置应用到项目中</p>
@@ -136,8 +136,8 @@ nanachi build
 <span class="token keyword">const</span> nanachi <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'nanachi-cli'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token function">nanachi</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-    platform<span class="token punctuation">:</span> <span class="token string">'ali'</span><span class="token punctuation">,</span>
-    postLoaders<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'nanachi-compress-loader'</span><span class="token punctuation">]</span>
+    platform<span class="token operator">:</span> <span class="token string">'ali'</span><span class="token punctuation">,</span>
+    postLoaders<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'nanachi-compress-loader'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <pre><code class="language-sh">node build.js

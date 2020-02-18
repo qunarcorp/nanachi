@@ -52,12 +52,12 @@
 </table>
 <p>代码示例</p>
 <pre><code class="language-javascript">React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">navigateTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-    url<span class="token punctuation">:</span> <span class="token string">'/pages/xxx/index?key=value'</span>
+    url<span class="token operator">:</span> <span class="token string">'/pages/xxx/index?key=value'</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <pre><code class="language-javascript"><span class="token comment">//test.js</span>
 <span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  <span class="token function-variable function">componentDidMount</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">option</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">componentDidMount</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">option</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>option<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -111,7 +111,7 @@
 </table>
 <p>代码示例</p>
 <pre><code class="language-javascript">React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">redirectTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  url<span class="token punctuation">:</span> <span class="token string">'pages/test/index?id=1'</span>
+  url<span class="token operator">:</span> <span class="token string">'pages/test/index?id=1'</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="relaunchobject">reLaunch(OBJECT)</h2>
@@ -160,12 +160,12 @@
 </table>
 <p>代码示例</p>
 <pre><code class="language-javascript">  React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">reLaunch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-    url<span class="token punctuation">:</span> <span class="token string">'pages/test/index?id=1'</span>
+    url<span class="token operator">:</span> <span class="token string">'pages/test/index?id=1'</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <pre><code class="language-javascript"><span class="token comment">//test.js</span>
 <span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  <span class="token function-variable function">componentDidMount</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">option</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">componentDidMount</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">option</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>option<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -200,17 +200,17 @@
 
 <span class="token comment">// 此处是A页面</span>
 React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">navigateTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  url<span class="token punctuation">:</span><span class="token string">'pages/B/index?id=1'</span>
+  url<span class="token operator">:</span><span class="token string">'pages/B/index?id=1'</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// 此处是B页面</span>
 React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">navigateTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  url<span class="token punctuation">:</span> <span class="token string">'pages/C/index?id=1'</span>
+  url<span class="token operator">:</span> <span class="token string">'pages/C/index?id=1'</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// 在C页面内 navigateBack，将返回A页面</span>
 React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">navigateBack</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  delta<span class="token punctuation">:</span> <span class="token number">2</span>
+  delta<span class="token operator">:</span> <span class="token number">2</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <blockquote>

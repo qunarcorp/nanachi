@@ -16,43 +16,43 @@
 <span class="token comment">//这部分代码可以独立到一个store.js</span>
 <span class="token keyword">const</span> <span class="token function-variable function">reducer</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">case</span> <span class="token string">'ADD'</span><span class="token punctuation">:</span> 
+        <span class="token keyword">case</span> <span class="token string">'ADD'</span><span class="token operator">:</span> 
             <span class="token keyword">return</span> <span class="token punctuation">{</span>
                 <span class="token operator">...</span>state<span class="token punctuation">,</span>
-                value<span class="token punctuation">:</span> state<span class="token punctuation">.</span>value <span class="token operator">+</span> <span class="token number">1</span>
+                value<span class="token operator">:</span> state<span class="token punctuation">.</span>value <span class="token operator">+</span> <span class="token number">1</span>
             <span class="token punctuation">}</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token string">'MINUS'</span><span class="token punctuation">:</span> 
+        <span class="token keyword">case</span> <span class="token string">'MINUS'</span><span class="token operator">:</span> 
             <span class="token keyword">return</span> <span class="token punctuation">{</span>
                 <span class="token operator">...</span>state<span class="token punctuation">,</span>
-                value<span class="token punctuation">:</span> state<span class="token punctuation">.</span>value <span class="token operator">-</span> <span class="token number">1</span>
+                value<span class="token operator">:</span> state<span class="token punctuation">.</span>value <span class="token operator">-</span> <span class="token number">1</span>
             <span class="token punctuation">}</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token string">'CHANGE'</span><span class="token punctuation">:</span> 
+        <span class="token keyword">case</span> <span class="token string">'CHANGE'</span><span class="token operator">:</span> 
             <span class="token keyword">return</span> <span class="token punctuation">{</span>
                 <span class="token operator">...</span>state<span class="token punctuation">,</span>
-                inputVal<span class="token punctuation">:</span> action<span class="token punctuation">.</span>payload
+                inputVal<span class="token operator">:</span> action<span class="token punctuation">.</span>payload
             <span class="token punctuation">}</span><span class="token punctuation">;</span>
-        <span class="token keyword">default</span><span class="token punctuation">:</span>
+        <span class="token keyword">default</span><span class="token operator">:</span>
             <span class="token keyword">return</span> state<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token punctuation">{</span>
-    value<span class="token punctuation">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
-    inputVal<span class="token punctuation">:</span> <span class="token number">100</span>
+    value<span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
+    inputVal<span class="token operator">:</span> <span class="token number">100</span>
 <span class="token punctuation">}</span>
 <span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">,</span> initState<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">//------------[end]--------------</span>
 <span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     globalData <span class="token operator">=</span> <span class="token punctuation">{</span>
-        _GlobalApp<span class="token punctuation">:</span> <span class="token keyword">typeof</span> Provider <span class="token operator">===</span> <span class="token string">'function'</span> <span class="token operator">?</span> Global<span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token comment">//重点, </span>
+        _GlobalApp<span class="token operator">:</span> <span class="token keyword">typeof</span> Provider <span class="token operator">===</span> <span class="token string">'function'</span> <span class="token operator">?</span> Global<span class="token operator">:</span> <span class="token keyword">null</span> <span class="token comment">//重点, </span>
     <span class="token punctuation">}</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-        window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            navigationBarBackgroundColor<span class="token punctuation">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
-            backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
-            backgroundColor<span class="token punctuation">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
-            navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'nanachi'</span><span class="token punctuation">,</span>
-            navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'white'</span>
+        window<span class="token operator">:</span> <span class="token punctuation">{</span>
+            navigationBarBackgroundColor<span class="token operator">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
+            backgroundTextStyle<span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
+            backgroundColor<span class="token operator">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
+            navigationBarTitleText<span class="token operator">:</span> <span class="token string">'nanachi'</span><span class="token punctuation">,</span>
+            navigationBarTextStyle<span class="token operator">:</span> <span class="token string">'white'</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token function">onLaunch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -73,7 +73,7 @@
     <span class="token comment">// 正常nanachi项目app中不需要render，如需使用状态库Provider，需要添加render方法 </span>
     <span class="token class-name">Global</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">render</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token comment">//  var {store} = React.getApp().globalData</span>
-        <span class="token keyword">return</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>Provider<span class="token punctuation">,</span> <span class="token punctuation">{</span>store<span class="token punctuation">:</span> store<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children <span class="token punctuation">)</span>
+        <span class="token keyword">return</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>Provider<span class="token punctuation">,</span> <span class="token punctuation">{</span>store<span class="token operator">:</span> store<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children <span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
@@ -97,10 +97,10 @@
                 GlobalApp<span class="token punctuation">,</span>
                 <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
                 <span class="token function">createElement</span><span class="token punctuation">(</span>PageClass<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-                    path<span class="token punctuation">:</span> path<span class="token punctuation">,</span>
-                    key<span class="token punctuation">:</span> path<span class="token punctuation">,</span>
-                    query<span class="token punctuation">:</span> query<span class="token punctuation">,</span>
-                    isPageComponent<span class="token punctuation">:</span> <span class="token boolean">true</span>
+                    path<span class="token operator">:</span> path<span class="token punctuation">,</span>
+                    key<span class="token operator">:</span> path<span class="token punctuation">,</span>
+                    query<span class="token operator">:</span> query<span class="token punctuation">,</span>
+                    isPageComponent<span class="token operator">:</span> <span class="token boolean">true</span>
                 <span class="token punctuation">}</span><span class="token punctuation">)</span>
             <span class="token punctuation">)</span><span class="token punctuation">,</span>
             dom<span class="token punctuation">,</span>
@@ -116,9 +116,9 @@
         pageInstance <span class="token operator">=</span> <span class="token function">render</span><span class="token punctuation">(</span>
             <span class="token comment">//生成页面的React对象</span>
             <span class="token function">createElement</span><span class="token punctuation">(</span>PageClass<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-                path<span class="token punctuation">:</span> path<span class="token punctuation">,</span>
-                query<span class="token punctuation">:</span> query<span class="token punctuation">,</span>
-                isPageComponent<span class="token punctuation">:</span> <span class="token boolean">true</span>
+                path<span class="token operator">:</span> path<span class="token punctuation">,</span>
+                query<span class="token operator">:</span> query<span class="token punctuation">,</span>
+                isPageComponent<span class="token operator">:</span> <span class="token boolean">true</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
             dom
         <span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -132,20 +132,20 @@
 
 <span class="token keyword">const</span> <span class="token function-variable function">mapStateToProps</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">state</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">{</span>
-        value<span class="token punctuation">:</span> state<span class="token punctuation">.</span>value
+        value<span class="token operator">:</span> state<span class="token punctuation">.</span>value
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">mapDispatchToProps</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">dispatch</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">{</span>
-        <span class="token function-variable function">add</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">add</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                type<span class="token punctuation">:</span> <span class="token string">'ADD'</span>
+                type<span class="token operator">:</span> <span class="token string">'ADD'</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        <span class="token function-variable function">minus</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">minus</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                type<span class="token punctuation">:</span> <span class="token string">'MINUS'</span>
+                type<span class="token operator">:</span> <span class="token string">'MINUS'</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
@@ -180,12 +180,12 @@
 <span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     globalData <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-        window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            navigationBarBackgroundColor<span class="token punctuation">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
-            backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
-            backgroundColor<span class="token punctuation">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
-            navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'nanachi'</span><span class="token punctuation">,</span>
-            navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'white'</span>
+        window<span class="token operator">:</span> <span class="token punctuation">{</span>
+            navigationBarBackgroundColor<span class="token operator">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
+            backgroundTextStyle<span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
+            backgroundColor<span class="token operator">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
+            navigationBarTitleText<span class="token operator">:</span> <span class="token string">'nanachi'</span><span class="token punctuation">,</span>
+            navigationBarTextStyle<span class="token operator">:</span> <span class="token string">'white'</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token function">onLaunch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -201,7 +201,7 @@
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'App launched'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//eslint-disable-line</span>
     <span class="token punctuation">}</span>
     <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>Provider<span class="token punctuation">,</span> <span class="token punctuation">{</span>store<span class="token punctuation">:</span> store<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children <span class="token punctuation">)</span>
+        <span class="token keyword">return</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>Provider<span class="token punctuation">,</span> <span class="token punctuation">{</span>store<span class="token operator">:</span> store<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children <span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span class="token comment">// eslint-disable-next-line</span>
@@ -218,9 +218,9 @@
 
 @<span class="token function">inject</span><span class="token punctuation">(</span>
     <span class="token parameter">state</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
-        num<span class="token punctuation">:</span> state<span class="token punctuation">.</span>store<span class="token punctuation">.</span>num<span class="token punctuation">,</span>
-        add<span class="token punctuation">:</span> state<span class="token punctuation">.</span>store<span class="token punctuation">.</span>add<span class="token punctuation">,</span>
-        minus<span class="token punctuation">:</span> state<span class="token punctuation">.</span>store<span class="token punctuation">.</span>minus
+        num<span class="token operator">:</span> state<span class="token punctuation">.</span>store<span class="token punctuation">.</span>num<span class="token punctuation">,</span>
+        add<span class="token operator">:</span> state<span class="token punctuation">.</span>store<span class="token punctuation">.</span>add<span class="token punctuation">,</span>
+        minus<span class="token operator">:</span> state<span class="token punctuation">.</span>store<span class="token punctuation">.</span>minus
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">)</span>
 @observer

@@ -16,20 +16,20 @@
 <pre><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     globalData <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-        window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            navigationBarBackgroundColor<span class="token punctuation">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
-            backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
-            navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'nanachi'</span><span class="token punctuation">,</span>
-            navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'white'</span>
+        window<span class="token operator">:</span> <span class="token punctuation">{</span>
+            navigationBarBackgroundColor<span class="token operator">:</span> <span class="token string">'#00afc7'</span><span class="token punctuation">,</span>
+            backgroundTextStyle<span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
+            navigationBarTitleText<span class="token operator">:</span> <span class="token string">'nanachi'</span><span class="token punctuation">,</span>
+            navigationBarTextStyle<span class="token operator">:</span> <span class="token string">'white'</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token keyword">static</span> innerQuery <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment">//这里的值是随意的</span>
-      a<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-      b<span class="token punctuation">:</span> <span class="token number">1</span>
+      a<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      b<span class="token operator">:</span> <span class="token number">1</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">static</span> outerQuery <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment">//这里的值是随意的</span>
-      c<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-      d<span class="token punctuation">:</span> <span class="token number">1</span>
+      c<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      d<span class="token operator">:</span> <span class="token number">1</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -41,10 +41,10 @@
 <span class="token keyword">import</span> <span class="token string">'./index.scss'</span><span class="token punctuation">;</span>
 <span class="token keyword">class</span> <span class="token class-name">P</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     state <span class="token operator">=</span> <span class="token punctuation">{</span>
-        anyVar<span class="token punctuation">:</span> <span class="token punctuation">{</span> color<span class="token punctuation">:</span> <span class="token string">'red'</span> <span class="token punctuation">}</span>
+        anyVar<span class="token operator">:</span> <span class="token punctuation">{</span> color<span class="token operator">:</span> <span class="token string">'red'</span> <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token keyword">static</span> innerQuery <span class="token operator">=</span> <span class="token punctuation">{</span>
-       k<span class="token punctuation">:</span> <span class="token number">1</span>
+       k<span class="token operator">:</span> <span class="token number">1</span>
     <span class="token punctuation">}</span>
     <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment">// eslint-disable-next-line</span>
@@ -74,21 +74,21 @@
     <span class="token keyword">var</span> pageInner <span class="token operator">=</span> PageClass<span class="token punctuation">.</span>innerQuery<span class="token punctuation">;</span>
     <span class="token keyword">var</span> pageOuter <span class="token operator">=</span> PageClass<span class="token punctuation">.</span>outerQuery<span class="token punctuation">;</span>
     
-    <span class="token keyword">var</span> innerQuery <span class="token operator">=</span> pageInner <span class="token operator">?</span>  Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> appInner<span class="token punctuation">,</span> pageInner <span class="token punctuation">)</span><span class="token punctuation">:</span> appInner<span class="token punctuation">;</span>
-    <span class="token keyword">var</span> outerQuery <span class="token operator">=</span> pageOuter <span class="token operator">?</span>  Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> appOuter<span class="token punctuation">,</span> pageOuter <span class="token punctuation">)</span><span class="token punctuation">:</span> appOuter<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> innerQuery <span class="token operator">=</span> pageInner <span class="token operator">?</span>  Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> appInner<span class="token punctuation">,</span> pageInner <span class="token punctuation">)</span><span class="token operator">:</span> appInner<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> outerQuery <span class="token operator">=</span> pageOuter <span class="token operator">?</span>  Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> appOuter<span class="token punctuation">,</span> pageOuter <span class="token punctuation">)</span><span class="token operator">:</span> appOuter<span class="token punctuation">;</span>
     <span class="token keyword">let</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-        <span class="token keyword">private</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            props<span class="token punctuation">:</span> Object<span class="token punctuation">,</span>
-            context<span class="token punctuation">:</span> Object<span class="token punctuation">,</span>
-            state<span class="token punctuation">:</span> Object
+        <span class="token keyword">private</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            props<span class="token operator">:</span> Object<span class="token punctuation">,</span>
+            context<span class="token operator">:</span> Object<span class="token punctuation">,</span>
+            state<span class="token operator">:</span> Object
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
         <span class="token comment">//华为快应用拿不到页面参数，在$page.uri拿不到，manifest.json加了filter也不行</span>
-        <span class="token keyword">protected</span><span class="token punctuation">:</span> innerQuery<span class="token punctuation">,</span> <span class="token comment">//页面间的参数</span>
-        <span class="token keyword">public</span><span class="token punctuation">:</span> outerQuery<span class="token punctuation">,</span>    <span class="token comment">//外面传过来的参数</span>
+        <span class="token keyword">protected</span><span class="token operator">:</span> innerQuery<span class="token punctuation">,</span> <span class="token comment">//页面间的参数</span>
+        <span class="token keyword">public</span><span class="token operator">:</span> outerQuery<span class="token punctuation">,</span>    <span class="token comment">//外面传过来的参数</span>
         dispatchEvent<span class="token punctuation">,</span>
         <span class="token function">onInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        onReady<span class="token punctuation">:</span> onReady<span class="token punctuation">,</span>
-        onDestroy<span class="token punctuation">:</span> onUnload
+        onReady<span class="token operator">:</span> onReady<span class="token punctuation">,</span>
+        onDestroy<span class="token operator">:</span> onUnload
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> config
 <span class="token punctuation">}</span>

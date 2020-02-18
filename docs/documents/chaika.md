@@ -56,7 +56,7 @@
 ```json
 {
   "nanachi": {
-    "chaika_mode": true //这是告诉 nanachi，当前快发模式为“拆库”模式。
+    "chaika": true //这是告诉 nanachi，当前快发模式为“拆库”模式。
   }
 }
 ```
@@ -121,8 +121,8 @@ module.exports = {
 ```
 {
    "modules": {
-    "git@xxx.git": "yourBranchName",
-    "tarName": "yourVersion"
+    "yourModuleName": "yourBranch",
+    "yourModuleName": "yourTag"
   }
 }
 ```
@@ -135,11 +135,10 @@ module.exports = {
    ```json
       {
         "nanachi": {
-          "chaika_mode": true //这是告诉 nanachi，当前快发模式为“拆库”模式。
+          "chaika": true //这是告诉 nanachi，当前快发模式为“拆库”模式。
         }
-      }
-   ```
 
+   ```
 ## 注意事项
 1. 配置文件，如wxConfig.json，aliConfig.json, ..., app.json需要放在拆库工程的**source**目录下, project.config.json, package.json等需要放在拆库工程**根目录下**。
 2. nanachi拆卡模式对各配置文件合并时，nanachi会将冲突暴露。如果遇到配置冲突，需用户自行解决冲突。

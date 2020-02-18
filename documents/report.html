@@ -22,8 +22,8 @@
     <span class="token keyword">const</span> dataset <span class="token operator">=</span> target<span class="token punctuation">.</span>dataset <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> eventUid <span class="token operator">=</span> dataset<span class="token punctuation">[</span>eventType <span class="token operator">+</span> <span class="token string">'Uid'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> fiber <span class="token operator">=</span> instance<span class="token punctuation">.</span>$$eventCached<span class="token punctuation">[</span>eventUid <span class="token operator">+</span> <span class="token string">'Fiber'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span>
-        props<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-        type<span class="token punctuation">:</span> <span class="token string">'unknown'</span>
+        props<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        type<span class="token operator">:</span> <span class="token string">'unknown'</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>app <span class="token operator">&amp;&amp;</span> app<span class="token punctuation">.</span>onCollectLogs <span class="token operator">&amp;&amp;</span> <span class="token regex">/click|tap/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>eventType<span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
         app<span class="token punctuation">.</span><span class="token function">onCollectLogss</span><span class="token punctuation">(</span>dataset<span class="token punctuation">,</span> eventType<span class="token punctuation">,</span> fiber <span class="token operator">&amp;&amp;</span> fiber<span class="token punctuation">.</span>stateNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -43,7 +43,7 @@
     <span class="token keyword">var</span> xpath <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>parentNode<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">var</span> index <span class="token operator">=</span> node<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">var</span> tag <span class="token operator">=</span> node<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token string">'div'</span> <span class="token operator">?</span> <span class="token string">'view'</span><span class="token punctuation">:</span> node<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
+        <span class="token keyword">var</span> tag <span class="token operator">=</span> node<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token string">'div'</span> <span class="token operator">?</span> <span class="token string">'view'</span><span class="token operator">:</span> node<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
         xpath<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span>tag<span class="token operator">+</span><span class="token string">'['</span><span class="token operator">+</span>index<span class="token operator">+</span><span class="token string">']'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         node <span class="token operator">=</span> node<span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -61,16 +61,16 @@
 <span class="token keyword">var</span> openChange <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
 <span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-        window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
-            navigationBarBackgroundColor<span class="token punctuation">:</span> <span class="token string">'#0088a4'</span><span class="token punctuation">,</span>
-            navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
-            navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'#fff'</span>
+        window<span class="token operator">:</span> <span class="token punctuation">{</span>
+            backgroundTextStyle<span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
+            navigationBarBackgroundColor<span class="token operator">:</span> <span class="token string">'#0088a4'</span><span class="token punctuation">,</span>
+            navigationBarTitleText<span class="token operator">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
+            navigationBarTextStyle<span class="token operator">:</span> <span class="token string">'#fff'</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token comment">// 全局数据</span>
     globalData <span class="token operator">=</span> <span class="token punctuation">{</span>
-        ufo<span class="token punctuation">:</span> <span class="token string">'ufo'</span>
+        ufo<span class="token operator">:</span> <span class="token string">'ufo'</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token function">onCollectLogs</span><span class="token punctuation">(</span><span class="token parameter">dataset<span class="token punctuation">,</span> eventType<span class="token punctuation">,</span> node</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//这里会在框架的dispatchEvent自动调起，实现自动理点</span>
         <span class="token keyword">var</span> beaconId <span class="token operator">=</span> dataset<span class="token punctuation">.</span>beaconUid<span class="token punctuation">;</span>
@@ -91,10 +91,10 @@
         <span class="token keyword">var</span> path <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">getCurrentPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>path<span class="token punctuation">;</span><span class="token comment">//页面路径</span>
         <span class="token keyword">var</span> logs <span class="token operator">=</span>  <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>logs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
         logs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            pid<span class="token punctuation">:</span> beaconId<span class="token punctuation">,</span>
-            path<span class="token punctuation">:</span> path<span class="token punctuation">,</span>
-            timeStamp<span class="token punctuation">:</span> timeStamp
-            action<span class="token punctuation">:</span> eventType
+            pid<span class="token operator">:</span> beaconId<span class="token punctuation">,</span>
+            path<span class="token operator">:</span> path<span class="token punctuation">,</span>
+            timeStamp<span class="token operator">:</span> timeStamp
+            action<span class="token operator">:</span> eventType
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span>logs<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">var</span> uploadLogs <span class="token operator">=</span> logs<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//截取前十条；</span>
@@ -125,8 +125,8 @@
         <span class="token keyword">var</span> info <span class="token operator">=</span>  <span class="token keyword">this</span><span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>systemInfo <span class="token operator">|</span> React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">getSystemInfornSync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">var</span> <span class="token punctuation">{</span> brand<span class="token punctuation">,</span> model<span class="token punctuation">,</span> version<span class="token punctuation">,</span> platform<span class="token punctuation">}</span> <span class="token operator">=</span> info <span class="token punctuation">;</span><span class="token comment">//获取手机品牌，手机型号， 微信版本号, 客户端平台;</span>
         React<span class="token punctuation">.</span>api<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            url<span class="token punctuation">:</span> <span class="token string">"/fdsfdsf/sdfds"</span><span class="token punctuation">,</span>
-            type<span class="token punctuation">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">"/fdsfdsf/sdfds"</span><span class="token punctuation">,</span>
+            type<span class="token operator">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
             data： <span class="token punctuation">{</span>
                 logs<span class="token punctuation">,</span>  <span class="token comment">//logData</span>
                 buildType<span class="token punctuation">,</span><span class="token comment">//wx, bu, ali, quick, tt, qq</span>
@@ -168,10 +168,10 @@ onCollectLogs方法</li>
 <p>如果一些页面没有使用nanachi,可以通过下面的方法调用app.js的全局钩子：</p>
 </blockquote>
 <pre><code class="language-javascript">    <span class="token keyword">var</span> appHook <span class="token operator">=</span> <span class="token punctuation">{</span>
-        onLoad<span class="token punctuation">:</span> <span class="token string">"onGlobalLoad"</span><span class="token punctuation">,</span>
-        onReady<span class="token punctuation">:</span> <span class="token string">"onGlobalReady"</span><span class="token punctuation">,</span>
-        onShow<span class="token punctuation">:</span> <span class="token string">"onGlobalShow"</span><span class="token punctuation">,</span>
-        onHide<span class="token punctuation">:</span> <span class="token string">"onGlobalHide"</span>
+        onLoad<span class="token operator">:</span> <span class="token string">"onGlobalLoad"</span><span class="token punctuation">,</span>
+        onReady<span class="token operator">:</span> <span class="token string">"onGlobalReady"</span><span class="token punctuation">,</span>
+        onShow<span class="token operator">:</span> <span class="token string">"onGlobalShow"</span><span class="token punctuation">,</span>
+        onHide<span class="token operator">:</span> <span class="token string">"onGlobalHide"</span>
      <span class="token punctuation">}</span>
      <span class="token keyword">function</span> <span class="token function">addGlobalHooks</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
          <span class="token string">"onLoad,onReady,onShow,onHide"</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\w+/g</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">method</span><span class="token punctuation">)</span><span class="token punctuation">{</span>

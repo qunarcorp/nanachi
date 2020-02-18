@@ -14,16 +14,16 @@
     <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
-            text<span class="token punctuation">:</span> <span class="token string">'this is first line\nthis is second line'</span>
+            text<span class="token operator">:</span> <span class="token string">'this is first line\nthis is second line'</span>
         <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
     <span class="token function">onShare</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">var</span> navigateToUrl <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>path<span class="token punctuation">;</span>
             <span class="token keyword">return</span> <span class="token punctuation">{</span>
-                title<span class="token punctuation">:</span> <span class="token string">'预订火车票 - 携程'</span><span class="token punctuation">,</span>
-                imageUrl<span class="token punctuation">:</span> <span class="token string">'https://s.aaa.com/bbb/ccc.jpg'</span><span class="token punctuation">,</span>
-                path<span class="token punctuation">:</span> navigateToUrl
+                title<span class="token operator">:</span> <span class="token string">'预订火车票 - 携程'</span><span class="token punctuation">,</span>
+                imageUrl<span class="token operator">:</span> <span class="token string">'https://s.aaa.com/bbb/ccc.jpg'</span><span class="token punctuation">,</span>
+                path<span class="token operator">:</span> navigateToUrl
             <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
@@ -32,7 +32,7 @@
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>textAry<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
         textAry<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            text<span class="token punctuation">:</span> textAry<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
+            text<span class="token operator">:</span> textAry<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
@@ -59,22 +59,22 @@
 <pre><code class="language-javascript">
 <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-        window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
+        window<span class="token operator">:</span> <span class="token punctuation">{</span>
+            backgroundTextStyle<span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
             <span class="token comment">// navigationBarBackgroundColor: '#0088a4',</span>
-            navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
-            navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'#fff'</span>
+            navigationBarTitleText<span class="token operator">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
+            navigationBarTextStyle<span class="token operator">:</span> <span class="token string">'#fff'</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        tabBar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-            <span class="token string">'color'</span><span class="token punctuation">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
-            <span class="token string">'selectedColor'</span><span class="token punctuation">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
-            <span class="token string">'borderStyle'</span><span class="token punctuation">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
-            <span class="token string">'backgroundColor'</span><span class="token punctuation">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
-            <span class="token string">'list'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token comment">/**/</span> <span class="token punctuation">]</span>
+        tabBar<span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'color'</span><span class="token operator">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
+            <span class="token string">'selectedColor'</span><span class="token operator">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
+            <span class="token string">'borderStyle'</span><span class="token operator">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
+            <span class="token string">'backgroundColor'</span><span class="token operator">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
+            <span class="token string">'list'</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token comment">/**/</span> <span class="token punctuation">]</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     globalData <span class="token operator">=</span> <span class="token punctuation">{</span>
-        ufo<span class="token punctuation">:</span> <span class="token string">'ufo'</span>
+        ufo<span class="token operator">:</span> <span class="token string">'ufo'</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token function">onGlobalShare</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">ANU_ENV</span> <span class="token operator">===</span> <span class="token string">'wx'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -83,16 +83,16 @@
           <span class="token comment">// 快应用的分享比较特殊</span>
           <span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">ANU_ENV</span> <span class="token operator">===</span> <span class="token string">'quick'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                         <span class="token keyword">return</span> <span class="token punctuation">{</span>
-                            shareType<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-                            title<span class="token punctuation">:</span> <span class="token string">'携程'</span><span class="token punctuation">,</span>
-                            summary<span class="token punctuation">:</span> <span class="token string">'携程，总有你要的低价'</span><span class="token punctuation">,</span>
-                            imagePath<span class="token punctuation">:</span> <span class="token string">'/assets/image/qlog.png'</span><span class="token punctuation">,</span>
-                            targetUrl<span class="token punctuation">:</span> <span class="token string">'https://miniapp.tujia.com/quickShare?%2Fpages%2Fplatform%2Findex%3Fbd_origin%3Dfrom-quick-share'</span><span class="token punctuation">,</span>
-                            platforms<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'WEIXIN'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                            <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            shareType<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                            title<span class="token operator">:</span> <span class="token string">'携程'</span><span class="token punctuation">,</span>
+                            summary<span class="token operator">:</span> <span class="token string">'携程，总有你要的低价'</span><span class="token punctuation">,</span>
+                            imagePath<span class="token operator">:</span> <span class="token string">'/assets/image/qlog.png'</span><span class="token punctuation">,</span>
+                            targetUrl<span class="token operator">:</span> <span class="token string">'https://miniapp.tujia.com/quickShare?%2Fpages%2Fplatform%2Findex%3Fbd_origin%3Dfrom-quick-share'</span><span class="token punctuation">,</span>
+                            platforms<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'WEIXIN'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                            <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                                         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'handling success'</span><span class="token punctuation">)</span>
                             <span class="token punctuation">}</span><span class="token punctuation">,</span>
-                            <span class="token function-variable function">fail</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> code</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            <span class="token function-variable function">fail</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> code</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                                         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">handling fail, code = </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>code<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
                             <span class="token punctuation">}</span>
                         <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -101,16 +101,16 @@
             <span class="token keyword">let</span> path <span class="token operator">=</span> reactInstance <span class="token operator">&amp;&amp;</span> reactInstance<span class="token punctuation">.</span>props <span class="token operator">&amp;&amp;</span> reactInstance<span class="token punctuation">.</span>props<span class="token punctuation">.</span>path<span class="token punctuation">;</span>
             <span class="token keyword">let</span> query <span class="token operator">=</span> reactInstance <span class="token operator">&amp;&amp;</span> reactInstance<span class="token punctuation">.</span>props <span class="token operator">&amp;&amp;</span> reactInstance<span class="token punctuation">.</span>props<span class="token punctuation">.</span>query<span class="token punctuation">;</span>
             <span class="token keyword">return</span> <span class="token punctuation">{</span>
-                        title<span class="token punctuation">:</span> <span class="token string">'携程'</span><span class="token punctuation">,</span>
-                        content<span class="token punctuation">:</span> <span class="token string">'携程，总有你要的低价'</span><span class="token punctuation">,</span>
-                        path<span class="token punctuation">:</span> <span class="token string">'pages/platform/indexWx/index'</span><span class="token punctuation">,</span>
-                        <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token parameter">res</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+                        title<span class="token operator">:</span> <span class="token string">'携程'</span><span class="token punctuation">,</span>
+                        content<span class="token operator">:</span> <span class="token string">'携程，总有你要的低价'</span><span class="token punctuation">,</span>
+                        path<span class="token operator">:</span> <span class="token string">'pages/platform/indexWx/index'</span><span class="token punctuation">,</span>
+                        <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token parameter">res</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
                             <span class="token function">Log</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                                        name<span class="token punctuation">:</span> <span class="token string">'share'</span><span class="token punctuation">,</span>
-                                        channel<span class="token punctuation">:</span> res<span class="token punctuation">.</span>channelName<span class="token punctuation">,</span>
-                                        page<span class="token punctuation">:</span> path<span class="token punctuation">,</span>
-                                        query<span class="token punctuation">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>query <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                                        to<span class="token punctuation">:</span> <span class="token string">'pages/platform/indexWx/index'</span><span class="token punctuation">,</span>
+                                        name<span class="token operator">:</span> <span class="token string">'share'</span><span class="token punctuation">,</span>
+                                        channel<span class="token operator">:</span> res<span class="token punctuation">.</span>channelName<span class="token punctuation">,</span>
+                                        page<span class="token operator">:</span> path<span class="token punctuation">,</span>
+                                        query<span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>query <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                        to<span class="token operator">:</span> <span class="token string">'pages/platform/indexWx/index'</span><span class="token punctuation">,</span>
                             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                         <span class="token punctuation">}</span><span class="token punctuation">,</span>
             <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -124,31 +124,31 @@
          <span class="token keyword">if</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">ANU_ENV</span> <span class="token operator">===</span> <span class="token string">'quick'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">var</span> api <span class="token operator">=</span> React<span class="token punctuation">.</span>api<span class="token punctuation">;</span>
             api<span class="token punctuation">.</span><span class="token function">showActionSheet</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                itemList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'转发'</span><span class="token punctuation">,</span> <span class="token string">'保存到桌面'</span><span class="token punctuation">,</span> <span class="token string">'关于'</span><span class="token punctuation">,</span> <span class="token string">'取消'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                    <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">ret</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                itemList<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'转发'</span><span class="token punctuation">,</span> <span class="token string">'保存到桌面'</span><span class="token punctuation">,</span> <span class="token string">'关于'</span><span class="token punctuation">,</span> <span class="token string">'取消'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">ret</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                         <span class="token keyword">switch</span> <span class="token punctuation">(</span>ret<span class="token punctuation">.</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                            <span class="token keyword">case</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token comment">//分享转发</span>
+                            <span class="token keyword">case</span> <span class="token number">0</span><span class="token operator">:</span> <span class="token comment">//分享转发</span>
                                 <span class="token keyword">var</span> fn <span class="token operator">=</span> pageInstance<span class="token punctuation">.</span>onShare <span class="token operator">||</span> app<span class="token punctuation">.</span>onGlobalShare<span class="token punctuation">;</span>
                                 <span class="token keyword">var</span> obj <span class="token operator">=</span> fn <span class="token operator">&amp;&amp;</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                                 <span class="token keyword">if</span> <span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
                                     api<span class="token punctuation">.</span><span class="token function">share</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
                                 <span class="token punctuation">}</span>
                                 <span class="token keyword">break</span><span class="token punctuation">;</span>
-                            <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
+                            <span class="token keyword">case</span> <span class="token number">1</span><span class="token operator">:</span>
                                 <span class="token comment">// 保存桌面</span>
                                 api<span class="token punctuation">.</span><span class="token function">createShortcut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                                 <span class="token keyword">break</span><span class="token punctuation">;</span>
-                            <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span>
+                            <span class="token keyword">case</span> <span class="token number">2</span><span class="token operator">:</span>
                                 <span class="token comment">// 关于</span>
                                     api<span class="token punctuation">.</span><span class="token function">getSystemInfo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                                        <span class="token function-variable function">success</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">appInfo</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                                        <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">appInfo</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
                                             api<span class="token punctuation">.</span><span class="token function">redirectTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                                                url<span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">pages/about/index?brand=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>appInfo<span class="token punctuation">.</span>brand<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;version=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>appInfo<span class="token punctuation">.</span>version<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
+                                                url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">pages/about/index?brand=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>appInfo<span class="token punctuation">.</span>brand<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;version=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>appInfo<span class="token punctuation">.</span>version<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
                                             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                                         <span class="token punctuation">}</span>
                                     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                                 <span class="token keyword">break</span><span class="token punctuation">;</span>
-                            <span class="token keyword">case</span> <span class="token number">3</span><span class="token punctuation">:</span>
+                            <span class="token keyword">case</span> <span class="token number">3</span><span class="token operator">:</span>
                                 <span class="token comment">// 取消</span>
                                 <span class="token keyword">break</span><span class="token punctuation">;</span>
                         <span class="token punctuation">}</span>

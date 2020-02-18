@@ -9,9 +9,9 @@
 <h2 id="标题栏">标题栏</h2>
 <pre><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">P</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token punctuation">{</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-        navigationBarBackgroundColor<span class="token punctuation">:</span> <span class="token string">"#a9ea00"</span><span class="token punctuation">,</span>
-        navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">"back"</span><span class="token punctuation">,</span>
-        navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">"用户中心"</span>
+        navigationBarBackgroundColor<span class="token operator">:</span> <span class="token string">"#a9ea00"</span><span class="token punctuation">,</span>
+        navigationBarTextStyle<span class="token operator">:</span> <span class="token string">"back"</span><span class="token punctuation">,</span>
+        navigationBarTitleText<span class="token operator">:</span> <span class="token string">"用户中心"</span>
     <span class="token punctuation">}</span>
     <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">.....</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
@@ -99,15 +99,15 @@ document<span class="token punctuation">.</span><span class="token function">add
 <p>在原生微信小程序中，只要onShareAppMessage定义就会出现右上角菜单。在娜娜奇中，右上角菜单则总是存在， 并且这个钩子也改名，简化为更好记的onShare, 如果页面没有定义onShare钩子, 它就会使用app.js的全局钩子onGlobalShare</p>
 <pre><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">P</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token punctuation">{</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-        navigationBarBackgroundColor<span class="token punctuation">:</span> <span class="token string">"#a9ea00"</span><span class="token punctuation">,</span>
-        navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">"back"</span><span class="token punctuation">,</span>
-        navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">"用户中心"</span>
+        navigationBarBackgroundColor<span class="token operator">:</span> <span class="token string">"#a9ea00"</span><span class="token punctuation">,</span>
+        navigationBarTextStyle<span class="token operator">:</span> <span class="token string">"back"</span><span class="token punctuation">,</span>
+        navigationBarTitleText<span class="token operator">:</span> <span class="token string">"用户中心"</span>
     <span class="token punctuation">}</span>
     <span class="token function">onShare</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token punctuation">{</span>
-            title<span class="token punctuation">:</span> <span class="token string">'预订火车票 - 去哪儿旅行'</span><span class="token punctuation">,</span>
-            imageUrl<span class="token punctuation">:</span> <span class="token string">'https://s.aaa.com/bbb/ccc.jpg'</span><span class="token punctuation">,</span>
-            path<span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">xx/yy</span><span class="token template-punctuation string">`</span></span>
+            title<span class="token operator">:</span> <span class="token string">'预订火车票 - 去哪儿旅行'</span><span class="token punctuation">,</span>
+            imageUrl<span class="token operator">:</span> <span class="token string">'https://s.aaa.com/bbb/ccc.jpg'</span><span class="token punctuation">,</span>
+            path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">xx/yy</span><span class="token template-punctuation string">`</span></span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
     <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -136,34 +136,34 @@ document<span class="token punctuation">.</span><span class="token function">add
 <pre><code class="language-javascript"><span class="token comment">//app.js</span>
 <span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
 	<span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-	    window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-	        backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
-	        navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
-			navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'white'</span>
+	    window<span class="token operator">:</span> <span class="token punctuation">{</span>
+	        backgroundTextStyle<span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
+	        navigationBarTitleText<span class="token operator">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
+			navigationBarTextStyle<span class="token operator">:</span> <span class="token string">'white'</span>
 	    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	    tabBar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-	        color<span class="token punctuation">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
-	        selectedColor<span class="token punctuation">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
-	        borderStyle<span class="token punctuation">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
-	        backgroundColor<span class="token punctuation">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
-	        list<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+	    tabBar<span class="token operator">:</span> <span class="token punctuation">{</span>
+	        color<span class="token operator">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
+	        selectedColor<span class="token operator">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
+	        borderStyle<span class="token operator">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
+	        backgroundColor<span class="token operator">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
+	        list<span class="token operator">:</span> <span class="token punctuation">[</span>
 	            <span class="token punctuation">{</span>
-	                pagePath<span class="token punctuation">:</span> <span class="token string">'pages/index/index'</span><span class="token punctuation">,</span>
-	                iconPath<span class="token punctuation">:</span> <span class="token string">'/assets/image/homepage_normal.png'</span><span class="token punctuation">,</span>
-	                selectedIconPath<span class="token punctuation">:</span> <span class="token string">'/assets/image/homepage_select.png'</span><span class="token punctuation">,</span>
-	                text<span class="token punctuation">:</span> <span class="token string">'首页'</span>
+	                pagePath<span class="token operator">:</span> <span class="token string">'pages/index/index'</span><span class="token punctuation">,</span>
+	                iconPath<span class="token operator">:</span> <span class="token string">'/assets/image/homepage_normal.png'</span><span class="token punctuation">,</span>
+	                selectedIconPath<span class="token operator">:</span> <span class="token string">'/assets/image/homepage_select.png'</span><span class="token punctuation">,</span>
+	                text<span class="token operator">:</span> <span class="token string">'首页'</span>
 	            <span class="token punctuation">}</span><span class="token punctuation">,</span>
 	            <span class="token punctuation">{</span>
-	                pagePath<span class="token punctuation">:</span> <span class="token string">'pages/demo/question/index/index'</span><span class="token punctuation">,</span>
-	                iconPath<span class="token punctuation">:</span> <span class="token string">'/assets/image/question_normal.png'</span><span class="token punctuation">,</span>
-	                selectedIconPath<span class="token punctuation">:</span> <span class="token string">'/assets/image/question_select.png'</span><span class="token punctuation">,</span>
-	                text<span class="token punctuation">:</span> <span class="token string">'问答社区'</span>
+	                pagePath<span class="token operator">:</span> <span class="token string">'pages/demo/question/index/index'</span><span class="token punctuation">,</span>
+	                iconPath<span class="token operator">:</span> <span class="token string">'/assets/image/question_normal.png'</span><span class="token punctuation">,</span>
+	                selectedIconPath<span class="token operator">:</span> <span class="token string">'/assets/image/question_select.png'</span><span class="token punctuation">,</span>
+	                text<span class="token operator">:</span> <span class="token string">'问答社区'</span>
 	            <span class="token punctuation">}</span><span class="token punctuation">,</span>
 	            <span class="token punctuation">{</span>
-	                pagePath<span class="token punctuation">:</span> <span class="token string">'pages/demo/userCenter/index'</span><span class="token punctuation">,</span>
-	                iconPath<span class="token punctuation">:</span> <span class="token string">'/assets/image/uc_normal.png'</span><span class="token punctuation">,</span>
-	                selectedIconPath<span class="token punctuation">:</span> <span class="token string">'/assets/image/uc_select.png'</span><span class="token punctuation">,</span>
-	                text<span class="token punctuation">:</span> <span class="token string">'我的'</span>
+	                pagePath<span class="token operator">:</span> <span class="token string">'pages/demo/userCenter/index'</span><span class="token punctuation">,</span>
+	                iconPath<span class="token operator">:</span> <span class="token string">'/assets/image/uc_normal.png'</span><span class="token punctuation">,</span>
+	                selectedIconPath<span class="token operator">:</span> <span class="token string">'/assets/image/uc_select.png'</span><span class="token punctuation">,</span>
+	                text<span class="token operator">:</span> <span class="token string">'我的'</span>
 	            <span class="token punctuation">}</span>
 	        <span class="token punctuation">]</span>
 	    <span class="token punctuation">}</span>
@@ -175,12 +175,12 @@ document<span class="token punctuation">.</span><span class="token function">add
 <span class="token comment">// pages/page1/index.js 由于存在tabBar配置对象，但是list的长度为零，不会显示 tabBar</span>
 <span class="token keyword">class</span> <span class="token class-name">P1</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
     <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span> 
-	    tabBar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-	        color<span class="token punctuation">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
-	        selectedColor<span class="token punctuation">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
-	        borderStyle<span class="token punctuation">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
-	        backgroundColor<span class="token punctuation">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
-	        list<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+	    tabBar<span class="token operator">:</span> <span class="token punctuation">{</span>
+	        color<span class="token operator">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
+	        selectedColor<span class="token operator">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
+	        borderStyle<span class="token operator">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
+	        backgroundColor<span class="token operator">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
+	        list<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
      <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>

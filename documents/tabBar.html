@@ -7,18 +7,18 @@
 <p>默认是使用tabBar.list数组</p>
 <pre><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
    <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-	    window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-	        backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
+	    window<span class="token operator">:</span> <span class="token punctuation">{</span>
+	        backgroundTextStyle<span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
 	        <span class="token comment">// navigationBarBackgroundColor: '#0088a4',</span>
-	        navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
-	        navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'#fff'</span>
+	        navigationBarTitleText<span class="token operator">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
+	        navigationBarTextStyle<span class="token operator">:</span> <span class="token string">'#fff'</span>
 	    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	    tabBar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-	        color<span class="token punctuation">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
-	        selectedColor<span class="token punctuation">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
-	        borderStyle<span class="token punctuation">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
-	        backgroundColor<span class="token punctuation">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
-	        list<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span>
+	    tabBar<span class="token operator">:</span> <span class="token punctuation">{</span>
+	        color<span class="token operator">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
+	        selectedColor<span class="token operator">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
+	        borderStyle<span class="token operator">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
+	        backgroundColor<span class="token operator">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
+	        list<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span>
         <span class="token punctuation">}</span>
    <span class="token punctuation">}</span>
    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -31,21 +31,21 @@
 <p>同理，你可以添加wxList, buList, ttList进行不同的设置。</p>
 <pre><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Global</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
    <span class="token keyword">static</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-	    window<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-	        backgroundTextStyle<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
+	    window<span class="token operator">:</span> <span class="token punctuation">{</span>
+	        backgroundTextStyle<span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">,</span>
 	        <span class="token comment">// navigationBarBackgroundColor: '#0088a4',</span>
-	        navigationBarTitleText<span class="token punctuation">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
-	        navigationBarTextStyle<span class="token punctuation">:</span> <span class="token string">'#fff'</span>
+	        navigationBarTitleText<span class="token operator">:</span> <span class="token string">'mpreact'</span><span class="token punctuation">,</span>
+	        navigationBarTextStyle<span class="token operator">:</span> <span class="token string">'#fff'</span>
 	    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-	    tabBar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-	        color<span class="token punctuation">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
-	        selectedColor<span class="token punctuation">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
-	        borderStyle<span class="token punctuation">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
-	        backgroundColor<span class="token punctuation">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
-	        list<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-            buList<span class="token punctuation">:</span>  <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-            quickList<span class="token punctuation">:</span>  <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-            aliList<span class="token punctuation">:</span>  <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span>
+	    tabBar<span class="token operator">:</span> <span class="token punctuation">{</span>
+	        color<span class="token operator">:</span> <span class="token string">'#929292'</span><span class="token punctuation">,</span>
+	        selectedColor<span class="token operator">:</span> <span class="token string">'#00bcd4'</span><span class="token punctuation">,</span>
+	        borderStyle<span class="token operator">:</span> <span class="token string">'black'</span><span class="token punctuation">,</span>
+	        backgroundColor<span class="token operator">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
+	        list<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            buList<span class="token operator">:</span>  <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            quickList<span class="token operator">:</span>  <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            aliList<span class="token operator">:</span>  <span class="token punctuation">[</span> <span class="token comment">/*略*/</span><span class="token punctuation">]</span>
         <span class="token punctuation">}</span>
    <span class="token punctuation">}</span>
    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
